@@ -679,6 +679,13 @@ class Crud_model extends CI_Model
             $data['enable_drip_content'] = 0;
         }
 
+        $enable_certificate = $this->input->post('enable_certificate');
+        if (isset($enable_certificate) && $enable_certificate) {
+            $data['enable_certificate'] = 1;
+        } else {
+            $data['enable_certificate'] = 0;
+        }
+
         if ($this->input->post('course_overview_url') != "") {
             $data['course_overview_provider'] = html_escape($this->input->post('course_overview_provider'));
         } else {
@@ -876,6 +883,13 @@ class Crud_model extends CI_Model
             $data['enable_drip_content'] = 1;
         } else {
             $data['enable_drip_content'] = 0;
+        }
+
+        $enable_certificate = $this->input->post('enable_certificate');
+        if (isset($enable_certificate) && $enable_certificate) {
+            $data['enable_certificate'] = 1;
+        } else {
+            $data['enable_certificate'] = 0;
         }
 
         if ($this->input->post('course_overview_url') != "") {
@@ -3734,10 +3748,14 @@ class Crud_model extends CI_Model
                 $this->db->update('watch_histories', array('course_progress' => $course_progress, 'completed_lesson' => json_encode($lesson_ids), 'completed_date' => $completed_date, 'date_updated' => time()));
                 $is_completed = 0;
             }
-            // CHECK IF THE USER IS ELIGIBLE FOR CERTIFICATE
+            // CHECK IF COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
             if (addon_status('certificate') && $course_progress >= 100) {
-                $this->load->model('addons/Certificate_model', 'certificate_model');
-                $this->certificate_model->check_certificate_eligibility($course_id, $user_id);
+                $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
+                if ($course_data && $course_data->enable_certificate)
+                {
+                    $this->load->model('addons/Certificate_model', 'certificate_model');
+                    $this->certificate_model->check_certificate_eligibility($course_id, $user_id);
+                }
             }
         } else {
             $total_lesson = $this->db->get_where('lesson', array('course_id' => $course_id))->num_rows();
@@ -4275,10 +4293,14 @@ class Crud_model extends CI_Model
                     $this->db->where('watch_history_id', $query->row('watch_history_id'));
                     $this->db->update('watch_histories', array('course_progress' => $course_progress, 'completed_lesson' => json_encode($lesson_ids), 'completed_date' => $completed_date, 'date_updated' => time()));
 
-                    // CHECK IF THE USER IS ELIGIBLE FOR CERTIFICATE
+                    // CHECK IF THE COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
                     if (addon_status('certificate') && $course_progress >= 100) {
-                        $this->load->model('addons/Certificate_model', 'certificate_model');
-                        $this->certificate_model->check_certificate_eligibility($data['watched_course_id'], $data['watched_student_id']);
+                        $course_data = $this->db->get_where('course', array('id' => $data['watched_course_id']))->row();
+                        if ($course_data && $course_data->enable_certificate)
+                        {
+                            $this->load->model('addons/Certificate_model', 'certificate_model');
+                            $this->certificate_model->check_certificate_eligibility($data['watched_course_id'], $data['watched_student_id']);
+                        }
                     }
                 }
             }

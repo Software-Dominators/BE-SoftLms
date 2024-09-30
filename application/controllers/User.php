@@ -1040,6 +1040,12 @@ class User extends CI_Controller
 
     function student_certificate($user_id = "", $course_id = "")
     {
+        $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
+        if (!$course_data || !$course_data->enable_certificate) {
+            $this->session->set_flashdata('error_message', get_phrase('The course is not have certificate yet'));
+            redirect(site_url('user/course_form/course_edit/' . $course_id . '?tab=academic_progress'));
+        }
+
         $this->load->model('addons/Certificate_model', 'certificate_model');
         $course_progress = $this->crud_model->get_watch_histories($user_id, $course_id)->row('course_progress');
         if ($course_progress >= 100) {
@@ -1047,8 +1053,9 @@ class User extends CI_Controller
             $certificate = $this->db->get_where('certificates', array('course_id' => $course_id, 'student_id' => $user_id));
             redirect(site_url('certificate/' . $certificate->row('shareable_url')));
         } else {
-            $this->session->set_flashdata('error_message', get_phrase('The course is not compleated yet'));
-            redirect(site_url('user/course_form/course_edit/' . $certificate->row('shareable_url')));
+            $this->session->set_flashdata('error_message', get_phrase('The course is not completed yet'));
+//            redirect(site_url('user/course_form/course_edit/' . $certificate->row('shareable_url'))); this is wrong redirect
+            redirect(site_url('user/course_form/course_edit/' . $course_id . '?tab=academic_progress'));
         }
     }
 

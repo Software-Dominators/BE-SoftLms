@@ -260,6 +260,7 @@ CREATE TABLE `course` (
   `expiry_period` int(11) DEFAULT NULL,
   `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
   `publish_date` varchar(500) DEFAULT NULL
+  `enable_certificate` TINYINT(1) NOT NULL DEFAULT 1  -- New column added
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

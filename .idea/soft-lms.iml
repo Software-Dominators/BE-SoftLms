@@ -3,7 +3,17 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/application/libraries/xendit/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/xendit/tests" isTestSource="true" packagePrefix="Xendit\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/Stripe/lib" isTestSource="false" packagePrefix="Stripe\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/Stripe/tests" isTestSource="true" packagePrefix="Stripe\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/Stripe/tests/Stripe" isTestSource="true" packagePrefix="Stripe\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/doku_php/src/DOKU" isTestSource="false" packagePrefix="DOKU\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/razorpay-php/libs/Requests-1.7.0/library" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/razorpay-php/src" isTestSource="false" packagePrefix="Razorpay\Api\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/razorpay-php/tests" isTestSource="false" packagePrefix="Razorpay\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/xendit/src" isTestSource="false" packagePrefix="Xendit\" />
+      <sourceFolder url="file://$MODULE_DIR$/application/libraries/xendit/tests/Xendit" isTestSource="true" packagePrefix="Xendit\" />
       <excludeFolder url="file://$MODULE_DIR$/application/libraries/cachefree/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/application/libraries/cachefree/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/application/libraries/cachefree/vendor/guzzlehttp/promises" />
