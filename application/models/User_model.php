@@ -40,7 +40,7 @@ class User_model extends CI_Model
         if ($validity == false) {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
         } else {
-          //  $data['unique_identifier'] = 0;
+          //$data['unique_identifier'] = 0;
             $data['first_name'] = html_escape($this->input->post('first_name'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = html_escape($this->input->post('email'));
@@ -51,6 +51,7 @@ class User_model extends CI_Model
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
             $data['phone'] = $this->input->post('phone');
+            $data['another_phone'] = $this->input->post('another_phone');
             $data['address'] = $this->input->post('address');
 
             if ($is_admin) {
@@ -191,6 +192,8 @@ class User_model extends CI_Model
             $data['biography'] = $this->input->post('biography');
             $data['title'] = html_escape($this->input->post('title'));
             $data['skills'] = html_escape($this->input->post('skills'));
+            $data['phone'] = html_escape($this->input->post('phone'));
+            $data['another_phone'] = html_escape($this->input->post('another_phone'));
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
 
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {

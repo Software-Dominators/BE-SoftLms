@@ -221,7 +221,7 @@ class Admin extends CI_Controller
 
         $data = array();
         //mentioned all with colum of database table that related with html table
-        $columns = array('id', 'id', 'first_name', 'email', 'phone', 'id', 'id');
+        $columns = array('id', 'id', 'first_name', 'email', 'phone', 'another_phone', 'id', 'id');
 
         $limit = htmlspecialchars_($this->input->post('length'));
         $start = htmlspecialchars_($this->input->post('start'));
@@ -246,6 +246,7 @@ class Admin extends CI_Controller
             $this->db->or_like('last_name', $search);
             $this->db->or_like('email', $search);
             $this->db->or_like('phone', $search);
+            $this->db->or_like('another_phone', $search);
             $this->db->where('role_id', 2);
             $this->db->limit($limit, $start);
             $this->db->order_by($column_index, $dir);
@@ -257,6 +258,7 @@ class Admin extends CI_Controller
             $this->db->or_like('last_name', $search);
             $this->db->or_like('email', $search);
             $this->db->or_like('phone', $search);
+            $this->db->or_like('another_phone', $search);
             $this->db->where('role_id', 2);
             $filtered_number_of_row = $this->db->get('users')->num_rows();
         }
@@ -297,12 +299,13 @@ class Admin extends CI_Controller
                             </ul>
                         </div>';
 
-
+            //checkpoint to come back (student phone task)
             $nestedData['key'] = ++$key;
             $nestedData['photo'] = $photo;
             $nestedData['name'] = $name;
             $nestedData['email'] = $email;
             $nestedData['phone'] = $student['phone'];
+            $nestedData['another_phone'] = $student['another_phone'];
             $nestedData['enrolled_courses'] = $enrolled_courses_title;
             $nestedData['action'] = $action . '<script>$("a, i").tooltip();</script>';
             $data[] = $nestedData;

@@ -75,11 +75,18 @@
                                                 <textarea name="biography" id = "summernote-basic" class="form-control"></textarea>
                                             </div>
                                         </div>
-
+                                            <?php //( checkpoint )the work is here negga ?>
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="phone"><?php echo get_phrase('Phone'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" id="phone" name="phone">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="another_phone"><?php echo get_phrase('another_phone'); ?></label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="another_phone" name="another_phone">
                                             </div>
                                         </div>
 
