@@ -75,7 +75,7 @@
                                                 <textarea name="biography" id = "summernote-basic" class="form-control"></textarea>
                                             </div>
                                         </div>
-                                            <?php //( checkpoint )the work is here negga ?>
+                                            <?php //( checkpoint )the work is here ?>
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="phone"><?php echo get_phrase('Phone'); ?></label>
                                             <div class="col-md-9">

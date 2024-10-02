@@ -56,7 +56,7 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                     <div class="card-widgets display-none" id = "widgets-of-lesson-<?php echo $lesson['id']; ?>">
                                         <?php if ($lesson['lesson_type'] == 'quiz'): ?>
                                             <a href="<?php echo site_url('home/lesson/'.slugify($course_details['title']).'/'.$course_details['id'].'/'.$lesson['id']); ?>" target="_blank" data-toggle="tooltip" title="<?php echo get_phrase('quiz_results'); ?>"><i class="mdi mdi-file-document-box-outline"></i></a>
-
+                                            
                                             <a href="javascript:;" onclick="showLargeModal('<?php echo site_url('modal/popup/quiz_questions/'.$lesson['id']); ?>', '<?php echo get_phrase('manage_quiz_questions'); ?>')" data-toggle="tooltip" title="<?php echo get_phrase('quiz_questions'); ?>"><i class="mdi mdi-comment-question-outline"></i></a>
 
                                             <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('modal/popup/quiz_edit/'.$lesson['id'].'/'.$course_id); ?>', '<?php echo get_phrase('update_quiz_information'); ?>')" data-toggle="tooltip" title="<?php echo get_phrase('edit'); ?>"><i class="mdi mdi-pencil-outline"></i></a>
@@ -86,6 +86,11 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                             <?php echo $lesson['lesson_type'] == 'quiz' ? get_phrase('quiz').' '.$quiz_counter : get_phrase('lesson').' '.$lesson_counter; ?>
                                         </span>: <?php echo $lesson['title']; ?>
                                     </h5>
+                                    <?php
+                                    if($lesson['lesson_type'] == 'quiz'){?>
+                                        <span>start date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['start_time']) ?></span> || </span>
+                                        <span>end date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['end_time']) ?></span> </span>
+                                    <?php }?>
                                 </div>
                             </div> <!-- end card-->
                         </div>

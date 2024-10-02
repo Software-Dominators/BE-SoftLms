@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2024 at 10:52 PM
+-- Generation Time: Oct 02, 2024 at 10:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 7.4.33
 
@@ -179,9 +179,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `code`, `name`, `parent`, `slug`, `date_added`, `last_modified`, `font_awesome_class`, `thumbnail`, `sub_category_thumbnail`) VALUES
-(1, '5de7f661d0', 'programming course', 0, 'programming-course', 1725336000, 1725336000, 'fab fa-accessible-icon', 'e7501acd13d068d94701e11b76df1a31.jpg', NULL),
-(2, '2f120ea1d3', 'web development', 1, 'web-development', 1725336000, 1725336000, 'fas fa-address-book', 'c2988f68b95c73bbc4183cf74d26a299.jpg', NULL),
-(3, 'cd63959299', 'الكزلك سيف', 0, '????????????-??????', 1726977600, NULL, 'fab fa-affiliatetheme', 'category-thumbnail.png', NULL);
+(4, '0c327edcda', 'web-development', 0, 'web-development', 1727668800, NULL, 'fas fa-code', 'e48c3505990080cb550a9314a8b26f0c.jpg', NULL),
+(5, '33d06abacf', 'HTML', 4, 'html', 1727668800, NULL, 'fab fa-html5', NULL, 'ab15251885eb7e53378172882c0a5dab.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +200,9 @@ CREATE TABLE `certificates` (
 --
 
 INSERT INTO `certificates` (`id`, `student_id`, `course_id`, `shareable_url`) VALUES
-(1, 7, 1, '7ca4d3ad8f');
+(1, 7, 1, '7ca4d3ad8f'),
+(2, 18, 3, '6455214aab'),
+(3, 19, 3, 'b22fa96892');
 
 -- --------------------------------------------------------
 
@@ -221,8 +222,13 @@ CREATE TABLE `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('u8071vtsiemsjlqim7r3n8msct2i7a5e', '::1', 1727554243, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373532313536333b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383431383234333b757365725f69647c733a313a2232223b726f6c655f69647c733a313a2231223b726f6c657c733a353a2241646d696e223b6e616d657c733a31373a2245736c616d202048616d6564616c6c6168223b69735f696e7374727563746f727c733a313a2231223b61646d696e5f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d),
-('ml39pfsiq8pms5ff29vkbtio6e4qjn26', '::1', 1727552392, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373535323333363b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383431363334373b757365725f69647c733a323a223136223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31353a22696e7374727563746f722074657374223b69735f696e7374727563746f727c733a313a2231223b757365725f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d);
+('u8071vtsiemsjlqim7r3n8msct2i7a5e', '::1', 1727899799, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373532313536333b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383736333739393b757365725f69647c733a313a2232223b726f6c655f69647c733a313a2231223b726f6c657c733a353a2241646d696e223b6e616d657c733a31373a2245736c616d202048616d6564616c6c6168223b69735f696e7374727563746f727c733a313a2231223b61646d696e5f6c6f67696e7c733a313a2231223b6c61796f75747c733a343a226c697374223b75726c5f686973746f72797c733a34363a22687474703a2f2f6c6f63616c686f73743a383030302f686f6d652f636f757273652f33302d6f662d68746d6c2f33223b5f5f63695f766172737c613a323a7b733a31333a22666c6173685f6d657373616765223b733a333a226f6c64223b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d666c6173685f6d6573736167657c733a33343a225175697a20686173206265656e2075706461746564207375636365737366756c6c79223b636f756e7443616c6c7c693a313b),
+('ml39pfsiq8pms5ff29vkbtio6e4qjn26', '::1', 1727552392, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373535323333363b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383431363334373b757365725f69647c733a323a223136223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31353a22696e7374727563746f722074657374223b69735f696e7374727563746f727c733a313a2231223b757365725f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d),
+('hm1kc0u4j6q71cpq6dvfavbvg7o0p145', '::1', 1727701961, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373730313736353b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383536353837373b757365725f69647c733a323a223139223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31323a2273747564656e742074657374223b69735f696e7374727563746f727c733a313a2230223b757365725f6c6f67696e7c733a313a2231223b6c61796f75747c733a343a226c697374223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d),
+('0jo67bs8hum9nhmmttmfaq9simkklurv', '::1', 1727814767, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373739303332333b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383637383736353b757365725f69647c733a323a223139223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31323a2273747564656e742074657374223b69735f696e7374727563746f727c733a313a2230223b757365725f6c6f67696e7c733a313a2231223b6c61796f75747c733a343a226c697374223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d),
+('fplc1705dm3spmi7cbqbjjcskk56ol9j', '::1', 1727815816, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373831343831393b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383637393831353b757365725f69647c733a323a223139223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31323a2273747564656e742074657374223b69735f696e7374727563746f727c733a313a2230223b757365725f6c6f67696e7c733a313a2231223b6c61796f75747c733a343a226c697374223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d),
+('buo6gqj2vs4o8hccaqlv0da4heo30nh3', '::1', 1727817578, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373831353837333b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b6c61796f75747c733a343a226c697374223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383638313439323b757365725f69647c733a323a223139223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31323a2273747564656e742074657374223b69735f696e7374727563746f727c733a313a2230223b757365725f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226f6c64223b7d),
+('httot06a4uh70qod29g8k65dkq5dk1q6', '::1', 1727899837, 0x5f5f63695f6c6173745f726567656e65726174657c693a313732373839383332383b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313732383736333832363b757365725f69647c733a323a223139223b726f6c655f69647c733a313a2232223b726f6c657c733a343a2255736572223b6e616d657c733a31323a2273747564656e742074657374223b69735f696e7374727563746f727c733a313a2230223b757365725f6c6f67696e7c733a313a2231223b6c61796f75747c733a343a226c697374223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d);
 
 -- --------------------------------------------------------
 
@@ -322,8 +328,7 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `title`, `short_description`, `description`, `outcomes`, `faqs`, `language`, `category_id`, `sub_category_id`, `section`, `requirements`, `price`, `discount_flag`, `discounted_price`, `level`, `user_id`, `thumbnail`, `video_url`, `date_added`, `last_modified`, `course_type`, `is_top_course`, `is_admin`, `status`, `course_overview_provider`, `meta_keywords`, `meta_description`, `is_free_course`, `multi_instructor`, `enable_drip_content`, `creator`, `expiry_period`, `upcoming_image_thumbnail`, `publish_date`) VALUES
-(1, 'تيست', 'تيست تيست تيست', '<p>تيست تيست تيست </p>', '[\"\\u062a\\u064a\\u0633\\u062a\"]', '{\"\\u062a\\u062a\\u062a\\u062a\\u062a\\u062a\\u062a\\u062a\\u062a\\u061f\":\"\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\\u0646\"}', 'english', 1, 2, '[1,2]', '[\"\\u062a\\u064a\\u0633\\u062a \\u062a\\u064a\\u0633\\u062a \"]', 0, NULL, 0, 'beginner', '2', NULL, 'https://lms.softdomi.com/admin/course_form/add_course', 1725336000, 1725740301, 'general', 1, 1, 'active', 'youtube', '', 'تيست', 1, 0, 0, 2, 4, NULL, ''),
-(2, '1daw', 'dawdwadwa', '<p>dwadawdwadw</p>', '[]', '[]', 'english', 1, 2, '[]', '[]', 0, NULL, 0, 'advanced', '2', NULL, '', 1725681600, NULL, 'general', 1, 1, 'active', '', '', '', NULL, 0, 0, 2, NULL, NULL, '');
+(3, '30 of html ', 'learn html in 30 days', '<p data-sourcepos=\"3:1-3:68\"><strong>Are you ready to dive into the world of web development?</strong> Our 30-day HTML course is designed to transform you from a complete beginner to a confident HTML coder.</p><p data-sourcepos=\"5:1-5:22\"><strong>What you\'ll learn:</strong></p><ul data-sourcepos=\"7:1-7:24\"><li data-sourcepos=\"7:1-7:24\"><strong>HTML Fundamentals:</strong> Understand the basic structure and syntax of HTML documents.</li><li data-sourcepos=\"8:1-8:94\"><strong>Tags and Elements:</strong> Master the use of essential HTML tags like <code class=\"\">&lt;html&gt;</code>, <code class=\"\">&lt;head&gt;</code>, <code class=\"\">&lt;body&gt;</code>, <code class=\"\">&lt;p&gt;</code>, <code class=\"\">&lt;h1&gt;</code>, <code class=\"\">&lt;img&gt;</code>, and more.</li><li data-sourcepos=\"9:1-9:65\"><strong>Text Formatting:</strong> Learn how to style text with bold, italic, underline, and other attributes.</li><li data-sourcepos=\"10:1-10:105\"><strong>Lists and Links:</strong> Create ordered and unordered lists, as well as hyperlinks to connect your content.</li><li data-sourcepos=\"11:1-11:75\"><strong>Images and Media:</strong> Embed images, audio, and video into your web pages.</li><li data-sourcepos=\"12:1-12:90\"><strong>Tables and Forms:</strong> Build structured data tables and interactive forms for user input.</li><li data-sourcepos=\"13:1-13:77\"><strong>Semantic HTML:</strong> Write clean and meaningful code using semantic elements.</li><li data-sourcepos=\"14:1-15:0\"><strong>Best Practices:</strong> Follow industry standards and guidelines for efficient and maintainable HTML.</li></ul><p data-sourcepos=\"16:1-16:27\"><strong>Why choose this course?</strong></p><ul data-sourcepos=\"18:1-18:116\"><li data-sourcepos=\"18:1-18:116\"><strong>Step-by-Step Approach:</strong> Our carefully curated lessons break down complex concepts into easy-to-understand steps.</li><li data-sourcepos=\"19:1-19:100\"><strong>Hands-On Projects:</strong> Practice your skills with real-world projects that reinforce your learning.</li><li data-sourcepos=\"20:1-20:95\"><strong>Expert Guidance:</strong> Benefit from the insights and experience of our seasoned web developers.</li><li data-sourcepos=\"21:1-21:73\"><strong>Flexible Learning:</strong> Learn at your own pace and on your own schedule.</li><li data-sourcepos=\"22:1-23:0\"><strong>Lifetime Access:</strong> Enjoy unlimited access to the course materials.</li></ul><p data-sourcepos=\"24:1-24:49\"><strong>By the end of this course, you\'ll be able to:</strong></p><ul data-sourcepos=\"26:1-29:52\"><li data-sourcepos=\"26:1-26:46\">Create your own personal websites and blogs.</li><li data-sourcepos=\"27:1-27:51\">Customize the appearance and layout of web pages.</li><li data-sourcepos=\"28:1-28:56\">Build interactive web elements like forms and buttons.</li><li data-sourcepos=\"29:1-29:52\">Collaborate with other developers on web projects.</li></ul><p data-sourcepos=\"31:1-31:117\"><strong>Ready to start your journey?</strong> Enroll in our 30-day HTML course today and unlock your potential as a web developer.</p>', '[]', '[]', 'english', 4, 5, '[4]', '[]', 0, NULL, 0, 'beginner', '2', NULL, '', 1727668800, NULL, 'general', 1, 1, 'active', '', '', '', 1, 0, 1, 2, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -550,10 +555,8 @@ CREATE TABLE `enrol` (
 --
 
 INSERT INTO `enrol` (`id`, `user_id`, `course_id`, `gifted_by`, `expiry_date`, `date_added`, `last_modified`) VALUES
-(1, 7, 1, 0, '1735922454', 1725508800, NULL),
-(2, 5, 1, 0, '1736070241', 1725595200, 1725698641),
-(3, 6, 1, 0, '1736070241', 1725681600, 1725698641),
-(4, 9, 1, 0, '1737480297', 1727064000, NULL);
+(5, 18, 3, 0, NULL, 1727668800, NULL),
+(6, 19, 3, 0, NULL, 1727668800, NULL);
 
 -- --------------------------------------------------------
 
@@ -1583,7 +1586,7 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`, `arabic`, `awdwa`) VAL
 (948, 'assign_permission', 'Assign permission', 'Assign permission', NULL),
 (949, 'admin_edit', NULL, 'Admin edit', NULL),
 (950, 'admin_edit_form', NULL, 'Admin edit form', NULL),
-(951, 'short_title', NULL, 'Short title', NULL),
+(951, 'short_title', 'Short title', 'Short title', NULL),
 (952, 'assign_permission_for', 'Assign permission for', 'Assign permission for', NULL),
 (953, 'note', 'Note', 'Note', NULL),
 (954, 'you_can_toggle_the_switch_for_enabling_or_disabling_a_feature_to_access', 'You can toggle the switch for enabling or disabling a feature to access', 'You can toggle the switch for enabling or disabling a feature to access', NULL),
@@ -2219,7 +2222,33 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`, `arabic`, `awdwa`) VAL
 (1583, 'forgot_password', 'Forgot password', NULL, NULL),
 (1584, 'send_request', 'Send request', NULL, NULL),
 (1585, 'back_to_login', 'Back to login', NULL, NULL),
-(1586, 'another_phone', 'Another phone', NULL, NULL);
+(1586, 'another_phone', 'Another phone', NULL, NULL),
+(1587, 'data_deleted', 'Data deleted', NULL, NULL),
+(1588, '30_of_html_', '30 of html ', NULL, NULL),
+(1589, 'access_denied', 'Access denied', NULL, NULL),
+(1590, 'enter_your_html5_video_url', 'Enter your html5 video url', NULL, NULL),
+(1591, 'thumbnail', 'Thumbnail', NULL, NULL),
+(1592, 'caption', 'Caption', NULL, NULL),
+(1593, '.vtt', '.vtt', NULL, NULL),
+(1594, 'choose_your_caption_file', 'Choose your caption file', NULL, NULL),
+(1595, 'upload_system_video_file', 'Upload system video file', NULL, NULL),
+(1596, 'select_system_video_file', 'Select system video file', NULL, NULL),
+(1597, 'has_to_be_bigger_than', 'Has to be bigger than', NULL, NULL),
+(1598, 'course_removed_from_wishlist', 'Course removed from wishlist', NULL, NULL),
+(1599, 'play_now', 'Play now', NULL, NULL),
+(1600, 'complete_previous_lesson_to_unlock_it', 'Complete previous lesson to unlock it', NULL, NULL),
+(1601, 'instructor_edit', 'Instructor edit', NULL, NULL),
+(1602, 'instructor_edit_form', 'Instructor edit form', NULL, NULL),
+(1603, 'start_time', 'Start time', NULL, NULL),
+(1604, 'end_time', 'End time', NULL, NULL),
+(1605, 'video_url_is_not_supported', 'Video url is not supported', NULL, NULL),
+(1606, 'section_has_been_deleted_successfully', 'Section has been deleted successfully', NULL, NULL),
+(1607, 'quiz_has_been_updated_successfully', 'Quiz has been updated successfully', NULL, NULL),
+(1608, 'enter_your_text', 'Enter your text', NULL, NULL),
+(1609, 'lesson_has_been_deleted_successfully', 'Lesson has been deleted successfully', NULL, NULL),
+(1610, 'the_quiz_is_not_available_yet.', 'The quiz is not available yet.', NULL, NULL),
+(1611, 'it_is_too_late_to_take_the_quiz_now.', 'It is too late to take the quiz now.', NULL, NULL),
+(1612, 'randomize_quiz_questions', 'Randomize quiz questions', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2231,6 +2260,9 @@ CREATE TABLE `lesson` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `duration` varchar(255) DEFAULT NULL,
+  `start_time` int(11) DEFAULT NULL,
+  `end_time` int(11) DEFAULT NULL,
+  `randomize` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `section_id` int(11) DEFAULT NULL,
   `video_type` varchar(255) DEFAULT NULL,
@@ -2256,11 +2288,8 @@ CREATE TABLE `lesson` (
 -- Dumping data for table `lesson`
 --
 
-INSERT INTO `lesson` (`id`, `title`, `duration`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
-(1, 'Hello', '2:30:00', 1, 1, NULL, NULL, NULL, NULL, 1725508800, NULL, 'quiz', '{\"total_marks\":\"290\",\"pass_mark\":\"150\",\"drip_content_for_passing_rule\":\"applicable\"}', 'json', NULL, 'dada', 0, 0, 0, NULL, NULL, NULL),
-(2, 'new lesson', '03:00:00', 1, 2, 'youtube', NULL, 'https://lms.softdomi.com/admin/course_form/course_edit/1', NULL, 1725595200, NULL, 'video', NULL, 'url', NULL, '&lt;p&gt;summary summary summary&amp;nbsp;&lt;/p&gt;', 1, 0, 0, 'html5', 'https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm', '00:01:10'),
-(3, 'title', '1:00:00', 1, 2, NULL, NULL, NULL, NULL, 1725681600, NULL, 'quiz', '{\"total_marks\":\"2\",\"pass_mark\":\"1\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, 'لا يوجد', 0, 0, 0, NULL, NULL, NULL),
-(4, 'Quiz 2', '1:00:00', 1, 1, NULL, NULL, NULL, NULL, 1725681600, NULL, 'quiz', '{\"total_marks\":\"100\",\"pass_mark\":\"60\",\"drip_content_for_passing_rule\":\"applicable\"}', 'json', NULL, 'DFAIJHIODAWHJODIAW', 0, 0, 10, NULL, NULL, NULL);
+INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `randomize`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
+(8, 'for intro', '0:20:00', 1727582400, 1730174400, 1, 3, 4, NULL, NULL, NULL, NULL, 1727755200, 1727841600, 'quiz', '{\"total_marks\":\"10\",\"pass_mark\":\"6\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, '', 0, 0, 10, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2413,7 +2442,12 @@ INSERT INTO `notifications` (`id`, `from_user`, `to_user`, `type`, `title`, `des
 (1, 7, 7, 'certificate_eligibility', 'certificate eligibility', '\n    <div>Course: <a href=\"https://lms.softdomi.com/home/course/تيست/1\" target=\"_blank\">تيست</a>\r\nInstructor: Mahmoud Galal\r\nCertificate link: <a href=\"https://lms.softdomi.com/certificate/7ca4d3ad8f\" target=\"_blank\"> Certificate link</a></div>\n    ', 0, '1725550899', NULL),
 (2, 7, 2, 'certificate_eligibility', 'Certificate eligibility', '\n    <div>Course: <a href=\"https://lms.softdomi.com/home/course/تيست/1\" target=\"_blank\">تيست</a>\r\nStudent: Mahmoud Galal\r\nCertificate link: <a href=\"https://lms.softdomi.com/certificate/7ca4d3ad8f\" target=\"_blank\"> Certificate link</a></div>\n    ', 1, '1725550899', NULL),
 (3, 2, 2, 'signup', 'New user registered', '\n    <div>New user registered Mahmoud Galal \r\n<br>User email: <b>mahmoudgalal555555@gmail.com</b></div>\n    ', 1, '1725736235', NULL),
-(4, 2, 8, 'signup', 'Registered successfully', '\n    <div>You have successfully registered with us at SoftDomi.</div>\n    ', 0, '1725736235', NULL);
+(4, 2, 8, 'signup', 'Registered successfully', '\n    <div>You have successfully registered with us at SoftDomi.</div>\n    ', 0, '1725736235', NULL),
+(5, 18, 18, 'course_completion_mail', 'You have completed a new course', '\r\n    <div>Course: <a href=\"http://localhost:9999/home/course/30-of-html/3\" target=\"_blank\">30 of html </a>\r\nInstructor: Eslam  Hamedallah</div>\r\n    ', 0, '1727698706', NULL),
+(6, 18, 2, 'course_completion_mail', 'Course completion', '\r\n    <div>Course completed <a href=\"http://localhost:9999/home/course/30-of-html/3\" target=\"_blank\">30 of html </a>\r\nStudent: instructor test</div>\r\n    ', 0, '1727698706', NULL),
+(7, 18, 18, 'certificate_eligibility', 'certificate eligibility', '\r\n    <div>Course: <a href=\"http://localhost:9999/home/course/30-of-html/3\" target=\"_blank\">30 of html </a>\r\nInstructor: instructor test\r\nCertificate link: <a href=\"http://localhost:9999/certificate/6455214aab\" target=\"_blank\"> Certificate link</a></div>\r\n    ', 0, '1727698706', NULL),
+(8, 18, 2, 'certificate_eligibility', 'Certificate eligibility', '\r\n    <div>Course: <a href=\"http://localhost:9999/home/course/30-of-html/3\" target=\"_blank\">30 of html </a>\r\nStudent: instructor test\r\nCertificate link: <a href=\"http://localhost:9999/certificate/6455214aab\" target=\"_blank\"> Certificate link</a></div>\r\n    ', 0, '1727698706', NULL),
+(10, 19, 2, 'certificate_eligibility', 'Certificate eligibility', '\r\n    <div>Course: <a href=\"http://localhost:9999/home/course/30-of-html/3\" target=\"_blank\">30 of html </a>\r\nStudent: student test\r\nCertificate link: <a href=\"http://localhost:9999/certificate/b22fa96892\" target=\"_blank\"> Certificate link</a></div>\r\n    ', 0, '1727701877', NULL);
 
 -- --------------------------------------------------------
 
@@ -2576,7 +2610,8 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `admin_id`, `permissions`) VALUES
-(1, 4, '[\"course\",\"category\",\"user\",\"instructor\",\"student\",\"messaging\",\"settings\",\"contact\",\"enrolment\",\"revenue\",\"blog\",\"coupon\",\"newsletter\"]');
+(1, 4, '[\"course\",\"category\",\"user\",\"instructor\",\"student\",\"messaging\",\"settings\",\"contact\",\"enrolment\",\"revenue\",\"blog\",\"coupon\",\"newsletter\"]'),
+(2, 17, '[]');
 
 -- --------------------------------------------------------
 
@@ -2602,7 +2637,15 @@ CREATE TABLE `question` (
 INSERT INTO `question` (`id`, `quiz_id`, `title`, `type`, `number_of_options`, `options`, `correct_answers`, `order`) VALUES
 (1, 1, '&lt;p&gt;&lt;img src=&quot;https://mr.softdomi.com/file-upload/uploads/663a96fb21147_1.png&quot; style=&quot;width: 483px;&quot;&gt;&lt;br&gt;&lt;/p&gt;', 'multiple_choice', 2, '[\"1\",\"2\"]', '[\"2\"]', 0),
 (2, 3, '&lt;p&gt;1+1&lt;/p&gt;', 'multiple_choice', 2, '[\"2\",\"3\"]', '[\"1\"]', 0),
-(3, 3, '&lt;p&gt;2 + 3&lt;/p&gt;', 'multiple_choice', 2, '[\"4\",\"5\"]', '[\"2\"]', 0);
+(3, 3, '&lt;p&gt;2 + 3&lt;/p&gt;', 'multiple_choice', 2, '[\"4\",\"5\"]', '[\"2\"]', 0),
+(4, 6, '&lt;p&gt;html is html&lt;/p&gt;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 0),
+(5, 6, 'html is css&amp;nbsp;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"2\"]', 0),
+(6, 7, '&lt;p&gt;Hamada Helal to invade naibal ?&amp;nbsp;&lt;/p&gt;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 1),
+(7, 8, '&lt;p&gt;quistion one&lt;/p&gt;', 'single_choice', 2, '[\"true\",\"false\"]', '[\"1\"]', 0),
+(8, 8, '&lt;p&gt;quistion two&lt;/p&gt;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 0),
+(9, 8, 'quistion three', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 0),
+(10, 8, '&lt;p&gt;question four&lt;/p&gt;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 0),
+(11, 8, '&lt;p&gt;question five&lt;/p&gt;', 'single_choice', 2, '[\"true \",\"false\"]', '[\"1\"]', 0);
 
 -- --------------------------------------------------------
 
@@ -2630,7 +2673,17 @@ INSERT INTO `quiz_results` (`quiz_result_id`, `quiz_id`, `user_id`, `user_answer
 (1, 1, 7, '{\"1\":[\"2\"]}', '[\"1\"]', 290, '1725550879', '1725550899', 1),
 (2, 3, 5, '{\"2\":[\"2\"],\"3\":[\"2\"]}', '[\"3\"]', 1, '1725705100', '1725705532', 1),
 (3, 3, 7, '{\"2\":[\"1\"],\"3\":[\"2\"]}', '[\"2\",\"3\"]', 2, '1725738692', '1725738695', 1),
-(4, 4, 7, '[]', '[]', 0, '1725738726', '1725738726', 1);
+(4, 4, 7, '[]', '[]', 0, '1725738726', '1725738726', 1),
+(5, 6, 18, '[]', '[]', 0, '1727700865', '1727700865', 1),
+(6, 6, 19, '{\"4\":[\"1\"],\"5\":[\"2\"]}', '[\"4\",\"5\"]', 4, '1727701868', '1727701873', 1),
+(7, 7, 19, '{\"6\":[\"1\"]}', '[\"6\"]', 2, '1727790381', '1727790386', 1),
+(8, 8, 19, '{\"7\":[\"1\"]}', '[\"7\"]', 2, '1727809988', '1727891700', 1),
+(9, 8, 19, '[]', '[]', 0, '1727892030', '1727892030', 1),
+(10, 8, 19, '[]', '[]', 0, '1727893417', '1727893417', 1),
+(11, 8, 19, '[]', '[]', 0, '1727895299', '1727895299', 1),
+(12, 8, 18, '[]', '[]', 0, '1727895872', '1727895872', 0),
+(13, 8, 19, '[]', '[]', 0, '1727898364', '1727898364', 1),
+(14, 8, 19, '[]', '[]', 0, '1727899786', '1727899786', 0);
 
 -- --------------------------------------------------------
 
@@ -2706,8 +2759,7 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`id`, `title`, `course_id`, `start_date`, `end_date`, `restricted_by`, `order`) VALUES
-(1, 'quiz', 1, NULL, NULL, NULL, 2),
-(2, 'new section', 1, NULL, NULL, NULL, 1);
+(4, 'intro', 3, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2847,19 +2899,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `another_phone`, `address`, `password`, `skills`, `social_links`, `biography`, `role_id`, `date_added`, `last_modified`, `wishlist`, `title`, `payment_keys`, `verification_code`, `status`, `is_instructor`, `image`, `temp`, `sessions`) VALUES
 (2, 'Eslam ', 'Hamedallah', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 1, NULL, 1727033533, NULL, '', '', NULL, 1, 1, NULL, NULL, ''),
-(4, 'Zeinab', 'Ebaid', 'admin2@example.com', '0539876780', '', 'Egypt-aswan-port saied street', 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '<p><div xss=removed></div></p><div xss=removed><p xss=removed><strong xss=removed>Lorem Ipsum</strong><span> </span>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p></div>', 1, 1725469046, 1725469634, '[]', 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum', '', NULL, 1, 1, 'ebf0fa018de7dc04397b598c61079705', NULL, ''),
-(5, 'aya', 'Ebaid', 'zainabebaid1@gmail.com', '01159017126', '12345678910', 'Egypt-aswan-port saied street', 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '<p><strong xss=removed>Lorem Ipsum</strong><span xss=removed> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span><br></p>', 2, 1725477375, 1727554242, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"admin2@example.com\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '14a24b39aca93a8d234cb09c3adc5355', NULL, '[]'),
-(6, 'ali', 'Ebaid', 'zinabebaid22@gmail.com', '0539876780', '', 'Egypt-aswan-port saied street', 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '<p><strong xss=removed>Lorem Ipsum</strong><span xss=removed> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span><br></p>', 2, 1725483047, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"admin@example.com\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 1, 'c1675b1745fbc76c4a05f7ef6e2579c6', NULL, '[]'),
-(7, 'Mahmoud', 'Galal', 'mahmoudgalal55555@gmail.com', '01030238448', '', 'طهطا - البنك الاهلي - شارع الثوره', 'b0ceb0f01632f08da48b0e6781a2a0288fcf241f', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1725550825, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '4384bd8a1adef1ae11830dbec968bee8', NULL, '[]'),
-(8, 'Mahmoud', 'Galal', 'mahmoudgalal555555@gmail.com', NULL, '', NULL, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', NULL, 2, 1725736235, NULL, '[]', NULL, '[]', '131810', 1, 1, NULL, NULL, '[]'),
-(9, 'Me As', 'A Student', 'eslam590171@gmail.com', '01159017126', '', '', '7c222fb2927d828af22f592134e8932480637c0d', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727108577, NULL, '[\"1\"]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '12f0b4dfc221dd8e17f9ad7944e8b472', NULL, '[]'),
-(10, '‪Kody', '590‬‏', 'stutest@test.com', '', '', '32', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727537530, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, 'cffbf24df7f79ea2e7f9e6797193d804', NULL, ''),
-(11, 'test2', 'testlast', 'stutest2@test2.com', '', '', '', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727537628, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '4df84227dd17b6f2631f8bfbe6a9eab1', NULL, ''),
-(12, 'phone1', 'test', 'phonetest1@test.com', '10987654321', '', '', '9048ead9080d9b27d6b2b6ed363cbf8cce795f7f', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727544115, 1727546443, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, 'd05b403f30da02196fe623370bcf7ec0', NULL, ''),
-(13, 'phone2', 'test', 'eslam590171@gmail.com', '12345678910', NULL, 'phone2@test.com', '7c222fb2927d828af22f592134e8932480637c0d', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727546827, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"eslam590171@gmail.com\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '015b6a7772b3e7a89b1f677a82d4e6b6', NULL, ''),
-(14, 'phone3', 'test‬‏', 'phone3@test.com', '01159017126', '21321321312', '', '7c222fb2927d828af22f592134e8932480637c0d', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727547023, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"eslam590171@gmail.com\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '5ea254300dc688dbe1171dbac786bcbd', NULL, ''),
-(15, 'phone4', '‬‏test', 'phone4@test.com', '01159017126', '21321321312', '', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727547432, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, 'e4b2ec5ae0cfdebbc07d6dbb983479c2', NULL, ''),
-(16, 'instructor', 'test', 'instructor@test.com', '', NULL, '', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727552314, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 1, '95a1b9efc756b4606662764218174be1', NULL, '[\"ml39pfsiq8pms5ff29vkbtio6e4qjn26\"]');
+(18, 'instructor', 'test', 'instructor@test.com', '', NULL, '', '5db3005d1c92d3def956044087157bb23f29c6b0', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727697255, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 1, '42b8e053830265a94bcf4349e5905d23', NULL, '[]'),
+(19, 'student', 'test', 'student@test.com', '', '', '', '204036a1ef6e7360e536300ea78c6aeb4a9333dd', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727701750, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '44df9a99f99bf6bdece57489a4b7c5f7', NULL, '[\"hm1kc0u4j6q71cpq6dvfavbvg7o0p145\",\"0jo67bs8hum9nhmmttmfaq9simkklurv\",\"fplc1705dm3spmi7cbqbjjcskk56ol9j\",\"buo6gqj2vs4o8hccaqlv0da4heo30nh3\",\"httot06a4uh70qod29g8k65dkq5dk1q6\"]');
 
 -- --------------------------------------------------------
 
@@ -2875,6 +2916,14 @@ CREATE TABLE `watched_duration` (
   `current_duration` int(20) DEFAULT NULL,
   `watched_counter` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `watched_duration`
+--
+
+INSERT INTO `watched_duration` (`watched_id`, `watched_student_id`, `watched_course_id`, `watched_lesson_id`, `current_duration`, `watched_counter`) VALUES
+(1, 18, 3, 5, 30, '[\"5\",\"10\",\"15\",\"20\",\"25\",\"30\"]'),
+(2, 19, 3, 5, 0, '[\"655\",\"660\",\"0\"]');
 
 -- --------------------------------------------------------
 
@@ -2902,7 +2951,10 @@ CREATE TABLE `watch_histories` (
 INSERT INTO `watch_histories` (`watch_history_id`, `course_id`, `student_id`, `completed_lesson`, `course_progress`, `watching_lesson_id`, `quiz_result`, `completed_date`, `date_added`, `date_updated`) VALUES
 (1, 1, 7, '{\"0\":\"1\",\"1\":\"2\",\"3\":\"4\",\"4\":\"3\"}', 100, 0, '', '1725550899', '1725550863', '1725738829'),
 (2, 1, 2, '', 0, 3, '', NULL, '1725649276', '1725741644'),
-(3, 1, 5, '[\"3\"]', 33, 2, '', NULL, '1725705070', '1725705741');
+(3, 1, 5, '[\"3\"]', 33, 2, '', NULL, '1725705070', '1725705741'),
+(4, 3, 18, '[\"5\"]', 100, 8, '', '1727698706', '1727698695', '1727895924'),
+(5, 3, 2, '', 0, 8, '', NULL, '1727700920', '1727895796'),
+(6, 3, 19, '[\"5\",\"6\",\"7\"]', 100, 8, '', '1727701877', '1727701796', '1727899824');
 
 --
 -- Indexes for dumped tables
@@ -3200,13 +3252,13 @@ ALTER TABLE `blog_comments`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `certificates`
 --
 ALTER TABLE `certificates`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -3230,7 +3282,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `currency`
@@ -3248,7 +3300,7 @@ ALTER TABLE `custom_page`
 -- AUTO_INCREMENT for table `enrol`
 --
 ALTER TABLE `enrol`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `frontend_settings`
@@ -3260,13 +3312,13 @@ ALTER TABLE `frontend_settings`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1587;
+  MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1613;
 
 --
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -3302,7 +3354,7 @@ ALTER TABLE `newsletter_subscriber`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `notification_settings`
@@ -3338,19 +3390,19 @@ ALTER TABLE `payout`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  MODIFY `quiz_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `quiz_result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `rating`
@@ -3374,7 +3426,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -3392,19 +3444,19 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `watched_duration`
 --
 ALTER TABLE `watched_duration`
-  MODIFY `watched_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `watched_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `watch_histories`
 --
 ALTER TABLE `watch_histories`
-  MODIFY `watch_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `watch_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -50,7 +50,15 @@
                                         <i class="fa-regular fa-circle-play"></i>
                                         <?php echo $lesson['title']; ?>
                                     </span>
-
+                                    <div>
+                                        <div>
+                                            <span>start date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['start_time']) ?></span> || </span>
+                                            <span>end date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['end_time']) ?></span> </span>
+                                        </div>
+                                        <div style="text-align:center;">
+                                            <span>duration:  <span style="color:#6610f2;"><?php echo $lesson['duration'] ?></span></span>
+                                        </div>
+                                    </div>
                                     <?php if($lesson['is_free']): ?>
                                         <div class="lecture-info ms-auto pe-2 me-2">
                                             <span onclick="lesson_preview('<?php echo site_url('home/play_lesson/'.$lesson['id'].'/preview') ?>', '<?php echo $lesson['title']; ?>', 'lg')" class="checkPropagation cursor-pointer badge bg-light text-dark fw-400 text-13px"><i class="fas fa-eye me-1 text-13px"></i> <?php echo get_phrase('Preview') ?></span>

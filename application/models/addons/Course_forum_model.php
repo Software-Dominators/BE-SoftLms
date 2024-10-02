@@ -23,6 +23,9 @@ class Course_forum_model extends CI_Model {
     }
 
     function get_course_wise_all_parent_questions($course_id = ""){
+        
+        // $this->db->order_by('RAND()');
+
         $this->db->order_by('id', 'desc');
         $this->db->where('course_id', $course_id);
         $this->db->where('is_parent', 0);

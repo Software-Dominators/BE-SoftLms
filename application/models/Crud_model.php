@@ -3343,6 +3343,14 @@ class Crud_model extends CI_Model
         $data['duration'] = $this->input->post('quiz_duration');
         $data['attachment_type'] = 'json';
 
+        //============================================================
+        $data['start_time'] = strtotime($this->input->post('start_time'));  //insert start time
+        $data['end_time'] = strtotime($this->input->post('end_time'));      //insert end time
+        $data['randomize'] = $this->input->post('randomize');                         //insert randomize value
+        //============================================================
+
+
+        
         $attachment_data = array(
             'total_marks' => htmlspecialchars_($this->input->post('total_marks')),
             'pass_mark' => $this->input->post('pass_mark'),
@@ -3361,6 +3369,13 @@ class Crud_model extends CI_Model
         $data['title'] = html_escape($this->input->post('title'));
         $data['section_id'] = html_escape($this->input->post('section_id'));
         $data['duration'] = $this->input->post('quiz_duration');
+
+        //============================================================
+        $data['start_time'] = strtotime($this->input->post('start_time'));  //insert start time
+        $data['end_time'] = strtotime($this->input->post('end_time'));      //insert end time
+        $data['randomize'] = $this->input->post('randomize');                         //insert randomize value
+        //============================================================
+
         $attachment_data = array(
             'total_marks' => htmlspecialchars_($this->input->post('total_marks')),
             'pass_mark' => $this->input->post('pass_mark'),

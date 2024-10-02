@@ -54,6 +54,7 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                             <div class="card text-secondary on-hover-action mb-2 w-100" id = "<?php echo 'lesson-'.$lesson['id']; ?>">
                                 <div class="card-body thinner-card-body">
                                     <div class="card-widgets display-none" id = "widgets-of-lesson-<?php echo $lesson['id']; ?>">
+                                        
                                         <?php if ($lesson['lesson_type'] == 'quiz'): ?>
                                             <a href="<?php echo site_url('home/lesson/'.slugify($course_details['title']).'/'.$course_details['id'].'/'.$lesson['id']); ?>" target="_blank" data-toggle="tooltip" title="<?php echo get_phrase('quiz_results'); ?>"><i class="mdi mdi-file-document-box-outline"></i></a>
 
@@ -86,6 +87,7 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                             <?php echo $lesson['lesson_type'] == 'quiz' ? get_phrase('quiz').' '.$quiz_counter : get_phrase('lesson').' '.$lesson_counter; ?>
                                         </span>: <?php echo $lesson['title']; ?>
                                     </h5>
+                                    
                                 </div>
                             </div> <!-- end card-->
                         </div>
