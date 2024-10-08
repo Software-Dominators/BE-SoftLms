@@ -75,7 +75,7 @@ class Crud_model extends CI_Model
                 if (!file_exists($upload_directory)) {
                     mkdir($upload_directory, 0777, true);
                 }
-                
+
                 // Check if a file is uploaded
                 if ($_FILES['sub_category_thumbnail']['name'] == "") {
                     $data['sub_category_thumbnail'] = NULL;
@@ -91,7 +91,7 @@ class Crud_model extends CI_Model
                     }
                 }
             }
-            
+
 
             $data['date_added'] = strtotime(date('D, d-M-Y'));
             $this->db->insert('category', $data);
@@ -149,7 +149,7 @@ class Crud_model extends CI_Model
                     move_uploaded_file($_FILES['sub_category_thumbnail']['tmp_name'], 'uploads/thumbnails/category_thumbnails/' . $data['sub_category_thumbnail']);
                 }
             }
-            
+
 
             $data['last_modified'] = strtotime(date('D, d-M-Y'));
             $this->db->where('id', $param1);
@@ -632,15 +632,15 @@ class Crud_model extends CI_Model
          if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
             mkdir('uploads/thumbnails/upcoming_thumbnails', 0777, true);
         }
-        
+
         if ($_FILES['upcoming_image_thumbnail']['name'] != "") {
             $data['upcoming_image_thumbnail'] = md5(rand(10000000, 20000000)) . '.jpg';
             move_uploaded_file($_FILES['upcoming_image_thumbnail']['tmp_name'], 'uploads/thumbnails/upcoming_thumbnails/' . $data['upcoming_image_thumbnail']);
         }
-      
 
-       
-      
+
+
+
 
         $outcomes = $this->trim_and_return_json($this->input->post('outcomes'));
         $requirements = $this->trim_and_return_json($this->input->post('requirements'));
@@ -679,6 +679,12 @@ class Crud_model extends CI_Model
             $data['enable_drip_content'] = 0;
         }
 
+        $enable_certificate = $this->input->post('enable_certificate');
+        if (isset($enable_certificate) && $enable_certificate) {
+            $data['enable_certificate'] = 1;
+        } else {
+            $data['enable_certificate'] = 0;
+        }
         if ($this->input->post('course_overview_url') != "") {
             $data['course_overview_provider'] = html_escape($this->input->post('course_overview_provider'));
         } else {
@@ -733,8 +739,8 @@ class Crud_model extends CI_Model
             }
         }
 
-      
-        
+
+
 
 
         if ($data['status'] == 'approved') {
@@ -878,6 +884,13 @@ class Crud_model extends CI_Model
             $data['enable_drip_content'] = 0;
         }
 
+        $enable_certificate = $this->input->post('enable_certificate');
+        if (isset($enable_certificate) && $enable_certificate) {
+            $data['enable_certificate'] = 1;
+        } else {
+            $data['enable_certificate'] = 0;
+        }
+
         if ($this->input->post('course_overview_url') != "") {
             $data['course_overview_provider'] = html_escape($this->input->post('course_overview_provider'));
         } else {
@@ -911,19 +924,19 @@ class Crud_model extends CI_Model
     if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
         mkdir('uploads/thumbnails/upcoming_thumbnails', 0777, true);
     }
-    
+
 
     if ($_FILES['upcoming_image_thumbnail']['name'] == "") {
     } else {
         $data['upcoming_image_thumbnail'] = md5(rand(10000000, 20000000)) . '.jpg';
-        
+
         move_uploaded_file($_FILES['upcoming_image_thumbnail']['tmp_name'], 'uploads/thumbnails/upcoming_thumbnails/' . $data['upcoming_image_thumbnail']);
-        
+
         if (!empty($_POST['old_upcoming_image_thumbnail'])) {
             unlink('uploads/thumbnails/upcoming_thumbnails/' . $_POST['old_upcoming_image_thumbnail']);
         }
     }
-    
+
 
 
         // MULTI INSTRUCTOR PART STARTS
@@ -1601,7 +1614,7 @@ class Crud_model extends CI_Model
 
             // Initialize S3 client
             $s3 = new Aws\S3\S3Client($config);
-            
+
 
             // Bucket and file information
             $bucket = get_settings('wasabi_bucketname');
@@ -2003,7 +2016,7 @@ class Crud_model extends CI_Model
                     ],
                     'endpoint' => 'http://s3.wasabisys.com'
                 ];
-    
+
                 // Initialize S3 client
                 $s3 = new Aws\S3\S3Client($config);
 
@@ -3343,6 +3356,12 @@ class Crud_model extends CI_Model
         $data['duration'] = $this->input->post('quiz_duration');
         $data['attachment_type'] = 'json';
 
+        //============================================================
+        $data['start_time'] = strtotime($this->input->post('start_time'));  //insert start time
+        $data['end_time'] = strtotime($this->input->post('end_time'));      //insert end time
+        $data['randomize'] = $this->input->post('randomize');                //insert randomize value
+        //============================================================
+
         $attachment_data = array(
             'total_marks' => htmlspecialchars_($this->input->post('total_marks')),
             'pass_mark' => $this->input->post('pass_mark'),
@@ -3361,6 +3380,13 @@ class Crud_model extends CI_Model
         $data['title'] = html_escape($this->input->post('title'));
         $data['section_id'] = html_escape($this->input->post('section_id'));
         $data['duration'] = $this->input->post('quiz_duration');
+
+        //============================================================
+        $data['start_time'] = strtotime($this->input->post('start_time'));  //insert start time
+        $data['end_time'] = strtotime($this->input->post('end_time'));      //insert end time
+        $data['randomize'] = $this->input->post('randomize');               //insert randomize value
+        //============================================================
+
         $attachment_data = array(
             'total_marks' => htmlspecialchars_($this->input->post('total_marks')),
             'pass_mark' => $this->input->post('pass_mark'),
@@ -3734,10 +3760,14 @@ class Crud_model extends CI_Model
                 $this->db->update('watch_histories', array('course_progress' => $course_progress, 'completed_lesson' => json_encode($lesson_ids), 'completed_date' => $completed_date, 'date_updated' => time()));
                 $is_completed = 0;
             }
-            // CHECK IF THE USER IS ELIGIBLE FOR CERTIFICATE
+            // CHECK IF COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
             if (addon_status('certificate') && $course_progress >= 100) {
-                $this->load->model('addons/Certificate_model', 'certificate_model');
-                $this->certificate_model->check_certificate_eligibility($course_id, $user_id);
+                $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
+                if ($course_data && $course_data->enable_certificate)
+                {
+                    $this->load->model('addons/Certificate_model', 'certificate_model');
+                    $this->certificate_model->check_certificate_eligibility($course_id, $user_id);
+                }
             }
         } else {
             $total_lesson = $this->db->get_where('lesson', array('course_id' => $course_id))->num_rows();
@@ -4275,10 +4305,14 @@ class Crud_model extends CI_Model
                     $this->db->where('watch_history_id', $query->row('watch_history_id'));
                     $this->db->update('watch_histories', array('course_progress' => $course_progress, 'completed_lesson' => json_encode($lesson_ids), 'completed_date' => $completed_date, 'date_updated' => time()));
 
-                    // CHECK IF THE USER IS ELIGIBLE FOR CERTIFICATE
+
+                    // CHECK IF THE COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
                     if (addon_status('certificate') && $course_progress >= 100) {
-                        $this->load->model('addons/Certificate_model', 'certificate_model');
-                        $this->certificate_model->check_certificate_eligibility($data['watched_course_id'], $data['watched_student_id']);
+                        $course_data = $this->db->get_where('course', array('id' => $data['watched_course_id']))->row();
+                        if ($course_data && $course_data->enable_certificate) {
+                            $this->load->model('addons/Certificate_model', 'certificate_model');
+                            $this->certificate_model->check_certificate_eligibility($data['watched_course_id'], $data['watched_student_id']);
+                        }
                     }
                 }
             }

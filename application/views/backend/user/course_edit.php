@@ -348,6 +348,13 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                         <label for="enable_drip_content" data-on-label="On" data-off-label="Off"></label>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-2 col-form-label" for="enable_certificate"><?php echo get_phrase('enable_certificate'); ?></label>
+                                                    <div class="col-md-10 pt-2">
+                                                        <input type="checkbox" name="enable_certificate" value="1" id="enable_certificate" data-switch="primary" <?php if ($course_details['enable_certificate'] == 1) echo 'checked'; ?>>
+                                                        <label for="enable_certificate" data-on-label="On" data-off-label="Off"></label>
+                                                    </div>
+                                                </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div> <!-- end tab pane -->

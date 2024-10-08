@@ -15,6 +15,17 @@ $sections = $this->crud_model->get_section('course', $param2)->result_array();
         </select>
     </div>
 
+
+    <div class="form-group"><!-- add start time to the quiz -->
+        <label for="start_time"><?php echo get_phrase('start_time'); ?></label><!---->
+        <input type="date" class="form-control" name="start_time" id = "start_time"><!---->
+    </div>
+
+    <div class="form-group"><!-- add end time to the quiz -->
+        <label for="end_time"><?php echo get_phrase('end_time'); ?></label><!---->
+        <input type="date" class="form-control" name="end_time" id = "end_time"><!---->
+    </div>
+
     <div class="form-group">
         <label for="quiz_duration"><?php echo get_phrase('quiz_duration'); ?></label>
         <input type="text" class="form-control" data-toggle='timepicker' data-minute-step="5" name="quiz_duration" id = "quiz_duration" data-show-meridian="false" value="00:00:00">
@@ -36,6 +47,14 @@ $sections = $this->crud_model->get_section('course', $param2)->result_array();
         <input name="drip_content_for_passing_rule" type="radio" value="not_applicable" id = "drip_content_rule_not_applicable"> <label for="drip_content_rule_not_applicable"><?php echo get_phrase('Students can start the next lesson by submitting the quiz'); ?></label>
         <br>
         <input name="drip_content_for_passing_rule" type="radio" value="applicable" id = "drip_content_rule_applicable"> <label for="drip_content_rule_applicable"><?php echo get_phrase('Students must achieve pass mark to start the next lesson'); ?></label>
+    </div>
+
+    <div class="form-group"><!-- add checkbox to randomize quiz questions -->
+        <span>randomize questions ?</span><br>
+        <label for="randomize_questions">
+            <input type="checkbox" name="randomize" id="randomize_questions" value="1">
+            <?php echo get_phrase('Randomize quiz questions'); ?>
+        </label>
     </div>
 
     <div class="form-group">

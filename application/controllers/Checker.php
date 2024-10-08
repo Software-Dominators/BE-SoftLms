@@ -138,6 +138,7 @@ class Mobile extends CI_Controller
             $data['gender']      = $row['sex'];
             $data['address']     = $row['address'];
             $data['phone']       = $row['phone'];
+            $data['another_phone'] = $row['another_phone'];
             $data['email']       = $row['email'];
             $data['roll']        = $roll;
             $data['class']       = $class_id;
@@ -219,6 +220,7 @@ class Mobile extends CI_Controller
             $data['profession'] = $row['profession'];
             $data['address']    = $row['address'];
             $data['phone']      = $row['phone'];
+            $data['another_phone'] = $row['another_phone'];
             $data['email']      = $row['email'];
             $data['image_url']  = $this->crud_model->get_image_url('parent', $row['parent_id']);
             array_push($response, $data);

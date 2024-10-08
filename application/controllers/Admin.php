@@ -221,8 +221,7 @@ class Admin extends CI_Controller
 
         $data = array();
         //mentioned all with colum of database table that related with html table
-        $columns = array('id', 'id', 'first_name', 'email', 'phone', 'id', 'id');
-
+        $columns = array('id', 'id', 'first_name', 'email', 'phone', 'another_phone', 'id', 'id');
         $limit = htmlspecialchars_($this->input->post('length'));
         $start = htmlspecialchars_($this->input->post('start'));
 
@@ -246,6 +245,7 @@ class Admin extends CI_Controller
             $this->db->or_like('last_name', $search);
             $this->db->or_like('email', $search);
             $this->db->or_like('phone', $search);
+            $this->db->or_like('another_phone', $search);
             $this->db->where('role_id', 2);
             $this->db->limit($limit, $start);
             $this->db->order_by($column_index, $dir);
@@ -257,6 +257,7 @@ class Admin extends CI_Controller
             $this->db->or_like('last_name', $search);
             $this->db->or_like('email', $search);
             $this->db->or_like('phone', $search);
+            $this->db->or_like('another_phone', $search);
             $this->db->where('role_id', 2);
             $filtered_number_of_row = $this->db->get('users')->num_rows();
         }
@@ -303,6 +304,7 @@ class Admin extends CI_Controller
             $nestedData['name'] = $name;
             $nestedData['email'] = $email;
             $nestedData['phone'] = $student['phone'];
+            $nestedData['another_phone'] = $student['another_phone'];
             $nestedData['enrolled_courses'] = $enrolled_courses_title;
             $nestedData['action'] = $action . '<script>$("a, i").tooltip();</script>';
             $data[] = $nestedData;
@@ -2848,6 +2850,12 @@ class Admin extends CI_Controller
 
     function student_certificate($user_id = "", $course_id = "")
     {
+        $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
+        if (!$course_data || !$course_data->enable_certificate) {
+            $this->session->set_flashdata('error_message', get_phrase('The course is not have certificate yet'));
+            redirect(site_url('admin/course_form/course_edit/' . $course_id . '?tab=academic_progress'));
+        }
+
         $this->load->model('addons/Certificate_model', 'certificate_model');
         $course_progress = $this->crud_model->get_watch_histories($user_id, $course_id)->row('course_progress');
         if ($course_progress >= 100) {
@@ -2855,7 +2863,7 @@ class Admin extends CI_Controller
             $certificate = $this->db->get_where('certificates', array('course_id' => $course_id, 'student_id' => $user_id));
             redirect(site_url('certificate/' . $certificate->row('shareable_url')));
         } else {
-            $this->session->set_flashdata('error_message', get_phrase('The course is not compleated yet'));
+            $this->session->set_flashdata('error_message', get_phrase('The course is not completed yet'));
             redirect(site_url('admin/course_form/course_edit/' . $course_id . '?tab=academic_progress'));
         }
     }

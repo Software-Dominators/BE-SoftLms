@@ -23,6 +23,7 @@
                 <th><?php echo get_phrase('name'); ?></th>
                 <th><?php echo get_phrase('email'); ?></th>
                 <th><?php echo get_phrase('Phone'); ?></th>
+                <th><?php echo get_phrase('another_phone'); ?></th>
                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                 <th><?php echo get_phrase('actions'); ?></th>
               </tr>
@@ -52,6 +53,7 @@
         { "data": "name" },
         { "data": "email" },
         { "data": "phone" },
+        { "data": "another_phone" },
         { "data": "enrolled_courses" },
         { "data": "action" }
       ]   
