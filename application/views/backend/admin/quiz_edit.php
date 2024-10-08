@@ -22,6 +22,16 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
         <small class="badge badge-info"><?php echo get_phrase('if_you_want_to_disable_the_timer,_set_the_duration_to'); ?> 00:00:00.</small>
     </div>
 
+    <div class="form-group"><!-- add start time to the quiz -->
+        <label for="start_time"><?php echo get_phrase('start_time'); ?></label>
+        <input type="date" class="form-control" name="start_time" value="<?php echo date('Y-m-d',$quiz_details['start_time']) ?>" id = "start_time">
+    </div>
+
+    <div class="form-group"><!-- add end time to the quiz -->
+        <label for="end_time"><?php echo get_phrase('end_time'); ?></label>
+        <input type="date" class="form-control" name="end_time" value="<?php echo date('Y-m-d',$quiz_details['end_time']) ?>" id = "end_time">
+    </div>
+
     <div class="form-group">
         <label for="total_marks"><?php echo get_phrase('total_marks'); ?></label>
         <input type="number" min="0" class="form-control" name="total_marks" value="<?php echo json_decode($quiz_details['attachment'], true)['total_marks']; ?>" id = "total_marks">
@@ -38,6 +48,15 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
         <input name="drip_content_for_passing_rule" type="radio" value="not_applicable" <?php if($drip_content_for_passing_rule == 'not_applicable') echo 'checked'; ?> id = "drip_content_rule_not_applicable"> <label for="drip_content_rule_not_applicable"><?php echo get_phrase('Students can start the next lesson by submitting the quiz'); ?></label>
         <br>
         <input name="drip_content_for_passing_rule" type="radio" value="applicable" <?php if($drip_content_for_passing_rule == 'applicable') echo 'checked'; ?> id = "drip_content_rule_applicable"> <label for="drip_content_rule_applicable"><?php echo get_phrase('Students must achieve pass mark to start the next lesson'); ?></label>
+    </div>
+
+
+    <div class="form-group"><!-- add checkbox to randomize quiz questions -->
+        <span>randomize questions ?</span><br>
+        <label for="randomize_questions">
+            <input type="checkbox" name="randomize" id="randomize_questions" value="1" <?php if($quiz_details['randomize'] == 1){echo 'checked';} ?>>
+            <?php echo get_phrase('Randomize quiz questions'); ?>
+        </label>
     </div>
 
     <div class="form-group">

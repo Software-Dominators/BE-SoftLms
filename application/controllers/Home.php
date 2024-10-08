@@ -1507,6 +1507,21 @@ class Home extends CI_Controller
         $lesson = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
         $course_details = $this->crud_model->get_course_by_id($lesson['course_id'])->row_array();
         $is_course_instructor = $this->crud_model->is_course_instructor($course_details['id'], $this->session->userdata('user_id'));
+
+        // Check if the current time is before the lesson's start date =============
+        if ($lesson['start_time'] > time()) {
+            $response['error'] = get_phrase('The quiz is not available yet.');//
+            echo json_encode($response);
+            return;
+        }
+
+        // Check if the current time is after the lesson's end date ================
+        if ($lesson['end_time'] < time()) {
+            $response['error'] = get_phrase('it is too late to take the quiz now.');//
+            echo json_encode($response);
+            return;
+        }
+
         if ($is_preview) {
             if ($lesson['is_free'] == 1) {
                 $data['course_details'] = $course_details;

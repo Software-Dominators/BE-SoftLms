@@ -84,6 +84,13 @@
                                         </div>
 
                                         <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="another_phone"><?php echo get_phrase('another_phone'); ?></label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="another_phone" name="another_phone">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="address"><?php echo get_phrase('address'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" id="address" name="address">

@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'soft-lms',
-	'dbdriver' => 'mysqli',
+    'hostname' => '127.0.0.1',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'soft-lms',
+    'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

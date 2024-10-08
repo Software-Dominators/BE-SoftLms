@@ -86,6 +86,11 @@ $sections = $this->crud_model->get_section('course', $course_id)->result_array()
                                             <?php echo $lesson['lesson_type'] == 'quiz' ? get_phrase('quiz').' '.$quiz_counter : get_phrase('lesson').' '.$lesson_counter; ?>
                                         </span>: <?php echo $lesson['title']; ?>
                                     </h5>
+                                    <?php
+                                    if($lesson['lesson_type'] == 'quiz'){?>
+                                        <span>start date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['start_time']) ?></span> || </span>
+                                        <span>end date:  <span style="color:#6610f2;" class="fw-bold"><?php echo date('Y-m-d',$lesson['end_time']) ?></span> </span>
+                                    <?php }?>
                                 </div>
                             </div> <!-- end card-->
                         </div>

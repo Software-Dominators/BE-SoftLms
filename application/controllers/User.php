@@ -861,6 +861,12 @@ class User extends CI_Controller
             redirect(site_url('home/lesson/' . slugify($course_title) . '/' . $quiz_details['course_id'] . '/' . $quiz_details['id']), 'refresh');
         }
 
+        //checkpoint(randomize)
+        //checks if the randomize value is equal to 1 (true) to randomize the order of the questions
+        if($quiz_details['randomize'] == 1){
+            $this->db->order_by('RAND()');
+        }
+
         $page_data['quiz_questions'] = $this->db->get_where('question', array('quiz_id' => $quiz_id));
         $page_data['quiz_id'] = $quiz_id;
         $this->load->view('lessons/quiz_answer_sheet', $page_data);

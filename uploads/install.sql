@@ -259,8 +259,8 @@ CREATE TABLE `course` (
   `creator` int(11) DEFAULT NULL,
   `expiry_period` int(11) DEFAULT NULL,
   `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
-  `publish_date` varchar(500) DEFAULT NULL
-  `enable_certificate` TINYINT(1) NOT NULL DEFAULT 1  -- New column added
+  `publish_date` varchar(500) DEFAULT NULL,
+  `enable_certificate` TINYINT(1) NOT NULL DEFAULT 1 -- New column added
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -970,7 +970,9 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 (410, 'meta_description', 'Meta description'),
 (411, 'thank_you', 'Thank you'),
 (412, 'you_are_just_one_click_away', 'You are just one click away'),
-(413, 'submit', 'Submit');
+(413, 'submit', 'Submit'),
+(414, 'enable_certificate', 'Enable Certificate');
+
 
 -- --------------------------------------------------------
 
@@ -982,6 +984,9 @@ CREATE TABLE `lesson` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `duration` varchar(255) DEFAULT NULL,
+  `start_time` int(11) DEFAULT NULL,
+  `end_time` int(11) DEFAULT NULL,
+  `randomize` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `section_id` int(11) DEFAULT NULL,
   `video_type` varchar(255) DEFAULT NULL,
@@ -1003,6 +1008,13 @@ CREATE TABLE `lesson` (
   `duration_for_mobile_application` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- Dumping data for table `lesson`
+--
+-- todo :: check if this insertion is required
+INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `randomize`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
+    (8, 'for intro', '0:20:00', 1727582400, 1730174400, 1, 3, 4, NULL, NULL, NULL, NULL, 1727755200, 1727841600, 'quiz', '{\"total_marks\":\"10\",\"pass_mark\":\"6\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, '', 0, 0, 10, NULL, NULL, NULL);
+
+-- --------------
 -- --------------------------------------------------------
 
 --
@@ -1456,6 +1468,7 @@ CREATE TABLE `users` (
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
+  `another_phone` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `skills` longtext NOT NULL,
@@ -1475,6 +1488,13 @@ CREATE TABLE `users` (
   `sessions` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- Dumping data for table `users`
+--
+-- todo :: check if this insertion is required
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `another_phone`, `address`, `password`, `skills`, `social_links`, `biography`, `role_id`, `date_added`, `last_modified`, `wishlist`, `title`, `payment_keys`, `verification_code`, `status`, `is_instructor`, `image`, `temp`, `sessions`) VALUES
+                                                                                                                                                                                                                                                                                                                       (2, 'Eslam ', 'Hamedallah', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 1, NULL, 1727033533, NULL, '', '', NULL, 1, 1, NULL, NULL, ''),
+                                                                                                                                                                                                                                                                                                                       (18, 'instructor', 'test', 'instructor@test.com', '', NULL, '', '5db3005d1c92d3def956044087157bb23f29c6b0', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727697255, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 1, '42b8e053830265a94bcf4349e5905d23', NULL, '[]'),
+                                                                                                                                                                                                                                                                                                                       (19, 'student', 'test', 'student@test.com', '', '', '', '204036a1ef6e7360e536300ea78c6aeb4a9333dd', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727701750, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '44df9a99f99bf6bdece57489a4b7c5f7', NULL, '[\"hm1kc0u4j6q71cpq6dvfavbvg7o0p145\",\"0jo67bs8hum9nhmmttmfaq9simkklurv\",\"fplc1705dm3spmi7cbqbjjcskk56ol9j\",\"buo6gqj2vs4o8hccaqlv0da4heo30nh3\",\"httot06a4uh70qod29g8k65dkq5dk1q6\"]');
 -- --------------------------------------------------------
 
 --
