@@ -238,6 +238,8 @@ CREATE TABLE `course` (
   `section` longtext DEFAULT NULL,
   `requirements` longtext DEFAULT NULL,
   `price` double DEFAULT NULL,
+  `section_price` double DEFAULT NULL, -- new column added
+  `lesson_price` double DEFAULT NULL, -- new column added
   `discount_flag` int(11) DEFAULT 0,
   `discounted_price` double DEFAULT NULL,
   `level` varchar(50) DEFAULT NULL,

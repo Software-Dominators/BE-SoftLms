@@ -377,6 +377,26 @@
                                                                    min="0">
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row mb-3">
+                                                        <label class="col-md-2 col-form-label"
+                                                               for="section_price"><?php echo get_phrase('section_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
+                                                        <div class="col-md-10">
+                                                            <input type="number" class="form-control" id="section_price"
+                                                                   name="section_price"
+                                                                   placeholder="<?php echo get_phrase('enter_course_section_price'); ?>"
+                                                                   min="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-3">
+                                                        <label class="col-md-2 col-form-label"
+                                                               for="lesson_price"><?php echo get_phrase('lesson_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
+                                                        <div class="col-md-10">
+                                                            <input type="number" class="form-control" id="lesson_price"
+                                                                   name="lesson_price"
+                                                                   placeholder="<?php echo get_phrase('enter_course_lesson_price'); ?>"
+                                                                   min="0">
+                                                        </div>
+                                                    </div>
 
                                                     <div class="form-group row mb-3">
                                                         <div class="offset-md-2 col-md-10">

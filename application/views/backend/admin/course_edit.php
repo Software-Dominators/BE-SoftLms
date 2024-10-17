@@ -602,6 +602,19 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                             <input type="number" class="form-control" id="price" name="price" min="0" placeholder="<?php echo get_phrase('enter_course_course_price'); ?>" value="<?php echo $course_details['price']; ?>">
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row mb-3">
+                                                        <label class="col-md-2 col-form-label" for="section_price"><?php echo get_phrase('section_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
+                                                        <div class="col-md-10">
+                                                            <input type="number" class="form-control" id="section_price" name="section_price" min="0" placeholder="<?php echo get_phrase('enter_course_section_price'); ?>" value="<?php echo $course_details['section_price']; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-3">
+                                                        <label class="col-md-2 col-form-label" for="lesson_price"><?php echo get_phrase('lesson_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
+                                                        <div class="col-md-10">
+                                                            <input type="number" class="form-control" id="lesson_price" name="lesson_price" min="0" placeholder="<?php echo get_phrase('enter_course_lesson_price'); ?>" value="<?php echo $course_details['lesson_price']; ?>">
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="form-group row mb-3">
                                                         <div class="offset-md-2 col-md-10">
