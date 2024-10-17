@@ -657,6 +657,8 @@ class Crud_model extends CI_Model
         $data['category_id'] = $category_details['parent'];
         $data['requirements'] = $requirements;
         $data['price'] = $this->input->post('price');
+        $data['section_price'] = $this->input->post('section_price');
+        $data['lesson_price'] = $this->input->post('lesson_price');
         $data['discount_flag'] = $this->input->post('discount_flag');
         $data['discounted_price'] = $this->input->post('discounted_price');
         $data['level'] = $this->input->post('level');
@@ -768,6 +770,8 @@ class Crud_model extends CI_Model
         $data['requirements'] = '[]';
         $data['faqs'] = json_encode(array());
         $data['price'] = $this->input->post('price');
+        $data['section_price'] = $this->input->post('section_price');
+        $data['lesson_price'] = $this->input->post('lesson_price');
         $data['discount_flag'] = $this->input->post('discount_flag');
         $data['discounted_price'] = $this->input->post('discounted_price');
         $data['level'] = $this->input->post('level');
@@ -872,6 +876,8 @@ class Crud_model extends CI_Model
         }
 
         $data['price'] = $this->input->post('price');
+        $data['section_price'] = $this->input->post('section_price');
+        $data['lesson_price'] = $this->input->post('lesson_price');
         $data['discount_flag'] = $this->input->post('discount_flag');
         $data['discounted_price'] = $this->input->post('discounted_price');
         $data['level'] = $this->input->post('level');
