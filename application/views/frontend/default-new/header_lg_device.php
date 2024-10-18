@@ -321,6 +321,15 @@
                       </li>  
                     <?php endif; ?>
 
+                    <?php //if($user_login) { // checkpoint (adding the report button to student frontend) ?>
+                      <li>
+                        <a href="<?php echo base_url().'/home/user_complains' ?>">
+                          <i class="fas fa-bug"></i>
+                          <?php echo get_phrase('Report !'); ?>
+                        </a>
+                      </li>
+                    <?php //} ?>
+                      
                     <li>
                       <a href="<?php echo site_url('login/logout'); ?>">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>

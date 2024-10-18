@@ -261,7 +261,7 @@ class Admin extends CI_Controller
             $this->db->where('role_id', 2);
             $filtered_number_of_row = $this->db->get('users')->num_rows();
         }
-
+        
         foreach ($students as $key => $student) :
 
             //photo
@@ -317,6 +317,87 @@ class Admin extends CI_Controller
             "data"            => $data
         );
         echo json_encode($json_data);
+    }
+
+    public function complains_data(){ // this to show the complains page in the dashdoard 
+        $page_data['page_name'] = 'complains';
+        $page_data['page_title'] = get_phrase('complains');
+        $this->load->view('backend/index', $page_data);
+    }
+
+    public function server_side_complaints_data() { // this for the table of the complains in the admin dashboard
+        // Get DataTable parameters
+        $limit = $this->input->post('length');
+        $start = $this->input->post('start');
+        $search_value = $this->input->post('search')['value']; // For searching
+        $order_column = $this->input->post('order')[0]['column']; // Column index for ordering
+        $order_dir = $this->input->post('order')[0]['dir']; // 'asc' or 'desc'
+        
+        // Get filtered complaints data from the model with limit, start, search, etc.
+        $complaints = $this->crud_model->get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir);
+        
+        // Get total and filtered records count
+        $total_complaints = $this->crud_model->count_all_complaints();
+        $filtered_complaints = $this->crud_model->count_filtered_complaints($search_value);
+    
+        // Format data for DataTables
+        $data = array();
+        foreach ($complaints as $key => $complaint) {
+            $row = array();
+            $row['key'] = $key + 1; // Index
+            $row['complaint_type'] = $complaint->complain_type;
+            $row['user_name'] = $complaint->name;
+            $row['email'] = $complaint->email;
+            $row['phone'] = $complaint->phone;
+            $row['course'] = $complaint->course_id ? $this->crud_model->get_course_name_with_id($complaint->course_id) : '-'; // Fetch course name by ID
+            $row['problem_type'] = $complaint->problem_type;
+            $row['message'] = $complaint->message;
+            $row['status'] = $complaint->status;
+            $row['action'] = '<a href="complain_replay_view/'.$complaint->id.'" class="btn btn-sm btn-primary">'.get_phrase('Replay').'</a>';
+            $data[] = $row;
+        }
+    
+        // Output data in DataTable format
+        $output = array(
+            "draw" => intval($this->input->post("draw")),
+            "recordsTotal" => $total_complaints,
+            "recordsFiltered" => $filtered_complaints,
+            "data" => $data,
+        );
+        
+        echo json_encode($output); // to make them readable for the datatabels library
+    }
+    
+    function complain_replay_view($id) { //show the page of the replay for the admin
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'complain_replay';
+        $page_data['page_title'] = get_phrase('complain_replay');
+        $page_data['complain_id'] = $id ;
+        $get_complain_data = $this->crud_model->get_complaint_data_via_id($id);
+        if (!empty($get_complain_data)) {
+            $page_data['complain_user_data'] = $this->crud_model->get_complaint_user_data_via_id($get_complain_data['user_id']);
+            $page_data['complain_course_name'] = $this->crud_model->get_course_name_with_id($get_complain_data['course_id']);
+            $page_data['complain_data'] = $get_complain_data;
+        } else {
+            // Handle the case where no complaint data is found
+            $page_data['complain_user_data'] = [];
+            $page_data['complain_course_name'] = 'N/A';
+            $page_data['complain_data'] = [];
+            // Redirect or show an error message
+        }
+        
+
+
+        $this->load->view('backend/index', $page_data);
+    }
+    function complain_admin_replay() { // this controls the data out of the replay form and send it to the following targets 
+        $this->crud_model->send_new_private_message();
+        $this->crud_model->update_complain_data_for_replay();
+        $this->session->set_flashdata('flash_message', get_phrase('the replay has arrived !'));
+        redirect(site_url('/'));
     }
 
     function server_side_instructors_data()

@@ -1003,6 +1003,109 @@ class Crud_model extends CI_Model
         $this->db->update('course', $updater);
     }
 
+    public function get_complaints_data() {// all the data for each complains
+    
+        $this->db->select('*');
+        $this->db->from('complains');
+        $query = $this->db->get();
+    
+        return $query->result();
+    }
+
+    function update_complain_data_for_replay() { // as the name say 
+        $data['replay_admin_id']=$this->session->userdata('user_id');
+        $data['replay_message']=$this->input->post('message');
+        $data['replay_date']=date("Y-m-d H:i:s");
+        $data['status']='closed';
+        return $this->db->update('complains' , $data , ['id' => $this->input->post('complain_id')]) ;
+
+    }
+
+
+    public function get_complaint_data_via_id($id) {// as the name say 
+        $this->db->select('*');
+        $this->db->from('complains'); 
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        // $query_result =$query->result();
+
+        return $query->row_array();
+    }
+    public function get_complaint_user_data_via_id($id) {// as the name say with typoo put it work
+        $this->db->select('*');
+        $this->db->from('users'); 
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        // $query_result =$query->result();
+    
+        return $query->row_array();
+    }
+
+
+    public function get_course_name_with_id($id) { // as the name say 
+        $this->db->select('title');  
+        $this->db->from('course'); 
+        $this->db->where('id', $id);  
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->row()->title;  
+        } else {
+            return '-';  
+        }
+    }
+    public function get_courses_data_for_complain_form() {
+        $this->db->select('*');
+        $this->db->from('course');  
+        $query = $this->db->get();
+        
+        // You're returning a single row here
+        return $query->result_array();  
+    }
+    
+
+
+    //the following id for the complain teble search integration
+    public function get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir) {
+        $this->db->select('*');
+        $this->db->from('complains');
+        
+        
+        if (!empty($search_value)) {
+            $this->db->like('name', $search_value);
+            $this->db->or_like('email', $search_value);
+        }
+    
+        
+        $this->db->limit($limit, $start);
+        $this->db->order_by($order_column, $order_dir);
+        
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function count_all_complaints() {
+        return $this->db->count_all('complains');
+    }
+    
+    public function count_filtered_complaints($search_value) {
+        $this->db->select('*');
+        $this->db->from('complains');
+        
+        
+        
+        if (!empty($search_value)) {
+            $this->db->like('name', $search_value);
+            $this->db->or_like('email', $search_value);
+        }
+        
+        return $this->db->count_all_results();
+    }
+    // end complain teble search integration
+
+
+
+    
     function get_course_thumbnail_url($course_id, $type = 'course_thumbnail')
     {
         // Course media placeholder is coming from the theme config file. Which has all the placehoder for different images. Choose like course type.

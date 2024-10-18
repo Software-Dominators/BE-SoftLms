@@ -41,6 +41,33 @@ class Home extends CI_Controller
         $this->home();
     }
 
+    //checkpoint (complains function)
+    public function user_complains() {
+        if ($this->session->userdata('role') == 'User' || $this->session->userdata('role') == 'Admin') {
+
+            //the following three lines is responeible to show pages
+            $page_data['page_name'] = "complains";
+            $page_data['page_title'] = site_phrase('complains');
+            $page_data['courses_data'] = $this->crud_model->get_courses_data_for_complain_form();
+            $page_data['user_data'] = $this->session->userdata();
+            $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
+
+        }  else {
+
+            $this->session->set_flashdata('error_message', get_phrase('you can not do this'));
+            redirect(base_url('/'));
+
+        }   
+    }
+
+    
+    //checkpoint sending the data to the module
+    public function put_complains() {
+        $this->load->model('user_model');
+        $this->user_model->upload_complains();
+    }
+    
+
     function test()
     {
         $url = 'https://service-sandbox.tazapay.com/v3/checkout';

@@ -51,7 +51,7 @@ class User_model extends CI_Model
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
             $data['phone'] = $this->input->post('phone');
-            $data['another_phone'] = $this->input->post('another_phone');
+            $data['another_phone'] = $this->input->post('another_phone');// added
             $data['address'] = $this->input->post('address');
 
             if ($is_admin) {
@@ -90,6 +90,59 @@ class User_model extends CI_Model
             $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
         }
     }
+
+    //checkpoint (sending complain to model)
+    public function upload_complains() {
+        // Load form validation library
+        $this->load->library('form_validation');
+        
+        // Set validation rules
+        $this->form_validation->set_rules('name', 'Name', 'required|min_length[3]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
+        $this->form_validation->set_rules('message', 'Message', 'required');
+    
+        // Check if validation passes
+        if ($this->form_validation->run() == FALSE) {
+            // Validation failed, reload the form
+            $this->session->set_flashdata('error_message', get_phrase('there is something wrong in the inputs'));
+            redirect(base_url('home/user_complains')); // Replace 'form_page' with your view
+        } else {
+            // Validation passed, process the form
+            $user_data = $this->session->userdata();
+            $data['complain_type'] = $user_data['role_id'] == 1 ? 'admin' : 'user';
+            
+            $data['user_id'] = $this->session->userdata('user_id');
+            $data['name'] = $this->input->post('name');
+            $data['email'] = $this->input->post('email');
+            $data['phone'] = $this->input->post('phone');
+            
+            if ($this->input->post('course_id') != 0) {
+                $data['course_id'] = $this->input->post('course_id');
+            }
+
+            if ($this->input->post('problem_type') != '') {
+                $data['problem_type'] = $this->input->post('problem_type');
+            }else {
+                $data['problem_type'] = 'general_problem';
+            }
+    
+            $data['message'] = $this->input->post('message');
+            $data['status'] = 'open';
+            // date format ( Y-m-d H:i:s ) for the database ...
+            $data['created_at'] = date("Y-m-d H:i:s");
+            $data['updated_at'] = date("Y-m-d H:i:s");
+            
+            
+            // Insert data into the database
+            $this->db->insert('complains', $data);
+            
+            // Redirect or show success message
+            $this->session->set_flashdata('flash_message', get_phrase('your complain has arraived'));
+            redirect(base_url('/')); // Replace 'thank_you' with your success page
+        }
+    }
+    
 
     public function add_shortcut_user($is_instructor = false)
     {
@@ -193,7 +246,7 @@ class User_model extends CI_Model
             $data['title'] = html_escape($this->input->post('title'));
             $data['skills'] = html_escape($this->input->post('skills'));
             $data['phone'] = html_escape($this->input->post('phone'));
-            $data['another_phone'] = html_escape($this->input->post('another_phone'));
+            $data['another_phone'] = html_escape($this->input->post('another_phone'));//added
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
 
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
