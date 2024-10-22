@@ -244,45 +244,44 @@ CREATE TABLE `coupons`
 -- Table structure for table `course`
 --
 
-CREATE TABLE `course`
-(
-    `id`                       int(11) UNSIGNED NOT NULL,
-    `title`                    varchar(255) DEFAULT NULL,
-    `short_description`        longtext     DEFAULT NULL,
-    `description`              longtext     DEFAULT NULL,
-    `outcomes`                 longtext     DEFAULT NULL,
-    `faqs`                     text NOT NULL,
-    `language`                 varchar(255) DEFAULT NULL,
-    `category_id`              int(11) DEFAULT NULL,
-    `sub_category_id`          int(11) DEFAULT NULL,
-    `section`                  longtext     DEFAULT NULL,
-    `requirements`             longtext     DEFAULT NULL,
-    `price` double DEFAULT NULL,
-    `section_price` double DEFAULT NULL,                     -- new column added
-    `lesson_price` double DEFAULT NULL,                      -- new column added
-    `discount_flag`            int(11) DEFAULT 0,
-    `discounted_price` double DEFAULT NULL,
-    `level`                    varchar(50)  DEFAULT NULL,
-    `user_id`                  varchar(255) DEFAULT NULL,
-    `thumbnail`                varchar(255) DEFAULT NULL,
-    `video_url`                varchar(255) DEFAULT NULL,
-    `date_added`               int(11) DEFAULT NULL,
-    `last_modified`            int(11) DEFAULT NULL,
-    `course_type`              varchar(255) DEFAULT NULL,
-    `is_top_course`            int(11) DEFAULT 0,
-    `is_admin`                 int(11) DEFAULT NULL,
-    `status`                   varchar(255) DEFAULT NULL,
-    `course_overview_provider` varchar(255) DEFAULT NULL,
-    `meta_keywords`            longtext     DEFAULT NULL,
-    `meta_description`         longtext     DEFAULT NULL,
-    `is_free_course`           int(11) DEFAULT NULL,
-    `multi_instructor`         int(11) NOT NULL DEFAULT 0,
-    `enable_drip_content`      int(11) NOT NULL,
-    `creator`                  int(11) DEFAULT NULL,
-    `expiry_period`            int(11) DEFAULT NULL,
-    `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
-    `publish_date`             varchar(500) DEFAULT NULL,
-    `enable_certificate`       TINYINT(1) NOT NULL DEFAULT 1 -- New column added
+CREATE TABLE `course` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `short_description` longtext DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `outcomes` longtext DEFAULT NULL,
+  `faqs` text NOT NULL,
+  `language` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `sub_category_id` int(11) DEFAULT NULL,
+  `section` longtext DEFAULT NULL,
+  `requirements` longtext DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `section_price` double DEFAULT NULL, -- new column added
+  `lesson_price` double DEFAULT NULL, -- new column added
+  `discount_flag` int(11) DEFAULT 0,
+  `discounted_price` double DEFAULT NULL,
+  `level` varchar(50) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `video_url` varchar(255) DEFAULT NULL,
+  `date_added` int(11) DEFAULT NULL,
+  `last_modified` int(11) DEFAULT NULL,
+  `course_type` varchar(255) DEFAULT NULL,
+  `is_top_course` int(11) DEFAULT 0,
+  `is_admin` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `course_overview_provider` varchar(255) DEFAULT NULL,
+  `meta_keywords` longtext DEFAULT NULL,
+  `meta_description` longtext DEFAULT NULL,
+  `is_free_course` int(11) DEFAULT NULL,
+  `multi_instructor` int(11) NOT NULL DEFAULT 0,
+  `enable_drip_content` int(11) NOT NULL,
+  `creator` int(11) DEFAULT NULL,
+  `expiry_period` int(11) DEFAULT NULL,
+  `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
+  `publish_date` varchar(500) DEFAULT NULL,
+  `enable_certificate` TINYINT(1) NOT NULL DEFAULT 1 -- New column added
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

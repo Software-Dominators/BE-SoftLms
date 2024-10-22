@@ -158,5 +158,32 @@ class Offline_payment_model extends CI_Model
 			$data['key'] = 'offline_bank_information';
         	$this->db->insert('settings', $data);
 		}
+
+        // Call the function to upload the image and delete the old one if it exists
+        $this->upload_offline_payment_image('offline_payment');
+
 	}
+    public function upload_offline_payment_image($image_code)
+    {
+        $file_path = 'assets/payment/' . $image_code . '.png';
+
+        // Check if the file already exists
+        if (file_exists($file_path)) {
+            // Delete the old file
+            unlink($file_path);
+        }
+
+        // Check if a new file is uploaded and has a valid name
+        if (isset($_FILES['offline_payment_image']) && $_FILES['offline_payment_image']['name'] != "") {
+
+            // Move the new uploaded file to the specified directory
+            if (move_uploaded_file($_FILES['offline_payment_image']['tmp_name'], $file_path)) {
+                // Success: File was uploaded
+                $this->session->set_flashdata('flash_message', 'Image uploaded successfully');
+            } else {
+                // Error: Something went wrong during the upload
+                $this->session->set_flashdata('error_message', 'Image upload failed. Please try again.');
+            }
+        }
+    }
 }
