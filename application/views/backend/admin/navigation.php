@@ -469,6 +469,15 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 			</li>
 		<?php endif; ?>
 
+		<?php if (has_permission('complains')) : ?>
+			<li class="side-nav-item">
+				<a href="<?php echo site_url('admin/complains_data'); ?>" class="side-nav-link <?php if ($page_name == 'complains') : ?> active <?php endif; ?>">
+					<i class="dripicons-user-id"></i>
+					<span><?php echo get_phrase('Complains'); ?></span>
+				</a>
+			</li>
+		<?php endif; ?>
+
 
 		<?php if (has_permission('blog')) : ?>
 			<li class="side-nav-item <?php if ($page_name == 'blog' || $page_name == 'blog_add' || $page_name == 'blog_edit' || $page_name == 'blog_category' || $page_name == 'blog_settings') : ?> active <?php endif; ?>">

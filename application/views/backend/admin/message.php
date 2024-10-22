@@ -45,8 +45,12 @@
                             <a class="text-left mb-1 btn btn-light d-block <?php if (isset($current_message_thread_code) && $current_message_thread_code == $row['message_thread_code'])echo 'active';?>" href="<?php echo site_url('admin/message/message_read/' . $row['message_thread_code']);?>">
 
                                 <?php
-                                    $user_details = $this->db->get_where('users' , array('id' => $user_to_show_id))->row_array();
-                                    echo $user_details['first_name'].' '.$user_details['last_name'];
+                                    $user_details = $this->db->get_where('users' , ['id' => $user_to_show_id])->row_array();
+                                    if($user_details){
+                                        echo $user_details['first_name'] .' '.$user_details['last_name'];
+                                    } else {
+                                        echo get_phrase('deleted user');
+                                    }
                                 ?>
                                 <!-- <span class="badge badge-light pull-right" style="color:#aaa;"><?php echo $user_details['role_id'] == 1 ? get_phrase('admin') : get_phrase('student') ;?></span> -->
 

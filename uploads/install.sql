@@ -7,9 +7,11 @@
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET
+SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET
+time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,16 +29,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `addons`
 --
 
-CREATE TABLE `addons` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `unique_identifier` varchar(255) NOT NULL,
-  `version` varchar(255) DEFAULT NULL,
-  `status` int(11) NOT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  `about` longtext DEFAULT NULL,
-  `purchase_code` varchar(255) DEFAULT NULL
+CREATE TABLE `addons`
+(
+    `id`                int(11) NOT NULL,
+    `name`              varchar(255) NOT NULL,
+    `unique_identifier` varchar(255) NOT NULL,
+    `version`           varchar(255) DEFAULT NULL,
+    `status`            int(11) NOT NULL,
+    `created_at`        int(11) DEFAULT NULL,
+    `updated_at`        int(11) DEFAULT NULL,
+    `about`             longtext     DEFAULT NULL,
+    `purchase_code`     varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -45,14 +48,15 @@ CREATE TABLE `addons` (
 -- Table structure for table `applications`
 --
 
-CREATE TABLE `applications` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `address` longtext DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `message` longtext DEFAULT NULL,
-  `document` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT 0
+CREATE TABLE `applications`
+(
+    `id`       int(11) UNSIGNED NOT NULL,
+    `user_id`  int(11) DEFAULT NULL,
+    `address`  longtext     DEFAULT NULL,
+    `phone`    varchar(255) DEFAULT NULL,
+    `message`  longtext     DEFAULT NULL,
+    `document` varchar(255) DEFAULT NULL,
+    `status`   int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -61,15 +65,16 @@ CREATE TABLE `applications` (
 -- Table structure for table `bbb_meetings`
 --
 
-CREATE TABLE `bbb_meetings` (
-  `id` int(20) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `meeting_id` varchar(255) DEFAULT NULL,
-  `moderator_pw` varchar(255) DEFAULT NULL,
-  `viewer_pw` varchar(255) DEFAULT NULL,
-  `instructions` longtext DEFAULT NULL,
-  `created_at` varchar(100) DEFAULT NULL,
-  `updated_at` varchar(100) DEFAULT NULL
+CREATE TABLE `bbb_meetings`
+(
+    `id`           int(20) NOT NULL,
+    `course_id`    int(11) NOT NULL,
+    `meeting_id`   varchar(255) DEFAULT NULL,
+    `moderator_pw` varchar(255) DEFAULT NULL,
+    `viewer_pw`    varchar(255) DEFAULT NULL,
+    `instructions` longtext     DEFAULT NULL,
+    `created_at`   varchar(100) DEFAULT NULL,
+    `updated_at`   varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -78,20 +83,21 @@ CREATE TABLE `bbb_meetings` (
 -- Table structure for table `blogs`
 --
 
-CREATE TABLE `blogs` (
-  `blog_id` int(11) NOT NULL,
-  `blog_category_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `keywords` text NOT NULL,
-  `description` longtext NOT NULL,
-  `thumbnail` varchar(100) NOT NULL,
-  `banner` varchar(100) NOT NULL,
-  `is_popular` int(11) NOT NULL,
-  `likes` longtext NOT NULL,
-  `added_date` varchar(100) NOT NULL,
-  `updated_date` varchar(100) NOT NULL,
-  `status` varchar(50) NOT NULL
+CREATE TABLE `blogs`
+(
+    `blog_id`          int(11) NOT NULL,
+    `blog_category_id` int(11) NOT NULL,
+    `user_id`          int(11) NOT NULL,
+    `title`            varchar(255) NOT NULL,
+    `keywords`         text         NOT NULL,
+    `description`      longtext     NOT NULL,
+    `thumbnail`        varchar(100) NOT NULL,
+    `banner`           varchar(100) NOT NULL,
+    `is_popular`       int(11) NOT NULL,
+    `likes`            longtext     NOT NULL,
+    `added_date`       varchar(100) NOT NULL,
+    `updated_date`     varchar(100) NOT NULL,
+    `status`           varchar(50)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -100,12 +106,13 @@ CREATE TABLE `blogs` (
 -- Table structure for table `blog_category`
 --
 
-CREATE TABLE `blog_category` (
-  `blog_category_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `subtitle` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `added_date` varchar(100) NOT NULL
+CREATE TABLE `blog_category`
+(
+    `blog_category_id` int(11) NOT NULL,
+    `title`            varchar(255) NOT NULL,
+    `subtitle`         varchar(255) NOT NULL,
+    `slug`             varchar(255) NOT NULL,
+    `added_date`       varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -114,15 +121,16 @@ CREATE TABLE `blog_category` (
 -- Table structure for table `blog_comments`
 --
 
-CREATE TABLE `blog_comments` (
-  `blog_comment_id` int(11) NOT NULL,
-  `blog_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `parent_id` int(11) NOT NULL,
-  `comment` longtext NOT NULL,
-  `likes` longtext NOT NULL,
-  `added_date` varchar(100) NOT NULL,
-  `updated_date` varchar(100) NOT NULL
+CREATE TABLE `blog_comments`
+(
+    `blog_comment_id` int(11) NOT NULL,
+    `blog_id`         int(11) NOT NULL,
+    `user_id`         int(11) NOT NULL,
+    `parent_id`       int(11) NOT NULL,
+    `comment`         longtext     NOT NULL,
+    `likes`           longtext     NOT NULL,
+    `added_date`      varchar(100) NOT NULL,
+    `updated_date`    varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -131,17 +139,18 @@ CREATE TABLE `blog_comments` (
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `parent` int(11) DEFAULT 0,
-  `slug` varchar(255) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `font_awesome_class` varchar(255) DEFAULT NULL,
-  `thumbnail` varchar(255) DEFAULT NULL,
-  `sub_category_thumbnail` varchar(255) DEFAULT NULL
+CREATE TABLE `category`
+(
+    `id`                     int(11) UNSIGNED NOT NULL,
+    `code`                   varchar(255) DEFAULT NULL,
+    `name`                   varchar(255) DEFAULT NULL,
+    `parent`                 int(11) DEFAULT 0,
+    `slug`                   varchar(255) DEFAULT NULL,
+    `date_added`             int(11) DEFAULT NULL,
+    `last_modified`          int(11) DEFAULT NULL,
+    `font_awesome_class`     varchar(255) DEFAULT NULL,
+    `thumbnail`              varchar(255) DEFAULT NULL,
+    `sub_category_thumbnail` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -150,24 +159,31 @@ CREATE TABLE `category` (
 -- Table structure for table `ci_sessions`
 --
 
-CREATE TABLE `ci_sessions` (
-  `id` varchar(40) NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `data` blob NOT NULL
+CREATE TABLE `ci_sessions`
+(
+    `id`         varchar(40) NOT NULL,
+    `ip_address` varchar(45) NOT NULL,
+    `timestamp`  int(10) UNSIGNED NOT NULL DEFAULT 0,
+    `data`       blob        NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ci_sessions`
 --
 
-INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('bum220qq3086mh7cls7e4vco5fr9m6d5', '::1', 1716196996, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
-('hitv5kcagmi78hcmf4bs7505uuauiks5', '::1', 1716196996, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
-('9kp66j1j444qghpie6l1esnjvhe33pua', '::1', 1716196996, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
-('7kb059sso3q055n071gjk8ipvgidve83', '::1', 1716196996, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
-('u5jbvokhjg0rjn7lenr4ndmcqhs0i42l', '::1', 1716196996, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
-('nemqdg09d4t1glojubms0tv5qmidesms', '::1', 1716197072, 0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313731373036313037323b757365725f69647c733a313a2231223b726f6c655f69647c733a313a2231223b726f6c657c733a353a2241646d696e223b6e616d657c733a31303a22757365722041646d696e223b69735f696e7374727563746f727c733a313a2231223b61646d696e5f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226f6c64223b7d);
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`)
+VALUES ('bum220qq3086mh7cls7e4vco5fr9m6d5', '::1', 1716196996,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
+       ('hitv5kcagmi78hcmf4bs7505uuauiks5', '::1', 1716196996,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
+       ('9kp66j1j444qghpie6l1esnjvhe33pua', '::1', 1716196996,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
+       ('7kb059sso3q055n071gjk8ipvgidve83', '::1', 1716196996,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
+       ('u5jbvokhjg0rjn7lenr4ndmcqhs0i42l', '::1', 1716196996,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226e6577223b7d636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b),
+       ('nemqdg09d4t1glojubms0tv5qmidesms', '::1', 1716197072,
+        0x5f5f63695f6c6173745f726567656e65726174657c693a313731363139363939363b636172745f6974656d737c613a303a7b7d6c616e67756167657c733a373a22656e676c697368223b637573746f6d5f73657373696f6e5f6c696d69747c693a313731373036313037323b757365725f69647c733a313a2231223b726f6c655f69647c733a313a2231223b726f6c657c733a353a2241646d696e223b6e616d657c733a31303a22757365722041646d696e223b69735f696e7374727563746f727c733a313a2231223b61646d696e5f6c6f67696e7c733a313a2231223b636f756e7443616c6c7c693a313b5f5f63695f766172737c613a313a7b733a393a22636f756e7443616c6c223b733a333a226f6c64223b7d);
 
 -- --------------------------------------------------------
 
@@ -175,14 +191,15 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 -- Table structure for table `comment`
 --
 
-CREATE TABLE `comment` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `body` longtext DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `commentable_id` int(11) DEFAULT NULL,
-  `commentable_type` varchar(50) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL
+CREATE TABLE `comment`
+(
+    `id`               int(11) UNSIGNED NOT NULL,
+    `body`             longtext    DEFAULT NULL,
+    `user_id`          int(11) DEFAULT NULL,
+    `commentable_id`   int(11) DEFAULT NULL,
+    `commentable_type` varchar(50) DEFAULT NULL,
+    `date_added`       int(11) DEFAULT NULL,
+    `last_modified`    int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -191,18 +208,19 @@ CREATE TABLE `comment` (
 -- Table structure for table `contact`
 --
 
-CREATE TABLE `contact` (
-  `id` int(21) NOT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `has_read` int(11) DEFAULT NULL,
-  `replied` int(11) DEFAULT NULL,
-  `created_at` varchar(100) DEFAULT NULL,
-  `updated_at` varchar(100) DEFAULT NULL
+CREATE TABLE `contact`
+(
+    `id`         int(21) NOT NULL,
+    `first_name` varchar(255) DEFAULT NULL,
+    `last_name`  varchar(255) DEFAULT NULL,
+    `email`      varchar(255) DEFAULT NULL,
+    `phone`      varchar(255) DEFAULT NULL,
+    `address`    text         DEFAULT NULL,
+    `message`    text         DEFAULT NULL,
+    `has_read`   int(11) DEFAULT NULL,
+    `replied`    int(11) DEFAULT NULL,
+    `created_at` varchar(100) DEFAULT NULL,
+    `updated_at` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -211,12 +229,13 @@ CREATE TABLE `contact` (
 -- Table structure for table `coupons`
 --
 
-CREATE TABLE `coupons` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `discount_percentage` varchar(255) DEFAULT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  `expiry_date` int(11) DEFAULT NULL
+CREATE TABLE `coupons`
+(
+    `id`                  bigint(20) UNSIGNED NOT NULL,
+    `code`                varchar(255) DEFAULT NULL,
+    `discount_percentage` varchar(255) DEFAULT NULL,
+    `created_at`          int(11) DEFAULT NULL,
+    `expiry_date`         int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -271,187 +290,189 @@ CREATE TABLE `course` (
 -- Table structure for table `currency`
 --
 
-CREATE TABLE `currency` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `symbol` varchar(255) DEFAULT NULL,
-  `paypal_supported` int(11) DEFAULT NULL,
-  `stripe_supported` int(11) DEFAULT NULL,
-  `ccavenue_supported` int(11) DEFAULT 0,
-  `iyzico_supported` int(11) DEFAULT 0,
-  `paystack_supported` int(11) DEFAULT 0
+CREATE TABLE `currency`
+(
+    `id`                 int(11) NOT NULL,
+    `name`               varchar(255) DEFAULT NULL,
+    `code`               varchar(255) DEFAULT NULL,
+    `symbol`             varchar(255) DEFAULT NULL,
+    `paypal_supported`   int(11) DEFAULT NULL,
+    `stripe_supported`   int(11) DEFAULT NULL,
+    `ccavenue_supported` int(11) DEFAULT 0,
+    `iyzico_supported`   int(11) DEFAULT 0,
+    `paystack_supported` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `currency`
 --
 
-INSERT INTO `currency` (`id`, `name`, `code`, `symbol`, `paypal_supported`, `stripe_supported`, `ccavenue_supported`, `iyzico_supported`, `paystack_supported`) VALUES
-(1, 'US Dollar', 'USD', '$', 1, 1, 0, 0, 0),
-(2, 'Albanian Lek', 'ALL', 'Lek', 0, 1, 0, 0, 0),
-(3, 'Algerian Dinar', 'DZD', 'دج', 1, 1, 0, 0, 0),
-(4, 'Angolan Kwanza', 'AOA', 'Kz', 1, 1, 0, 0, 0),
-(5, 'Argentine Peso', 'ARS', '$', 1, 1, 0, 0, 0),
-(6, 'Armenian Dram', 'AMD', '֏', 1, 1, 0, 0, 0),
-(7, 'Aruban Florin', 'AWG', 'ƒ', 1, 1, 0, 0, 0),
-(8, 'Australian Dollar', 'AUD', '$', 1, 1, 0, 0, 0),
-(9, 'Azerbaijani Manat', 'AZN', 'm', 1, 1, 0, 0, 0),
-(10, 'Bahamian Dollar', 'BSD', 'B$', 1, 1, 0, 0, 0),
-(11, 'Bahraini Dinar', 'BHD', '.د.ب', 1, 1, 0, 0, 0),
-(12, 'Bangladeshi Taka', 'BDT', '৳', 1, 1, 0, 0, 0),
-(13, 'Barbadian Dollar', 'BBD', 'Bds$', 1, 1, 0, 0, 0),
-(14, 'Belarusian Ruble', 'BYR', 'Br', 0, 0, 0, 0, 0),
-(15, 'Belgian Franc', 'BEF', 'fr', 1, 1, 0, 0, 0),
-(16, 'Belize Dollar', 'BZD', '$', 1, 1, 0, 0, 0),
-(17, 'Bermudan Dollar', 'BMD', '$', 1, 1, 0, 0, 0),
-(18, 'Bhutanese Ngultrum', 'BTN', 'Nu.', 1, 1, 0, 0, 0),
-(19, 'Bitcoin', 'BTC', '฿', 1, 1, 0, 0, 0),
-(20, 'Bolivian Boliviano', 'BOB', 'Bs.', 1, 1, 0, 0, 0),
-(21, 'Bosnia', 'BAM', 'KM', 1, 1, 0, 0, 0),
-(22, 'Botswanan Pula', 'BWP', 'P', 1, 1, 0, 0, 0),
-(23, 'Brazilian Real', 'BRL', 'R$', 1, 1, 0, 0, 0),
-(24, 'British Pound Sterling', 'GBP', '£', 1, 1, 0, 0, 0),
-(25, 'Brunei Dollar', 'BND', 'B$', 1, 1, 0, 0, 0),
-(26, 'Bulgarian Lev', 'BGN', 'Лв.', 1, 1, 0, 0, 0),
-(27, 'Burundian Franc', 'BIF', 'FBu', 1, 1, 0, 0, 0),
-(28, 'Cambodian Riel', 'KHR', 'KHR', 1, 1, 0, 0, 0),
-(29, 'Canadian Dollar', 'CAD', '$', 1, 1, 0, 0, 0),
-(30, 'Cape Verdean Escudo', 'CVE', '$', 1, 1, 0, 0, 0),
-(31, 'Cayman Islands Dollar', 'KYD', '$', 1, 1, 0, 0, 0),
-(32, 'CFA Franc BCEAO', 'XOF', 'CFA', 1, 1, 0, 0, 0),
-(33, 'CFA Franc BEAC', 'XAF', 'FCFA', 1, 1, 0, 0, 0),
-(34, 'CFP Franc', 'XPF', '₣', 1, 1, 0, 0, 0),
-(35, 'Chilean Peso', 'CLP', '$', 1, 1, 0, 0, 0),
-(36, 'Chinese Yuan', 'CNY', '¥', 1, 1, 0, 0, 0),
-(37, 'Colombian Peso', 'COP', '$', 1, 1, 0, 0, 0),
-(38, 'Comorian Franc', 'KMF', 'CF', 1, 1, 0, 0, 0),
-(39, 'Congolese Franc', 'CDF', 'FC', 1, 1, 0, 0, 0),
-(40, 'Costa Rican ColÃ³n', 'CRC', '₡', 1, 1, 0, 0, 0),
-(41, 'Croatian Kuna', 'HRK', 'kn', 1, 1, 0, 0, 0),
-(42, 'Cuban Convertible Peso', 'CUC', '$, CUC', 1, 1, 0, 0, 0),
-(43, 'Czech Republic Koruna', 'CZK', 'Kč', 1, 1, 0, 0, 0),
-(44, 'Danish Krone', 'DKK', 'Kr.', 1, 1, 0, 0, 0),
-(45, 'Djiboutian Franc', 'DJF', 'Fdj', 1, 1, 0, 0, 0),
-(46, 'Dominican Peso', 'DOP', '$', 1, 1, 0, 0, 0),
-(47, 'East Caribbean Dollar', 'XCD', '$', 1, 1, 0, 0, 0),
-(48, 'Egyptian Pound', 'EGP', 'ج.م', 1, 1, 0, 0, 0),
-(49, 'Eritrean Nakfa', 'ERN', 'Nfk', 1, 1, 0, 0, 0),
-(50, 'Estonian Kroon', 'EEK', 'kr', 1, 1, 0, 0, 0),
-(51, 'Ethiopian Birr', 'ETB', 'Nkf', 1, 1, 0, 0, 0),
-(52, 'Euro', 'EUR', '€', 1, 1, 0, 0, 0),
-(53, 'Falkland Islands Pound', 'FKP', '£', 1, 1, 0, 0, 0),
-(54, 'Fijian Dollar', 'FJD', 'FJ$', 1, 1, 0, 0, 0),
-(55, 'Gambian Dalasi', 'GMD', 'D', 1, 1, 0, 0, 0),
-(56, 'Georgian Lari', 'GEL', 'ლ', 1, 1, 0, 0, 0),
-(57, 'German Mark', 'DEM', 'DM', 1, 1, 0, 0, 0),
-(58, 'Ghanaian Cedi', 'GHS', 'GH₵', 1, 1, 0, 0, 0),
-(59, 'Gibraltar Pound', 'GIP', '£', 1, 1, 0, 0, 0),
-(60, 'Greek Drachma', 'GRD', '₯, Δρχ, Δρ', 1, 1, 0, 0, 0),
-(61, 'Guatemalan Quetzal', 'GTQ', 'Q', 1, 1, 0, 0, 0),
-(62, 'Guinean Franc', 'GNF', 'FG', 1, 1, 0, 0, 0),
-(63, 'Guyanaese Dollar', 'GYD', '$', 1, 1, 0, 0, 0),
-(64, 'Haitian Gourde', 'HTG', 'G', 1, 1, 0, 0, 0),
-(65, 'Honduran Lempira', 'HNL', 'L', 1, 1, 0, 0, 0),
-(66, 'Hong Kong Dollar', 'HKD', '$', 1, 1, 0, 0, 0),
-(67, 'Hungarian Forint', 'HUF', 'Ft', 1, 1, 0, 0, 0),
-(68, 'Icelandic KrÃ³na', 'ISK', 'kr', 1, 1, 0, 0, 0),
-(69, 'Indian Rupee', 'INR', '₹', 1, 1, 1, 0, 0),
-(70, 'Indonesian Rupiah', 'IDR', 'Rp', 1, 1, 0, 0, 0),
-(71, 'Iranian Rial', 'IRR', '﷼', 1, 1, 0, 0, 0),
-(72, 'Iraqi Dinar', 'IQD', 'د.ع', 1, 1, 0, 0, 0),
-(73, 'Israeli New Sheqel', 'ILS', '₪', 1, 1, 0, 0, 0),
-(74, 'Italian Lira', 'ITL', 'L,£', 1, 1, 0, 0, 0),
-(75, 'Jamaican Dollar', 'JMD', 'J$', 1, 1, 0, 0, 0),
-(76, 'Japanese Yen', 'JPY', '¥', 1, 1, 0, 0, 0),
-(77, 'Jordanian Dinar', 'JOD', 'ا.د', 1, 1, 0, 0, 0),
-(78, 'Kazakhstani Tenge', 'KZT', 'лв', 1, 1, 0, 0, 0),
-(79, 'Kenyan Shilling', 'KES', 'KSh', 1, 1, 0, 0, 0),
-(80, 'Kuwaiti Dinar', 'KWD', 'ك.د', 1, 1, 0, 0, 0),
-(81, 'Kyrgystani Som', 'KGS', 'лв', 1, 1, 0, 0, 0),
-(82, 'Laotian Kip', 'LAK', '₭', 1, 1, 0, 0, 0),
-(83, 'Latvian Lats', 'LVL', 'Ls', 0, 0, 0, 0, 0),
-(84, 'Lebanese Pound', 'LBP', '£', 1, 1, 0, 0, 0),
-(85, 'Lesotho Loti', 'LSL', 'L', 1, 1, 0, 0, 0),
-(86, 'Liberian Dollar', 'LRD', '$', 1, 1, 0, 0, 0),
-(87, 'Libyan Dinar', 'LYD', 'د.ل', 1, 1, 0, 0, 0),
-(88, 'Lithuanian Litas', 'LTL', 'Lt', 0, 0, 0, 0, 0),
-(89, 'Macanese Pataca', 'MOP', '$', 1, 1, 0, 0, 0),
-(90, 'Macedonian Denar', 'MKD', 'ден', 1, 1, 0, 0, 0),
-(91, 'Malagasy Ariary', 'MGA', 'Ar', 1, 1, 0, 0, 0),
-(92, 'Malawian Kwacha', 'MWK', 'MK', 1, 1, 0, 0, 0),
-(93, 'Malaysian Ringgit', 'MYR', 'RM', 1, 1, 0, 0, 0),
-(94, 'Maldivian Rufiyaa', 'MVR', 'Rf', 1, 1, 0, 0, 0),
-(95, 'Mauritanian Ouguiya', 'MRO', 'MRU', 1, 1, 0, 0, 0),
-(96, 'Mauritian Rupee', 'MUR', '₨', 1, 1, 0, 0, 0),
-(97, 'Mexican Peso', 'MXN', '$', 1, 1, 0, 0, 0),
-(98, 'Moldovan Leu', 'MDL', 'L', 1, 1, 0, 0, 0),
-(99, 'Mongolian Tugrik', 'MNT', '₮', 1, 1, 0, 0, 0),
-(100, 'Moroccan Dirham', 'MAD', 'MAD', 1, 1, 0, 0, 0),
-(101, 'Mozambican Metical', 'MZM', 'MT', 1, 1, 0, 0, 0),
-(102, 'Myanmar Kyat', 'MMK', 'K', 1, 1, 0, 0, 0),
-(103, 'Namibian Dollar', 'NAD', '$', 1, 1, 0, 0, 0),
-(104, 'Nepalese Rupee', 'NPR', '₨', 1, 1, 0, 0, 0),
-(105, 'Netherlands Antillean Guilder', 'ANG', 'ƒ', 1, 1, 0, 0, 0),
-(106, 'New Taiwan Dollar', 'TWD', '$', 1, 1, 0, 0, 0),
-(107, 'New Zealand Dollar', 'NZD', '$', 1, 1, 0, 0, 0),
-(108, 'Nicaraguan CÃ³rdoba', 'NIO', 'C$', 1, 1, 0, 0, 0),
-(109, 'Nigerian Naira', 'NGN', '₦', 1, 1, 0, 0, 1),
-(110, 'North Korean Won', 'KPW', '₩', 0, 0, 0, 0, 0),
-(111, 'Norwegian Krone', 'NOK', 'kr', 1, 1, 0, 0, 0),
-(112, 'Omani Rial', 'OMR', '.ع.ر', 0, 0, 0, 0, 0),
-(113, 'Pakistani Rupee', 'PKR', '₨', 1, 1, 0, 0, 0),
-(114, 'Panamanian Balboa', 'PAB', 'B/.', 1, 1, 0, 0, 0),
-(115, 'Papua New Guinean Kina', 'PGK', 'K', 1, 1, 0, 0, 0),
-(116, 'Paraguayan Guarani', 'PYG', '₲', 1, 1, 0, 0, 0),
-(117, 'Peruvian Nuevo Sol', 'PEN', 'S/.', 1, 1, 0, 0, 0),
-(118, 'Philippine Peso', 'PHP', '₱', 1, 1, 0, 0, 0),
-(119, 'Polish Zloty', 'PLN', 'zł', 1, 1, 0, 0, 0),
-(120, 'Qatari Rial', 'QAR', 'ق.ر', 1, 1, 0, 0, 0),
-(121, 'Romanian Leu', 'RON', 'lei', 1, 1, 0, 0, 0),
-(122, 'Russian Ruble', 'RUB', '₽', 1, 1, 0, 0, 0),
-(123, 'Rwandan Franc', 'RWF', 'FRw', 1, 1, 0, 0, 0),
-(124, 'Salvadoran ColÃ³n', 'SVC', '₡', 0, 0, 0, 0, 0),
-(125, 'Samoan Tala', 'WST', 'SAT', 1, 1, 0, 0, 0),
-(126, 'Saudi Riyal', 'SAR', '﷼', 1, 1, 0, 0, 0),
-(127, 'Serbian Dinar', 'RSD', 'din', 1, 1, 0, 0, 0),
-(128, 'Seychellois Rupee', 'SCR', 'SRe', 1, 1, 0, 0, 0),
-(129, 'Sierra Leonean Leone', 'SLL', 'Le', 1, 1, 0, 0, 0),
-(130, 'Singapore Dollar', 'SGD', '$', 1, 1, 0, 0, 0),
-(131, 'Slovak Koruna', 'SKK', 'Sk', 1, 1, 0, 0, 0),
-(132, 'Solomon Islands Dollar', 'SBD', 'Si$', 1, 1, 0, 0, 0),
-(133, 'Somali Shilling', 'SOS', 'Sh.so.', 1, 1, 0, 0, 0),
-(134, 'South African Rand', 'ZAR', 'R', 1, 1, 0, 0, 0),
-(135, 'South Korean Won', 'KRW', '₩', 1, 1, 0, 0, 0),
-(136, 'Special Drawing Rights', 'XDR', 'SDR', 1, 1, 0, 0, 0),
-(137, 'Sri Lankan Rupee', 'LKR', 'Rs', 1, 1, 0, 0, 0),
-(138, 'St. Helena Pound', 'SHP', '£', 1, 1, 0, 0, 0),
-(139, 'Sudanese Pound', 'SDG', '.س.ج', 1, 1, 0, 0, 0),
-(140, 'Surinamese Dollar', 'SRD', '$', 1, 1, 0, 0, 0),
-(141, 'Swazi Lilangeni', 'SZL', 'E', 1, 1, 0, 0, 0),
-(142, 'Swedish Krona', 'SEK', 'kr', 1, 1, 0, 0, 0),
-(143, 'Swiss Franc', 'CHF', 'CHf', 1, 1, 0, 0, 0),
-(144, 'Syrian Pound', 'SYP', 'LS', 0, 0, 0, 0, 0),
-(145, 'São Tomé and Príncipe Dobra', 'STD', 'Db', 1, 1, 0, 0, 0),
-(146, 'Tajikistani Somoni', 'TJS', 'SM', 1, 1, 0, 0, 0),
-(147, 'Tanzanian Shilling', 'TZS', 'TSh', 1, 1, 0, 0, 0),
-(148, 'Thai Baht', 'THB', '฿', 1, 1, 0, 0, 0),
-(149, 'Tongan pa\'anga', 'TOP', '$', 1, 1, 0, 0, 0),
-(150, 'Trinidad & Tobago Dollar', 'TTD', '$', 1, 1, 0, 0, 0),
-(151, 'Tunisian Dinar', 'TND', 'ت.د', 1, 1, 0, 0, 0),
-(152, 'Turkish Lira', 'TRY', '₺', 1, 1, 0, 1, 0),
-(153, 'Turkmenistani Manat', 'TMT', 'T', 1, 1, 0, 0, 0),
-(154, 'Ugandan Shilling', 'UGX', 'USh', 1, 1, 0, 0, 0),
-(155, 'Ukrainian Hryvnia', 'UAH', '₴', 1, 1, 0, 0, 0),
-(156, 'United Arab Emirates Dirham', 'AED', 'إ.د', 1, 1, 0, 0, 0),
-(157, 'Uruguayan Peso', 'UYU', '$', 1, 1, 0, 0, 0),
-(158, 'Afghan Afghani', 'AFA', '؋', 1, 1, 0, 0, 0),
-(159, 'Uzbekistan Som', 'UZS', 'лв', 1, 1, 0, 0, 0),
-(160, 'Vanuatu Vatu', 'VUV', 'VT', 1, 1, 0, 0, 0),
-(161, 'Venezuelan BolÃvar', 'VEF', 'Bs', 0, 0, 0, 0, 0),
-(162, 'Vietnamese Dong', 'VND', '₫', 1, 1, 0, 0, 0),
-(163, 'Yemeni Rial', 'YER', '﷼', 1, 1, 0, 0, 0),
-(164, 'Zambian Kwacha', 'ZMK', 'ZK', 1, 1, 0, 0, 0);
+INSERT INTO `currency` (`id`, `name`, `code`, `symbol`, `paypal_supported`, `stripe_supported`, `ccavenue_supported`,
+                        `iyzico_supported`, `paystack_supported`)
+VALUES (1, 'US Dollar', 'USD', '$', 1, 1, 0, 0, 0),
+       (2, 'Albanian Lek', 'ALL', 'Lek', 0, 1, 0, 0, 0),
+       (3, 'Algerian Dinar', 'DZD', 'دج', 1, 1, 0, 0, 0),
+       (4, 'Angolan Kwanza', 'AOA', 'Kz', 1, 1, 0, 0, 0),
+       (5, 'Argentine Peso', 'ARS', '$', 1, 1, 0, 0, 0),
+       (6, 'Armenian Dram', 'AMD', '֏', 1, 1, 0, 0, 0),
+       (7, 'Aruban Florin', 'AWG', 'ƒ', 1, 1, 0, 0, 0),
+       (8, 'Australian Dollar', 'AUD', '$', 1, 1, 0, 0, 0),
+       (9, 'Azerbaijani Manat', 'AZN', 'm', 1, 1, 0, 0, 0),
+       (10, 'Bahamian Dollar', 'BSD', 'B$', 1, 1, 0, 0, 0),
+       (11, 'Bahraini Dinar', 'BHD', '.د.ب', 1, 1, 0, 0, 0),
+       (12, 'Bangladeshi Taka', 'BDT', '৳', 1, 1, 0, 0, 0),
+       (13, 'Barbadian Dollar', 'BBD', 'Bds$', 1, 1, 0, 0, 0),
+       (14, 'Belarusian Ruble', 'BYR', 'Br', 0, 0, 0, 0, 0),
+       (15, 'Belgian Franc', 'BEF', 'fr', 1, 1, 0, 0, 0),
+       (16, 'Belize Dollar', 'BZD', '$', 1, 1, 0, 0, 0),
+       (17, 'Bermudan Dollar', 'BMD', '$', 1, 1, 0, 0, 0),
+       (18, 'Bhutanese Ngultrum', 'BTN', 'Nu.', 1, 1, 0, 0, 0),
+       (19, 'Bitcoin', 'BTC', '฿', 1, 1, 0, 0, 0),
+       (20, 'Bolivian Boliviano', 'BOB', 'Bs.', 1, 1, 0, 0, 0),
+       (21, 'Bosnia', 'BAM', 'KM', 1, 1, 0, 0, 0),
+       (22, 'Botswanan Pula', 'BWP', 'P', 1, 1, 0, 0, 0),
+       (23, 'Brazilian Real', 'BRL', 'R$', 1, 1, 0, 0, 0),
+       (24, 'British Pound Sterling', 'GBP', '£', 1, 1, 0, 0, 0),
+       (25, 'Brunei Dollar', 'BND', 'B$', 1, 1, 0, 0, 0),
+       (26, 'Bulgarian Lev', 'BGN', 'Лв.', 1, 1, 0, 0, 0),
+       (27, 'Burundian Franc', 'BIF', 'FBu', 1, 1, 0, 0, 0),
+       (28, 'Cambodian Riel', 'KHR', 'KHR', 1, 1, 0, 0, 0),
+       (29, 'Canadian Dollar', 'CAD', '$', 1, 1, 0, 0, 0),
+       (30, 'Cape Verdean Escudo', 'CVE', '$', 1, 1, 0, 0, 0),
+       (31, 'Cayman Islands Dollar', 'KYD', '$', 1, 1, 0, 0, 0),
+       (32, 'CFA Franc BCEAO', 'XOF', 'CFA', 1, 1, 0, 0, 0),
+       (33, 'CFA Franc BEAC', 'XAF', 'FCFA', 1, 1, 0, 0, 0),
+       (34, 'CFP Franc', 'XPF', '₣', 1, 1, 0, 0, 0),
+       (35, 'Chilean Peso', 'CLP', '$', 1, 1, 0, 0, 0),
+       (36, 'Chinese Yuan', 'CNY', '¥', 1, 1, 0, 0, 0),
+       (37, 'Colombian Peso', 'COP', '$', 1, 1, 0, 0, 0),
+       (38, 'Comorian Franc', 'KMF', 'CF', 1, 1, 0, 0, 0),
+       (39, 'Congolese Franc', 'CDF', 'FC', 1, 1, 0, 0, 0),
+       (40, 'Costa Rican ColÃ³n', 'CRC', '₡', 1, 1, 0, 0, 0),
+       (41, 'Croatian Kuna', 'HRK', 'kn', 1, 1, 0, 0, 0),
+       (42, 'Cuban Convertible Peso', 'CUC', '$, CUC', 1, 1, 0, 0, 0),
+       (43, 'Czech Republic Koruna', 'CZK', 'Kč', 1, 1, 0, 0, 0),
+       (44, 'Danish Krone', 'DKK', 'Kr.', 1, 1, 0, 0, 0),
+       (45, 'Djiboutian Franc', 'DJF', 'Fdj', 1, 1, 0, 0, 0),
+       (46, 'Dominican Peso', 'DOP', '$', 1, 1, 0, 0, 0),
+       (47, 'East Caribbean Dollar', 'XCD', '$', 1, 1, 0, 0, 0),
+       (48, 'Egyptian Pound', 'EGP', 'ج.م', 1, 1, 0, 0, 0),
+       (49, 'Eritrean Nakfa', 'ERN', 'Nfk', 1, 1, 0, 0, 0),
+       (50, 'Estonian Kroon', 'EEK', 'kr', 1, 1, 0, 0, 0),
+       (51, 'Ethiopian Birr', 'ETB', 'Nkf', 1, 1, 0, 0, 0),
+       (52, 'Euro', 'EUR', '€', 1, 1, 0, 0, 0),
+       (53, 'Falkland Islands Pound', 'FKP', '£', 1, 1, 0, 0, 0),
+       (54, 'Fijian Dollar', 'FJD', 'FJ$', 1, 1, 0, 0, 0),
+       (55, 'Gambian Dalasi', 'GMD', 'D', 1, 1, 0, 0, 0),
+       (56, 'Georgian Lari', 'GEL', 'ლ', 1, 1, 0, 0, 0),
+       (57, 'German Mark', 'DEM', 'DM', 1, 1, 0, 0, 0),
+       (58, 'Ghanaian Cedi', 'GHS', 'GH₵', 1, 1, 0, 0, 0),
+       (59, 'Gibraltar Pound', 'GIP', '£', 1, 1, 0, 0, 0),
+       (60, 'Greek Drachma', 'GRD', '₯, Δρχ, Δρ', 1, 1, 0, 0, 0),
+       (61, 'Guatemalan Quetzal', 'GTQ', 'Q', 1, 1, 0, 0, 0),
+       (62, 'Guinean Franc', 'GNF', 'FG', 1, 1, 0, 0, 0),
+       (63, 'Guyanaese Dollar', 'GYD', '$', 1, 1, 0, 0, 0),
+       (64, 'Haitian Gourde', 'HTG', 'G', 1, 1, 0, 0, 0),
+       (65, 'Honduran Lempira', 'HNL', 'L', 1, 1, 0, 0, 0),
+       (66, 'Hong Kong Dollar', 'HKD', '$', 1, 1, 0, 0, 0),
+       (67, 'Hungarian Forint', 'HUF', 'Ft', 1, 1, 0, 0, 0),
+       (68, 'Icelandic KrÃ³na', 'ISK', 'kr', 1, 1, 0, 0, 0),
+       (69, 'Indian Rupee', 'INR', '₹', 1, 1, 1, 0, 0),
+       (70, 'Indonesian Rupiah', 'IDR', 'Rp', 1, 1, 0, 0, 0),
+       (71, 'Iranian Rial', 'IRR', '﷼', 1, 1, 0, 0, 0),
+       (72, 'Iraqi Dinar', 'IQD', 'د.ع', 1, 1, 0, 0, 0),
+       (73, 'Israeli New Sheqel', 'ILS', '₪', 1, 1, 0, 0, 0),
+       (74, 'Italian Lira', 'ITL', 'L,£', 1, 1, 0, 0, 0),
+       (75, 'Jamaican Dollar', 'JMD', 'J$', 1, 1, 0, 0, 0),
+       (76, 'Japanese Yen', 'JPY', '¥', 1, 1, 0, 0, 0),
+       (77, 'Jordanian Dinar', 'JOD', 'ا.د', 1, 1, 0, 0, 0),
+       (78, 'Kazakhstani Tenge', 'KZT', 'лв', 1, 1, 0, 0, 0),
+       (79, 'Kenyan Shilling', 'KES', 'KSh', 1, 1, 0, 0, 0),
+       (80, 'Kuwaiti Dinar', 'KWD', 'ك.د', 1, 1, 0, 0, 0),
+       (81, 'Kyrgystani Som', 'KGS', 'лв', 1, 1, 0, 0, 0),
+       (82, 'Laotian Kip', 'LAK', '₭', 1, 1, 0, 0, 0),
+       (83, 'Latvian Lats', 'LVL', 'Ls', 0, 0, 0, 0, 0),
+       (84, 'Lebanese Pound', 'LBP', '£', 1, 1, 0, 0, 0),
+       (85, 'Lesotho Loti', 'LSL', 'L', 1, 1, 0, 0, 0),
+       (86, 'Liberian Dollar', 'LRD', '$', 1, 1, 0, 0, 0),
+       (87, 'Libyan Dinar', 'LYD', 'د.ل', 1, 1, 0, 0, 0),
+       (88, 'Lithuanian Litas', 'LTL', 'Lt', 0, 0, 0, 0, 0),
+       (89, 'Macanese Pataca', 'MOP', '$', 1, 1, 0, 0, 0),
+       (90, 'Macedonian Denar', 'MKD', 'ден', 1, 1, 0, 0, 0),
+       (91, 'Malagasy Ariary', 'MGA', 'Ar', 1, 1, 0, 0, 0),
+       (92, 'Malawian Kwacha', 'MWK', 'MK', 1, 1, 0, 0, 0),
+       (93, 'Malaysian Ringgit', 'MYR', 'RM', 1, 1, 0, 0, 0),
+       (94, 'Maldivian Rufiyaa', 'MVR', 'Rf', 1, 1, 0, 0, 0),
+       (95, 'Mauritanian Ouguiya', 'MRO', 'MRU', 1, 1, 0, 0, 0),
+       (96, 'Mauritian Rupee', 'MUR', '₨', 1, 1, 0, 0, 0),
+       (97, 'Mexican Peso', 'MXN', '$', 1, 1, 0, 0, 0),
+       (98, 'Moldovan Leu', 'MDL', 'L', 1, 1, 0, 0, 0),
+       (99, 'Mongolian Tugrik', 'MNT', '₮', 1, 1, 0, 0, 0),
+       (100, 'Moroccan Dirham', 'MAD', 'MAD', 1, 1, 0, 0, 0),
+       (101, 'Mozambican Metical', 'MZM', 'MT', 1, 1, 0, 0, 0),
+       (102, 'Myanmar Kyat', 'MMK', 'K', 1, 1, 0, 0, 0),
+       (103, 'Namibian Dollar', 'NAD', '$', 1, 1, 0, 0, 0),
+       (104, 'Nepalese Rupee', 'NPR', '₨', 1, 1, 0, 0, 0),
+       (105, 'Netherlands Antillean Guilder', 'ANG', 'ƒ', 1, 1, 0, 0, 0),
+       (106, 'New Taiwan Dollar', 'TWD', '$', 1, 1, 0, 0, 0),
+       (107, 'New Zealand Dollar', 'NZD', '$', 1, 1, 0, 0, 0),
+       (108, 'Nicaraguan CÃ³rdoba', 'NIO', 'C$', 1, 1, 0, 0, 0),
+       (109, 'Nigerian Naira', 'NGN', '₦', 1, 1, 0, 0, 1),
+       (110, 'North Korean Won', 'KPW', '₩', 0, 0, 0, 0, 0),
+       (111, 'Norwegian Krone', 'NOK', 'kr', 1, 1, 0, 0, 0),
+       (112, 'Omani Rial', 'OMR', '.ع.ر', 0, 0, 0, 0, 0),
+       (113, 'Pakistani Rupee', 'PKR', '₨', 1, 1, 0, 0, 0),
+       (114, 'Panamanian Balboa', 'PAB', 'B/.', 1, 1, 0, 0, 0),
+       (115, 'Papua New Guinean Kina', 'PGK', 'K', 1, 1, 0, 0, 0),
+       (116, 'Paraguayan Guarani', 'PYG', '₲', 1, 1, 0, 0, 0),
+       (117, 'Peruvian Nuevo Sol', 'PEN', 'S/.', 1, 1, 0, 0, 0),
+       (118, 'Philippine Peso', 'PHP', '₱', 1, 1, 0, 0, 0),
+       (119, 'Polish Zloty', 'PLN', 'zł', 1, 1, 0, 0, 0),
+       (120, 'Qatari Rial', 'QAR', 'ق.ر', 1, 1, 0, 0, 0),
+       (121, 'Romanian Leu', 'RON', 'lei', 1, 1, 0, 0, 0),
+       (122, 'Russian Ruble', 'RUB', '₽', 1, 1, 0, 0, 0),
+       (123, 'Rwandan Franc', 'RWF', 'FRw', 1, 1, 0, 0, 0),
+       (124, 'Salvadoran ColÃ³n', 'SVC', '₡', 0, 0, 0, 0, 0),
+       (125, 'Samoan Tala', 'WST', 'SAT', 1, 1, 0, 0, 0),
+       (126, 'Saudi Riyal', 'SAR', '﷼', 1, 1, 0, 0, 0),
+       (127, 'Serbian Dinar', 'RSD', 'din', 1, 1, 0, 0, 0),
+       (128, 'Seychellois Rupee', 'SCR', 'SRe', 1, 1, 0, 0, 0),
+       (129, 'Sierra Leonean Leone', 'SLL', 'Le', 1, 1, 0, 0, 0),
+       (130, 'Singapore Dollar', 'SGD', '$', 1, 1, 0, 0, 0),
+       (131, 'Slovak Koruna', 'SKK', 'Sk', 1, 1, 0, 0, 0),
+       (132, 'Solomon Islands Dollar', 'SBD', 'Si$', 1, 1, 0, 0, 0),
+       (133, 'Somali Shilling', 'SOS', 'Sh.so.', 1, 1, 0, 0, 0),
+       (134, 'South African Rand', 'ZAR', 'R', 1, 1, 0, 0, 0),
+       (135, 'South Korean Won', 'KRW', '₩', 1, 1, 0, 0, 0),
+       (136, 'Special Drawing Rights', 'XDR', 'SDR', 1, 1, 0, 0, 0),
+       (137, 'Sri Lankan Rupee', 'LKR', 'Rs', 1, 1, 0, 0, 0),
+       (138, 'St. Helena Pound', 'SHP', '£', 1, 1, 0, 0, 0),
+       (139, 'Sudanese Pound', 'SDG', '.س.ج', 1, 1, 0, 0, 0),
+       (140, 'Surinamese Dollar', 'SRD', '$', 1, 1, 0, 0, 0),
+       (141, 'Swazi Lilangeni', 'SZL', 'E', 1, 1, 0, 0, 0),
+       (142, 'Swedish Krona', 'SEK', 'kr', 1, 1, 0, 0, 0),
+       (143, 'Swiss Franc', 'CHF', 'CHf', 1, 1, 0, 0, 0),
+       (144, 'Syrian Pound', 'SYP', 'LS', 0, 0, 0, 0, 0),
+       (145, 'São Tomé and Príncipe Dobra', 'STD', 'Db', 1, 1, 0, 0, 0),
+       (146, 'Tajikistani Somoni', 'TJS', 'SM', 1, 1, 0, 0, 0),
+       (147, 'Tanzanian Shilling', 'TZS', 'TSh', 1, 1, 0, 0, 0),
+       (148, 'Thai Baht', 'THB', '฿', 1, 1, 0, 0, 0),
+       (149, 'Tongan pa\anga', 'TOP', '$', 1, 1, 0, 0, 0),
+       (150, 'Trinidad & Tobago Dollar', 'TTD', '$', 1, 1, 0, 0, 0),
+       (151, 'Tunisian Dinar', 'TND', 'ت.د', 1, 1, 0, 0, 0),
+       (152, 'Turkish Lira', 'TRY', '₺', 1, 1, 0, 1, 0),
+       (153, 'Turkmenistani Manat', 'TMT', 'T', 1, 1, 0, 0, 0),
+       (154, 'Ugandan Shilling', 'UGX', 'USh', 1, 1, 0, 0, 0),
+       (155, 'Ukrainian Hryvnia', 'UAH', '₴', 1, 1, 0, 0, 0),
+       (156, 'United Arab Emirates Dirham', 'AED', 'إ.د', 1, 1, 0, 0, 0),
+       (157, 'Uruguayan Peso', 'UYU', '$', 1, 1, 0, 0, 0),
+       (158, 'Afghan Afghani', 'AFA', '؋', 1, 1, 0, 0, 0),
+       (159, 'Uzbekistan Som', 'UZS', 'лв', 1, 1, 0, 0, 0),
+       (160, 'Vanuatu Vatu', 'VUV', 'VT', 1, 1, 0, 0, 0),
+       (161, 'Venezuelan BolÃvar', 'VEF', 'Bs', 0, 0, 0, 0, 0),
+       (162, 'Vietnamese Dong', 'VND', '₫', 1, 1, 0, 0, 0),
+       (163, 'Yemeni Rial', 'YER', '﷼', 1, 1, 0, 0, 0),
+       (164, 'Zambian Kwacha', 'ZMK', 'ZK', 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -459,14 +480,15 @@ INSERT INTO `currency` (`id`, `name`, `code`, `symbol`, `paypal_supported`, `str
 -- Table structure for table `custom_page`
 --
 
-CREATE TABLE `custom_page` (
-  `custom_page_id` int(11) NOT NULL,
-  `page_title` varchar(255) NOT NULL,
-  `page_content` longtext NOT NULL,
-  `page_url` varchar(255) NOT NULL,
-  `button_title` varchar(255) NOT NULL,
-  `button_position` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
+CREATE TABLE `custom_page`
+(
+    `custom_page_id`  int(11) NOT NULL,
+    `page_title`      varchar(255) NOT NULL,
+    `page_content`    longtext     NOT NULL,
+    `page_url`        varchar(255) NOT NULL,
+    `button_title`    varchar(255) NOT NULL,
+    `button_position` varchar(255) NOT NULL,
+    `status`          int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -475,14 +497,15 @@ CREATE TABLE `custom_page` (
 -- Table structure for table `enrol`
 --
 
-CREATE TABLE `enrol` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `gifted_by` int(11) NOT NULL DEFAULT 0,
-  `expiry_date` varchar(255) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL
+CREATE TABLE `enrol`
+(
+    `id`            int(11) UNSIGNED NOT NULL,
+    `user_id`       int(11) DEFAULT NULL,
+    `course_id`     int(11) DEFAULT NULL,
+    `gifted_by`     int(11) NOT NULL DEFAULT 0,
+    `expiry_date`   varchar(255) DEFAULT NULL,
+    `date_added`    int(11) DEFAULT NULL,
+    `last_modified` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -491,57 +514,62 @@ CREATE TABLE `enrol` (
 -- Table structure for table `frontend_settings`
 --
 
-CREATE TABLE `frontend_settings` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `key` varchar(255) DEFAULT NULL,
-  `value` longtext DEFAULT NULL
+CREATE TABLE `frontend_settings`
+(
+    `id`    int(11) UNSIGNED NOT NULL,
+    `key`   varchar(255) DEFAULT NULL,
+    `value` longtext     DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `frontend_settings`
 --
 
-INSERT INTO `frontend_settings` (`id`, `key`, `value`) VALUES
-(1, 'banner_title', 'Start learning from best Platform'),
-(2, 'banner_sub_title', 'Study any topic, anytime. Explore thousands of courses for the lowest price ever!'),
-(4, 'about_us', '<p></p><h2><span xss=\"removed\">About us</span></h2>'),
-(10, 'terms_and_condition', '<h2>Terms and Condition</h2>'),
-(11, 'privacy_policy', '<p></p><p></p><h2><span xss=\"removed\">Privacy Policy</span></h2>'),
-(13, 'theme', 'default-new'),
-(14, 'cookie_note', 'This website uses cookies to personalize content and analyse traffic in order to offer you a better experience.'),
-(15, 'cookie_status', 'active'),
-(16, 'cookie_policy', '<h1>Cookie policy</h1><ol><li>Cookies are small text files that can be used by websites to make a user\'s experience more efficient.</li><li>The law states that we can store cookies on your device if they are strictly necessary for the operation of this site. For all other types of cookies we need your permission.</li><li>This site uses different types of cookies. Some cookies are placed by third party services that appear on our pages.</li></ol>'),
-(17, 'banner_image', '{\"home_1\":\"home-1.png\"}'),
-(18, 'light_logo', 'logo-light.png'),
-(19, 'dark_logo', 'logo-dark.png'),
-(20, 'small_logo', 'logo-light-sm.png'),
-(21, 'favicon', 'favicon.png'),
-(22, 'recaptcha_status', '0'),
-(23, 'recaptcha_secretkey', 'Valid-secret-key'),
-(24, 'recaptcha_sitekey', 'Valid-site-key'),
-(25, 'refund_policy', '<h2><span xss=\"removed\">Refund Policy</span></h2>'),
-(26, 'facebook', 'https://facebook.com'),
-(27, 'twitter', 'https://twitter.com'),
-(28, 'linkedin', ''),
-(31, 'blog_page_title', 'Where possibilities begin'),
-(32, 'blog_page_subtitle', 'We’re a leading marketplace platform for learning and teaching online. Explore some of our most popular content and learn something new.'),
-(33, 'blog_page_banner', 'blog-page.png'),
-(34, 'instructors_blog_permission', '0'),
-(35, 'blog_visibility_on_the_home_page', '1'),
-(37, 'website_faqs', '[]'),
-(38, 'motivational_speech', '[]'),
-(39, 'home_page', 'home_1'),
-(40, 'contact_info', '{\"email\":\"admin@example.com,\\r\\nsystem@example.com\",\"phone\":\"609-502-5899\\r\\n345-444-2122\",\"address\":\"455 Wolff Streets Suite 674\",\"office_hours\":\"10:00 AM - 6:00 PM\"}'),
-(41, 'custom_css', ''),
-(42, 'embed_code', ''),
-(43, 'top_course_section', '1'),
-(44, 'latest_course_section', '1'),
-(45, 'top_category_section', '1'),
-(46, 'upcoming_course_section', '1'),
-(47, 'faq_section', '1'),
-(48, 'top_instructor_section', '1'),
-(49, 'motivational_speech_section', '1'),
-(50, 'promotional_section', '1');
+INSERT INTO `frontend_settings` (`id`, `key`, `value`)
+VALUES (1, 'banner_title', 'Start learning from best Platform'),
+       (2, 'banner_sub_title', 'Study any topic, anytime.Explore thousands of courses for the lowest price ever!'),
+       (4, 'about_us', '<p></p><h2><span xss=\"removed\">About us</span></h2>'),
+       (10, 'terms_and_condition', '<h2>Terms and Condition</h2>'),
+       (11, 'privacy_policy', '<p></p><p></p><h2><span xss=\"removed\">Privacy Policy</span></h2>'),
+       (13, 'theme', 'default-new'),
+       (14, 'cookie_note',
+        'This website uses cookies to personalize content and analyse traffic in order to offer you a better experience.'),
+       (15, 'cookie_status', 'active'),
+       (16, 'cookie_policy',
+        '<h1>Cookie policy</h1><ol><li>Cookies are small text files that can be used by websites to make a user\s experience more efficient.</li><li>The law states that we can store cookies on your device if they are strictly necessary for the operation of this site. For all other types of cookies we need your permission.</li><li>This site uses different types of cookies. Some cookies are placed by third party services that appear on our pages.</li></ol>'),
+       (17, 'banner_image', '{\"home_1\":\"home-1.png\"}'),
+       (18, 'light_logo', 'logo-light.png'),
+       (19, 'dark_logo', 'logo-dark.png'),
+       (20, 'small_logo', 'logo-light-sm.png'),
+       (21, 'favicon', 'favicon.png'),
+       (22, 'recaptcha_status', '0'),
+       (23, 'recaptcha_secretkey', 'Valid-secret-key'),
+       (24, 'recaptcha_sitekey', 'Valid-site-key'),
+       (25, 'refund_policy', '<h2><span xss=\"removed\">Refund Policy</span></h2>'),
+       (26, 'facebook', 'https://facebook.com'),
+       (27, 'twitter', 'https://twitter.com'),
+       (28, 'linkedin', ''),
+       (31, 'blog_page_title', 'Where possibilities begin'),
+       (32, 'blog_page_subtitle',
+        'We’re a leading marketplace platform for learning and teaching online. Explore some of our most popular content and learn something new.'),
+       (33, 'blog_page_banner', 'blog-page.png'),
+       (34, 'instructors_blog_permission', '0'),
+       (35, 'blog_visibility_on_the_home_page', '1'),
+       (37, 'website_faqs', '[]'),
+       (38, 'motivational_speech', '[]'),
+       (39, 'home_page', 'home_1'),
+       (40, 'contact_info',
+        '{\"email\":\"admin@example.com,\\r\\nsystem@example.com\",\"phone\":\"609-502-5899\\r\\n345-444-2122\",\"address\":\"455 Wolff Streets Suite 674\",\"office_hours\":\"10:00 AM - 6:00 PM\"}'),
+       (41, 'custom_css', ''),
+       (42, 'embed_code', ''),
+       (43, 'top_course_section', '1'),
+       (44, 'latest_course_section', '1'),
+       (45, 'top_category_section', '1'),
+       (46, 'upcoming_course_section', '1'),
+       (47, 'faq_section', '1'),
+       (48, 'top_instructor_section', '1'),
+       (49, 'motivational_speech_section', '1'),
+       (50, 'promotional_section', '1');
 
 -- --------------------------------------------------------
 
@@ -549,431 +577,448 @@ INSERT INTO `frontend_settings` (`id`, `key`, `value`) VALUES
 -- Table structure for table `language`
 --
 
-CREATE TABLE `language` (
-  `phrase_id` int(11) NOT NULL,
-  `phrase` longtext DEFAULT NULL,
-  `english` longtext DEFAULT NULL
+CREATE TABLE `language`
+(
+    `phrase_id` int(11) NOT NULL,
+    `phrase`    longtext DEFAULT NULL,
+    `english`   longtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `language`
 --
 
-INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
-(1, 'English', 'English'),
-(2, '404_not_found', '404 not found'),
-(3, 'courses', 'Courses'),
-(4, 'all_courses', 'All courses'),
-(5, 'all_courses', 'All courses'),
-(6, 'all_courses', 'All courses'),
-(7, 'search', 'Search'),
-(8, 'search', 'Search'),
-(9, 'search', 'Search'),
-(10, 'search', 'Search'),
-(11, 'search', 'Search'),
-(12, 'search', 'Search'),
-(13, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(14, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(15, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(16, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(17, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(18, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
-(19, 'checkout', 'Checkout'),
-(20, 'checkout', 'Checkout'),
-(21, 'checkout', 'Checkout'),
-(22, 'login', 'Login'),
-(23, 'login', 'Login'),
-(24, 'login', 'Login'),
-(25, 'join_now', 'Join now'),
-(26, 'join_now', 'Join now'),
-(27, 'join_now', 'Join now'),
-(28, 'join_now', 'Join now'),
-(29, 'join_now', 'Join now'),
-(30, 'join_now', 'Join now'),
-(31, 'sign_up', 'Sign up'),
-(32, 'cart', 'Cart'),
-(33, 'cart', 'Cart'),
-(34, 'cart', 'Cart'),
-(35, 'categories', 'Categories'),
-(36, 'categories', 'Categories'),
-(37, 'categories', 'Categories'),
-(38, 'categories', 'Categories'),
-(39, 'cookie_policy', 'Cookie policy'),
-(40, 'cookie_policy', 'Cookie policy'),
-(41, 'cookie_policy', 'Cookie policy'),
-(42, 'cookie_policy', 'Cookie policy'),
-(43, 'accept', 'Accept'),
-(44, 'accept', 'Accept'),
-(45, 'accept', 'Accept'),
-(46, 'accept', 'Accept'),
-(47, 'accept', 'Accept'),
-(48, 'accept', 'Accept'),
-(49, 'home', 'Home'),
-(50, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
-(51, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
-(52, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
-(53, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
-(54, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
-(55, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
-(56, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
-(57, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(58, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(59, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(60, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(61, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(62, 'if_you_are_still_puzzled,_click_on_the_home_link_below', 'If you are still puzzled, click on the home link below'),
-(63, 'back_to_home', 'Back to home'),
-(64, 'back_to_home', 'Back to home'),
-(65, 'back_to_home', 'Back to home'),
-(66, 'back_to_home', 'Back to home'),
-(67, 'back_to_home', 'Back to home'),
-(68, 'back_to_home', 'Back to home'),
-(69, 'top_categories', 'Top categories'),
-(70, 'useful_links', 'Useful links'),
-(71, 'useful_links', 'Useful links'),
-(72, 'useful_links', 'Useful links'),
-(73, 'useful_links', 'Useful links'),
-(74, 'useful_links', 'Useful links'),
-(75, 'useful_links', 'Useful links'),
-(76, 'become_an_instructor', 'Become an instructor'),
-(77, 'become_an_instructor', 'Become an instructor'),
-(78, 'become_an_instructor', 'Become an instructor'),
-(79, 'become_an_instructor', 'Become an instructor'),
-(80, 'blog', 'Blog'),
-(81, 'blog', 'Blog'),
-(82, 'blog', 'Blog'),
-(83, 'blog', 'Blog'),
-(84, 'blog', 'Blog'),
-(85, 'help', 'Help'),
-(86, 'help', 'Help'),
-(87, 'help', 'Help'),
-(88, 'help', 'Help'),
-(89, 'help', 'Help'),
-(90, 'help', 'Help'),
-(91, 'contact_us', 'Contact us'),
-(92, 'contact_us', 'Contact us'),
-(93, 'contact_us', 'Contact us'),
-(94, 'contact_us', 'Contact us'),
-(95, 'contact_us', 'Contact us'),
-(96, 'contact_us', 'Contact us'),
-(97, 'about_us', 'About us'),
-(98, 'about_us', 'About us'),
-(99, 'about_us', 'About us'),
-(100, 'about_us', 'About us'),
-(101, 'privacy_policy', 'Privacy policy'),
-(102, 'privacy_policy', 'Privacy policy'),
-(103, 'privacy_policy', 'Privacy policy'),
-(104, 'privacy_policy', 'Privacy policy'),
-(105, 'privacy_policy', 'Privacy policy'),
-(106, 'privacy_policy', 'Privacy policy'),
-(107, 'terms_and_condition', 'Terms and condition'),
-(108, 'terms_and_condition', 'Terms and condition'),
-(109, 'terms_and_condition', 'Terms and condition'),
-(110, 'terms_and_condition', 'Terms and condition'),
-(111, 'terms_and_condition', 'Terms and condition'),
-(112, 'terms_and_condition', 'Terms and condition'),
-(113, 'faq', 'Faq'),
-(114, 'faq', 'Faq'),
-(115, 'faq', 'Faq'),
-(116, 'faq', 'Faq'),
-(117, 'faq', 'Faq'),
-(118, 'refund_policy', 'Refund policy'),
-(119, 'refund_policy', 'Refund policy'),
-(120, 'refund_policy', 'Refund policy'),
-(121, 'refund_policy', 'Refund policy'),
-(122, 'refund_policy', 'Refund policy'),
-(123, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(124, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(125, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(126, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(127, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(128, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
-(129, 'enter_your_email_address', 'Enter your email address'),
-(130, 'enter_your_email_address', 'Enter your email address'),
-(131, 'enter_your_email_address', 'Enter your email address'),
-(132, 'enter_your_email_address', 'Enter your email address'),
-(133, 'enter_your_email_address', 'Enter your email address'),
-(134, 'enter_your_email_address', 'Enter your email address'),
-(135, 'creativeitem', 'Creativeitem'),
-(136, 'creativeitem', 'Creativeitem'),
-(137, 'creativeitem', 'Creativeitem'),
-(138, 'creativeitem', 'Creativeitem'),
-(139, 'creativeitem', 'Creativeitem'),
-(140, 'are_you_sure', 'Are you sure'),
-(141, 'are_you_sure', 'Are you sure'),
-(142, 'yes', 'Yes'),
-(143, 'yes', 'Yes'),
-(144, 'yes', 'Yes'),
-(145, 'no', 'No'),
-(146, 'no', 'No'),
-(147, 'no', 'No'),
-(148, 'no', 'No'),
-(149, 'log_in', 'Log in'),
-(150, 'explore,_learn,_and_grow_with_us._enjoy_a_seamless_and_enriching_educational_journey._lets_begin!', 'Explore, learn, and grow with us. enjoy a seamless and enriching educational journey. lets begin!'),
-(151, 'your_email', 'Your email'),
-(152, 'enter_your_email', 'Enter your email'),
-(153, 'password', 'Password'),
-(154, 'enter_your_valid_password', 'Enter your valid password'),
-(155, 'forgot_password?', 'Forgot password?'),
-(156, 'don`t_have_an_account?', 'Don`t have an account?'),
-(157, 'or', 'Or'),
-(158, 'welcome', 'Welcome'),
-(159, 'dashboard', 'Dashboard'),
-(160, 'quick_actions', 'Quick actions'),
-(161, 'create_course', 'Create course'),
-(162, 'add_course', 'Add course'),
-(163, 'add_new_lesson', 'Add new lesson'),
-(164, 'add_lesson', 'Add lesson'),
-(165, 'add_student', 'Add student'),
-(166, 'enrol_a_student', 'Enrol a student'),
-(167, 'enrol_student', 'Enrol student'),
-(168, 'help_center', 'Help center'),
-(169, 'read_documentation', 'Read documentation'),
-(170, 'watch_video_tutorial', 'Watch video tutorial'),
-(171, 'get_customer_support', 'Get customer support'),
-(172, 'order_customization', 'Order customization'),
-(173, 'request_a_new_feature', 'Request a new feature'),
-(174, 'browse_addons', 'Browse addons'),
-(175, 'get_services', 'Get services'),
-(176, 'remove_all', 'Remove all'),
-(177, 'notification', 'Notification'),
-(178, 'no_notification', 'No notification'),
-(179, 'stay_tuned!', 'Stay tuned!'),
-(180, 'notifications_about_your_activity_will_show_up_here.', 'Notifications about your activity will show up here.'),
-(181, 'notification_settings', 'Notification settings'),
-(182, 'mark_all_as_read', 'Mark all as read'),
-(183, 'admin', 'Admin'),
-(184, 'my_account', 'My account'),
-(185, 'settings', 'Settings'),
-(186, 'logout', 'Logout'),
-(187, 'visit_website', 'Visit website'),
-(188, 'navigation', 'Navigation'),
-(189, 'manage_courses', 'Manage courses'),
-(190, 'add_new_course', 'Add new course'),
-(191, 'course_category', 'Course category'),
-(192, 'coupons', 'Coupons'),
-(193, 'enrollments', 'Enrollments'),
-(194, 'course_enrollment', 'Course enrollment'),
-(195, 'enrol_history', 'Enrol history'),
-(196, 'report', 'Report'),
-(197, 'admin_revenue', 'Admin revenue'),
-(198, 'instructor_revenue', 'Instructor revenue'),
-(199, 'purchase_history', 'Purchase history'),
-(200, 'users', 'Users'),
-(201, 'admins', 'Admins'),
-(202, 'manage_admins', 'Manage admins'),
-(203, 'add_new_admin', 'Add new admin'),
-(204, 'instructors', 'Instructors'),
-(205, 'manage_instructors', 'Manage instructors'),
-(206, 'add_new_instructor', 'Add new instructor'),
-(207, 'instructor_payout', 'Instructor payout'),
-(208, 'instructor_settings', 'Instructor settings'),
-(209, 'applications', 'Applications'),
-(210, 'students', 'Students'),
-(211, 'manage_students', 'Manage students'),
-(212, 'add_new_student', 'Add new student'),
-(213, 'message', 'Message'),
-(214, 'newsletter', 'Newsletter'),
-(215, 'all_newsletter', 'All newsletter'),
-(216, 'subscribed_user', 'Subscribed user'),
-(217, 'contact', 'Contact'),
-(218, 'all_blogs', 'All blogs'),
-(219, 'pending_blog', 'Pending blog'),
-(220, 'blog_category', 'Blog category'),
-(221, 'blog_settings', 'Blog settings'),
-(222, 'addons', 'Addons'),
-(223, 'themes', 'Themes'),
-(224, 'system_settings', 'System settings'),
-(225, 'website_settings', 'Website settings'),
-(226, 'academy_cloud', 'Academy cloud'),
-(227, 'drip_content_settings', 'Drip content settings'),
-(228, 'wasabi_storage_settings', 'Wasabi storage settings'),
-(229, 'bbb_live_class_settings', 'Bbb live class settings'),
-(230, 'payment_settings', 'Payment settings'),
-(231, 'language_settings', 'Language settings'),
-(232, 'social_login', 'Social login'),
-(233, 'custom_page_builder', 'Custom page builder'),
-(234, 'data_center', 'Data center'),
-(235, 'about', 'About'),
-(236, 'manage_profile', 'Manage profile'),
-(237, 'admin_revenue_this_year', 'Admin revenue this year'),
-(238, 'number_courses', 'Number courses'),
-(239, 'number_of_lessons', 'Number of lessons'),
-(240, 'number_of_enrolment', 'Number of enrolment'),
-(241, 'number_of_student', 'Number of student'),
-(242, 'course_overview', 'Course overview'),
-(243, 'active_courses', 'Active courses'),
-(244, 'pending_courses', 'Pending courses'),
-(245, 'requested_withdrawal', 'Requested withdrawal'),
-(246, 'january', 'January'),
-(247, 'february', 'February'),
-(248, 'march', 'March'),
-(249, 'april', 'April'),
-(250, 'may', 'May'),
-(251, 'june', 'June'),
-(252, 'july', 'July'),
-(253, 'august', 'August'),
-(254, 'september', 'September'),
-(255, 'october', 'October'),
-(256, 'november', 'November'),
-(257, 'december', 'December'),
-(258, 'this_year', 'This year'),
-(259, 'active_course', 'Active course'),
-(260, 'pending_course', 'Pending course'),
-(261, 'heads_up', 'Heads up'),
-(262, 'congratulations', 'Congratulations'),
-(263, 'oh_snap', 'Oh snap'),
-(264, 'please_fill_all_the_required_fields', 'Please fill all the required fields'),
-(265, 'close', 'Close'),
-(266, 'cancel', 'Cancel'),
-(267, 'continue', 'Continue'),
-(268, 'ok', 'Ok'),
-(269, 'success', 'Success'),
-(270, 'your_server_does_not_allow_uploading_files_that_large.', 'Your server does not allow uploading files that large.'),
-(271, 'your_servers_file_upload_limit_is_40mb', 'Your servers file upload limit is 40mb'),
-(272, 'successfully', 'Successfully'),
-(273, 'div_added_to_bottom_', 'Div added to bottom '),
-(274, 'div_has_been_deleted_', 'Div has been deleted '),
-(275, 'not_found', 'Not found'),
-(276, 'about_this_application', 'About this application'),
-(277, 'software_version', 'Software version'),
-(278, 'check_update', 'Check update'),
-(279, 'php_version', 'Php version'),
-(280, 'curl_enable', 'Curl enable'),
-(281, 'enabled', 'Enabled'),
-(282, 'purchase_code', 'Purchase code'),
-(283, 'product_license', 'Product license'),
-(284, 'invalid', 'Invalid'),
-(285, 'enter_valid_purchase_code', 'Enter valid purchase code'),
-(286, 'customer_support_status', 'Customer support status'),
-(287, 'support_expiry_date', 'Support expiry date'),
-(288, 'customer_name', 'Customer name'),
-(289, 'customer_support', 'Customer support'),
-(290, 'our_premium_services', 'Our premium services'),
-(291, 'website_name', 'Website name'),
-(292, 'website_title', 'Website title'),
-(293, 'website_keywords', 'Website keywords'),
-(294, 'website_description', 'Website description'),
-(295, 'author', 'Author'),
-(296, 'slogan', 'Slogan'),
-(297, 'system_email', 'System email'),
-(298, 'address', 'Address'),
-(299, 'phone', 'Phone'),
-(300, 'youtube_api_key', 'Youtube api key'),
-(301, 'get_youtube_api_key', 'Get youtube api key'),
-(302, 'if_you_want_to_use_google_drive_video,_you_need_to_enable_the_google_drive_service_in_this_api', 'If you want to use google drive video, you need to enable the google drive service in this api'),
-(303, 'vimeo_api_key', 'Vimeo api key'),
-(304, 'get_vimeo_api_key', 'Get vimeo api key'),
-(305, 'system_language', 'System language'),
-(306, 'student_email_verification', 'Student email verification'),
-(307, 'enable', 'Enable'),
-(308, 'disable', 'Disable'),
-(309, 'course_accessibility', 'Course accessibility'),
-(310, 'publicly', 'Publicly'),
-(311, 'only_logged_in_users', 'Only logged in users'),
-(312, 'number_of_authorized_devices', 'Number of authorized devices'),
-(313, 'how_many_devices_do_you_want_to_allow_for_logging_in_using_a_single_account', 'How many devices do you want to allow for logging in using a single account'),
-(314, 'course_selling_tax', 'Course selling tax'),
-(315, 'enter_0_if_you_want_to_disable_the_tax_option', 'Enter 0 if you want to disable the tax option'),
-(316, 'google_analytics_id', 'Google analytics id'),
-(317, 'keep_it_blank_if_you_want_to_disable_it', 'Keep it blank if you want to disable it'),
-(318, 'meta_pixel_id', 'Meta pixel id'),
-(319, 'footer_text', 'Footer text'),
-(320, 'footer_link', 'Footer link'),
-(321, 'timezone', 'Timezone'),
-(322, 'can_students_disable_their_own_accounts?', 'Can students disable their own accounts?'),
-(323, 'save', 'Save'),
-(324, 'update_product', 'Update product'),
-(325, 'file', 'File'),
-(326, 'update', 'Update'),
-(327, 'product_updated_successfully', 'Product updated successfully'),
-(328, 'administration', 'Administration'),
-(329, 'log_out', 'Log out'),
-(330, 'start_learning_from_best_platform', 'Start learning from best platform'),
-(331, 'study_any_topic,_anytime._explore_thousands_of_courses_for_the_lowest_price_ever!', 'Study any topic, anytime. explore thousands of courses for the lowest price ever!'),
-(332, 'what_do_you_want_to_learn', 'What do you want to learn'),
-(333, 'expert_instruction', 'Expert instruction'),
-(334, 'find_the_right_course_for_you', 'Find the right course for you'),
-(335, 'online_courses', 'Online courses'),
-(336, 'explore_a_variety_of_fresh_topics', 'Explore a variety of fresh topics'),
-(337, 'lifetime_access', 'Lifetime access'),
-(338, 'learn_on_your_schedule', 'Learn on your schedule'),
-(339, 'top_courses', 'Top courses'),
-(340, 'these_are_the_most_popular_courses_among_listen_courses_learners_worldwide', 'These are the most popular courses among listen courses learners worldwide'),
-(341, 'top', 'Top'),
-(342, 'latest_courses', 'Latest courses'),
-(343, 'these_are_the_most_latest_courses_among_listen_courses_learners_worldwide', 'These are the most latest courses among listen courses learners worldwide'),
-(344, 'learn', 'Learn'),
-(345, 'new_skills_when_and_where_you_like.', 'New skills when and where you like.'),
-(346, 'discover_a_world_of_learning_opportunities_through_our_upcoming_courses,_where_industry_experts.', 'Discover a world of learning opportunities through our upcoming courses, where industry experts.'),
-(347, 'join_course_for_free', 'Join course for free'),
-(348, 'became_a_instructor', 'Became a instructor'),
-(349, 'join_now_to_start_learning', 'Join now to start learning'),
-(350, 'learn_from_our_quality_instructors!', 'Learn from our quality instructors!'),
-(351, 'get_started', 'Get started'),
-(352, 'become_a_new_instructor', 'Become a new instructor'),
-(353, 'teach_thousands_of_students_and_earn_money!', 'Teach thousands of students and earn money!'),
-(354, 'course_adding_form', 'Course adding form'),
-(355, 'back_to_course_list', 'Back to course list'),
-(356, 'basic', 'Basic'),
-(357, 'info', 'Info'),
-(358, 'pricing', 'Pricing'),
-(359, 'media', 'Media'),
-(360, 'seo', 'Seo'),
-(361, 'finish', 'Finish'),
-(362, 'course_title', 'Course title'),
-(363, 'enter_course_title', 'Enter course title'),
-(364, 'short_description', 'Short description'),
-(365, 'description', 'Description'),
-(366, 'category', 'Category'),
-(367, 'select_a_category', 'Select a category'),
-(368, 'select_sub_category', 'Select sub category'),
-(369, 'level', 'Level'),
-(370, 'beginner', 'Beginner'),
-(371, 'advanced', 'Advanced'),
-(372, 'intermediate', 'Intermediate'),
-(373, 'language_made_in', 'Language made in'),
-(374, 'enable_drip_content', 'Enable drip content'),
-(375, 'create_as_a', 'Create as a'),
-(376, 'private_course', 'Private course'),
-(377, 'upcoming_course', 'Upcoming course'),
-(378, 'upcoming_image_thumbnail', 'Upcoming image thumbnail'),
-(379, 'the_image_size_should_be', 'The image size should be'),
-(380, 'publish_date', 'Publish date'),
-(381, 'enter_publish_date', 'Enter publish date'),
-(382, 'check_if_this_course_is_top_course', 'Check if this course is top course'),
-(383, 'course_faq', 'Course faq'),
-(384, 'faq_question', 'Faq question'),
-(385, 'answer', 'Answer'),
-(386, 'requirements', 'Requirements'),
-(387, 'provide_requirements', 'Provide requirements'),
-(388, 'outcomes', 'Outcomes'),
-(389, 'provide_outcomes', 'Provide outcomes'),
-(390, 'check_if_this_is_a_free_course', 'Check if this is a free course'),
-(391, 'course_price', 'Course price'),
-(392, 'enter_course_course_price', 'Enter course course price'),
-(393, 'check_if_this_course_has_discount', 'Check if this course has discount'),
-(394, 'discounted_price', 'Discounted price'),
-(395, 'this_course_has', 'This course has'),
-(396, 'discount', 'Discount'),
-(397, 'expiry_period', 'Expiry period'),
-(398, 'lifetime', 'Lifetime'),
-(399, 'limited_time', 'Limited time'),
-(400, 'number_of_month', 'Number of month'),
-(401, 'after_purchase,_students_can_access_the_course_until_your_selected_time.', 'After purchase, students can access the course until your selected time.'),
-(402, 'course_overview_provider', 'Course overview provider'),
-(403, 'youtube', 'Youtube'),
-(404, 'vimeo', 'Vimeo'),
-(405, 'html5', 'Html5'),
-(406, 'course_overview_url', 'Course overview url'),
-(407, 'course_thumbnail', 'Course thumbnail'),
-(408, 'meta_keywords', 'Meta keywords'),
-(409, 'write_a_keyword_and_then_press_enter_button', 'Write a keyword and then press enter button'),
-(410, 'meta_description', 'Meta description'),
-(411, 'thank_you', 'Thank you'),
-(412, 'you_are_just_one_click_away', 'You are just one click away'),
-(413, 'submit', 'Submit'),
-(414, 'enable_certificate', 'Enable Certificate');
+INSERT INTO `language` (`phrase_id`, `phrase`, `english`)
+VALUES (1, 'English', 'English'),
+       (2, '404_not_found', '404 not found'),
+       (3, 'courses', 'Courses'),
+       (4, 'all_courses', 'All courses'),
+       (5, 'all_courses', 'All courses'),
+       (6, 'all_courses', 'All courses'),
+       (7, 'search', 'Search'),
+       (8, 'search', 'Search'),
+       (9, 'search', 'Search'),
+       (10, 'search', 'Search'),
+       (11, 'search', 'Search'),
+       (12, 'search', 'Search'),
+       (13, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (14, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (15, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (16, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (17, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (18, 'you_have_no_items_in_your_cart!', 'You have no items in your cart!'),
+       (19, 'checkout', 'Checkout'),
+       (20, 'checkout', 'Checkout'),
+       (21, 'checkout', 'Checkout'),
+       (22, 'login', 'Login'),
+       (23, 'login', 'Login'),
+       (24, 'login', 'Login'),
+       (25, 'join_now', 'Join now'),
+       (26, 'join_now', 'Join now'),
+       (27, 'join_now', 'Join now'),
+       (28, 'join_now', 'Join now'),
+       (29, 'join_now', 'Join now'),
+       (30, 'join_now', 'Join now'),
+       (31, 'sign_up', 'Sign up'),
+       (32, 'cart', 'Cart'),
+       (33, 'cart', 'Cart'),
+       (34, 'cart', 'Cart'),
+       (35, 'categories', 'Categories'),
+       (36, 'categories', 'Categories'),
+       (37, 'categories', 'Categories'),
+       (38, 'categories', 'Categories'),
+       (39, 'cookie_policy', 'Cookie policy'),
+       (40, 'cookie_policy', 'Cookie policy'),
+       (41, 'cookie_policy', 'Cookie policy'),
+       (42, 'cookie_policy', 'Cookie policy'),
+       (43, 'accept', 'Accept'),
+       (44, 'accept', 'Accept'),
+       (45, 'accept', 'Accept'),
+       (46, 'accept', 'Accept'),
+       (47, 'accept', 'Accept'),
+       (48, 'accept', 'Accept'),
+       (49, 'home', 'Home'),
+       (50, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
+       (51, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
+       (52, 'the_page_you_requested_could_not_be_found', 'The page you requested could not be found'),
+       (53, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
+       (54, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
+       (55, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
+       (56, 'check_the_spelling_of_the_url', 'Check the spelling of the url'),
+       (57, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (58, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (59, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (60, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (61, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (62, 'if_you_are_still_puzzled,_click_on_the_home_link_below',
+        'If you are still puzzled, click on the home link below'),
+       (63, 'back_to_home', 'Back to home'),
+       (64, 'back_to_home', 'Back to home'),
+       (65, 'back_to_home', 'Back to home'),
+       (66, 'back_to_home', 'Back to home'),
+       (67, 'back_to_home', 'Back to home'),
+       (68, 'back_to_home', 'Back to home'),
+       (69, 'top_categories', 'Top categories'),
+       (70, 'useful_links', 'Useful links'),
+       (71, 'useful_links', 'Useful links'),
+       (72, 'useful_links', 'Useful links'),
+       (73, 'useful_links', 'Useful links'),
+       (74, 'useful_links', 'Useful links'),
+       (75, 'useful_links', 'Useful links'),
+       (76, 'become_an_instructor', 'Become an instructor'),
+       (77, 'become_an_instructor', 'Become an instructor'),
+       (78, 'become_an_instructor', 'Become an instructor'),
+       (79, 'become_an_instructor', 'Become an instructor'),
+       (80, 'blog', 'Blog'),
+       (81, 'blog', 'Blog'),
+       (82, 'blog', 'Blog'),
+       (83, 'blog', 'Blog'),
+       (84, 'blog', 'Blog'),
+       (85, 'help', 'Help'),
+       (86, 'help', 'Help'),
+       (87, 'help', 'Help'),
+       (88, 'help', 'Help'),
+       (89, 'help', 'Help'),
+       (90, 'help', 'Help'),
+       (91, 'contact_us', 'Contact us'),
+       (92, 'contact_us', 'Contact us'),
+       (93, 'contact_us', 'Contact us'),
+       (94, 'contact_us', 'Contact us'),
+       (95, 'contact_us', 'Contact us'),
+       (96, 'contact_us', 'Contact us'),
+       (97, 'about_us', 'About us'),
+       (98, 'about_us', 'About us'),
+       (99, 'about_us', 'About us'),
+       (100, 'about_us', 'About us'),
+       (101, 'privacy_policy', 'Privacy policy'),
+       (102, 'privacy_policy', 'Privacy policy'),
+       (103, 'privacy_policy', 'Privacy policy'),
+       (104, 'privacy_policy', 'Privacy policy'),
+       (105, 'privacy_policy', 'Privacy policy'),
+       (106, 'privacy_policy', 'Privacy policy'),
+       (107, 'terms_and_condition', 'Terms and condition'),
+       (108, 'terms_and_condition', 'Terms and condition'),
+       (109, 'terms_and_condition', 'Terms and condition'),
+       (110, 'terms_and_condition', 'Terms and condition'),
+       (111, 'terms_and_condition', 'Terms and condition'),
+       (112, 'terms_and_condition', 'Terms and condition'),
+       (113, 'faq', 'Faq'),
+       (114, 'faq', 'Faq'),
+       (115, 'faq', 'Faq'),
+       (116, 'faq', 'Faq'),
+       (117, 'faq', 'Faq'),
+       (118, 'refund_policy', 'Refund policy'),
+       (119, 'refund_policy', 'Refund policy'),
+       (120, 'refund_policy', 'Refund policy'),
+       (121, 'refund_policy', 'Refund policy'),
+       (122, 'refund_policy', 'Refund policy'),
+       (123, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (124, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (125, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (126, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (127, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (128, 'subscribe_to_our_newsletter', 'Subscribe to our newsletter'),
+       (129, 'enter_your_email_address', 'Enter your email address'),
+       (130, 'enter_your_email_address', 'Enter your email address'),
+       (131, 'enter_your_email_address', 'Enter your email address'),
+       (132, 'enter_your_email_address', 'Enter your email address'),
+       (133, 'enter_your_email_address', 'Enter your email address'),
+       (134, 'enter_your_email_address', 'Enter your email address'),
+       (135, 'creativeitem', 'Creativeitem'),
+       (136, 'creativeitem', 'Creativeitem'),
+       (137, 'creativeitem', 'Creativeitem'),
+       (138, 'creativeitem', 'Creativeitem'),
+       (139, 'creativeitem', 'Creativeitem'),
+       (140, 'are_you_sure', 'Are you sure'),
+       (141, 'are_you_sure', 'Are you sure'),
+       (142, 'yes', 'Yes'),
+       (143, 'yes', 'Yes'),
+       (144, 'yes', 'Yes'),
+       (145, 'no', 'No'),
+       (146, 'no', 'No'),
+       (147, 'no', 'No'),
+       (148, 'no', 'No'),
+       (149, 'log_in', 'Log in'),
+       (150, 'explore,_learn,_and_grow_with_us._enjoy_a_seamless_and_enriching_educational_journey._lets_begin!',
+        'Explore, learn, and grow with us. enjoy a seamless and enriching educational journey. lets begin!'),
+       (151, 'your_email', 'Your email'),
+       (152, 'enter_your_email', 'Enter your email'),
+       (153, 'password', 'Password'),
+       (154, 'enter_your_valid_password', 'Enter your valid password'),
+       (155, 'forgot_password?', 'Forgot password?'),
+       (156, 'don`t_have_an_account?', 'Don`t have an account?'),
+       (157, 'or', 'Or'),
+       (158, 'welcome', 'Welcome'),
+       (159, 'dashboard', 'Dashboard'),
+       (160, 'quick_actions', 'Quick actions'),
+       (161, 'create_course', 'Create course'),
+       (162, 'add_course', 'Add course'),
+       (163, 'add_new_lesson', 'Add new lesson'),
+       (164, 'add_lesson', 'Add lesson'),
+       (165, 'add_student', 'Add student'),
+       (166, 'enrol_a_student', 'Enrol a student'),
+       (167, 'enrol_student', 'Enrol student'),
+       (168, 'help_center', 'Help center'),
+       (169, 'read_documentation', 'Read documentation'),
+       (170, 'watch_video_tutorial', 'Watch video tutorial'),
+       (171, 'get_customer_support', 'Get customer support'),
+       (172, 'order_customization', 'Order customization'),
+       (173, 'request_a_new_feature', 'Request a new feature'),
+       (174, 'browse_addons', 'Browse addons'),
+       (175, 'get_services', 'Get services'),
+       (176, 'remove_all', 'Remove all'),
+       (177, 'notification', 'Notification'),
+       (178, 'no_notification', 'No notification'),
+       (179, 'stay_tuned!', 'Stay tuned!'),
+       (180, 'notifications_about_your_activity_will_show_up_here.',
+        'Notifications about your activity will show up here.'),
+       (181, 'notification_settings', 'Notification settings'),
+       (182, 'mark_all_as_read', 'Mark all as read'),
+       (183, 'admin', 'Admin'),
+       (184, 'my_account', 'My account'),
+       (185, 'settings', 'Settings'),
+       (186, 'logout', 'Logout'),
+       (187, 'visit_website', 'Visit website'),
+       (188, 'navigation', 'Navigation'),
+       (189, 'manage_courses', 'Manage courses'),
+       (190, 'add_new_course', 'Add new course'),
+       (191, 'course_category', 'Course category'),
+       (192, 'coupons', 'Coupons'),
+       (193, 'enrollments', 'Enrollments'),
+       (194, 'course_enrollment', 'Course enrollment'),
+       (195, 'enrol_history', 'Enrol history'),
+       (196, 'report', 'Report'),
+       (197, 'admin_revenue', 'Admin revenue'),
+       (198, 'instructor_revenue', 'Instructor revenue'),
+       (199, 'purchase_history', 'Purchase history'),
+       (200, 'users', 'Users'),
+       (201, 'admins', 'Admins'),
+       (202, 'manage_admins', 'Manage admins'),
+       (203, 'add_new_admin', 'Add new admin'),
+       (204, 'instructors', 'Instructors'),
+       (205, 'manage_instructors', 'Manage instructors'),
+       (206, 'add_new_instructor', 'Add new instructor'),
+       (207, 'instructor_payout', 'Instructor payout'),
+       (208, 'instructor_settings', 'Instructor settings'),
+       (209, 'applications', 'Applications'),
+       (210, 'students', 'Students'),
+       (211, 'manage_students', 'Manage students'),
+       (212, 'add_new_student', 'Add new student'),
+       (213, 'message', 'Message'),
+       (214, 'newsletter', 'Newsletter'),
+       (215, 'all_newsletter', 'All newsletter'),
+       (216, 'subscribed_user', 'Subscribed user'),
+       (217, 'contact', 'Contact'),
+       (218, 'all_blogs', 'All blogs'),
+       (219, 'pending_blog', 'Pending blog'),
+       (220, 'blog_category', 'Blog category'),
+       (221, 'blog_settings', 'Blog settings'),
+       (222, 'addons', 'Addons'),
+       (223, 'themes', 'Themes'),
+       (224, 'system_settings', 'System settings'),
+       (225, 'website_settings', 'Website settings'),
+       (226, 'academy_cloud', 'Academy cloud'),
+       (227, 'drip_content_settings', 'Drip content settings'),
+       (228, 'wasabi_storage_settings', 'Wasabi storage settings'),
+       (229, 'bbb_live_class_settings', 'Bbb live class settings'),
+       (230, 'payment_settings', 'Payment settings'),
+       (231, 'language_settings', 'Language settings'),
+       (232, 'social_login', 'Social login'),
+       (233, 'custom_page_builder', 'Custom page builder'),
+       (234, 'data_center', 'Data center'),
+       (235, 'about', 'About'),
+       (236, 'manage_profile', 'Manage profile'),
+       (237, 'admin_revenue_this_year', 'Admin revenue this year'),
+       (238, 'number_courses', 'Number courses'),
+       (239, 'number_of_lessons', 'Number of lessons'),
+       (240, 'number_of_enrolment', 'Number of enrolment'),
+       (241, 'number_of_student', 'Number of student'),
+       (242, 'course_overview', 'Course overview'),
+       (243, 'active_courses', 'Active courses'),
+       (244, 'pending_courses', 'Pending courses'),
+       (245, 'requested_withdrawal', 'Requested withdrawal'),
+       (246, 'january', 'January'),
+       (247, 'february', 'February'),
+       (248, 'march', 'March'),
+       (249, 'april', 'April'),
+       (250, 'may', 'May'),
+       (251, 'june', 'June'),
+       (252, 'july', 'July'),
+       (253, 'august', 'August'),
+       (254, 'september', 'September'),
+       (255, 'october', 'October'),
+       (256, 'november', 'November'),
+       (257, 'december', 'December'),
+       (258, 'this_year', 'This year'),
+       (259, 'active_course', 'Active course'),
+       (260, 'pending_course', 'Pending course'),
+       (261, 'heads_up', 'Heads up'),
+       (262, 'congratulations', 'Congratulations'),
+       (263, 'oh_snap', 'Oh snap'),
+       (264, 'please_fill_all_the_required_fields', 'Please fill all the required fields'),
+       (265, 'close', 'Close'),
+       (266, 'cancel', 'Cancel'),
+       (267, 'continue', 'Continue'),
+       (268, 'ok', 'Ok'),
+       (269, 'success', 'Success'),
+       (270, 'your_server_does_not_allow_uploading_files_that_large.',
+        'Your server does not allow uploading files that large.'),
+       (271, 'your_servers_file_upload_limit_is_40mb', 'Your servers file upload limit is 40mb'),
+       (272, 'successfully', 'Successfully'),
+       (273, 'div_added_to_bottom_', 'Div added to bottom '),
+       (274, 'div_has_been_deleted_', 'Div has been deleted '),
+       (275, 'not_found', 'Not found'),
+       (276, 'about_this_application', 'About this application'),
+       (277, 'software_version', 'Software version'),
+       (278, 'check_update', 'Check update'),
+       (279, 'php_version', 'Php version'),
+       (280, 'curl_enable', 'Curl enable'),
+       (281, 'enabled', 'Enabled'),
+       (282, 'purchase_code', 'Purchase code'),
+       (283, 'product_license', 'Product license'),
+       (284, 'invalid', 'Invalid'),
+       (285, 'enter_valid_purchase_code', 'Enter valid purchase code'),
+       (286, 'customer_support_status', 'Customer support status'),
+       (287, 'support_expiry_date', 'Support expiry date'),
+       (288, 'customer_name', 'Customer name'),
+       (289, 'customer_support', 'Customer support'),
+       (290, 'our_premium_services', 'Our premium services'),
+       (291, 'website_name', 'Website name'),
+       (292, 'website_title', 'Website title'),
+       (293, 'website_keywords', 'Website keywords'),
+       (294, 'website_description', 'Website description'),
+       (295, 'author', 'Author'),
+       (296, 'slogan', 'Slogan'),
+       (297, 'system_email', 'System email'),
+       (298, 'address', 'Address'),
+       (299, 'phone', 'Phone'),
+       (300, 'youtube_api_key', 'Youtube api key'),
+       (301, 'get_youtube_api_key', 'Get youtube api key'),
+       (302, 'if_you_want_to_use_google_drive_video,_you_need_to_enable_the_google_drive_service_in_this_api',
+        'If you want to use google drive video, you need to enable the google drive service in this api'),
+       (303, 'vimeo_api_key', 'Vimeo api key'),
+       (304, 'get_vimeo_api_key', 'Get vimeo api key'),
+       (305, 'system_language', 'System language'),
+       (306, 'student_email_verification', 'Student email verification'),
+       (307, 'enable', 'Enable'),
+       (308, 'disable', 'Disable'),
+       (309, 'course_accessibility', 'Course accessibility'),
+       (310, 'publicly', 'Publicly'),
+       (311, 'only_logged_in_users', 'Only logged in users'),
+       (312, 'number_of_authorized_devices', 'Number of authorized devices'),
+       (313, 'how_many_devices_do_you_want_to_allow_for_logging_in_using_a_single_account',
+        'How many devices do you want to allow for logging in using a single account'),
+       (314, 'course_selling_tax', 'Course selling tax'),
+       (315, 'enter_0_if_you_want_to_disable_the_tax_option', 'Enter 0 if you want to disable the tax option'),
+       (316, 'google_analytics_id', 'Google analytics id'),
+       (317, 'keep_it_blank_if_you_want_to_disable_it', 'Keep it blank if you want to disable it'),
+       (318, 'meta_pixel_id', 'Meta pixel id'),
+       (319, 'footer_text', 'Footer text'),
+       (320, 'footer_link', 'Footer link'),
+       (321, 'timezone', 'Timezone'),
+       (322, 'can_students_disable_their_own_accounts?', 'Can students disable their own accounts?'),
+       (323, 'save', 'Save'),
+       (324, 'update_product', 'Update product'),
+       (325, 'file', 'File'),
+       (326, 'update', 'Update'),
+       (327, 'product_updated_successfully', 'Product updated successfully'),
+       (328, 'administration', 'Administration'),
+       (329, 'log_out', 'Log out'),
+       (330, 'start_learning_from_best_platform', 'Start learning from best platform'),
+       (331, 'study_any_topic,_anytime._explore_thousands_of_courses_for_the_lowest_price_ever!',
+        'Study any topic, anytime. explore thousands of courses for the lowest price ever!'),
+       (332, 'what_do_you_want_to_learn', 'What do you want to learn'),
+       (333, 'expert_instruction', 'Expert instruction'),
+       (334, 'find_the_right_course_for_you', 'Find the right course for you'),
+       (335, 'online_courses', 'Online courses'),
+       (336, 'explore_a_variety_of_fresh_topics', 'Explore a variety of fresh topics'),
+       (337, 'lifetime_access', 'Lifetime access'),
+       (338, 'learn_on_your_schedule', 'Learn on your schedule'),
+       (339, 'top_courses', 'Top courses'),
+       (340, 'these_are_the_most_popular_courses_among_listen_courses_learners_worldwide',
+        'These are the most popular courses among listen courses learners worldwide'),
+       (341, 'top', 'Top'),
+       (342, 'latest_courses', 'Latest courses'),
+       (343, 'these_are_the_most_latest_courses_among_listen_courses_learners_worldwide',
+        'These are the most latest courses among listen courses learners worldwide'),
+       (344, 'learn', 'Learn'),
+       (345, 'new_skills_when_and_where_you_like.', 'New skills when and where you like.'),
+       (346, 'discover_a_world_of_learning_opportunities_through_our_upcoming_courses,_where_industry_experts.',
+        'Discover a world of learning opportunities through our upcoming courses, where industry experts.'),
+       (347, 'join_course_for_free', 'Join course for free'),
+       (348, 'became_a_instructor', 'Became a instructor'),
+       (349, 'join_now_to_start_learning', 'Join now to start learning'),
+       (350, 'learn_from_our_quality_instructors!', 'Learn from our quality instructors!'),
+       (351, 'get_started', 'Get started'),
+       (352, 'become_a_new_instructor', 'Become a new instructor'),
+       (353, 'teach_thousands_of_students_and_earn_money!', 'Teach thousands of students and earn money!'),
+       (354, 'course_adding_form', 'Course adding form'),
+       (355, 'back_to_course_list', 'Back to course list'),
+       (356, 'basic', 'Basic'),
+       (357, 'info', 'Info'),
+       (358, 'pricing', 'Pricing'),
+       (359, 'media', 'Media'),
+       (360, 'seo', 'Seo'),
+       (361, 'finish', 'Finish'),
+       (362, 'course_title', 'Course title'),
+       (363, 'enter_course_title', 'Enter course title'),
+       (364, 'short_description', 'Short description'),
+       (365, 'description', 'Description'),
+       (366, 'category', 'Category'),
+       (367, 'select_a_category', 'Select a category'),
+       (368, 'select_sub_category', 'Select sub category'),
+       (369, 'level', 'Level'),
+       (370, 'beginner', 'Beginner'),
+       (371, 'advanced', 'Advanced'),
+       (372, 'intermediate', 'Intermediate'),
+       (373, 'language_made_in', 'Language made in'),
+       (374, 'enable_drip_content', 'Enable drip content'),
+       (375, 'create_as_a', 'Create as a'),
+       (376, 'private_course', 'Private course'),
+       (377, 'upcoming_course', 'Upcoming course'),
+       (378, 'upcoming_image_thumbnail', 'Upcoming image thumbnail'),
+       (379, 'the_image_size_should_be', 'The image size should be'),
+       (380, 'publish_date', 'Publish date'),
+       (381, 'enter_publish_date', 'Enter publish date'),
+       (382, 'check_if_this_course_is_top_course', 'Check if this course is top course'),
+       (383, 'course_faq', 'Course faq'),
+       (384, 'faq_question', 'Faq question'),
+       (385, 'answer', 'Answer'),
+       (386, 'requirements', 'Requirements'),
+       (387, 'provide_requirements', 'Provide requirements'),
+       (388, 'outcomes', 'Outcomes'),
+       (389, 'provide_outcomes', 'Provide outcomes'),
+       (390, 'check_if_this_is_a_free_course', 'Check if this is a free course'),
+       (391, 'course_price', 'Course price'),
+       (392, 'enter_course_course_price', 'Enter course course price'),
+       (393, 'check_if_this_course_has_discount', 'Check if this course has discount'),
+       (394, 'discounted_price', 'Discounted price'),
+       (395, 'this_course_has', 'This course has'),
+       (396, 'discount', 'Discount'),
+       (397, 'expiry_period', 'Expiry period'),
+       (398, 'lifetime', 'Lifetime'),
+       (399, 'limited_time', 'Limited time'),
+       (400, 'number_of_month', 'Number of month'),
+       (401, 'after_purchase,_students_can_access_the_course_until_your_selected_time.',
+        'After purchase, students can access the course until your selected time.'),
+       (402, 'course_overview_provider', 'Course overview provider'),
+       (403, 'youtube', 'Youtube'),
+       (404, 'vimeo', 'Vimeo'),
+       (405, 'html5', 'Html5'),
+       (406, 'course_overview_url', 'Course overview url'),
+       (407, 'course_thumbnail', 'Course thumbnail'),
+       (408, 'meta_keywords', 'Meta keywords'),
+       (409, 'write_a_keyword_and_then_press_enter_button', 'Write a keyword and then press enter button'),
+       (410, 'meta_description', 'Meta description'),
+       (411, 'thank_you', 'Thank you'),
+       (412, 'you_are_just_one_click_away', 'You are just one click away'),
+       (413, 'submit', 'Submit'),
+       (414, 'enable_certificate', 'Enable Certificate');
 
 
 -- --------------------------------------------------------
@@ -982,39 +1027,40 @@ INSERT INTO `language` (`phrase_id`, `phrase`, `english`) VALUES
 -- Table structure for table `lesson`
 --
 
-CREATE TABLE `lesson` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) DEFAULT NULL,
-  `start_time` int(11) DEFAULT NULL,
-  `end_time` int(11) DEFAULT NULL,
-  `randomize` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `section_id` int(11) DEFAULT NULL,
-  `video_type` varchar(255) DEFAULT NULL,
-  `cloud_video_id` int(20) DEFAULT NULL,
-  `video_url` varchar(255) DEFAULT NULL,
-  `audio_url` varchar(400) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `lesson_type` varchar(255) DEFAULT NULL,
-  `attachment` longtext DEFAULT NULL,
-  `attachment_type` varchar(255) DEFAULT NULL,
-  `caption` varchar(255) DEFAULT NULL,
-  `summary` longtext DEFAULT NULL,
-  `is_free` int(11) NOT NULL DEFAULT 0,
-  `order` int(11) NOT NULL DEFAULT 0,
-  `quiz_attempt` int(11) NOT NULL DEFAULT 0,
-  `video_type_for_mobile_application` varchar(255) DEFAULT NULL,
-  `video_url_for_mobile_application` varchar(255) DEFAULT NULL,
-  `duration_for_mobile_application` varchar(255) DEFAULT NULL
+CREATE TABLE `lesson`
+(
+    `id`                                int(11) UNSIGNED NOT NULL,
+    `title`                             varchar(255) DEFAULT NULL,
+    `duration`                          varchar(255) DEFAULT NULL,
+    `start_time`                        int(11) DEFAULT NULL,
+    `end_time`                          int(11) DEFAULT NULL,
+    `randomize`                         int(11) DEFAULT NULL,
+    `course_id`                         int(11) DEFAULT NULL,
+    `section_id`                        int(11) DEFAULT NULL,
+    `video_type`                        varchar(255) DEFAULT NULL,
+    `cloud_video_id`                    int(20) DEFAULT NULL,
+    `video_url`                         varchar(255) DEFAULT NULL,
+    `audio_url`                         varchar(400) DEFAULT NULL,
+    `date_added`                        int(11) DEFAULT NULL,
+    `last_modified`                     int(11) DEFAULT NULL,
+    `lesson_type`                       varchar(255) DEFAULT NULL,
+    `attachment`                        longtext     DEFAULT NULL,
+    `attachment_type`                   varchar(255) DEFAULT NULL,
+    `caption`                           varchar(255) DEFAULT NULL,
+    `summary`                           longtext     DEFAULT NULL,
+    `is_free`                           int(11) NOT NULL DEFAULT 0,
+    `order`                             int(11) NOT NULL DEFAULT 0,
+    `quiz_attempt`                      int(11) NOT NULL DEFAULT 0,
+    `video_type_for_mobile_application` varchar(255) DEFAULT NULL,
+    `video_url_for_mobile_application`  varchar(255) DEFAULT NULL,
+    `duration_for_mobile_application`   varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table `lesson`
 --
 -- todo :: check if this insertion is required
-INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `randomize`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
-    (8, 'for intro', '0:20:00', 1727582400, 1730174400, 1, 3, 4, NULL, NULL, NULL, NULL, 1727755200, 1727841600, 'quiz', '{\"total_marks\":\"10\",\"pass_mark\":\"6\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, '', 0, 0, 10, NULL, NULL, NULL);
+-- INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `randomize`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
+--     (8, 'for intro', '0:20:00', 1727582400, 1730174400, 1, 3, 4, NULL, NULL, NULL, NULL, 1727755200, 1727841600, 'quiz', '{\"total_marks\":\"10\",\"pass_mark\":\"6\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, '', 0, 0, 10, NULL, NULL, NULL);
 
 -- --------------
 -- --------------------------------------------------------
@@ -1023,9 +1069,10 @@ INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `rand
 -- Table structure for table `log`
 --
 
-CREATE TABLE `log` (
-  `id` int(11) NOT NULL,
-  `from` varchar(255) NOT NULL
+CREATE TABLE `log`
+(
+    `id`   int(11) NOT NULL,
+    `from` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1034,14 +1081,15 @@ CREATE TABLE `log` (
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
-  `message_id` int(20) NOT NULL,
-  `message_thread_code` varchar(255) DEFAULT NULL,
-  `message` longtext DEFAULT NULL,
-  `sender` int(20) DEFAULT NULL,
-  `receiver` int(20) DEFAULT NULL,
-  `timestamp` varchar(255) DEFAULT NULL,
-  `read_status` int(11) DEFAULT NULL
+CREATE TABLE `message`
+(
+    `message_id`          int(20) NOT NULL,
+    `message_thread_code` varchar(255) DEFAULT NULL,
+    `message`             longtext     DEFAULT NULL,
+    `sender`              int(20) DEFAULT NULL,
+    `receiver`            int(20) DEFAULT NULL,
+    `timestamp`           varchar(255) DEFAULT NULL,
+    `read_status`         int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1050,12 +1098,13 @@ CREATE TABLE `message` (
 -- Table structure for table `message_thread`
 --
 
-CREATE TABLE `message_thread` (
-  `message_thread_id` int(11) NOT NULL,
-  `message_thread_code` varchar(255) DEFAULT NULL,
-  `sender` varchar(255) DEFAULT '',
-  `receiver` varchar(255) DEFAULT '',
-  `last_message_timestamp` varchar(255) DEFAULT NULL
+CREATE TABLE `message_thread`
+(
+    `message_thread_id`      int(11) NOT NULL,
+    `message_thread_code`    varchar(255) DEFAULT NULL,
+    `sender`                 varchar(255) DEFAULT '',
+    `receiver`               varchar(255) DEFAULT '',
+    `last_message_timestamp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1064,12 +1113,13 @@ CREATE TABLE `message_thread` (
 -- Table structure for table `newsletters`
 --
 
-CREATE TABLE `newsletters` (
-  `id` int(11) NOT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `created_at` varchar(255) DEFAULT NULL,
-  `updated_at` varchar(255) DEFAULT NULL
+CREATE TABLE `newsletters`
+(
+    `id`          int(11) NOT NULL,
+    `subject`     varchar(255) DEFAULT NULL,
+    `description` mediumtext   DEFAULT NULL,
+    `created_at`  varchar(255) DEFAULT NULL,
+    `updated_at`  varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1078,16 +1128,17 @@ CREATE TABLE `newsletters` (
 -- Table structure for table `newsletter_histories`
 --
 
-CREATE TABLE `newsletter_histories` (
-  `id` int(20) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL,
-  `tried_times` int(11) DEFAULT NULL,
-  `sent_at` varchar(100) DEFAULT NULL,
-  `created_at` varchar(100) DEFAULT NULL,
-  `updated_at` varchar(100) DEFAULT NULL
+CREATE TABLE `newsletter_histories`
+(
+    `id`          int(20) NOT NULL,
+    `email`       varchar(255) DEFAULT NULL,
+    `subject`     varchar(255) DEFAULT NULL,
+    `description` longtext     DEFAULT NULL,
+    `status`      varchar(100) DEFAULT NULL,
+    `tried_times` int(11) DEFAULT NULL,
+    `sent_at`     varchar(100) DEFAULT NULL,
+    `created_at`  varchar(100) DEFAULT NULL,
+    `updated_at`  varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1096,11 +1147,12 @@ CREATE TABLE `newsletter_histories` (
 -- Table structure for table `newsletter_subscriber`
 --
 
-CREATE TABLE `newsletter_subscriber` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `created_at` varchar(255) DEFAULT NULL,
-  `updated_at` varchar(255) DEFAULT NULL
+CREATE TABLE `newsletter_subscriber`
+(
+    `id`         int(11) NOT NULL,
+    `email`      varchar(255) DEFAULT NULL,
+    `created_at` varchar(255) DEFAULT NULL,
+    `updated_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1109,16 +1161,17 @@ CREATE TABLE `newsletter_subscriber` (
 -- Table structure for table `notifications`
 --
 
-CREATE TABLE `notifications` (
-  `id` bigint(20) NOT NULL,
-  `from_user` int(11) DEFAULT NULL,
-  `to_user` int(11) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `created_at` varchar(255) DEFAULT NULL,
-  `updated_at` varchar(255) DEFAULT NULL
+CREATE TABLE `notifications`
+(
+    `id`          bigint(20) NOT NULL,
+    `from_user`   int(11) DEFAULT NULL,
+    `to_user`     int(11) DEFAULT NULL,
+    `type`        varchar(255) DEFAULT NULL,
+    `title`       varchar(255) DEFAULT NULL,
+    `description` text         DEFAULT NULL,
+    `status`      int(11) DEFAULT NULL,
+    `created_at`  varchar(255) DEFAULT NULL,
+    `updated_at`  varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1127,19 +1180,20 @@ CREATE TABLE `notifications` (
 -- Table structure for table `notification_settings`
 --
 
-CREATE TABLE `notification_settings` (
-  `id` int(11) NOT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `is_editable` int(11) DEFAULT NULL,
-  `addon_identifier` varchar(255) DEFAULT NULL,
-  `user_types` varchar(400) DEFAULT NULL,
-  `system_notification` varchar(400) DEFAULT NULL,
-  `email_notification` varchar(400) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `template` longtext DEFAULT NULL,
-  `setting_title` varchar(255) DEFAULT NULL,
-  `setting_sub_title` varchar(255) DEFAULT NULL,
-  `date_updated` varchar(255) DEFAULT NULL
+CREATE TABLE `notification_settings`
+(
+    `id`                  int(11) NOT NULL,
+    `type`                varchar(255) DEFAULT NULL,
+    `is_editable`         int(11) DEFAULT NULL,
+    `addon_identifier`    varchar(255) DEFAULT NULL,
+    `user_types`          varchar(400) DEFAULT NULL,
+    `system_notification` varchar(400) DEFAULT NULL,
+    `email_notification`  varchar(400) DEFAULT NULL,
+    `subject`             varchar(255) DEFAULT NULL,
+    `template`            longtext     DEFAULT NULL,
+    `setting_title`       varchar(255) DEFAULT NULL,
+    `setting_sub_title`   varchar(255) DEFAULT NULL,
+    `date_updated`        varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1170,21 +1224,22 @@ INSERT INTO `notification_settings` (`id`, `type`, `is_editable`, `addon_identif
 -- Table structure for table `payment`
 --
 
-CREATE TABLE `payment` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `payment_type` varchar(50) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `admin_revenue` varchar(255) DEFAULT NULL,
-  `instructor_revenue` varchar(255) DEFAULT NULL,
-  `tax` double DEFAULT NULL,
-  `instructor_payment_status` int(11) DEFAULT 0,
-  `transaction_id` varchar(255) DEFAULT NULL,
-  `session_id` varchar(255) DEFAULT NULL,
-  `coupon` varchar(255) DEFAULT NULL
+CREATE TABLE `payment`
+(
+    `id`                        int(11) UNSIGNED NOT NULL,
+    `user_id`                   int(11) DEFAULT NULL,
+    `payment_type`              varchar(50)  DEFAULT NULL,
+    `course_id`                 int(11) DEFAULT NULL,
+    `amount` double DEFAULT NULL,
+    `date_added`                int(11) DEFAULT NULL,
+    `last_modified`             int(11) DEFAULT NULL,
+    `admin_revenue`             varchar(255) DEFAULT NULL,
+    `instructor_revenue`        varchar(255) DEFAULT NULL,
+    `tax` double DEFAULT NULL,
+    `instructor_payment_status` int(11) DEFAULT 0,
+    `transaction_id`            varchar(255) DEFAULT NULL,
+    `session_id`                varchar(255) DEFAULT NULL,
+    `coupon`                    varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1193,41 +1248,73 @@ CREATE TABLE `payment` (
 -- Table structure for table `payment_gateways`
 --
 
-CREATE TABLE `payment_gateways` (
-  `id` int(11) NOT NULL,
-  `identifier` varchar(255) DEFAULT NULL,
-  `currency` varchar(100) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `keys` text NOT NULL,
-  `model_name` varchar(255) DEFAULT NULL,
-  `enabled_test_mode` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `is_addon` int(11) NOT NULL,
-  `created_at` varchar(100) NOT NULL,
-  `updated_at` varchar(100) NOT NULL
+CREATE TABLE `payment_gateways`
+(
+    `id`                int(11) NOT NULL,
+    `identifier`        varchar(255) DEFAULT NULL,
+    `currency`          varchar(100) NOT NULL,
+    `title`             varchar(255) NOT NULL,
+    `description`       text         NOT NULL,
+    `keys`              text         NOT NULL,
+    `model_name`        varchar(255) DEFAULT NULL,
+    `enabled_test_mode` int(11) NOT NULL,
+    `status`            int(11) NOT NULL,
+    `is_addon`          int(11) NOT NULL,
+    `created_at`        varchar(100) NOT NULL,
+    `updated_at`        varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `payment_gateways`
 --
 
-INSERT INTO `payment_gateways` (`id`, `identifier`, `currency`, `title`, `description`, `keys`, `model_name`, `enabled_test_mode`, `status`, `is_addon`, `created_at`, `updated_at`) VALUES
-(1, 'paypal', 'USD', 'Paypal', '', '{\"sandbox_client_id\":\"AfGaziKslex-scLAyYdDYXNFaz2aL5qGau-SbDgE_D2E80D3AFauLagP8e0kCq9au7W4IasmFbirUUYc\",\"sandbox_secret_key\":\"EMa5pCTuOpmHkhHaCGibGhVUcKg0yt5-C3CzJw-OWJCzaXXzTlyD17SICob_BkfM_0Nlk7TWnN42cbGz\",\"production_client_id\":\"1234\",\"production_secret_key\":\"12345\"}', 'Payment_model', 1, 1, 0, '', '1673263724'),
-(2, 'stripe', 'USD', 'Stripe', '', '{\"public_key\":\"pk_test_CAC3cB1mhgkJqXtypYBTGb4f\",\"secret_key\":\"sk_test_iatnshcHhQVRXdygXw3L2Pp2\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxxxxx\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxxxxx\"}', 'Payment_model', 1, 1, 0, '', '1673263724'),
-(3, 'razorpay', 'INR', 'Razorpay', '', '{\"key_id\":\"rzp_test_J60bqBOi1z1aF5\",\"secret_key\":\"uk935K7p4j96UCJgHK8kAU4q\",\"theme_color\":\"#23d792\"}', 'Payment_model', 1, 1, 0, '', '1708580304'),
-(4, 'xendit', 'USD', 'Xendit', '', '{\"api_key\":\"xnd_development_44KVee2PG4HeeZxG69R5eXOJHVD7t84FZUIH8dMxa37ZU3bZ8KDKV9ugPfy5fRK\",\"secret_key\":\"your_xendit_secret_key\",\"other_parameter\":\"value\"}', 'Payment_model', 1, 1, 0, '', '1700647736'),
-(5, 'payu', 'PLN', 'Payu', '', '{\"pos_id\":\"PKf789971N2ig5hbF71y1BX46k\",\"second_key\":\"vaWDmIqbwiVUOVitXet9ZlC9mQ\",\"client_id\":\"PKf789971N2ig5hbF71y1BX46k\",\"client_secret\":\"vaWDmIqbwiVUOVitXet9ZlC9mQ\"}', 'Payment_model', 1, 1, 0, '', '1707980726'),
-(6, 'pagseguro', 'BRL', 'Pagseguro', '', '{\"api_key\":\"BAE981AF77CA4768A93849AFF5BF2331\",\"secret_key\":\"8045696DBFBF765FF4189FBAE1E02AB5\",\"other_parameter\":\"value\"}', 'Payment_model', 1, 1, 0, '', '1705559611'),
-(7, 'sslcommerz', 'USD', 'SSL Commerz', '', '{\"store_id\":\"sslcommerz_store_id\",\"store_password\":\"sslcommerz_store_password\"}', 'Payment_model', 1, 1, 0, '', '1673264610'),
-(8, 'skrill', 'USD', 'Skrill', '', '{\"skrill_merchant_email\":\"urwatech@gmail.com\",\"secret_passphrase\":\"your_skrill_secret_key\"}', 'Payment_model', 1, 1, 0, '', '1700647745'),
-(10, 'doku', 'USD', 'Doku', '', '{\"client_id\":\"BRN-0271-1700996849302\",\"shared_key\":\"SK-BxOS4PfUdIEMHLccyMI3\"}', 'Payment_model', 1, 1, 0, '', '1708603994'),
-(11, 'bkash', 'BDT', 'Bkash', '', '{\"app_key\":\"app-key\",\"app_secret\":\"app-secret\",\"username\":\"username\",\"password\":\"passwoed\"}', 'Payment_model', 1, 1, 0, '1700997440', '1701596645'),
-(12, 'cashfree', 'INR', 'CashFree', '', '{\"client_id\":\"TEST100748308df0665cabda6c2f38b903847001\",\"client_secret\":\"cfsk_ma_test_71065d7cadf8695e7845e86244bd7011_fff5714b\"}', 'Payment_model', 1, 1, 0, '1700997440', '1701688995'),
-(13, 'maxicash', 'USD', 'Maxicash', '', '{\"merchant_id\":\"TEST100748308df0665cabda6c2f38b903847001\",\"merchant_password\":\"cfsk_ma_test_71065d7cadf8695e7845e86244bd7011_fff5714b\"}', 'Payment_model', 1, 1, 0, '1700997440', '1701688995'),
-(14, 'aamarpay', 'BDT', 'Aamarpay', '', '{\"store_id\":\"aamarpaytest\",\"signature_key\":\"dbb74894e82415a2f7ff0ec3a97e4183\"}', 'Payment_model', 1, 1, 0, '1700997440', '1711366991'),
-(15, 'flutterwave', 'NGN', 'Flutterwave', '', '{\"public_key\":\"FLWPUBK_TEST-b6fbee21fd2d9f13be74bf4d87fe6197-X\",\"secret_key\":\"FLWSECK_TEST-70c3f071a83a1d14bb8a0061e53845a7-X\"}', 'Payment_model', 1, 1, 0, '1700997440', '1711366991'),
-(16, 'tazapay', 'USD', 'Tazapay', '', '{\"public_key\":\"pk_test_audpDpZGmHmYT46kmHvA\",\"api_key\":\"ak_test_CRXTUMNGV4MVPO7RDGT2\",\"api_secret\":\"sk_test_0OfyPSFUX4YqcQGkeyOWCVkEQ7WAWeZ6SmsNNpfFQ989qm15f8mu2gqmYhiXkZ87iF26Ej1Ex9pgNuTq9YoxksPmQjDEbyATBoWw0bNH12mQPIJQ4VGqEPIB5FEizarZ\"}', 'Payment_model', 1, 1, 0, '1700997440', '1711366991');
+INSERT INTO `payment_gateways` (`id`, `identifier`, `currency`, `title`, `description`, `keys`, `model_name`,
+                                `enabled_test_mode`, `status`, `is_addon`, `created_at`, `updated_at`)
+VALUES (1, 'paypal', 'USD', 'Paypal', '',
+        '{\"sandbox_client_id\":\"AfGaziKslex-scLAyYdDYXNFaz2aL5qGau-SbDgE_D2E80D3AFauLagP8e0kCq9au7W4IasmFbirUUYc\",\"sandbox_secret_key\":\"EMa5pCTuOpmHkhHaCGibGhVUcKg0yt5-C3CzJw-OWJCzaXXzTlyD17SICob_BkfM_0Nlk7TWnN42cbGz\",\"production_client_id\":\"1234\",\"production_secret_key\":\"12345\"}',
+        'Payment_model', 1, 1, 0, '', '1673263724'),
+       (2, 'stripe', 'USD', 'Stripe', '',
+        '{\"public_key\":\"pk_test_CAC3cB1mhgkJqXtypYBTGb4f\",\"secret_key\":\"sk_test_iatnshcHhQVRXdygXw3L2Pp2\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxxxxx\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxxxxx\"}',
+        'Payment_model', 1, 1, 0, '', '1673263724'),
+       (3, 'razorpay', 'INR', 'Razorpay', '',
+        '{\"key_id\":\"rzp_test_J60bqBOi1z1aF5\",\"secret_key\":\"uk935K7p4j96UCJgHK8kAU4q\",\"theme_color\":\"#23d792\"}',
+        'Payment_model', 1, 1, 0, '', '1708580304'),
+       (4, 'xendit', 'USD', 'Xendit', '',
+        '{\"api_key\":\"xnd_development_44KVee2PG4HeeZxG69R5eXOJHVD7t84FZUIH8dMxa37ZU3bZ8KDKV9ugPfy5fRK\",\"secret_key\":\"your_xendit_secret_key\",\"other_parameter\":\"value\"}',
+        'Payment_model', 1, 1, 0, '', '1700647736'),
+       (5, 'payu', 'PLN', 'Payu', '',
+        '{\"pos_id\":\"PKf789971N2ig5hbF71y1BX46k\",\"second_key\":\"vaWDmIqbwiVUOVitXet9ZlC9mQ\",\"client_id\":\"PKf789971N2ig5hbF71y1BX46k\",\"client_secret\":\"vaWDmIqbwiVUOVitXet9ZlC9mQ\"}',
+        'Payment_model', 1, 1, 0, '', '1707980726'),
+       (6, 'pagseguro', 'BRL', 'Pagseguro', '',
+        '{\"api_key\":\"BAE981AF77CA4768A93849AFF5BF2331\",\"secret_key\":\"8045696DBFBF765FF4189FBAE1E02AB5\",\"other_parameter\":\"value\"}',
+        'Payment_model', 1, 1, 0, '', '1705559611'),
+       (7, 'sslcommerz', 'USD', 'SSL Commerz', '',
+        '{\"store_id\":\"sslcommerz_store_id\",\"store_password\":\"sslcommerz_store_password\"}', 'Payment_model', 1,
+        1, 0, '', '1673264610'),
+       (8, 'skrill', 'USD', 'Skrill', '',
+        '{\"skrill_merchant_email\":\"urwatech@gmail.com\",\"secret_passphrase\":\"your_skrill_secret_key\"}',
+        'Payment_model', 1, 1, 0, '', '1700647745'),
+       (10, 'doku', 'USD', 'Doku', '',
+        '{\"client_id\":\"BRN-0271-1700996849302\",\"shared_key\":\"SK-BxOS4PfUdIEMHLccyMI3\"}', 'Payment_model', 1, 1,
+        0, '', '1708603994'),
+       (11, 'bkash', 'BDT', 'Bkash', '',
+        '{\"app_key\":\"app-key\",\"app_secret\":\"app-secret\",\"username\":\"username\",\"password\":\"passwoed\"}',
+        'Payment_model', 1, 1, 0, '1700997440', '1701596645'),
+       (12, 'cashfree', 'INR', 'CashFree', '',
+        '{\"client_id\":\"TEST100748308df0665cabda6c2f38b903847001\",\"client_secret\":\"cfsk_ma_test_71065d7cadf8695e7845e86244bd7011_fff5714b\"}',
+        'Payment_model', 1, 1, 0, '1700997440', '1701688995'),
+       (13, 'maxicash', 'USD', 'Maxicash', '',
+        '{\"merchant_id\":\"TEST100748308df0665cabda6c2f38b903847001\",\"merchant_password\":\"cfsk_ma_test_71065d7cadf8695e7845e86244bd7011_fff5714b\"}',
+        'Payment_model', 1, 1, 0, '1700997440', '1701688995'),
+       (14, 'aamarpay', 'BDT', 'Aamarpay', '',
+        '{\"store_id\":\"aamarpaytest\",\"signature_key\":\"dbb74894e82415a2f7ff0ec3a97e4183\"}', 'Payment_model', 1, 1,
+        0, '1700997440', '1711366991'),
+       (15, 'flutterwave', 'NGN', 'Flutterwave', '',
+        '{\"public_key\":\"FLWPUBK_TEST-b6fbee21fd2d9f13be74bf4d87fe6197-X\",\"secret_key\":\"FLWSECK_TEST-70c3f071a83a1d14bb8a0061e53845a7-X\"}',
+        'Payment_model', 1, 1, 0, '1700997440', '1711366991'),
+       (16, 'tazapay', 'USD', 'Tazapay', '',
+        '{\"public_key\":\"pk_test_audpDpZGmHmYT46kmHvA\",\"api_key\":\"ak_test_CRXTUMNGV4MVPO7RDGT2\",\"api_secret\":\"sk_test_0OfyPSFUX4YqcQGkeyOWCVkEQ7WAWeZ6SmsNNpfFQ989qm15f8mu2gqmYhiXkZ87iF26Ej1Ex9pgNuTq9YoxksPmQjDEbyATBoWw0bNH12mQPIJQ4VGqEPIB5FEizarZ\"}',
+        'Payment_model', 1, 1, 0, '1700997440', '1711366991');
 
 -- --------------------------------------------------------
 
@@ -1235,14 +1322,15 @@ INSERT INTO `payment_gateways` (`id`, `identifier`, `currency`, `title`, `descri
 -- Table structure for table `payout`
 --
 
-CREATE TABLE `payout` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `payment_type` varchar(255) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT 0
+CREATE TABLE `payout`
+(
+    `id`            int(11) UNSIGNED NOT NULL,
+    `user_id`       int(11) DEFAULT NULL,
+    `payment_type`  varchar(255) DEFAULT NULL,
+    `amount` double DEFAULT NULL,
+    `date_added`    int(11) DEFAULT NULL,
+    `last_modified` int(11) DEFAULT NULL,
+    `status`        int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -1251,10 +1339,11 @@ CREATE TABLE `payout` (
 -- Table structure for table `permissions`
 --
 
-CREATE TABLE `permissions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `admin_id` int(11) DEFAULT NULL,
-  `permissions` longtext DEFAULT NULL
+CREATE TABLE `permissions`
+(
+    `id`          bigint(20) UNSIGNED NOT NULL,
+    `admin_id`    int(11) DEFAULT NULL,
+    `permissions` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1263,15 +1352,16 @@ CREATE TABLE `permissions` (
 -- Table structure for table `question`
 --
 
-CREATE TABLE `question` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `quiz_id` int(11) DEFAULT NULL,
-  `title` longtext DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `number_of_options` int(11) DEFAULT NULL,
-  `options` longtext DEFAULT NULL,
-  `correct_answers` longtext DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0
+CREATE TABLE `question`
+(
+    `id`                int(11) UNSIGNED NOT NULL,
+    `quiz_id`           int(11) DEFAULT NULL,
+    `title`             longtext     DEFAULT NULL,
+    `type`              varchar(255) DEFAULT NULL,
+    `number_of_options` int(11) DEFAULT NULL,
+    `options`           longtext     DEFAULT NULL,
+    `correct_answers`   longtext     DEFAULT NULL,
+    `order`             int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1280,16 +1370,17 @@ CREATE TABLE `question` (
 -- Table structure for table `quiz_results`
 --
 
-CREATE TABLE `quiz_results` (
-  `quiz_result_id` int(11) NOT NULL,
-  `quiz_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_answers` longtext NOT NULL,
-  `correct_answers` longtext NOT NULL COMMENT 'question_id',
-  `total_obtained_marks` double NOT NULL,
-  `date_added` varchar(100) NOT NULL,
-  `date_updated` varchar(100) NOT NULL,
-  `is_submitted` int(11) NOT NULL
+CREATE TABLE `quiz_results`
+(
+    `quiz_result_id`  int(11) NOT NULL,
+    `quiz_id`         int(11) NOT NULL,
+    `user_id`         int(11) NOT NULL,
+    `user_answers`    longtext     NOT NULL,
+    `correct_answers` longtext     NOT NULL COMMENT 'question_id',
+    `total_obtained_marks` double NOT NULL,
+    `date_added`      varchar(100) NOT NULL,
+    `date_updated`    varchar(100) NOT NULL,
+    `is_submitted`    int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1298,15 +1389,16 @@ CREATE TABLE `quiz_results` (
 -- Table structure for table `rating`
 --
 
-CREATE TABLE `rating` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `rating` double DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `ratable_id` int(11) DEFAULT NULL,
-  `ratable_type` varchar(50) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `review` longtext DEFAULT NULL
+CREATE TABLE `rating`
+(
+    `id`            int(11) UNSIGNED NOT NULL,
+    `rating` double DEFAULT NULL,
+    `user_id`       int(11) DEFAULT NULL,
+    `ratable_id`    int(11) DEFAULT NULL,
+    `ratable_type`  varchar(50) DEFAULT NULL,
+    `date_added`    int(11) DEFAULT NULL,
+    `last_modified` int(11) DEFAULT NULL,
+    `review`        longtext    DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1315,13 +1407,14 @@ CREATE TABLE `rating` (
 -- Table structure for table `resource_files`
 --
 
-CREATE TABLE `resource_files` (
-  `id` int(11) NOT NULL,
-  `lesson_id` int(20) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `file_name` varchar(255) DEFAULT NULL,
-  `created_at` varchar(255) DEFAULT NULL,
-  `updated_at` varchar(255) DEFAULT NULL
+CREATE TABLE `resource_files`
+(
+    `id`         int(11) NOT NULL,
+    `lesson_id`  int(20) DEFAULT NULL,
+    `title`      varchar(255) DEFAULT NULL,
+    `file_name`  varchar(255) DEFAULT NULL,
+    `created_at` varchar(255) DEFAULT NULL,
+    `updated_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1330,20 +1423,21 @@ CREATE TABLE `resource_files` (
 -- Table structure for table `role`
 --
 
-CREATE TABLE `role` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL
+CREATE TABLE `role`
+(
+    `id`            int(11) UNSIGNED NOT NULL,
+    `name`          varchar(255) DEFAULT NULL,
+    `date_added`    int(11) DEFAULT NULL,
+    `last_modified` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`id`, `name`, `date_added`, `last_modified`) VALUES
-(1, 'Admin', 1234567890, 1234567890),
-(2, 'User', 1234567890, 1234567890);
+INSERT INTO `role` (`id`, `name`, `date_added`, `last_modified`)
+VALUES (1, 'Admin', 1234567890, 1234567890),
+       (2, 'User', 1234567890, 1234567890);
 
 -- --------------------------------------------------------
 
@@ -1351,14 +1445,15 @@ INSERT INTO `role` (`id`, `name`, `date_added`, `last_modified`) VALUES
 -- Table structure for table `section`
 --
 
-CREATE TABLE `section` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `start_date` varchar(255) DEFAULT NULL,
-  `end_date` varchar(255) DEFAULT NULL,
-  `restricted_by` varchar(255) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0
+CREATE TABLE `section`
+(
+    `id`            int(11) NOT NULL,
+    `title`         varchar(255) DEFAULT NULL,
+    `course_id`     int(11) DEFAULT NULL,
+    `start_date`    varchar(255) DEFAULT NULL,
+    `end_date`      varchar(255) DEFAULT NULL,
+    `restricted_by` varchar(255) DEFAULT NULL,
+    `order`         int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1367,81 +1462,93 @@ CREATE TABLE `section` (
 -- Table structure for table `settings`
 --
 
-CREATE TABLE `settings` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `key` varchar(255) DEFAULT NULL,
-  `value` longtext DEFAULT NULL
+CREATE TABLE `settings`
+(
+    `id`    int(11) UNSIGNED NOT NULL,
+    `key`   varchar(255) DEFAULT NULL,
+    `value` longtext     DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `key`, `value`) VALUES
-(1, 'language', 'english'),
-(2, 'system_name', 'Academy-LMS'),
-(3, 'system_title', 'Academy Learning Club'),
-(4, 'system_email', 'academy@example.com'),
-(5, 'address', 'Sydney, Australia'),
-(6, 'phone', '+143-52-9933631'),
-(7, 'purchase_code', 'your-purchase-code'),
-(8, 'paypal', '[{\"active\":\"1\",\"mode\":\"sandbox\",\"sandbox_client_id\":\"AfGaziKslex-scLAyYdDYXNFaz2aL5qGau-SbDgE_D2E80D3AFauLagP8e0kCq9au7W4IasmFbirUUYc\",\"sandbox_secret_key\":\"EMa5pCTuOpmHkhHaCGibGhVUcKg0yt5-C3CzJw-OWJCzaXXzTlyD17SICob_BkfM_0Nlk7TWnN42cbGz\",\"production_client_id\":\"1234\",\"production_secret_key\":\"12345\"}]'),
-(9, 'stripe_keys', '[{\"active\":\"1\",\"testmode\":\"on\",\"public_key\":\"pk_test_CAC3cB1mhgkJqXtypYBTGb4f\",\"secret_key\":\"sk_test_iatnshcHhQVRXdygXw3L2Pp2\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxxxxx\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxxxxx\"}]'),
-(10, 'youtube_api_key', 'youtube-and-google-drive-api-key'),
-(11, 'vimeo_api_key', 'vimeo-api-key'),
-(12, 'slogan', 'A course based video CMS'),
-(13, 'text_align', NULL),
-(14, 'allow_instructor', '1'),
-(15, 'instructor_revenue', '70'),
-(16, 'system_currency', 'USD'),
-(17, 'paypal_currency', 'USD'),
-(18, 'stripe_currency', 'USD'),
-(19, 'author', 'Creativeitem'),
-(20, 'currency_position', 'left'),
-(21, 'website_description', 'Study any topic, anytime. explore thousands of courses for the lowest price ever!'),
-(22, 'website_keywords', 'LMS,Learning Management System,Creativeitem,Academy LMS'),
-(23, 'footer_text', 'Creativeitem'),
-(24, 'footer_link', 'https://creativeitem.com/'),
-(25, 'protocol', 'smtp'),
-(26, 'smtp_host', 'smtp.gmail.com'),
-(27, 'smtp_port', '587'),
-(28, 'smtp_user', 'admin@example.com'),
-(29, 'smtp_pass', 'Enter-your-app-password'),
-(30, 'version', '6.9.1'),
-(31, 'student_email_verification', 'disable'),
-(32, 'instructor_application_note', 'Fill all the fields carefully and share if you want to share any document with us it will help us to evaluate you as an instructor.'),
-(33, 'razorpay_keys', '[{\"active\":\"1\",\"key\":\"rzp_test_J60bqBOi1z1aF5\",\"secret_key\":\"uk935K7p4j96UCJgHK8kAU4q\",\"theme_color\":\"#c7a600\"}]'),
-(34, 'razorpay_currency', 'USD'),
-(35, 'fb_app_id', NULL),
-(36, 'fb_app_secret', NULL),
-(37, 'fb_social_login', NULL),
-(38, 'drip_content_settings', '{\"lesson_completion_role\":\"percentage\",\"minimum_duration\":15,\"minimum_percentage\":\"30\",\"locked_lesson_message\":\"&lt;h3 xss=&quot;removed&quot; style=&quot;text-align: center; &quot;&gt;&lt;span xss=&quot;removed&quot;&gt;&lt;strong&gt;Permission denied!&lt;\\/strong&gt;&lt;\\/span&gt;&lt;\\/h3&gt;&lt;p xss=&quot;removed&quot; style=&quot;text-align: center; &quot;&gt;&lt;span xss=&quot;removed&quot;&gt;This course supports drip content, so you must complete the previous lessons.&lt;\\/span&gt;&lt;\\/p&gt;\"}'),
-(41, 'course_accessibility', 'publicly'),
-(42, 'smtp_crypto', 'tls'),
-(43, 'allowed_device_number_of_loging', '5'),
-(47, 'academy_cloud_access_token', 'jdfghasdfasdfasdfasdfasdf'),
-(48, 'course_selling_tax', '0'),
-(49, 'ccavenue_keys', '[{\"active\":\"1\",\"ccavenue_merchant_id\":\"cmi_xxxxxx\",\"ccavenue_working_key\":\"cwk_xxxxxxxxxxxx\",\"ccavenue_access_code\":\"ccc_xxxxxxxxxxxxx\"}]'),
-(50, 'ccavenue_currency', 'INR'),
-(51, 'iyzico_keys', '[{\"active\":\"1\",\"testmode\":\"on\",\"iyzico_currency\":\"TRY\",\"api_test_key\":\"atk_xxxxxxxx\",\"secret_test_key\":\"stk_xxxxxxxx\",\"api_live_key\":\"alk_xxxxxxxx\",\"secret_live_key\":\"slk_xxxxxxxx\"}]'),
-(52, 'iyzico_currency', 'TRY'),
-(53, 'paystack_keys', '[{\"active\":\"1\",\"testmode\":\"on\",\"secret_test_key\":\"sk_test_c746060e693dd50c6f397dffc6c3b2f655217c94\",\"public_test_key\":\"pk_test_0816abbed3c339b8473ff22f970c7da1c78cbe1b\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxx\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxx\"}]'),
-(54, 'paystack_currency', 'NGN'),
-(55, 'paytm_keys', '[{\"PAYTM_MERCHANT_KEY\":\"PAYTM_MERCHANT_KEY\",\"PAYTM_MERCHANT_MID\":\"PAYTM_MERCHANT_MID\",\"PAYTM_MERCHANT_WEBSITE\":\"DEFAULT\",\"INDUSTRY_TYPE_ID\":\"Retail\",\"CHANNEL_ID\":\"WEB\"}]'),
-(57, 'google_analytics_id', ''),
-(58, 'meta_pixel_id', ''),
-(59, 'smtp_from_email', 'admin@example.com'),
-(61, 'language_dirs', '{\"english\":\"ltr\",\"hindi\":\"rtl\",\"arabic\":\"rtl\"}'),
-(62, 'timezone', 'America/New_York'),
-(63, 'account_disable', '0'),
-(64, 'offline_bank_information', 'Enter your bank information'),
-(65, 'randCallRange', '20'),
-(70, 'wasabi_key', 'access-key'),
-(71, 'wasabi_secret_key', 'secret-key'),
-(72, 'wasabi_bucketname', 'bucket-name'),
-(73, 'wasabi_region', 'region-name'),
-(74, 'bbb_setting', '{\"endpoint\":\"https:\\/\\/manager.bigbluemeeting.com\\/bigbluebutton\\/\",\"secret\":\"shared-secret-or-salt\"}'),
-(75, 'iso_country_codes', '{\"AF\": \"Afghanistan\",\"AX\": \"Åland Islands\",\"AL\": \"Albania\",\"DZ\": \"Algeria\",\"AS\": \"American Samoa\",\"AD\": \"Andorra\",\"AO\": \"Angola\",\"AI\": \"Anguilla\",\"AQ\": \"Antarctica\",\"AG\": \"Antigua and Barbuda\",\"AR\": \"Argentina\",\"AM\": \"Armenia\",\"AW\": \"Aruba\",\"AU\": \"Australia\",\"AT\": \"Austria\",\"AZ\": \"Azerbaijan\",\"BS\": \"Bahamas\",\"BH\": \"Bahrain\",\"BD\": \"Bangladesh\",\"BB\": \"Barbados\",\"BY\": \"Belarus\",\"BE\": \"Belgium\",\"BZ\": \"Belize\",\"BJ\": \"Benin\",\"BM\": \"Bermuda\",\"BT\": \"Bhutan\",\"BO\": \"Bolivia (Plurinational State of)\",\"BQ\": \"Bonaire, Sint Eustatius and Saba\",\"BA\": \"Bosnia and Herzegovina\",\"BW\": \"Botswana\",\"BV\": \"Bouvet Island\",\"BR\": \"Brazil\",\"IO\": \"British Indian Ocean Territory\",\"BN\": \"Brunei Darussalam\",\"BG\": \"Bulgaria\",\"BF\": \"Burkina Faso\",\"BI\": \"Burundi\",\"CV\": \"Cabo Verde\",\"KH\": \"Cambodia\",\"CM\": \"Cameroon\",\"CA\": \"Canada\",\"KY\": \"Cayman Islands\",\"CF\": \"Central African Republic\",\"TD\": \"Chad\",\"CL\": \"Chile\",\"CN\": \"China\",\"CX\": \"Christmas Island\",\"CC\": \"Cocos (Keeling) Islands\",\"CO\": \"Colombia\",\"KM\": \"Comoros\",\"CG\": \"Congo\",\"CD\": \"Congo (Democratic Republic of the)\",\"CK\": \"Cook Islands\",\"CR\": \"Costa Rica\",\"CI\": \"Côte d\'Ivoire\",\"HR\": \"Croatia\",\"CU\": \"Cuba\",\"CW\": \"Curaçao\",\"CY\": \"Cyprus\",\"CZ\": \"Czech Republic\",\"DK\": \"Denmark\",\"DJ\": \"Djibouti\",\"DM\": \"Dominica\",\"DO\": \"Dominican Republic\",\"EC\": \"Ecuador\",\"EG\": \"Egypt\",\"SV\": \"El Salvador\",\"GQ\": \"Equatorial Guinea\",\"ER\": \"Eritrea\",\"EE\": \"Estonia\",\"ET\": \"Ethiopia\",\"FK\": \"Falkland Islands (Malvinas)\",\"FO\": \"Faroe Islands\",\"FJ\": \"Fiji\",\"FI\": \"Finland\",\"FR\": \"France\",\"GF\": \"French Guiana\",\"PF\": \"French Polynesia\",\"TF\": \"French Southern Territories\",\"GA\": \"Gabon\",\"GM\": \"Gambia\",\"GE\": \"Georgia\",\"DE\": \"Germany\",\"GH\": \"Ghana\",\"GI\": \"Gibraltar\",\"GR\": \"Greece\",\"GL\": \"Greenland\",\"GD\": \"Grenada\",\"GP\": \"Guadeloupe\",\"GU\": \"Guam\",\"GT\": \"Guatemala\",\"GG\": \"Guernsey\",\"GN\": \"Guinea\",\"GW\": \"Guinea-Bissau\",\"GY\": \"Guyana\",\"HT\": \"Haiti\",\"HM\": \"Heard Island and McDonald Islands\",\"VA\": \"Holy See\",\"HN\": \"Honduras\",\"HK\": \"Hong Kong\",\"HU\": \"Hungary\",\"IS\": \"Iceland\",\"IN\": \"India\",\"ID\": \"Indonesia\",\"IR\": \"Iran (Islamic Republic of)\",\"IQ\": \"Iraq\",\"IE\": \"Ireland\",\"IM\": \"Isle of Man\",\"IL\": \"Israel\",\"IT\": \"Italy\",\"JM\": \"Jamaica\",\"JP\": \"Japan\",\"JE\": \"Jersey\",\"JO\": \"Jordan\",\"KZ\": \"Kazakhstan\",\"KE\": \"Kenya\",\"KI\": \"Kiribati\",\"KP\": \"Korea (Democratic People\'s Republic of)\",\"KR\": \"Korea (Republic of)\",\"KW\": \"Kuwait\",\"KG\": \"Kyrgyzstan\",\"LA\": \"Lao People\'s Democratic Republic\",\"LV\": \"Latvia\",\"LB\": \"Lebanon\",\"LS\": \"Lesotho\",\"LR\": \"Liberia\",\"LY\": \"Libya\",\"LI\": \"Liechtenstein\",\"LT\": \"Lithuania\",\"LU\": \"Luxembourg\",\"MO\": \"Macao\",\"MK\": \"North Macedonia\",\"MG\": \"Madagascar\",\"MW\": \"Malawi\",\"MY\": \"Malaysia\",\"MV\": \"Maldives\",\"ML\": \"Mali\",\"MT\": \"Malta\",\"MH\": \"Marshall Islands\",\"MQ\": \"Martinique\",\"MR\": \"Mauritania\",\"MU\": \"Mauritius\",\"YT\": \"Mayotte\",\"MX\": \"Mexico\",\"FM\": \"Micronesia (Federated States of)\",\"MD\": \"Moldova (Republic of)\",\"MC\": \"Monaco\",\"MN\": \"Mongolia\",\"ME\": \"Montenegro\",\"MS\": \"Montserrat\",\"MA\": \"Morocco\",\"MZ\": \"Mozambique\",\"MM\": \"Myanmar\",\"NA\": \"Namibia\",\"NR\": \"Nauru\",\"NP\": \"Nepal\",\"NL\": \"Netherlands\",\"NC\": \"New Caledonia\",\"NZ\": \"New Zealand\",\"NI\": \"Nicaragua\",\"NE\": \"Niger\",\"NG\": \"Nigeria\",\"NU\": \"Niue\",\"NF\": \"Norfolk Island\",\"MP\": \"Northern Mariana Islands\",\"NO\": \"Norway\",\"OM\": \"Oman\",\"PK\": \"Pakistan\",\"PW\": \"Palau\",\"PS\": \"Palestine, State of\",\"PA\": \"Panama\",\"PG\": \"Papua New Guinea\",\"PY\": \"Paraguay\",\"PE\": \"Peru\",\"PH\": \"Philippines\",\"PN\": \"Pitcairn\",\"PL\": \"Poland\",\"PT\": \"Portugal\",\"PR\": \"Puerto Rico\",\"QA\": \"Qatar\",\"RE\": \"Réunion\",\"RO\": \"Romania\",\"RU\": \"Russian Federation\",\"RW\": \"Rwanda\",\"BL\": \"Saint Barthélemy\",\"SH\": \"Saint Helena, Ascension and Tristan da Cunha\",\"KN\": \"Saint Kitts and Nevis\",\"LC\": \"Saint Lucia\",\"MF\": \"Saint Martin (French part)\",\"PM\": \"Saint Pierre and Miquelon\",\"VC\": \"Saint Vincent and the Grenadines\",\"WS\": \"Samoa\",\"SM\": \"San Marino\",\"ST\": \"Sao Tome and Principe\",\"SA\": \"Saudi Arabia\",\"SN\": \"Senegal\",\"RS\": \"Serbia\",\"SC\": \"Seychelles\",\"SL\": \"Sierra Leone\",\"SG\": \"Singapore\",\"SX\": \"Sint Maarten (Dutch part)\",\"SK\": \"Slovakia\",\"SI\": \"Slovenia\",\"SB\": \"Solomon Islands\",\"SO\": \"Somalia\",\"ZA\": \"South Africa\",\"GS\": \"South Georgia and the South Sandwich Islands\",\"SS\": \"South Sudan\",\"ES\": \"Spain\",\"LK\": \"Sri Lanka\",\"SD\": \"Sudan\",\"SR\": \"Suriname\",\"SJ\": \"Svalbard and Jan Mayen\",\"SE\": \"Sweden\",\"CH\": \"Switzerland\",\"SY\": \"Syrian Arab Republic\",\"TW\": \"Taiwan, Province of China\",\"TJ\": \"Tajikistan\",\"TZ\": \"Tanzania, United Republic of\",\"TH\": \"Thailand\",\"TL\": \"Timor-Leste\",\"TG\": \"Togo\",\"TK\": \"Tokelau\",\"TO\": \"Tonga\",\"TT\": \"Trinidad and Tobago\",\"TN\": \"Tunisia\",\"TR\": \"Turkey\",\"TM\": \"Turkmenistan\",\"TC\": \"Turks and Caicos Islands\",\"TV\": \"Tuvalu\",\"UG\": \"Uganda\",\"UA\": \"Ukraine\",\"AE\": \"United Arab Emirates\",\"GB\": \"United Kingdom of Great Britain and Northern Ireland\",\"UM\": \"United States Minor Outlying Islands\",\"US\": \"United States of America\",\"UY\": \"Uruguay\",\"UZ\": \"Uzbekistan\",\"VU\": \"Vanuatu\",\"VE\": \"Venezuela (Bolivarian Republic of)\",\"VN\": \"Viet Nam\",\"VG\": \"Virgin Islands (British)\",\"VI\": \"Virgin Islands (U.S.)\",\"WF\": \"Wallis and Futuna\",\"EH\": \"Western Sahara\",\"YE\": \"Yemen\",\"ZM\": \"Zambia\",\"ZW\": \"Zimbabwe\"}');
+INSERT INTO `settings` (`id`, `key`, `value`)
+VALUES (1, 'language', 'english'),
+       (2, 'system_name', 'Academy-LMS'),
+       (3, 'system_title', 'Academy Learning Club'),
+       (4, 'system_email', 'academy@example.com'),
+       (5, 'address', 'Sydney, Australia'),
+       (6, 'phone', '+143-52-9933631'),
+       (7, 'purchase_code', 'your-purchase-code'),
+       (8, 'paypal',
+        '[{\"active\":\"1\",\"mode\":\"sandbox\",\"sandbox_client_id\":\"AfGaziKslex-scLAyYdDYXNFaz2aL5qGau-SbDgE_D2E80D3AFauLagP8e0kCq9au7W4IasmFbirUUYc\",\"sandbox_secret_key\":\"EMa5pCTuOpmHkhHaCGibGhVUcKg0yt5-C3CzJw-OWJCzaXXzTlyD17SICob_BkfM_0Nlk7TWnN42cbGz\",\"production_client_id\":\"1234\",\"production_secret_key\":\"12345\"}]'),
+       (9, 'stripe_keys',
+        '[{\"active\":\"1\",\"testmode\":\"on\",\"public_key\":\"pk_test_CAC3cB1mhgkJqXtypYBTGb4f\",\"secret_key\":\"sk_test_iatnshcHhQVRXdygXw3L2Pp2\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxxxxx\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxxxxx\"}]'),
+       (10, 'youtube_api_key', 'youtube-and-google-drive-api-key'),
+       (11, 'vimeo_api_key', 'vimeo-api-key'),
+       (12, 'slogan', 'A course based video CMS'),
+       (13, 'text_align', NULL),
+       (14, 'allow_instructor', '1'),
+       (15, 'instructor_revenue', '70'),
+       (16, 'system_currency', 'USD'),
+       (17, 'paypal_currency', 'USD'),
+       (18, 'stripe_currency', 'USD'),
+       (19, 'author', 'Creativeitem'),
+       (20, 'currency_position', 'left'),
+       (21, 'website_description', 'Study any topic, anytime. explore thousands of courses for the lowest price ever!'),
+       (22, 'website_keywords', 'LMS,Learning Management System,Creativeitem,Academy LMS'),
+       (23, 'footer_text', 'Creativeitem'),
+       (24, 'footer_link', 'https://creativeitem.com/'),
+       (25, 'protocol', 'smtp'),
+       (26, 'smtp_host', 'smtp.gmail.com'),
+       (27, 'smtp_port', '587'),
+       (28, 'smtp_user', 'admin@example.com'),
+       (29, 'smtp_pass', 'Enter-your-app-password'),
+       (30, 'version', '6.9.1'),
+       (31, 'student_email_verification', 'disable'),
+       (32, 'instructor_application_note',
+        'Fill all the fields carefully and share if you want to share any document with us it will help us to evaluate you as an instructor.'),
+       (33, 'razorpay_keys',
+        '[{\"active\":\"1\",\"key\":\"rzp_test_J60bqBOi1z1aF5\",\"secret_key\":\"uk935K7p4j96UCJgHK8kAU4q\",\"theme_color\":\"#c7a600\"}]'),
+       (34, 'razorpay_currency', 'USD'),
+       (35, 'fb_app_id', NULL),
+       (36, 'fb_app_secret', NULL),
+       (37, 'fb_social_login', NULL),
+       (38, 'drip_content_settings',
+        '{\"lesson_completion_role\":\"percentage\",\"minimum_duration\":15,\"minimum_percentage\":\"30\",\"locked_lesson_message\":\"&lt;h3 xss=&quot;removed&quot; style=&quot;text-align: center; &quot;&gt;&lt;span xss=&quot;removed&quot;&gt;&lt;strong&gt;Permission denied!&lt;\\/strong&gt;&lt;\\/span&gt;&lt;\\/h3&gt;&lt;p xss=&quot;removed&quot; style=&quot;text-align: center; &quot;&gt;&lt;span xss=&quot;removed&quot;&gt;This course supports drip content, so you must complete the previous lessons.&lt;\\/span&gt;&lt;\\/p&gt;\"}'),
+       (41, 'course_accessibility', 'publicly'),
+       (42, 'smtp_crypto', 'tls'),
+       (43, 'allowed_device_number_of_loging', '5'),
+       (47, 'academy_cloud_access_token', 'jdfghasdfasdfasdfasdfasdf'),
+       (48, 'course_selling_tax', '0'),
+       (49, 'ccavenue_keys',
+        '[{\"active\":\"1\",\"ccavenue_merchant_id\":\"cmi_xxxxxx\",\"ccavenue_working_key\":\"cwk_xxxxxxxxxxxx\",\"ccavenue_access_code\":\"ccc_xxxxxxxxxxxxx\"}]'),
+       (50, 'ccavenue_currency', 'INR'),
+       (51, 'iyzico_keys',
+        '[{\"active\":\"1\",\"testmode\":\"on\",\"iyzico_currency\":\"TRY\",\"api_test_key\":\"atk_xxxxxxxx\",\"secret_test_key\":\"stk_xxxxxxxx\",\"api_live_key\":\"alk_xxxxxxxx\",\"secret_live_key\":\"slk_xxxxxxxx\"}]'),
+       (52, 'iyzico_currency', 'TRY'),
+       (53, 'paystack_keys',
+        '[{\"active\":\"1\",\"testmode\":\"on\",\"secret_test_key\":\"sk_test_c746060e693dd50c6f397dffc6c3b2f655217c94\",\"public_test_key\":\"pk_test_0816abbed3c339b8473ff22f970c7da1c78cbe1b\",\"secret_live_key\":\"sk_live_xxxxxxxxxxxxxxxxxxxxx\",\"public_live_key\":\"pk_live_xxxxxxxxxxxxxxxxxxxxx\"}]'),
+       (54, 'paystack_currency', 'NGN'),
+       (55, 'paytm_keys',
+        '[{\"PAYTM_MERCHANT_KEY\":\"PAYTM_MERCHANT_KEY\",\"PAYTM_MERCHANT_MID\":\"PAYTM_MERCHANT_MID\",\"PAYTM_MERCHANT_WEBSITE\":\"DEFAULT\",\"INDUSTRY_TYPE_ID\":\"Retail\",\"CHANNEL_ID\":\"WEB\"}]'),
+       (57, 'google_analytics_id', ''),
+       (58, 'meta_pixel_id', ''),
+       (59, 'smtp_from_email', 'admin@example.com'),
+       (61, 'language_dirs', '{\"english\":\"ltr\",\"hindi\":\"rtl\",\"arabic\":\"rtl\"}'),
+       (62, 'timezone', 'America/New_York'),
+       (63, 'account_disable', '0'),
+       (64, 'offline_bank_information', 'Enter your bank information'),
+       (65, 'randCallRange', '20'),
+       (70, 'wasabi_key', 'access-key'),
+       (71, 'wasabi_secret_key', 'secret-key'),
+       (72, 'wasabi_bucketname', 'bucket-name'),
+       (73, 'wasabi_region', 'region-name'),
+       (74, 'bbb_setting',
+        '{\"endpoint\":\"https:\\/\\/manager.bigbluemeeting.com\\/bigbluebutton\\/\",\"secret\":\"shared-secret-or-salt\"}'),
+       (75, 'iso_country_codes',
+        '{\"AF\": \"Afghanistan\",\"AX\": \"Åland Islands\",\"AL\": \"Albania\",\"DZ\": \"Algeria\",\"AS\": \"American Samoa\",\"AD\": \"Andorra\",\"AO\": \"Angola\",\"AI\": \"Anguilla\",\"AQ\": \"Antarctica\",\"AG\": \"Antigua and Barbuda\",\"AR\": \"Argentina\",\"AM\": \"Armenia\",\"AW\": \"Aruba\",\"AU\": \"Australia\",\"AT\": \"Austria\",\"AZ\": \"Azerbaijan\",\"BS\": \"Bahamas\",\"BH\": \"Bahrain\",\"BD\": \"Bangladesh\",\"BB\": \"Barbados\",\"BY\": \"Belarus\",\"BE\": \"Belgium\",\"BZ\": \"Belize\",\"BJ\": \"Benin\",\"BM\": \"Bermuda\",\"BT\": \"Bhutan\",\"BO\": \"Bolivia (Plurinational State of)\",\"BQ\": \"Bonaire, Sint Eustatius and Saba\",\"BA\": \"Bosnia and Herzegovina\",\"BW\": \"Botswana\",\"BV\": \"Bouvet Island\",\"BR\": \"Brazil\",\"IO\": \"British Indian Ocean Territory\",\"BN\": \"Brunei Darussalam\",\"BG\": \"Bulgaria\",\"BF\": \"Burkina Faso\",\"BI\": \"Burundi\",\"CV\": \"Cabo Verde\",\"KH\": \"Cambodia\",\"CM\": \"Cameroon\",\"CA\": \"Canada\",\"KY\": \"Cayman Islands\",\"CF\": \"Central African Republic\",\"TD\": \"Chad\",\"CL\": \"Chile\",\"CN\": \"China\",\"CX\": \"Christmas Island\",\"CC\": \"Cocos (Keeling) Islands\",\"CO\": \"Colombia\",\"KM\": \"Comoros\",\"CG\": \"Congo\",\"CD\": \"Congo (Democratic Republic of the)\",\"CK\": \"Cook Islands\",\"CR\": \"Costa Rica\",\"CI\": \"Côte d\'Ivoire\",\"HR\": \"Croatia\",\"CU\": \"Cuba\",\"CW\": \"Curaçao\",\"CY\": \"Cyprus\",\"CZ\": \"Czech Republic\",\"DK\": \"Denmark\",\"DJ\": \"Djibouti\",\"DM\": \"Dominica\",\"DO\": \"Dominican Republic\",\"EC\": \"Ecuador\",\"EG\": \"Egypt\",\"SV\": \"El Salvador\",\"GQ\": \"Equatorial Guinea\",\"ER\": \"Eritrea\",\"EE\": \"Estonia\",\"ET\": \"Ethiopia\",\"FK\": \"Falkland Islands (Malvinas)\",\"FO\": \"Faroe Islands\",\"FJ\": \"Fiji\",\"FI\": \"Finland\",\"FR\": \"France\",\"GF\": \"French Guiana\",\"PF\": \"French Polynesia\",\"TF\": \"French Southern Territories\",\"GA\": \"Gabon\",\"GM\": \"Gambia\",\"GE\": \"Georgia\",\"DE\": \"Germany\",\"GH\": \"Ghana\",\"GI\": \"Gibraltar\",\"GR\": \"Greece\",\"GL\": \"Greenland\",\"GD\": \"Grenada\",\"GP\": \"Guadeloupe\",\"GU\": \"Guam\",\"GT\": \"Guatemala\",\"GG\": \"Guernsey\",\"GN\": \"Guinea\",\"GW\": \"Guinea-Bissau\",\"GY\": \"Guyana\",\"HT\": \"Haiti\",\"HM\": \"Heard Island and McDonald Islands\",\"VA\": \"Holy See\",\"HN\": \"Honduras\",\"HK\": \"Hong Kong\",\"HU\": \"Hungary\",\"IS\": \"Iceland\",\"IN\": \"India\",\"ID\": \"Indonesia\",\"IR\": \"Iran (Islamic Republic of)\",\"IQ\": \"Iraq\",\"IE\": \"Ireland\",\"IM\": \"Isle of Man\",\"IL\": \"Israel\",\"IT\": \"Italy\",\"JM\": \"Jamaica\",\"JP\": \"Japan\",\"JE\": \"Jersey\",\"JO\": \"Jordan\",\"KZ\": \"Kazakhstan\",\"KE\": \"Kenya\",\"KI\": \"Kiribati\",\"KP\": \"Korea (Democratic People\'s Republic of)\",\"KR\": \"Korea (Republic of)\",\"KW\": \"Kuwait\",\"KG\": \"Kyrgyzstan\",\"LA\": \"Lao People\'s Democratic Republic\",\"LV\": \"Latvia\",\"LB\": \"Lebanon\",\"LS\": \"Lesotho\",\"LR\": \"Liberia\",\"LY\": \"Libya\",\"LI\": \"Liechtenstein\",\"LT\": \"Lithuania\",\"LU\": \"Luxembourg\",\"MO\": \"Macao\",\"MK\": \"North Macedonia\",\"MG\": \"Madagascar\",\"MW\": \"Malawi\",\"MY\": \"Malaysia\",\"MV\": \"Maldives\",\"ML\": \"Mali\",\"MT\": \"Malta\",\"MH\": \"Marshall Islands\",\"MQ\": \"Martinique\",\"MR\": \"Mauritania\",\"MU\": \"Mauritius\",\"YT\": \"Mayotte\",\"MX\": \"Mexico\",\"FM\": \"Micronesia (Federated States of)\",\"MD\": \"Moldova (Republic of)\",\"MC\": \"Monaco\",\"MN\": \"Mongolia\",\"ME\": \"Montenegro\",\"MS\": \"Montserrat\",\"MA\": \"Morocco\",\"MZ\": \"Mozambique\",\"MM\": \"Myanmar\",\"NA\": \"Namibia\",\"NR\": \"Nauru\",\"NP\": \"Nepal\",\"NL\": \"Netherlands\",\"NC\": \"New Caledonia\",\"NZ\": \"New Zealand\",\"NI\": \"Nicaragua\",\"NE\": \"Niger\",\"NG\": \"Nigeria\",\"NU\": \"Niue\",\"NF\": \"Norfolk Island\",\"MP\": \"Northern Mariana Islands\",\"NO\": \"Norway\",\"OM\": \"Oman\",\"PK\": \"Pakistan\",\"PW\": \"Palau\",\"PS\": \"Palestine, State of\",\"PA\": \"Panama\",\"PG\": \"Papua New Guinea\",\"PY\": \"Paraguay\",\"PE\": \"Peru\",\"PH\": \"Philippines\",\"PN\": \"Pitcairn\",\"PL\": \"Poland\",\"PT\": \"Portugal\",\"PR\": \"Puerto Rico\",\"QA\": \"Qatar\",\"RE\": \"Réunion\",\"RO\": \"Romania\",\"RU\": \"Russian Federation\",\"RW\": \"Rwanda\",\"BL\": \"Saint Barthélemy\",\"SH\": \"Saint Helena, Ascension and Tristan da Cunha\",\"KN\": \"Saint Kitts and Nevis\",\"LC\": \"Saint Lucia\",\"MF\": \"Saint Martin (French part)\",\"PM\": \"Saint Pierre and Miquelon\",\"VC\": \"Saint Vincent and the Grenadines\",\"WS\": \"Samoa\",\"SM\": \"San Marino\",\"ST\": \"Sao Tome and Principe\",\"SA\": \"Saudi Arabia\",\"SN\": \"Senegal\",\"RS\": \"Serbia\",\"SC\": \"Seychelles\",\"SL\": \"Sierra Leone\",\"SG\": \"Singapore\",\"SX\": \"Sint Maarten (Dutch part)\",\"SK\": \"Slovakia\",\"SI\": \"Slovenia\",\"SB\": \"Solomon Islands\",\"SO\": \"Somalia\",\"ZA\": \"South Africa\",\"GS\": \"South Georgia and the South Sandwich Islands\",\"SS\": \"South Sudan\",\"ES\": \"Spain\",\"LK\": \"Sri Lanka\",\"SD\": \"Sudan\",\"SR\": \"Suriname\",\"SJ\": \"Svalbard and Jan Mayen\",\"SE\": \"Sweden\",\"CH\": \"Switzerland\",\"SY\": \"Syrian Arab Republic\",\"TW\": \"Taiwan, Province of China\",\"TJ\": \"Tajikistan\",\"TZ\": \"Tanzania, United Republic of\",\"TH\": \"Thailand\",\"TL\": \"Timor-Leste\",\"TG\": \"Togo\",\"TK\": \"Tokelau\",\"TO\": \"Tonga\",\"TT\": \"Trinidad and Tobago\",\"TN\": \"Tunisia\",\"TR\": \"Turkey\",\"TM\": \"Turkmenistan\",\"TC\": \"Turks and Caicos Islands\",\"TV\": \"Tuvalu\",\"UG\": \"Uganda\",\"UA\": \"Ukraine\",\"AE\": \"United Arab Emirates\",\"GB\": \"United Kingdom of Great Britain and Northern Ireland\",\"UM\": \"United States Minor Outlying Islands\",\"US\": \"United States of America\",\"UY\": \"Uruguay\",\"UZ\": \"Uzbekistan\",\"VU\": \"Vanuatu\",\"VE\": \"Venezuela (Bolivarian Republic of)\",\"VN\": \"Viet Nam\",\"VG\": \"Virgin Islands (British)\",\"VI\": \"Virgin Islands (U.S.)\",\"WF\": \"Wallis and Futuna\",\"EH\": \"Western Sahara\",\"YE\": \"Yemen\",\"ZM\": \"Zambia\",\"ZW\": \"Zimbabwe\"}');
 
 -- --------------------------------------------------------
 
@@ -1464,52 +1571,66 @@ CREATE TABLE `tag` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `another_phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `skills` longtext NOT NULL,
-  `social_links` longtext DEFAULT NULL,
-  `biography` longtext DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `wishlist` longtext DEFAULT NULL,
-  `title` longtext DEFAULT NULL,
-  `payment_keys` longtext NOT NULL,
-  `verification_code` longtext DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `is_instructor` int(11) DEFAULT 0,
-  `image` varchar(255) DEFAULT NULL,
-  `temp` longtext DEFAULT NULL,
-  `sessions` longtext NOT NULL
+CREATE TABLE `users`
+(
+    `id`                int(11) UNSIGNED NOT NULL,
+    `first_name`        varchar(255) DEFAULT NULL,
+    `last_name`         varchar(255) DEFAULT NULL,
+    `email`             varchar(50)  DEFAULT NULL,
+    `phone`             varchar(255) DEFAULT NULL,
+    `another_phone`     varchar(255) DEFAULT NULL,
+    `address`           varchar(255) DEFAULT NULL,
+    `password`          varchar(255) DEFAULT NULL,
+    `skills`            longtext NOT NULL,
+    `social_links`      longtext     DEFAULT NULL,
+    `biography`         longtext     DEFAULT NULL,
+    `role_id`           int(11) DEFAULT NULL,
+    `date_added`        int(11) DEFAULT NULL,
+    `last_modified`     int(11) DEFAULT NULL,
+    `wishlist`          longtext     DEFAULT NULL,
+    `title`             longtext     DEFAULT NULL,
+    `payment_keys`      longtext NOT NULL,
+    `verification_code` longtext     DEFAULT NULL,
+    `status`            int(11) DEFAULT NULL,
+    `is_instructor`     int(11) DEFAULT 0,
+    `image`             varchar(255) DEFAULT NULL,
+    `temp`              longtext     DEFAULT NULL,
+    `sessions`          longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table `users`
 --
 -- todo :: check if this insertion is required
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `another_phone`, `address`, `password`, `skills`, `social_links`, `biography`, `role_id`, `date_added`, `last_modified`, `wishlist`, `title`, `payment_keys`, `verification_code`, `status`, `is_instructor`, `image`, `temp`, `sessions`) VALUES
-                                                                                                                                                                                                                                                                                                                       (2, 'Eslam ', 'Hamedallah', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 1, NULL, 1727033533, NULL, '', '', NULL, 1, 1, NULL, NULL, ''),
-                                                                                                                                                                                                                                                                                                                       (18, 'instructor', 'test', 'instructor@test.com', '', NULL, '', '5db3005d1c92d3def956044087157bb23f29c6b0', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727697255, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 1, '42b8e053830265a94bcf4349e5905d23', NULL, '[]'),
-                                                                                                                                                                                                                                                                                                                       (19, 'student', 'test', 'student@test.com', '', '', '', '204036a1ef6e7360e536300ea78c6aeb4a9333dd', '', '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727701750, NULL, '[]', NULL, '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}', NULL, 1, 0, '44df9a99f99bf6bdece57489a4b7c5f7', NULL, '[\"hm1kc0u4j6q71cpq6dvfavbvg7o0p145\",\"0jo67bs8hum9nhmmttmfaq9simkklurv\",\"fplc1705dm3spmi7cbqbjjcskk56ol9j\",\"buo6gqj2vs4o8hccaqlv0da4heo30nh3\",\"httot06a4uh70qod29g8k65dkq5dk1q6\"]');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `another_phone`, `address`, `password`,
+                     `skills`, `social_links`, `biography`, `role_id`, `date_added`, `last_modified`, `wishlist`,
+                     `title`, `payment_keys`, `verification_code`, `status`, `is_instructor`, `image`, `temp`,
+                     `sessions`)
+VALUES (2, 'Eslam ', 'Hamedallah', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '',
+        '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 1, NULL, 1727033533, NULL, '', '', NULL, 1, 1,
+        NULL, NULL, ''),
+       (18, 'instructor', 'test', 'instructor@test.com', '', NULL, '', '5db3005d1c92d3def956044087157bb23f29c6b0', '',
+        '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727697255, NULL, '[]', NULL,
+        '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}',
+        NULL, 1, 1, '42b8e053830265a94bcf4349e5905d23', NULL, '[]'),
+       (19, 'student', 'test', 'student@test.com', '', '', '', '204036a1ef6e7360e536300ea78c6aeb4a9333dd', '',
+        '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 2, 1727701750, NULL, '[]', NULL,
+        '{\"paypal\":{\"sandbox_client_id\":\"\",\"sandbox_secret_key\":\"\",\"production_client_id\":\"\",\"production_secret_key\":\"\"},\"stripe\":{\"public_key\":\"\",\"secret_key\":\"\",\"public_live_key\":\"\",\"secret_live_key\":\"\"},\"razorpay\":{\"key_id\":\"\",\"secret_key\":\"\",\"theme_color\":\"\"},\"xendit\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"payu\":{\"pos_id\":\"\",\"second_key\":\"\",\"client_id\":\"\",\"client_secret\":\"\"},\"pagseguro\":{\"api_key\":\"\",\"secret_key\":\"\",\"other_parameter\":\"\"},\"sslcommerz\":{\"store_id\":\"\",\"store_password\":\"\"},\"skrill\":{\"skrill_merchant_email\":\"\",\"secret_passphrase\":\"\"},\"doku\":{\"client_id\":\"\",\"shared_key\":\"\"},\"bkash\":{\"app_key\":\"\",\"app_secret\":\"\",\"username\":\"\",\"password\":\"\"},\"cashfree\":{\"client_id\":\"\",\"client_secret\":\"\"},\"maxicash\":{\"merchant_id\":\"\",\"merchant_password\":\"\"},\"aamarpay\":{\"store_id\":\"\",\"signature_key\":\"\"},\"flutterwave\":{\"public_key\":\"\",\"secret_key\":\"\"},\"tazapay\":{\"public_key\":\"\",\"api_key\":\"\",\"api_secret\":\"\"}}',
+        NULL, 1, 0, '44df9a99f99bf6bdece57489a4b7c5f7', NULL,
+        '[\"hm1kc0u4j6q71cpq6dvfavbvg7o0p145\",\"0jo67bs8hum9nhmmttmfaq9simkklurv\",\"fplc1705dm3spmi7cbqbjjcskk56ol9j\",\"buo6gqj2vs4o8hccaqlv0da4heo30nh3\",\"httot06a4uh70qod29g8k65dkq5dk1q6\"]');
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `watched_duration`
 --
 
-CREATE TABLE `watched_duration` (
-  `watched_id` int(11) UNSIGNED NOT NULL,
-  `watched_student_id` int(11) DEFAULT NULL,
-  `watched_course_id` int(11) DEFAULT NULL,
-  `watched_lesson_id` int(11) DEFAULT NULL,
-  `current_duration` int(20) DEFAULT NULL,
-  `watched_counter` longtext DEFAULT NULL
+CREATE TABLE `watched_duration`
+(
+    `watched_id`         int(11) UNSIGNED NOT NULL,
+    `watched_student_id` int(11) DEFAULT NULL,
+    `watched_course_id`  int(11) DEFAULT NULL,
+    `watched_lesson_id`  int(11) DEFAULT NULL,
+    `current_duration`   int(20) DEFAULT NULL,
+    `watched_counter`    longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1518,19 +1639,42 @@ CREATE TABLE `watched_duration` (
 -- Table structure for table `watch_histories`
 --
 
-CREATE TABLE `watch_histories` (
-  `watch_history_id` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `completed_lesson` longtext NOT NULL,
-  `course_progress` int(11) NOT NULL,
-  `watching_lesson_id` int(11) NOT NULL,
-  `quiz_result` longtext NOT NULL,
-  `completed_date` varchar(255) DEFAULT NULL,
-  `date_added` varchar(100) DEFAULT NULL,
-  `date_updated` varchar(100) DEFAULT NULL
+CREATE TABLE `watch_histories`
+(
+    `watch_history_id`   int(11) NOT NULL,
+    `course_id`          int(11) NOT NULL,
+    `student_id`         int(11) NOT NULL,
+    `completed_lesson`   longtext NOT NULL,
+    `course_progress`    int(11) NOT NULL,
+    `watching_lesson_id` int(11) NOT NULL,
+    `quiz_result`        longtext NOT NULL,
+    `completed_date`     varchar(255) DEFAULT NULL,
+    `date_added`         varchar(100) DEFAULT NULL,
+    `date_updated`       varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Table structure for table `complains`
+--
+
+CREATE TABLE `complains`
+(
+    `id`              int(11) NOT NULL,
+    `complain_type`   enum('user','admin') NOT NULL DEFAULT 'user',
+    `user_id`         int(11) NOT NULL,
+    `name`            varchar(255) NOT NULL,
+    `email`           varchar(255) NOT NULL,
+    `phone`           int(11) DEFAULT NULL,
+    `course_id`       int(11) DEFAULT NULL,
+    `problem_type`    enum('technical_problem','quiz_problem','content_problem','general_problem','general_matter','payment_problem','sign_problem') DEFAULT NULL,
+    `message`         text         NOT NULL,
+    `status`          enum('open','closed') DEFAULT 'open',
+    `created_at`      timestamp    NOT NULL DEFAULT current_timestamp(),
+    `updated_at`      timestamp    NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    `replay_admin_id` int(11) DEFAULT NULL,
+    `replay_message`  text                  DEFAULT NULL,
+    `replay_date`     timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Indexes for dumped tables
 --
@@ -1539,237 +1683,237 @@ CREATE TABLE `watch_histories` (
 -- Indexes for table `addons`
 --
 ALTER TABLE `addons`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `applications`
 --
 ALTER TABLE `applications`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bbb_meetings`
 --
 ALTER TABLE `bbb_meetings`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `blogs`
 --
 ALTER TABLE `blogs`
-  ADD PRIMARY KEY (`blog_id`);
+    ADD PRIMARY KEY (`blog_id`);
 
 --
 -- Indexes for table `blog_category`
 --
 ALTER TABLE `blog_category`
-  ADD PRIMARY KEY (`blog_category_id`);
+    ADD PRIMARY KEY (`blog_category_id`);
 
 --
 -- Indexes for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  ADD PRIMARY KEY (`blog_comment_id`);
+    ADD PRIMARY KEY (`blog_comment_id`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `coupons`
 --
 ALTER TABLE `coupons`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `currency`
 --
 ALTER TABLE `currency`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `custom_page`
 --
 ALTER TABLE `custom_page`
-  ADD PRIMARY KEY (`custom_page_id`);
+    ADD PRIMARY KEY (`custom_page_id`);
 
 --
 -- Indexes for table `enrol`
 --
 ALTER TABLE `enrol`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `frontend_settings`
 --
 ALTER TABLE `frontend_settings`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `language`
 --
 ALTER TABLE `language`
-  ADD PRIMARY KEY (`phrase_id`);
+    ADD PRIMARY KEY (`phrase_id`);
 
 --
 -- Indexes for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`message_id`);
+    ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `message_thread`
 --
 ALTER TABLE `message_thread`
-  ADD PRIMARY KEY (`message_thread_id`);
+    ADD PRIMARY KEY (`message_thread_id`);
 
 --
 -- Indexes for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `newsletter_histories`
 --
 ALTER TABLE `newsletter_histories`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `newsletter_subscriber`
 --
 ALTER TABLE `newsletter_subscriber`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `notification_settings`
 --
 ALTER TABLE `notification_settings`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payout`
 --
 ALTER TABLE `payout`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  ADD PRIMARY KEY (`quiz_result_id`);
+    ADD PRIMARY KEY (`quiz_result_id`);
 
 --
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `resource_files`
 --
 ALTER TABLE `resource_files`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tag`
 --
 ALTER TABLE `tag`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `watched_duration`
 --
 ALTER TABLE `watched_duration`
-  ADD PRIMARY KEY (`watched_id`);
+    ADD PRIMARY KEY (`watched_id`);
 
 --
 -- Indexes for table `watch_histories`
 --
 ALTER TABLE `watch_histories`
-  ADD PRIMARY KEY (`watch_history_id`);
+    ADD PRIMARY KEY (`watch_history_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1779,235 +1923,235 @@ ALTER TABLE `watch_histories`
 -- AUTO_INCREMENT for table `addons`
 --
 ALTER TABLE `addons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bbb_meetings`
 --
 ALTER TABLE `bbb_meetings`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `blog_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blog_category`
 --
 ALTER TABLE `blog_category`
-  MODIFY `blog_category_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `blog_category_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  MODIFY `blog_comment_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `blog_comment_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (21) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `currency`
 --
 ALTER TABLE `currency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `custom_page`
 --
 ALTER TABLE `custom_page`
-  MODIFY `custom_page_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `custom_page_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enrol`
 --
 ALTER TABLE `enrol`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `frontend_settings`
 --
 ALTER TABLE `frontend_settings`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
+    MODIFY `phrase_id` int (11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
 
 --
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `message_id` int (20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `message_thread`
 --
 ALTER TABLE `message_thread`
-  MODIFY `message_thread_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `message_thread_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `newsletter_histories`
 --
 ALTER TABLE `newsletter_histories`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `newsletter_subscriber`
 --
 ALTER TABLE `newsletter_subscriber`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notification_settings`
 --
 ALTER TABLE `notification_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `payout`
 --
 ALTER TABLE `payout`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  MODIFY `quiz_result_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `quiz_result_id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `resource_files`
 --
 ALTER TABLE `resource_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `watched_duration`
 --
 ALTER TABLE `watched_duration`
-  MODIFY `watched_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `watched_id` int (11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `watch_histories`
 --
 ALTER TABLE `watch_histories`
-  MODIFY `watch_history_id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `watch_history_id` int (11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

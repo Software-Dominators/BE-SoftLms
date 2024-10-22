@@ -50,6 +50,7 @@ class User extends CI_Controller
         }
     }
 
+
     public function instructor_authorization($method)
     {
         // IF THE USER IS NOT AN INSTRUCTOR HE/SHE CAN NEVER ACCESS THE OTHER FUNCTIONS EXCEPT FOR BELOW FUNCTIONS.
