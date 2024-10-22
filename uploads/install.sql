@@ -244,44 +244,45 @@ CREATE TABLE `coupons`
 -- Table structure for table `course`
 --
 
-CREATE TABLE `course` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `short_description` longtext DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `outcomes` longtext DEFAULT NULL,
-  `faqs` text NOT NULL,
-  `language` varchar(255) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `sub_category_id` int(11) DEFAULT NULL,
-  `section` longtext DEFAULT NULL,
-  `requirements` longtext DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `section_price` double DEFAULT NULL, -- new column added
-  `lesson_price` double DEFAULT NULL, -- new column added
-  `discount_flag` int(11) DEFAULT 0,
-  `discounted_price` double DEFAULT NULL,
-  `level` varchar(50) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
-  `thumbnail` varchar(255) DEFAULT NULL,
-  `video_url` varchar(255) DEFAULT NULL,
-  `date_added` int(11) DEFAULT NULL,
-  `last_modified` int(11) DEFAULT NULL,
-  `course_type` varchar(255) DEFAULT NULL,
-  `is_top_course` int(11) DEFAULT 0,
-  `is_admin` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `course_overview_provider` varchar(255) DEFAULT NULL,
-  `meta_keywords` longtext DEFAULT NULL,
-  `meta_description` longtext DEFAULT NULL,
-  `is_free_course` int(11) DEFAULT NULL,
-  `multi_instructor` int(11) NOT NULL DEFAULT 0,
-  `enable_drip_content` int(11) NOT NULL,
-  `creator` int(11) DEFAULT NULL,
-  `expiry_period` int(11) DEFAULT NULL,
-  `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
-  `publish_date` varchar(500) DEFAULT NULL,
-  `enable_certificate` TINYINT(1) NOT NULL DEFAULT 1 -- New column added
+CREATE TABLE `course`
+(
+    `id`                       int(11) UNSIGNED NOT NULL,
+    `title`                    varchar(255) DEFAULT NULL,
+    `short_description`        longtext     DEFAULT NULL,
+    `description`              longtext     DEFAULT NULL,
+    `outcomes`                 longtext     DEFAULT NULL,
+    `faqs`                     text NOT NULL,
+    `language`                 varchar(255) DEFAULT NULL,
+    `category_id`              int(11) DEFAULT NULL,
+    `sub_category_id`          int(11) DEFAULT NULL,
+    `section`                  longtext     DEFAULT NULL,
+    `requirements`             longtext     DEFAULT NULL,
+    `price` double DEFAULT NULL,
+    `section_price` double DEFAULT NULL,                     -- new column added
+    `lesson_price` double DEFAULT NULL,                      -- new column added
+    `discount_flag`            int(11) DEFAULT 0,
+    `discounted_price` double DEFAULT NULL,
+    `level`                    varchar(50)  DEFAULT NULL,
+    `user_id`                  varchar(255) DEFAULT NULL,
+    `thumbnail`                varchar(255) DEFAULT NULL,
+    `video_url`                varchar(255) DEFAULT NULL,
+    `date_added`               int(11) DEFAULT NULL,
+    `last_modified`            int(11) DEFAULT NULL,
+    `course_type`              varchar(255) DEFAULT NULL,
+    `is_top_course`            int(11) DEFAULT 0,
+    `is_admin`                 int(11) DEFAULT NULL,
+    `status`                   varchar(255) DEFAULT NULL,
+    `course_overview_provider` varchar(255) DEFAULT NULL,
+    `meta_keywords`            longtext     DEFAULT NULL,
+    `meta_description`         longtext     DEFAULT NULL,
+    `is_free_course`           int(11) DEFAULT NULL,
+    `multi_instructor`         int(11) NOT NULL DEFAULT 0,
+    `enable_drip_content`      int(11) NOT NULL,
+    `creator`                  int(11) DEFAULT NULL,
+    `expiry_period`            int(11) DEFAULT NULL,
+    `upcoming_image_thumbnail` varchar(255) DEFAULT NULL,
+    `publish_date`             varchar(500) DEFAULT NULL,
+    `enable_certificate`       TINYINT(1) NOT NULL DEFAULT 1 -- New column added
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -457,22 +458,22 @@ VALUES (1, 'US Dollar', 'USD', '$', 1, 1, 0, 0, 0),
        (146, 'Tajikistani Somoni', 'TJS', 'SM', 1, 1, 0, 0, 0),
        (147, 'Tanzanian Shilling', 'TZS', 'TSh', 1, 1, 0, 0, 0),
        (148, 'Thai Baht', 'THB', '฿', 1, 1, 0, 0, 0),
-       (149, 'Tongan pa\anga', 'TOP', '$', 1, 1, 0, 0, 0),
-       (150, 'Trinidad & Tobago Dollar', 'TTD', '$', 1, 1, 0, 0, 0),
-       (151, 'Tunisian Dinar', 'TND', 'ت.د', 1, 1, 0, 0, 0),
-       (152, 'Turkish Lira', 'TRY', '₺', 1, 1, 0, 1, 0),
-       (153, 'Turkmenistani Manat', 'TMT', 'T', 1, 1, 0, 0, 0),
-       (154, 'Ugandan Shilling', 'UGX', 'USh', 1, 1, 0, 0, 0),
-       (155, 'Ukrainian Hryvnia', 'UAH', '₴', 1, 1, 0, 0, 0),
-       (156, 'United Arab Emirates Dirham', 'AED', 'إ.د', 1, 1, 0, 0, 0),
-       (157, 'Uruguayan Peso', 'UYU', '$', 1, 1, 0, 0, 0),
-       (158, 'Afghan Afghani', 'AFA', '؋', 1, 1, 0, 0, 0),
-       (159, 'Uzbekistan Som', 'UZS', 'лв', 1, 1, 0, 0, 0),
-       (160, 'Vanuatu Vatu', 'VUV', 'VT', 1, 1, 0, 0, 0),
-       (161, 'Venezuelan BolÃvar', 'VEF', 'Bs', 0, 0, 0, 0, 0),
-       (162, 'Vietnamese Dong', 'VND', '₫', 1, 1, 0, 0, 0),
-       (163, 'Yemeni Rial', 'YER', '﷼', 1, 1, 0, 0, 0),
-       (164, 'Zambian Kwacha', 'ZMK', 'ZK', 1, 1, 0, 0, 0);
+       (149, 'Tongan pa\'anga', 'TOP', '$', 1, 1, 0, 0, 0),
+(150, 'Trinidad & Tobago Dollar', 'TTD', '$', 1, 1, 0, 0, 0),
+(151, 'Tunisian Dinar', 'TND', 'ت.د', 1, 1, 0, 0, 0),
+(152, 'Turkish Lira', 'TRY', '₺', 1, 1, 0, 1, 0),
+(153, 'Turkmenistani Manat', 'TMT', 'T', 1, 1, 0, 0, 0),
+(154, 'Ugandan Shilling', 'UGX', 'USh', 1, 1, 0, 0, 0),
+(155, 'Ukrainian Hryvnia', 'UAH', '₴', 1, 1, 0, 0, 0),
+(156, 'United Arab Emirates Dirham', 'AED', 'إ.د', 1, 1, 0, 0, 0),
+(157, 'Uruguayan Peso', 'UYU', '$', 1, 1, 0, 0, 0),
+(158, 'Afghan Afghani', 'AFA', '؋', 1, 1, 0, 0, 0),
+(159, 'Uzbekistan Som', 'UZS', 'лв', 1, 1, 0, 0, 0),
+(160, 'Vanuatu Vatu', 'VUV', 'VT', 1, 1, 0, 0, 0),
+(161, 'Venezuelan BolÃvar', 'VEF', 'Bs', 0, 0, 0, 0, 0),
+(162, 'Vietnamese Dong', 'VND', '₫', 1, 1, 0, 0, 0),
+(163, 'Yemeni Rial', 'YER', '﷼', 1, 1, 0, 0, 0),
+(164, 'Zambian Kwacha', 'ZMK', 'ZK', 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -480,15 +481,14 @@ VALUES (1, 'US Dollar', 'USD', '$', 1, 1, 0, 0, 0),
 -- Table structure for table `custom_page`
 --
 
-CREATE TABLE `custom_page`
-(
-    `custom_page_id`  int(11) NOT NULL,
-    `page_title`      varchar(255) NOT NULL,
-    `page_content`    longtext     NOT NULL,
-    `page_url`        varchar(255) NOT NULL,
-    `button_title`    varchar(255) NOT NULL,
-    `button_position` varchar(255) NOT NULL,
-    `status`          int(11) NOT NULL
+CREATE TABLE `custom_page` (
+  `custom_page_id` int(11) NOT NULL,
+  `page_title` varchar(255) NOT NULL,
+  `page_content` longtext NOT NULL,
+  `page_url` varchar(255) NOT NULL,
+  `button_title` varchar(255) NOT NULL,
+  `button_position` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -497,15 +497,14 @@ CREATE TABLE `custom_page`
 -- Table structure for table `enrol`
 --
 
-CREATE TABLE `enrol`
-(
-    `id`            int(11) UNSIGNED NOT NULL,
-    `user_id`       int(11) DEFAULT NULL,
-    `course_id`     int(11) DEFAULT NULL,
-    `gifted_by`     int(11) NOT NULL DEFAULT 0,
-    `expiry_date`   varchar(255) DEFAULT NULL,
-    `date_added`    int(11) DEFAULT NULL,
-    `last_modified` int(11) DEFAULT NULL
+CREATE TABLE `enrol` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `gifted_by` int(11) NOT NULL DEFAULT 0,
+  `expiry_date` varchar(255) DEFAULT NULL,
+  `date_added` int(11) DEFAULT NULL,
+  `last_modified` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -514,62 +513,61 @@ CREATE TABLE `enrol`
 -- Table structure for table `frontend_settings`
 --
 
-CREATE TABLE `frontend_settings`
-(
-    `id`    int(11) UNSIGNED NOT NULL,
-    `key`   varchar(255) DEFAULT NULL,
-    `value` longtext     DEFAULT NULL
+CREATE TABLE `frontend_settings` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `key` varchar(255) DEFAULT NULL,
+  `value` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `frontend_settings`
 --
 
-INSERT INTO `frontend_settings` (`id`, `key`, `value`)
-VALUES (1, 'banner_title', 'Start learning from best Platform'),
-       (2, 'banner_sub_title', 'Study any topic, anytime.Explore thousands of courses for the lowest price ever!'),
-       (4, 'about_us', '<p></p><h2><span xss=\"removed\">About us</span></h2>'),
-       (10, 'terms_and_condition', '<h2>Terms and Condition</h2>'),
-       (11, 'privacy_policy', '<p></p><p></p><h2><span xss=\"removed\">Privacy Policy</span></h2>'),
-       (13, 'theme', 'default-new'),
-       (14, 'cookie_note',
-        'This website uses cookies to personalize content and analyse traffic in order to offer you a better experience.'),
-       (15, 'cookie_status', 'active'),
-       (16, 'cookie_policy',
-        '<h1>Cookie policy</h1><ol><li>Cookies are small text files that can be used by websites to make a user\s experience more efficient.</li><li>The law states that we can store cookies on your device if they are strictly necessary for the operation of this site. For all other types of cookies we need your permission.</li><li>This site uses different types of cookies. Some cookies are placed by third party services that appear on our pages.</li></ol>'),
-       (17, 'banner_image', '{\"home_1\":\"home-1.png\"}'),
-       (18, 'light_logo', 'logo-light.png'),
-       (19, 'dark_logo', 'logo-dark.png'),
-       (20, 'small_logo', 'logo-light-sm.png'),
-       (21, 'favicon', 'favicon.png'),
-       (22, 'recaptcha_status', '0'),
-       (23, 'recaptcha_secretkey', 'Valid-secret-key'),
-       (24, 'recaptcha_sitekey', 'Valid-site-key'),
-       (25, 'refund_policy', '<h2><span xss=\"removed\">Refund Policy</span></h2>'),
-       (26, 'facebook', 'https://facebook.com'),
-       (27, 'twitter', 'https://twitter.com'),
-       (28, 'linkedin', ''),
-       (31, 'blog_page_title', 'Where possibilities begin'),
-       (32, 'blog_page_subtitle',
-        'We’re a leading marketplace platform for learning and teaching online. Explore some of our most popular content and learn something new.'),
-       (33, 'blog_page_banner', 'blog-page.png'),
-       (34, 'instructors_blog_permission', '0'),
-       (35, 'blog_visibility_on_the_home_page', '1'),
-       (37, 'website_faqs', '[]'),
-       (38, 'motivational_speech', '[]'),
-       (39, 'home_page', 'home_1'),
-       (40, 'contact_info',
-        '{\"email\":\"admin@example.com,\\r\\nsystem@example.com\",\"phone\":\"609-502-5899\\r\\n345-444-2122\",\"address\":\"455 Wolff Streets Suite 674\",\"office_hours\":\"10:00 AM - 6:00 PM\"}'),
-       (41, 'custom_css', ''),
-       (42, 'embed_code', ''),
-       (43, 'top_course_section', '1'),
-       (44, 'latest_course_section', '1'),
-       (45, 'top_category_section', '1'),
-       (46, 'upcoming_course_section', '1'),
-       (47, 'faq_section', '1'),
-       (48, 'top_instructor_section', '1'),
-       (49, 'motivational_speech_section', '1'),
-       (50, 'promotional_section', '1');
+INSERT INTO `frontend_settings` (`id`, `key`, `value`) VALUES
+(1, 'banner_title', 'Start learning from best Platform'),
+(2, 'banner_sub_title', 'Study any topic, anytime.Explore thousands of courses for the lowest price ever!'),
+(4, 'about_us', '<p></p><h2><span xss=\"removed\">About us</span></h2>'),
+(10, 'terms_and_condition', '<h2>Terms and Condition</h2>'),
+        (11, 'privacy_policy', '<p></p><p></p><h2><span xss=\"removed\">Privacy Policy</span></h2>'),
+        (13, 'theme', 'default-new'),
+        (14, 'cookie_note',
+         'This website uses cookies to personalize content and analyse traffic in order to offer you a better experience.'),
+        (15, 'cookie_status', 'active'),
+        (16, 'cookie_policy',
+         '<h1>Cookie policy</h1><ol><li>Cookies are small text files that can be used by websites to make a user\'s experience more efficient.</li><li>The law states that we can store cookies on your device if they are strictly necessary for the operation of this site. For all other types of cookies we need your permission.</li><li>This site uses different types of cookies. Some cookies are placed by third party services that appear on our pages.</li></ol>'),
+(17, 'banner_image', '{\"home_1\":\"home-1.png\"}'),
+(18, 'light_logo', 'logo-light.png'),
+         (19, 'dark_logo', 'logo-dark.png'),
+         (20, 'small_logo', 'logo-light-sm.png'),
+         (21, 'favicon', 'favicon.png'),
+         (22, 'recaptcha_status', '0'),
+         (23, 'recaptcha_secretkey', 'Valid-secret-key'),
+         (24, 'recaptcha_sitekey', 'Valid-site-key'),
+         (25, 'refund_policy', '<h2><span xss=\"removed\">Refund Policy</span></h2>'),
+         (26, 'facebook', 'https://facebook.com'),
+         (27, 'twitter', 'https://twitter.com'),
+         (28, 'linkedin', ''),
+         (31, 'blog_page_title', 'Where possibilities begin'),
+         (32, 'blog_page_subtitle',
+          'We’re a leading marketplace platform for learning and teaching online. Explore some of our most popular content and learn something new.'),
+         (33, 'blog_page_banner', 'blog-page.png'),
+         (34, 'instructors_blog_permission', '0'),
+         (35, 'blog_visibility_on_the_home_page', '1'),
+         (37, 'website_faqs', '[]'),
+         (38, 'motivational_speech', '[]'),
+         (39, 'home_page', 'home_1'),
+         (40, 'contact_info',
+          '{\"email\":\"admin@example.com,\\r\\nsystem@example.com\",\"phone\":\"609-502-5899\\r\\n345-444-2122\",\"address\":\"455 Wolff Streets Suite 674\",\"office_hours\":\"10:00 AM - 6:00 PM\"}'),
+         (41, 'custom_css', ''),
+         (42, 'embed_code', ''),
+         (43, 'top_course_section', '1'),
+         (44, 'latest_course_section', '1'),
+         (45, 'top_category_section', '1'),
+         (46, 'upcoming_course_section', '1'),
+         (47, 'faq_section', '1'),
+         (48, 'top_instructor_section', '1'),
+         (49, 'motivational_speech_section', '1'),
+         (50, 'promotional_section', '1');
 
 -- --------------------------------------------------------
 
@@ -1056,11 +1054,6 @@ CREATE TABLE `lesson`
     `duration_for_mobile_application`   varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table `lesson`
---
--- todo :: check if this insertion is required
--- INSERT INTO `lesson` (`id`, `title`, `duration`, `start_time`, `end_time`, `randomize`, `course_id`, `section_id`, `video_type`, `cloud_video_id`, `video_url`, `audio_url`, `date_added`, `last_modified`, `lesson_type`, `attachment`, `attachment_type`, `caption`, `summary`, `is_free`, `order`, `quiz_attempt`, `video_type_for_mobile_application`, `video_url_for_mobile_application`, `duration_for_mobile_application`) VALUES
---     (8, 'for intro', '0:20:00', 1727582400, 1730174400, 1, 3, 4, NULL, NULL, NULL, NULL, 1727755200, 1727841600, 'quiz', '{\"total_marks\":\"10\",\"pass_mark\":\"6\",\"drip_content_for_passing_rule\":\"not_applicable\"}', 'json', NULL, '', 0, 0, 10, NULL, NULL, NULL);
 
 -- --------------
 -- --------------------------------------------------------
@@ -1200,15 +1193,46 @@ CREATE TABLE `notification_settings`
 -- Dumping data for table `notification_settings`
 --
 
-INSERT INTO `notification_settings` (`id`, `type`, `is_editable`, `addon_identifier`, `user_types`, `system_notification`, `email_notification`, `subject`, `template`, `setting_title`, `setting_sub_title`, `date_updated`) VALUES
-(1, 'signup', 1, NULL, '[\"admin\",\"user\"]', '{\"admin\":\"1\",\"user\":\"1\"}', '{\"admin\":\"0\",\"user\":\"0\"}', '{\"admin\":\"New user registered\",\"user\":\"Registered successfully\"}', '{\"admin\":\"New user registered [user_name] \\r\\n<br>User email: <b>[user_email]<\\/b>\",\"user\":\"You have successfully registered with us at [system_name].\"}', 'New user registration', 'Get notified when a new user signs up', '1693215071'),
-(2, 'email_verification', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}', '{\"user\":\"Email verification code\"}', '{\"user\":\"You have received a email verification code. Your verification code is [email_verification_code]\"}', 'Email verification', 'It is permanently enabled for student email verification.', '1684135777'),
-(3, 'forget_password_mail', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}', '{\"user\":\"Forgot password verification code\"}', '{\"user\":\"You have received a email verification code. Your verification code is [system_name] [verification_link] [minutes]\"}', 'Forgot password mail', 'It is permanently enabled for student email verification.', '1684145383'),
-(4, 'new_device_login_confirmation', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}', '{\"user\":\"Please confirm your login\"}', '{\"user\":\"Have you tried logging in with a different device? Confirm using the verification code. Your verification code is [verification_code]. Remember that you will lose access to your previous device after logging in to the new device <b>[user_agent]<\\/b>.<br> Use the verification code within [minutes] minutes\"}', 'Account security alert', 'Send verification code for login from a new device', '1684145383'),
-(6, 'course_purchase', 1, NULL, '[\"admin\",\"student\",\"instructor\"]', '{\"admin\":\"1\",\"student\":\"1\",\"instructor\":\"1\"}', '{\"admin\":\"0\",\"student\":\"0\",\"instructor\":\"0\"}', '{\"admin\":\"A new course has been sold\",\"instructor\":\"A new course has been sold\",\"student\":\"You have purchased a new course\"}', '{\"admin\":\"<p>Course title: [course_title]<\\/p><p>Student: [student_name]\\r\\n<\\/p><p>Paid amount: [paid_amount]<\\/p><p>Instructor: [instructor_name]<\\/p>\",\"instructor\":\"Course title: [course_title]\\r\\nStudent: [student_name]\\r\\nPaid amount: [paid_amount]\",\"student\":\"Course title: [course_title]\\r\\nPaid amount: [paid_amount]\\r\\nInstructor: [instructor_name]\"}', 'Course purchase notification', 'Stay up-to-date on student course purchases.', '1684303456'),
-(7, 'course_completion_mail', 1, NULL, '[\"student\",\"instructor\"]', '{\"student\":\"1\",\"instructor\":\"1\"}', '{\"student\":\"0\",\"instructor\":\"0\"}', '{\"instructor\":\"Course completion\",\"student\":\"You have completed a new course\"}', '{\"instructor\":\"Course completed [course_title]\\r\\nStudent: [student_name]\",\"student\":\"Course: [course_title]\\r\\nInstructor: [instructor_name]\"}', 'Course completion mail', 'Stay up to date on student course completion.', '1699431547'),
-(8, 'certificate_eligibility', 1, 'certificate', '[\"student\",\"instructor\"]', '{\"student\":\"1\",\"instructor\":\"1\"}', '{\"student\":\"0\",\"instructor\":\"0\"}', '{\"instructor\":\"Certificate eligibility\",\"student\":\"certificate eligibility\"}', '{\"instructor\":\"Course: [course_title]\\r\\nStudent: [student_name]\\r\\nCertificate link: [certificate_link]\",\"student\":\"Course: [course_title]\\r\\nInstructor: [instructor_name]\\r\\nCertificate link: [certificate_link]\"}', 'Course eligibility notification', 'Stay up to date on course certificate eligibility.', '1684303460'),
-(9, 'offline_payment_suspended_mail', 1, 'offline_payment', '[\"student\"]', '{\"student\":\"1\"}', '{\"student\":\"0\"}', '{\"student\":\"Your payment has been suspended\"}', '{\"student\":\"<p>Your offline payment has been <b style=\'color: red;\'>suspended</b> !</p><p>Please provide a valid document of your payment.</p>\"}', 'Offline payment suspended mail', 'If students provides fake information, notify them of the suspension', '1684303463'),
+INSERT INTO `notification_settings` (`id`, `type`, `is_editable`, `addon_identifier`, `user_types`,
+                                     `system_notification`, `email_notification`, `subject`, `template`,
+                                     `setting_title`, `setting_sub_title`, `date_updated`)
+VALUES (1, 'signup', 1, NULL, '[\"admin\",\"user\"]', '{\"admin\":\"1\",\"user\":\"1\"}',
+        '{\"admin\":\"0\",\"user\":\"0\"}', '{\"admin\":\"New user registered\",\"user\":\"Registered successfully\"}',
+        '{\"admin\":\"New user registered [user_name] \\r\\n<br>User email: <b>[user_email]<\\/b>\",\"user\":\"You have successfully registered with us at [system_name].\"}',
+        'New user registration', 'Get notified when a new user signs up', '1693215071'),
+       (2, 'email_verification', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}',
+        '{\"user\":\"Email verification code\"}',
+        '{\"user\":\"You have received a email verification code. Your verification code is [email_verification_code]\"}',
+        'Email verification', 'It is permanently enabled for student email verification.', '1684135777'),
+       (3, 'forget_password_mail', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}',
+        '{\"user\":\"Forgot password verification code\"}',
+        '{\"user\":\"You have received a email verification code. Your verification code is [system_name] [verification_link] [minutes]\"}',
+        'Forgot password mail', 'It is permanently enabled for student email verification.', '1684145383'),
+       (4, 'new_device_login_confirmation', 0, NULL, '[\"user\"]', '{\"user\":\"0\"}', '{\"user\":\"1\"}',
+        '{\"user\":\"Please confirm your login\"}',
+        '{\"user\":\"Have you tried logging in with a different device? Confirm using the verification code. Your verification code is [verification_code]. Remember that you will lose access to your previous device after logging in to the new device <b>[user_agent]<\\/b>.<br> Use the verification code within [minutes] minutes\"}',
+        'Account security alert', 'Send verification code for login from a new device', '1684145383'),
+       (6, 'course_purchase', 1, NULL, '[\"admin\",\"student\",\"instructor\"]',
+        '{\"admin\":\"1\",\"student\":\"1\",\"instructor\":\"1\"}',
+        '{\"admin\":\"0\",\"student\":\"0\",\"instructor\":\"0\"}',
+        '{\"admin\":\"A new course has been sold\",\"instructor\":\"A new course has been sold\",\"student\":\"You have purchased a new course\"}',
+        '{\"admin\":\"<p>Course title: [course_title]<\\/p><p>Student: [student_name]\\r\\n<\\/p><p>Paid amount: [paid_amount]<\\/p><p>Instructor: [instructor_name]<\\/p>\",\"instructor\":\"Course title: [course_title]\\r\\nStudent: [student_name]\\r\\nPaid amount: [paid_amount]\",\"student\":\"Course title: [course_title]\\r\\nPaid amount: [paid_amount]\\r\\nInstructor: [instructor_name]\"}',
+        'Course purchase notification', 'Stay up-to-date on student course purchases.', '1684303456'),
+       (7, 'course_completion_mail', 1, NULL, '[\"student\",\"instructor\"]',
+        '{\"student\":\"1\",\"instructor\":\"1\"}', '{\"student\":\"0\",\"instructor\":\"0\"}',
+        '{\"instructor\":\"Course completion\",\"student\":\"You have completed a new course\"}',
+        '{\"instructor\":\"Course completed [course_title]\\r\\nStudent: [student_name]\",\"student\":\"Course: [course_title]\\r\\nInstructor: [instructor_name]\"}',
+        'Course completion mail', 'Stay up to date on student course completion.', '1699431547'),
+       (8, 'certificate_eligibility', 1, 'certificate', '[\"student\",\"instructor\"]',
+        '{\"student\":\"1\",\"instructor\":\"1\"}', '{\"student\":\"0\",\"instructor\":\"0\"}',
+        '{\"instructor\":\"Certificate eligibility\",\"student\":\"certificate eligibility\"}',
+        '{\"instructor\":\"Course: [course_title]\\r\\nStudent: [student_name]\\r\\nCertificate link: [certificate_link]\",\"student\":\"Course: [course_title]\\r\\nInstructor: [instructor_name]\\r\\nCertificate link: [certificate_link]\"}',
+        'Course eligibility notification', 'Stay up to date on course certificate eligibility.', '1684303460'),
+       (9, 'offline_payment_suspended_mail', 1, 'offline_payment', '[\"student\"]', '{\"student\":\"1\"}',
+        '{\"student\":\"0\"}', '{\"student\":\"Your payment has been suspended\"}',
+        '{\"student\":\"<p>Your offline payment has been <b style=\'color: red;
+\
+'>suspended</b> !</p><p>Please provide a valid document of your payment.</p>\"}', 'Offline payment suspended mail', 'If students provides fake information, notify them of the suspension', '1684303463'),
 (10, 'bundle_purchase', 1, 'course_bundle', '[\"admin\",\"student\",\"instructor\"]', '{\"admin\":\"1\",\"student\":\"1\",\"instructor\":\"1\"}', '{\"admin\":\"0\",\"student\":\"0\",\"instructor\":\"0\"}', '{\"admin\":\"A new course bundle has been sold \",\"instructor\":\"A new course bundle has been sold \",\"student\":\"You have purchased a new course bundle test\"}', '{\"admin\":\"Course bundle: [bundle_title]\\r\\nStudent: [student_name]\\r\\nInstructor: [instructor_name] \",\"instructor\":\"Course bundle: [bundle_title]\\r\\nStudent: [student_name] \",\"student\":\"Course bundle: [bundle_title]\\r\\nInstructor: [instructor_name] \"}', 'Course bundle purchase notification', 'Stay up-to-date on student course bundle purchases.', '1684303467'),
 (13, 'add_new_user_as_affiliator', 0, 'affiliate_course', '[\"affiliator\"]', '{\"affiliator\":\"0\"}', '{\"affiliator\":\"1\"}', '{\"affiliator\":\"Congratulation ! You are assigned as an affiliator\"}', '{\"affiliator\":\"You are assigned as a website Affiliator.\\r\\nWebsite: [website_link]\\r\\n<br>\\r\\nPassword: [password]\"}', 'New user added as affiliator', 'Send account information to the new user', '1684135777'),
 (14, 'affiliator_approval_notification', 1, 'affiliate_course', '[\"affiliator\"]', '{\"affiliator\":\"1\"}', '{\"affiliator\":\"0\"}', '{\"affiliator\":\"Congratulations! Your affiliate request has been approved\"}', '{\"affiliator\":\"Congratulations! Your affiliate request has been approved\"}', 'Affiliate approval notification', 'Send affiliate approval mail to the user account', '1684303472'),
@@ -1605,7 +1629,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `another
                      `skills`, `social_links`, `biography`, `role_id`, `date_added`, `last_modified`, `wishlist`,
                      `title`, `payment_keys`, `verification_code`, `status`, `is_instructor`, `image`, `temp`,
                      `sessions`)
-VALUES (2, 'Eslam ', 'Hamedallah', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '',
+VALUES (2, 'admin ', 'test', 'admin@example.com', NULL, '', NULL, 'd033e22ae348aeb5660fc2140aec35850c4da997', '',
         '{\"facebook\":\"\",\"twitter\":\"\",\"linkedin\":\"\"}', '', 1, NULL, 1727033533, NULL, '', '', NULL, 1, 1,
         NULL, NULL, ''),
        (18, 'instructor', 'test', 'instructor@test.com', '', NULL, '', '5db3005d1c92d3def956044087157bb23f29c6b0', '',
@@ -1653,28 +1677,6 @@ CREATE TABLE `watch_histories`
     `date_updated`       varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Table structure for table `complains`
---
-
-CREATE TABLE `complains`
-(
-    `id`              int(11) NOT NULL,
-    `complain_type`   enum('user','admin') NOT NULL DEFAULT 'user',
-    `user_id`         int(11) NOT NULL,
-    `name`            varchar(255) NOT NULL,
-    `email`           varchar(255) NOT NULL,
-    `phone`           int(11) DEFAULT NULL,
-    `course_id`       int(11) DEFAULT NULL,
-    `problem_type`    enum('technical_problem','quiz_problem','content_problem','general_problem','general_matter','payment_problem','sign_problem') DEFAULT NULL,
-    `message`         text         NOT NULL,
-    `status`          enum('open','closed') DEFAULT 'open',
-    `created_at`      timestamp    NOT NULL DEFAULT current_timestamp(),
-    `updated_at`      timestamp    NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-    `replay_admin_id` int(11) DEFAULT NULL,
-    `replay_message`  text                  DEFAULT NULL,
-    `replay_date`     timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Indexes for dumped tables
 --
