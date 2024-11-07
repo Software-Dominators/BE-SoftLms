@@ -113,6 +113,18 @@
                             <small><?php echo get_phrase('how_many_devices_do_you_want_to_allow_for_logging_in_using_a_single_account'); ?>?</small>
                         </div>
 
+                        <div class="form-group">
+                            <label for="allowed_device_number_of_logging_web"><?php echo get_phrase('number_of_authorized_devices_web'); ?><span class="required">*</span></label>
+                            <input type="number" name = "allowed_device_number_of_logging_web" id = "allowed_device_number_of_logging_web" class="form-control" value="<?php echo get_settings('allowed_device_number_of_logging_web');  ?>" min="1" required>
+                            <small><?php echo get_phrase('how_many_devices_do_you_want_to_allow_for_logging_in_using_a_single_account'); ?>?</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="allowed_device_number_of_logging_mob"><?php echo get_phrase('number_of_authorized_devices_mob'); ?><span class="required">*</span></label>
+                            <input type="number" name = "allowed_device_number_of_logging_mob" id = "allowed_device_number_of_logging_mob" class="form-control" value="<?php echo get_settings('allowed_device_number_of_logging_mob');  ?>" min="1" required>
+                            <small><?php echo get_phrase('how_many_devices_do_you_want_to_allow_for_logging_in_using_a_single_account'); ?>?</small>
+                        </div>
+
                         <div class="form-group toggleMinimumWatchField">
                             <label for="course_selling_tax"><?php echo get_phrase('course_selling_tax'); ?> (%) <span class="required">*</span></label>
                             <div class="input-group">

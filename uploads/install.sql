@@ -2308,7 +2308,9 @@ VALUES (1130, 'malawi', 'Malawi'),
        (1439, 'enter_0_if_you_want_to_disable_multiple_attempts', 'Enter 0 if you want to disable multiple attempts'),
        (1440, 'instruction', 'Instruction'),
        (1441, 'mon', 'Mon'),
-       (1442, 'sep', 'Sep');
+       (1442, 'sep', 'Sep'),
+       (1443, 'number_of_authorized_devices_web', 'Number of authorized devices from web'),
+       (1444, 'number_of_authorized_devices_mob', 'Number of authorized devices from mobile');
 
 -- --------------------------------------------------------
 
@@ -2970,7 +2972,9 @@ VALUES (1, 'language', 'english'),
         (77, 'certificate-text-positons',
          '\n			\n			&lt;div class=&quot;this-template&quot; style=&quot;width: 750px; position: relative;&quot;&gt;\n				&lt;img width=&quot;100%&quot; src=&quot;..\\..\\uploads/certificates/template.jpg&quot;&gt;\n				&lt;div class=&quot;draggable instructor_name&quot; style=&quot;position: absolute; font-family: &amp;quot;Miss Fajardose&amp;quot;; font-size: 40px; top: 373.892px; left: 553.889px;&quot;&gt;{instructor}&lt;/div&gt;&lt;div class=&quot;draggable course_level&quot; style=&quot;position: absolute;font-size: 16px;top: 444.861px;left: 84.8681px;&quot;&gt;{course_level}&lt;/div&gt;\n&lt;div class=&quot;draggable course_language&quot; style=&quot;position: absolute; font-size: 16px; top: 155.84px; left: 65.8473px;&quot;&gt;{course_language}&lt;/div&gt;\n&lt;div class=&quot;draggable student_name&quot; style=&quot;position: absolute; font-family: &amp;quot;Miss Fajardose&amp;quot;, cursive; font-size: 40px; top: 373.92px; left: 59.9063px;&quot;&gt;{student}&lt;/div&gt;\n&lt;div class=&quot;draggable duration_name&quot; style=&quot;position: absolute; font-size: 16px; top: 341.837px; left: 328.806px;&quot;&gt;{total_duration}&lt;/div&gt;\n&lt;div class=&quot;draggable lesson_name&quot; style=&quot;position: absolute;font-size: 16px;top: 341.882px;left: 124.868px;&quot;&gt;{total_lesson}&lt;/div&gt;\n				&lt;div class=&quot;draggable course_completion_date&quot; style=&quot;position: absolute; font-size: 20px; top: 151.924px; left: 543.896px;&quot;&gt;{date}&lt;/div&gt;\n				&lt;div class=&quot;draggable certificate_text&quot; style=&quot;position: absolute;width: 500px;text-align: center;font-size: 28px;top: 228.948px;font-family: &amp;quot;Pinyon Script&amp;quot;;left: 123.903px;&quot;&gt;This is to certify that Mr. / Ms. {student} successfully completed the course with on certificate for {course}.&lt;/div&gt;\n				&lt;div class=&quot;draggable qrCode&quot; style=&quot;position: absolute; width: 65px; height: 65px; text-align: center; font-size: 20px; top: 128.912px; left: 336.913px;&quot;&gt;&lt;p style=&quot;text-align: center; padding: 4px 0px;&quot;&gt;Qr code&lt;/p&gt;&lt;/div&gt;\n			&lt;/div&gt;\n																																																																																						'),
         (78, 'open_ai',
-         '{\"model\":\"gpt-3.5-turbo-0125\",\"max_tokens\":\"200\",\"ai_secret_key\":\"\",\"number_of_image_creation\":\"4\"}');
+         '{\"model\":\"gpt-3.5-turbo-0125\",\"max_tokens\":\"200\",\"ai_secret_key\":\"\",\"number_of_image_creation\":\"4\"}'),
+        (79, 'allowed_device_number_of_logging_web', '2'),
+        (80, 'allowed_device_number_of_logging_mob', '2');
 
 -- --------------------------------------------------------
 
