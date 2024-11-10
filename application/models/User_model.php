@@ -778,45 +778,47 @@ class User_model extends CI_Model
         $allowed_mobile_limit = get_settings('allowed_device_number_of_logging_mob');
 
         // Count current device sessions by type
-        $web_sessions = array_filter($pre_sessions, function ($session) {
-            return $session['type'] === 'web';
-        });
-        $mobile_sessions = array_filter($pre_sessions, function ($session) {
-            return $session['type'] === 'mobile';
-        });
+        if (is_array($pre_sessions)) {
+            $web_sessions = array_filter($pre_sessions, function ($session) {
+                return $session['type'] === 'web';
+            });
+            $mobile_sessions = array_filter($pre_sessions, function ($session) {
+                return $session['type'] === 'mobile';
+            });
 
-        if ($is_verified && !in_array($current_session_id, array_column($pre_sessions, 'id'))) {
-            // Determine the removable devices for web and mobile limits
-            $removeable_count = count($pre_sessions) + 1 - $allowed_device_limit;
+            if ($is_verified && !in_array($current_session_id, array_column($pre_sessions, 'id'))) {
+                // Determine the removable devices for web and mobile limits
+                $removeable_count = count($pre_sessions) + 1 - $allowed_device_limit;
 
-            // Check limits per device type
-            if ($device_type === 'web' && count($web_sessions) >= $allowed_web_limit) {
-                $this->email_model->new_device_login_alert($user_id);
-                redirect(site_url('login/new_login_confirmation'), 'refresh');
-            } elseif ($device_type === 'mobile' && count($mobile_sessions) >= $allowed_mobile_limit) {
-                $this->email_model->new_device_login_alert($user_id);
-                redirect(site_url('login/new_login_confirmation'), 'refresh');
-            } else {
-                foreach ($pre_sessions as $key => $pre_session) {
-                    if ($removeable_count > 0 && $pre_session['type'] === $device_type) {
-                        $this->db->where('id', $pre_session['id'])->delete('ci_sessions');
-                        $removeable_count--;
-                    } else {
-                        if ($this->db->get_where('ci_sessions', ['id' => $pre_session['id']])->num_rows() > 0) {
-                            $updated_session_arr[] = $pre_session;
-                        }
-                    }
-                }
-                $updated_session_arr[] = ['id' => $current_session_id, 'type' => $device_type];
-            }
-        } else {
-            if (!in_array($current_session_id, array_column($pre_sessions, 'id'))) {
-                if (count($pre_sessions) >= $allowed_device_limit) {
+                // Check limits per device type
+                if ($device_type === 'web' && count($web_sessions) >= $allowed_web_limit) {
+                    $this->email_model->new_device_login_alert($user_id);
+                    redirect(site_url('login/new_login_confirmation'), 'refresh');
+                } elseif ($device_type === 'mobile' && count($mobile_sessions) >= $allowed_mobile_limit) {
                     $this->email_model->new_device_login_alert($user_id);
                     redirect(site_url('login/new_login_confirmation'), 'refresh');
                 } else {
-                    $updated_session_arr = $pre_sessions;
+                    foreach ($pre_sessions as $key => $pre_session) {
+                        if ($removeable_count > 0 && $pre_session['type'] === $device_type) {
+                            $this->db->where('id', $pre_session['id'])->delete('ci_sessions');
+                            $removeable_count--;
+                        } else {
+                            if ($this->db->get_where('ci_sessions', ['id' => $pre_session['id']])->num_rows() > 0) {
+                                $updated_session_arr[] = $pre_session;
+                            }
+                        }
+                    }
                     $updated_session_arr[] = ['id' => $current_session_id, 'type' => $device_type];
+                }
+            } else {
+                if (!in_array($current_session_id, array_column($pre_sessions, 'id'))) {
+                    if (count($pre_sessions) >= $allowed_device_limit) {
+                        $this->email_model->new_device_login_alert($user_id);
+                        redirect(site_url('login/new_login_confirmation'), 'refresh');
+                    } else {
+                        $updated_session_arr = $pre_sessions;
+                        $updated_session_arr[] = ['id' => $current_session_id, 'type' => $device_type];
+                    }
                 }
             }
         }
