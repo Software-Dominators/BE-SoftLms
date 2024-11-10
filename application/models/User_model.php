@@ -772,13 +772,16 @@ class User_model extends CI_Model
         }
         // Fetch existing sessions
         $pre_sessions = json_decode($user->sessions, true);
+        if (!is_array($pre_sessions))
+        {
+            $pre_sessions = array();
+        }
         // Settings for device login limits
         $allowed_device_limit = get_settings('allowed_device_number_of_loging');
         $allowed_web_limit = get_settings('allowed_device_number_of_logging_web');
         $allowed_mobile_limit = get_settings('allowed_device_number_of_logging_mob');
 
         // Count current device sessions by type
-        if (is_array($pre_sessions)) {
             $web_sessions = array_filter($pre_sessions, function ($session) {
                 return $session['type'] === 'web';
             });
@@ -821,7 +824,6 @@ class User_model extends CI_Model
                     }
                 }
             }
-        }
         // Update user sessions if needed
         if(count($updated_session_arr) > 0){
              $data['sessions'] = json_encode($updated_session_arr);
