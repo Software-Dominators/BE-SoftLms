@@ -416,6 +416,20 @@ class Crud_model extends CI_Model
         $this->db->where('key', 'allowed_device_number_of_loging');
         $this->db->update('settings', $data);
 
+        $data['value'] = html_escape($this->input->post('allowed_device_number_of_logging_web'));
+        if ($data['value'] < 1 || !is_numeric($data['value'])) {
+            $data['value'] = 1;
+        }
+        $this->db->where('key', 'allowed_device_number_of_logging_web');
+        $this->db->update('settings', $data);
+
+        $data['value'] = html_escape($this->input->post('allowed_device_number_of_logging_mob'));
+        if ($data['value'] < 1 || !is_numeric($data['value'])) {
+            $data['value'] = 1;
+        }
+        $this->db->where('key', 'allowed_device_number_of_logging_mob');
+        $this->db->update('settings', $data);
+
         $data['value'] = html_escape($this->input->post('course_selling_tax'));
         $this->db->where('key', 'course_selling_tax');
         $this->db->update('settings', $data);

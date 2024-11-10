@@ -95,13 +95,13 @@ class User_model extends CI_Model
     public function upload_complains() {
         // Load form validation library
         $this->load->library('form_validation');
-        
+
         // Set validation rules
         $this->form_validation->set_rules('name', 'Name', 'required|min_length[3]');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('phone', 'Phone', 'required|numeric');
         $this->form_validation->set_rules('message', 'Message', 'required');
-    
+
         // Check if validation passes
         if ($this->form_validation->run() == FALSE) {
             // Validation failed, reload the form
@@ -111,12 +111,12 @@ class User_model extends CI_Model
             // Validation passed, process the form
             $user_data = $this->session->userdata();
             $data['complain_type'] = $user_data['role_id'] == 1 ? 'admin' : 'user';
-            
+
             $data['user_id'] = $this->session->userdata('user_id');
             $data['name'] = $this->input->post('name');
             $data['email'] = $this->input->post('email');
             $data['phone'] = $this->input->post('phone');
-            
+
             if ($this->input->post('course_id') != 0) {
                 $data['course_id'] = $this->input->post('course_id');
             }
@@ -126,23 +126,23 @@ class User_model extends CI_Model
             }else {
                 $data['problem_type'] = 'general_problem';
             }
-    
+
             $data['message'] = $this->input->post('message');
             $data['status'] = 'open';
             // date format ( Y-m-d H:i:s ) for the database ...
             $data['created_at'] = date("Y-m-d H:i:s");
             $data['updated_at'] = date("Y-m-d H:i:s");
-            
-            
+
+
             // Insert data into the database
             $this->db->insert('complains', $data);
-            
+
             // Redirect or show success message
             $this->session->set_flashdata('flash_message', get_phrase('your complain has arraived'));
             redirect(base_url('/')); // Replace 'thank_you' with your success page
         }
     }
-    
+
 
     public function add_shortcut_user($is_instructor = false)
     {
@@ -691,62 +691,143 @@ class User_model extends CI_Model
 
 /*START LOGIN LOGOUT AND DEVICE ALLOW SECTION*/
     // For device login tracker
+//    public function new_device_login_tracker($user_id = "", $is_verified = '')
+//    {
+//        $pre_sessions = array();
+//        $updated_session_arr = array();
+//        $current_session_id = session_id();
+//        $this->db->where('id', $user_id);
+//        $sessions = $this->db->get('users');
+//
+//        if($sessions->row('role_id') == 1){
+//            return;
+//        }
+//
+//        $pre_sessions = json_decode($sessions->row('sessions'), true);
+//
+//        if(is_array($pre_sessions) && count($pre_sessions) > 0){
+//            if($is_verified == true && !in_array($current_session_id, $pre_sessions)){
+//                $allowed_device = get_settings('allowed_device_number_of_loging');
+//                $previous_tatal_device = count($pre_sessions) + 1; //current device
+//
+//                $removeable_device = $previous_tatal_device - $allowed_device;
+//
+//                foreach($pre_sessions as $key => $pre_session){
+//                    if($removeable_device >= 1){
+//                        $this->db->where('id', $pre_session);
+//                        $this->db->delete('ci_sessions');
+//                    }else{
+//
+//                        if($this->db->get_where('ci_sessions', ['id' => $pre_session])->num_rows() > 0){
+//                            array_push($updated_session_arr, $pre_session);
+//                        }
+//                    }
+//                    $removeable_device = $removeable_device - 1;
+//                }
+//                array_push($updated_session_arr, $current_session_id);
+//            }else{
+//                if(!in_array($current_session_id, $pre_sessions)){
+//                    if(count($pre_sessions) >= get_settings('allowed_device_number_of_loging')){
+//                        $this->email_model->new_device_login_alert($user_id);
+//                        redirect(site_url('login/new_login_confirmation'), 'refresh');
+//                    }else{
+//                        $updated_session_arr = $pre_sessions;
+//                        array_push($updated_session_arr, $current_session_id);
+//                    }
+//                }
+//            }
+//        }else{
+//            $updated_session_arr = [$current_session_id];
+//        }
+//
+//        if(count($updated_session_arr) > 0){
+//            $data['sessions'] = json_encode($updated_session_arr);
+//            $this->db->where('id', $user_id);
+//            $this->db->update('users', $data);
+//        }
+//    }
+    private function getDeviceTypeBySession() {
+        $this->load->library('user_agent');
+
+        if ($this->agent->is_browser()) {
+            return 'web';
+        } elseif ($this->agent->is_mobile()) {
+            return 'mobile';
+        } else {
+            return 'unknown';
+        }
+    }
     public function new_device_login_tracker($user_id = "", $is_verified = '')
     {
-        $pre_sessions = array();
         $updated_session_arr = array();
         $current_session_id = session_id();
-        $this->db->where('id', $user_id);
-        $sessions = $this->db->get('users');
+        $device_type = $this->getDeviceTypeBySession();
 
-        if($sessions->row('role_id') == 1){
+        $this->db->where('id', $user_id);
+        $user = $this->db->get('users')->row();
+
+        // Skip for admin users
+        if ($user->role_id == 1) {
             return;
         }
+        // Fetch existing sessions
+        $pre_sessions = json_decode($user->sessions, true);
+        // Settings for device login limits
+        $allowed_device_limit = get_settings('allowed_device_number_of_loging');
+        $allowed_web_limit = get_settings('allowed_device_number_of_logging_web');
+        $allowed_mobile_limit = get_settings('allowed_device_number_of_logging_mob');
 
-        $pre_sessions = json_decode($sessions->row('sessions'), true);
+        // Count current device sessions by type
+        $web_sessions = array_filter($pre_sessions, function ($session) {
+            return $session['type'] === 'web';
+        });
+        $mobile_sessions = array_filter($pre_sessions, function ($session) {
+            return $session['type'] === 'mobile';
+        });
 
-        if(is_array($pre_sessions) && count($pre_sessions) > 0){
-            if($is_verified == true && !in_array($current_session_id, $pre_sessions)){
-                $allowed_device = get_settings('allowed_device_number_of_loging');
-                $previous_tatal_device = count($pre_sessions) + 1; //current device
+        if ($is_verified && !in_array($current_session_id, array_column($pre_sessions, 'id'))) {
+            // Determine the removable devices for web and mobile limits
+            $removeable_count = count($pre_sessions) + 1 - $allowed_device_limit;
 
-                $removeable_device = $previous_tatal_device - $allowed_device;
-
-                foreach($pre_sessions as $key => $pre_session){
-                    if($removeable_device >= 1){
-                        $this->db->where('id', $pre_session);
-                        $this->db->delete('ci_sessions');
-                    }else{
-
-                        if($this->db->get_where('ci_sessions', ['id' => $pre_session])->num_rows() > 0){
-                            array_push($updated_session_arr, $pre_session);                        
+            // Check limits per device type
+            if ($device_type === 'web' && count($web_sessions) >= $allowed_web_limit) {
+                $this->email_model->new_device_login_alert($user_id);
+                redirect(site_url('login/new_login_confirmation'), 'refresh');
+            } elseif ($device_type === 'mobile' && count($mobile_sessions) >= $allowed_mobile_limit) {
+                $this->email_model->new_device_login_alert($user_id);
+                redirect(site_url('login/new_login_confirmation'), 'refresh');
+            } else {
+                foreach ($pre_sessions as $key => $pre_session) {
+                    if ($removeable_count > 0 && $pre_session['type'] === $device_type) {
+                        $this->db->where('id', $pre_session['id'])->delete('ci_sessions');
+                        $removeable_count--;
+                    } else {
+                        if ($this->db->get_where('ci_sessions', ['id' => $pre_session['id']])->num_rows() > 0) {
+                            $updated_session_arr[] = $pre_session;
                         }
                     }
-                    $removeable_device = $removeable_device - 1;
                 }
-                array_push($updated_session_arr, $current_session_id);
-            }else{
-                if(!in_array($current_session_id, $pre_sessions)){
-                    if(count($pre_sessions) >= get_settings('allowed_device_number_of_loging')){
-                        $this->email_model->new_device_login_alert($user_id);
-                        redirect(site_url('login/new_login_confirmation'), 'refresh');
-                    }else{
-                        $updated_session_arr = $pre_sessions;
-                        array_push($updated_session_arr, $current_session_id);
-                    }
+                $updated_session_arr[] = ['id' => $current_session_id, 'type' => $device_type];
+            }
+        } else {
+            if (!in_array($current_session_id, array_column($pre_sessions, 'id'))) {
+                if (count($pre_sessions) >= $allowed_device_limit) {
+                    $this->email_model->new_device_login_alert($user_id);
+                    redirect(site_url('login/new_login_confirmation'), 'refresh');
+                } else {
+                    $updated_session_arr = $pre_sessions;
+                    $updated_session_arr[] = ['id' => $current_session_id, 'type' => $device_type];
                 }
             }
-        }else{
-            $updated_session_arr = [$current_session_id];
         }
-
+        // Update user sessions if needed
         if(count($updated_session_arr) > 0){
-            $data['sessions'] = json_encode($updated_session_arr);
+             $data['sessions'] = json_encode($updated_session_arr);
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
         }
-    }
 
+    }
     function set_login_userdata($user_id = ""){
         // Checking login credential for admin
         $query = $this->db->get_where('users', array('id' => $user_id));
@@ -840,8 +921,8 @@ class User_model extends CI_Model
             if(is_array($pre_sessions)){
                 foreach($pre_sessions as $key => $pre_session){
                     if($pre_session != $current_session_id){
-                        if($this->db->get_where('ci_sessions', ['id' => $pre_session])->num_rows() > 0){
-                            array_push($updated_session_arr, $pre_session);                        
+                        if($this->db->get_where('ci_sessions', ['id' => $pre_session['id']])->num_rows() > 0){
+                            array_push($updated_session_arr, $pre_session);
                         }
                     }else{
                         $this->db->where('id', $pre_session);
