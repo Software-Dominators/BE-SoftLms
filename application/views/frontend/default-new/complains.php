@@ -5,6 +5,7 @@
         <p>this is side paragraph to put words in this is the side paragraph to put words in</p>
     </div>
     <div style="max-width: 400px;">
+
         <form action="<?php echo base_url('home/put_complains'); ?>" method="POST"
             style="background: #00000010;padding: 15px 30px;border-radius: 30px;margin: 20px 0;">
             <div style="margin-bottom: 20px;"><label class="form-label"
