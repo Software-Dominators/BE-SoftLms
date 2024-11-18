@@ -72,7 +72,7 @@ class Admin extends CI_Controller
             $this->crud_model->delete_category($param2);
             $this->session->set_flashdata('flash_message', get_phrase('data_deleted'));
             redirect(site_url('admin/categories'), 'refresh');
-        
+
         } elseif ($param1 == "sub_category_image") {
             $this->crud_model->delete_subcategory_image($param2);
             $this->session->set_flashdata('flash_message', get_phrase('data_deleted'));
@@ -261,7 +261,7 @@ class Admin extends CI_Controller
             $this->db->where('role_id', 2);
             $filtered_number_of_row = $this->db->get('users')->num_rows();
         }
-        
+
         foreach ($students as $key => $student) :
 
             //photo
@@ -319,7 +319,7 @@ class Admin extends CI_Controller
         echo json_encode($json_data);
     }
 
-    public function complains_data(){ // this to show the complains page in the dashdoard 
+    public function complains_data(){ // this to show the complains page in the dashdoard
         $page_data['page_name'] = 'complains';
         $page_data['page_title'] = get_phrase('complains');
         $this->load->view('backend/index', $page_data);
@@ -332,14 +332,14 @@ class Admin extends CI_Controller
         $search_value = $this->input->post('search')['value']; // For searching
         $order_column = $this->input->post('order')[0]['column']; // Column index for ordering
         $order_dir = $this->input->post('order')[0]['dir']; // 'asc' or 'desc'
-        
+
         // Get filtered complaints data from the model with limit, start, search, etc.
         $complaints = $this->crud_model->get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir);
-        
+
         // Get total and filtered records count
         $total_complaints = $this->crud_model->count_all_complaints();
         $filtered_complaints = $this->crud_model->count_filtered_complaints($search_value);
-    
+
         // Format data for DataTables
         $data = array();
         foreach ($complaints as $key => $complaint) {
@@ -356,7 +356,7 @@ class Admin extends CI_Controller
             $row['action'] = '<a href="complain_replay_view/'.$complaint->id.'" class="btn btn-sm btn-primary">'.get_phrase('Replay').'</a>';
             $data[] = $row;
         }
-    
+
         // Output data in DataTable format
         $output = array(
             "draw" => intval($this->input->post("draw")),
@@ -364,10 +364,10 @@ class Admin extends CI_Controller
             "recordsFiltered" => $filtered_complaints,
             "data" => $data,
         );
-        
+
         echo json_encode($output); // to make them readable for the datatabels library
     }
-    
+
     function complain_replay_view($id) { //show the page of the replay for the admin
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -388,12 +388,12 @@ class Admin extends CI_Controller
             $page_data['complain_data'] = [];
             // Redirect or show an error message
         }
-        
+
 
 
         $this->load->view('backend/index', $page_data);
     }
-    function complain_admin_replay() { // this controls the data out of the replay form and send it to the following targets 
+    function complain_admin_replay() { // this controls the data out of the replay form and send it to the following targets
         $this->crud_model->send_new_private_message();
         $this->crud_model->update_complain_data_for_replay();
         $this->session->set_flashdata('flash_message', get_phrase('the replay has arrived !'));
@@ -3208,7 +3208,7 @@ class Admin extends CI_Controller
 
 
 
-            
+
             redirect(site_url('admin/newsletters'), 'refresh');
         } elseif ($type == 'stop') {
             // Remove Cron Job
@@ -3340,7 +3340,7 @@ class Admin extends CI_Controller
                 // Rebuild the URL
                 $api_url = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $path;
             //Sanitize API URL END
-            
+
             //Create BBB meeting START
                 $query_data = http_build_query([
                     'name' => $course_details['title'],
@@ -3356,7 +3356,7 @@ class Admin extends CI_Controller
             if ($response) {
                 $xml = simplexml_load_string($response);
                 $returncode = (string)$xml->returncode;
-                
+
                 if ($returncode == 'SUCCESS') {
                     $moderator_details = $this->user_model->get_all_user($this->session->userdata('user_id'))->row_array();
                     //JOIN AS A viewer
@@ -3375,6 +3375,108 @@ class Admin extends CI_Controller
         }else{
             $this->session->set_flashdata('error_message', get_phrase("Please save your meeting info first"));
         }
+        echo $current_url;
+    }
+
+    function zoom_live_class_settings($type = "")
+    {
+        if ($type == 'update') {
+            $data['value'] = json_encode($_POST);
+            if ($this->db->where('key', 'zoom_settings')->get('settings')->num_rows() > 0) {
+                $this->db->where('key', 'zoom_settings')->update('settings', $data);
+            } else {
+                $data['key'] = 'zoom_settings';
+                $this->db->insert('settings', $data);
+            }
+            $this->session->set_flashdata('flash_message', get_phrase('Zoom configuration has been updated'));
+            redirect(site_url('admin/zoom_live_class_settings'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'zoom_live_class_settings';
+        $page_data['page_title'] = get_phrase('Zoom live class settings');
+        $this->load->view('backend/index', $page_data);
+    }
+
+    function save_zoom_meeting($course_id = "")
+    {
+        $data['topic'] = $this->input->post('zoom_topic');
+        $data['duration'] = $this->input->post('zoom_duration');
+        $data['instructions'] = $this->input->post('instructions');
+        $data['join_url'] = null;
+
+        if ($this->db->where('course_id', $course_id)->get('zoom_meetings')->num_rows() > 0) {
+            $data['updated_at'] = time();
+            $this->db->where('course_id', $course_id)->update('zoom_meetings', $data);
+        } else {
+            $data['course_id'] = $course_id;
+            $data['created_at'] = time();
+            $data['updated_at'] = $data['created_at'];
+            $this->db->insert('zoom_meetings', $data);
+        }
+
+        echo get_phrase("Zoom Meeting has been updated");
+    }
+
+    function start_zoom_meeting($course_id = "")
+    {
+        $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
+        $zoom_meeting = $this->db->where('course_id', $course_id)->get('zoom_meetings');
+        $current_url = site_url('admin/course_form/course_edit/' . $course_id . '?tab=zoom-live-class');
+
+        if ($zoom_meeting->num_rows() > 0) {
+            $zoom_meeting = $zoom_meeting->row_array();
+
+            if ($zoom_meeting['join_url']) {
+                $join_url = $zoom_meeting['join_url'];
+                echo $join_url;
+                return;
+            } else {
+                $this->load->library('zoom');
+
+                $result = $this->zoom->createMeeting([
+                    "agenda" => $course_details['title'],
+                    "topic" => $zoom_meeting['topic'],
+                    "type" => 1, // 1 => instant, 2 => scheduled, 3 => recurring with no fixed time, 8 => recurring with fixed time
+                    "duration" => $zoom_meeting['duration'], // in minutes
+                    "timezone" => get_settings('timezone'), // set your timezone
+                    "password" => '',
+                    "start_time" => (new DateTime(date('Y-m-d H:i:s')))->format('Y-m-d\TH:i:s\Z'), // set your start time
+                    // "template_id" => 'set your template id', // set your template id  Ex: "Dv4YdINdTk+Z5RToadh5ug==" from https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingtemplates
+                    "pre_schedule" => false,  // set true if you want to create a pre-scheduled meeting
+                    "schedule_for" => null, // set your schedule for
+                    "settings" => [
+                        'join_before_host' => true, // if you want to join before host set true otherwise set false
+                        'host_video' => false, // if you want to start video when host join set true otherwise set false
+                        'participant_video' => false, // if you want to start video when participants join set true otherwise set false
+                        'mute_upon_entry' => false, // if you want to mute participants when they join the meeting set true otherwise set false
+                        'waiting_room' => false, // if you want to use waiting room for participants set true otherwise set false
+                        'audio' => 'both', // values are 'both', 'telephony', 'voip'. default is both.
+                        'auto_recording' => 'none', // values are 'none', 'local', 'cloud'. default is none.
+                        'approval_type' => 0, // 0 => Automatically Approve, 1 => Manually Approve, 2 => No Registration Required
+                    ],
+                ]);
+
+                // Handle response & redirect to meeting url
+                if ($result['status']) {
+                    $join_url = $result['data']['join_url'];
+
+                    if ($this->db->where('course_id', $course_id)->get('zoom_meetings')->num_rows() > 0) {
+                        $data['updated_at'] = time();
+                        $this->db->where('course_id', $course_id)->update('zoom_meetings', [
+                            'join_url' => $join_url,
+                        ]);
+                    }
+
+                    echo $join_url;
+                    return;
+                } else {
+                    $this->session->set_flashdata('error_message', get_phrase("Failed to create meeting."));
+                }
+            }
+        } else {
+            $this->session->set_flashdata('error_message', get_phrase("Please save your meeting info first"));
+        }
+
         echo $current_url;
     }
 
