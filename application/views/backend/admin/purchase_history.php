@@ -14,6 +14,7 @@
     <table id="basic-datatable" class="table table-striped table-centered mb-0">
       <thead>
         <tr>
+        <th><?php echo get_phrase('no'); ?></th>
           <th><?php echo get_phrase('user'); ?></th>
           <th><?php echo get_phrase('course'); ?></th>
           <th><?php echo get_phrase('paid_amount'); ?></th>
@@ -22,17 +23,18 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($purchase_history->result_array() as $purchase):
+        <?php foreach ($purchase_history->result_array() as  $key =>$purchase):
             $user_data = $this->db->get_where('users', array('id' => $purchase['user_id']))->row_array();
             $course_data = $this->db->get_where('course', array('id' => $purchase['course_id']))->row_array();?>
-            <tr class="gradeU">
+            <tr >
+            <td class="id"><?php echo $key + 1; ?></td>
               <td>
                   <?php echo $user_data['first_name'].' '.$user_data['last_name']; ?><br>
                   <small class="badge badge-light"><?php echo $user_data['email']; ?></small>
               </td>
               <td><a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course_data['title'])) . '/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></td>
               <td>
-                <?php echo currency($purchase['amount']+$purchase['tax']); ?><br>
+                <span class="badge badge-secondary"><?php echo currency($purchase['amount']+$purchase['tax']); ?></span>
               </td>
               <td><?php echo ucfirst($purchase['payment_type']); ?></td>
               <td><?php echo date('D, d-M-Y', $purchase['date_added']); ?></td>

@@ -35,6 +35,7 @@
                     <table id="basic-datatable" class="table table-striped table-centered mb-0">
                         <thead>
                             <tr>
+                            <th><?php echo get_phrase('no'); ?></th>
                                 <th><?php echo get_phrase('enrolled_course'); ?></th>
                                 <th><?php echo get_phrase('total_amount'); ?></th>
                                 <th><?php echo get_phrase('admin_revenue'); ?></th>
@@ -42,12 +43,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($payment_history as $payment) :
+                            <?php foreach ($payment_history as  $key =>$payment) :
                                 $user_data = $this->db->get_where('users', array('id' => $payment['user_id']))->row_array();
                                 $course_data = $this->db->get_where('course', array('id' => $payment['course_id']))->row_array(); ?>
-                                <tr class="gradeU">
+                                <tr >
+                                <td class="id"><?php echo $key + 1; ?></td>
                                     <td>
-                                        <strong><a href="<?php echo site_url('admin/course_form/course_edit/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></strong>
+                                        <a class=" name" href="<?php echo site_url('admin/course_form/course_edit/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a>
                                         <?php if ($payment['coupon']) : ?>
                                             <small>
                                                 <span class="badge badge-success">
@@ -57,7 +59,7 @@
                                         <?php endif; ?>
                                     </td>
                                     <td><?php echo currency($payment['amount']); ?></td>
-                                    <td><?php echo currency($payment['admin_revenue']); ?></td>
+                                    <td> <span class="badge badge-secondary"> <?php echo currency($payment['admin_revenue']); ?></span></td>
                                     <td><?php echo date('D, d-M-Y', $payment['date_added']); ?></td>
                                 </tr>
                             <?php endforeach; ?>

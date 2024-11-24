@@ -32,30 +32,27 @@
                             foreach ($blogs->result_array() as $key => $blog) : ?>
                             	<?php $user_details = $this->user_model->get_all_user($blog['user_id'])->row_array(); ?>
                                 <tr>
-                                    <td><?php echo $key + 1; ?></td>
+                                    <td class="id"><?php echo $key + 1; ?></td>
                                     <td>
                                     	<a href="<?php echo site_url('home/instructor_page/'.$blog['user_id']); ?>" target="_blank">
-	                                    	<div class="d-flex">
-	                                    		<div>
-	                                        		<img src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
-	                                        	</div>
-		                                        <div class="pl-1 pt-1">
-			                                    	<?php echo $user_details['first_name'] . ' ' . $user_details['last_name']; ?>
-			                                    	<p><?php echo $user_details['email']; ?></p>
-			                                    </div>
-			                                </div>
+	                                    	
+			                                    <b class="name">	<?php echo $user_details['first_name'] . ' ' . $user_details['last_name']; ?></b>
+                                                <p class="email"><?php echo $user_details['email']; ?></p>
+			                                    
 			                            </a>
                                     </td>
                                     <td>
                                         <a href="<?php echo site_url('blog/details/'.slugify($blog['title']).'/'.$blog['blog_id']); ?>" target="_blank"><?php echo $blog['title']; ?></a><br>
                                         <small class="text-muted"><?php echo date('d M Y', $blog['added_date']); ?></small>
                                     </td>
-                                    <td><?php echo $this->crud_model->get_blog_categories($blog['blog_category_id'])->row('title'); ?></td>
+                                    <td>
+                                        <span class="badge badge-secondary"><?php echo $this->crud_model->get_blog_categories($blog['blog_category_id'])->row('title'); ?></span>
+                                    </td>
                                     <td>
                                         <?php if($blog['status'] == 1): ?>
                                         	<span class="badge badge-success"><?php echo get_phrase('active'); ?></span>
                                         <?php else: ?>
-                                        	<span class="badge badge-secondary"><?php echo get_phrase('inactive'); ?></span>
+                                        	<span class="badge badge-danger"><?php echo get_phrase('inactive'); ?></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
