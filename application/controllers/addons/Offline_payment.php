@@ -23,12 +23,17 @@ class Offline_payment extends CI_Controller
 
 	public function pending($param1 = "", $id = "", $user_id = "", $amount_paid = "")
 	{
+		
+		
+		
 		if ($this->session->userdata('admin_login') != true) {
 			redirect(site_url('login'), 'refresh');
 		}
 
 		if ($param1 == 'approve'){
 			$offline_payment = $this->offline_payment_model->offline_payment_all_data($id)->row_array();
+
+			
 			$item_ids = json_decode($offline_payment['item_id']);
 
 			if($offline_payment['item_type'] == 'course_bundle'){
@@ -123,6 +128,7 @@ class Offline_payment extends CI_Controller
 
 	public function suspended($param1 = "", $id = "", $user_id = "", $amount_paid = "")
 	{
+	
 		if ($this->session->userdata('admin_login') != true) {
 			redirect(site_url('login'), 'refresh');
 		}

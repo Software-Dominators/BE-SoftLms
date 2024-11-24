@@ -28,6 +28,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                
                       <?php
                        foreach ($offline_payments as $key => $offline_payment): ?>
                         <tr>
@@ -40,7 +41,7 @@
                             <td>
                               <span class="badge badge-dark-lighten badge-pill"><?php echo currency($offline_payment['amount']); ?></span>
                             </td>
-                            <td>
+                            <!-- <td>
                               <h5><?php echo get_phrase($offline_payment['item_type']); ?>: </h5>
 
                               <?php if($offline_payment['item_info'] != ""): ?>
@@ -49,7 +50,7 @@
                                 <?php endforeach; ?>
                               <?php endif; ?>
                               <p><small><?php echo date('d M Y', $offline_payment['timestamp']) ?></small></p>
-                            </td>
+                            </td> -->
                             <td>
                               <a href="<?php echo base_url('uploads/payment_document/'.$offline_payment['document_image']); ?>" class="btn btn-outline-info" download><i class="mdi mdi-download"></i><?php echo get_phrase('payment_document_file'); ?></a>
                               <a>
