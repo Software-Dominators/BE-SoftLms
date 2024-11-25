@@ -15,10 +15,10 @@
       <div class="card-body">
         <h4 class="mb-3 header-title"><?php echo get_phrase('offline_payments'); ?></h4>
         <div class="table-responsive-sm mt-4">
-          <table id="basic-datatable" class="table table-striped table-centered mb-0">
+        <table id="basic-datatable" class="table table-striped table-centered mb-0">
             <thead>
               <tr>
-                <th>#</th>
+                <th><?php echo get_phrase('no'); ?></th>
                 <th><?php echo get_phrase('photo'); ?></th>
                 <th><?php echo get_phrase('user'); ?></th>
                 <th><?php echo get_phrase('price'); ?></th>
@@ -30,22 +30,17 @@
             </thead>
             <tbody>
 
-           
-
               <?php
-
               foreach ($offline_payments as $key => $offline_payment): ?>
                 <tr>
                   <td class="id"><?php echo $key + 1; ?></td>
                   <?php $user_data = $this->user_model->get_user($offline_payment['user_id'])->row_array(); ?>
                   <td>
-                   
-
-                      <img loading="lazy" class="img" src="<?php echo $this->user_model->get_user_image_url($offline_payment['user_id']); ?>">
-
+                    <img loading="lazy" class="img"
+                      src="<?php echo $this->user_model->get_user_image_url($offline_payment['user_id']); ?>">
                   </td>
                   <td>
-                    
+
                     <b class="name"><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?></b>
                     <p><small class="email"><?php echo $user_data['email']; ?></small></p>
                   </td>
@@ -84,14 +79,23 @@
                     <?php endif; ?>
                   </td>
                   <td>
-                    <div class="dropright dropright">
-                      <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon"
+                    <div class="dropleft">
+                      <button type="button" class="dropdown-btn"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="mdi mdi-dots-vertical"></i>
                       </button>
                       <ul class="dropdown-menu">
+
+                        <li><a class="dropdown-item" onclick="show_loader_modal()"
+                            href="<?php echo site_url('addons/offline_payment/pending/approve/' . $offline_payment['id'] . '/' . $offline_payment['user_id'] . '/' . $offline_payment['amount']); ?>"><i></i><?php echo get_phrase('approve'); ?></a>
+                        </li>
+
+                        <li><a class="dropdown-item"
+                            href="<?php echo site_url('addons/offline_payment/pending/suspended/' . $offline_payment['id'] . '/' . $offline_payment['user_id']) ?>"><?php echo get_phrase('suspended'); ?></a>
+                        </li>
+
                         <li><a class="dropdown-item" href="#"
-                            onclick="confirm_modal('<?php echo site_url('addons/offline_payment/approve/delete/' . $offline_payment['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
+                            onclick="confirm_modal('<?php echo site_url('addons/offline_payment/pending/delete/' . $offline_payment['id']); ?>');"><?php echo get_phrase('delete'); ?></a>
                         </li>
                       </ul>
                     </div>

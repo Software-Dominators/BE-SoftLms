@@ -2,7 +2,8 @@
     $message_thread_details = $this->db->get_where('message_thread', array('message_thread_code' => $current_message_thread_code))->row_array();
     $first_sender = $message_thread_details['sender'];
 ?>
-<div class="row">
+<div class="row" class="message>
+	
 	<div class="col-sm-12 col-md-12 col-lg-12">
 	    <!-- Chat-->
 	    <div class="card">
@@ -41,13 +42,13 @@
 	                <form method="post" action="<?php echo site_url('admin/message/send_reply/'.$current_message_thread_code); ?>" class="needs-validation" novalidate name="chat-form" id="chat-form">
 	                    <div class="row">
 	                        <div class="col">
-	                            <input type="text" name="message" class="form-control chat-input" placeholder="Enter your text" required>
+	                            <input type="text" name="message" class="form-control chat-input message__input" placeholder="Enter your text" required>
 	                            <div class="invalid-feedback">
 	                                <?php echo get_phrase('Please enter your messsage'); ?>
 	                            </div>
 	                        </div>
 	                        <div class="col-auto">
-	                            <button type="submit" class="btn btn-danger chat-send btn-block waves-effect waves-light"><?php echo get_phrase('sent_message'); ?></button>
+	                            <button type="submit" class="message__btn "><?php echo get_phrase('sen'); ?></button>
 	                        </div>
 	                    </div>
 	                </form>

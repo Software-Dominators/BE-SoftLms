@@ -48,12 +48,16 @@
                       </small>
                     <?php endif; ?>
                   </td>
-                  <td><?php echo $user_data['first_name'] . ' ' . $user_data['last_name']; ?></td>
+                  <td>
+
+                    <b class="name"><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?></b>
+                    <p><small class="email"><?php echo $user_data['email']; ?></small></p>
+                  </td>
                   <td>
                     <?php echo currency($payment['amount']); ?>
                   </td>
                   <td>
-                    <?php echo currency($payment['instructor_revenue']); ?>
+                   <span class="badge badge-secondary"><?php echo currency($payment['instructor_revenue']); ?></span>
                   </td>
                 </tr>
               <?php endforeach; ?>

@@ -28,10 +28,11 @@
             $course_data = $this->db->get_where('course', array('id' => $purchase['course_id']))->row_array();?>
             <tr >
             <td class="id"><?php echo $key + 1; ?></td>
-              <td>
-                  <?php echo $user_data['first_name'].' '.$user_data['last_name']; ?><br>
-                  <small class="badge badge-light"><?php echo $user_data['email']; ?></small>
-              </td>
+            <td>
+
+<b class="name"><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?></b>
+<p><small class="email"><?php echo $user_data['email']; ?></small></p>
+</td>
               <td><a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course_data['title'])) . '/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></td>
               <td>
                 <span class="badge badge-secondary"><?php echo currency($purchase['amount']+$purchase['tax']); ?></span>

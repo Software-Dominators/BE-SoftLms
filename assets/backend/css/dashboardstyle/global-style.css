@@ -394,6 +394,10 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 .modal .action-btns{
 	gap: 50px;
 }
+.payment-btn{
+	width: auto;
+	padding:7.5px 38px;
+}
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
 
@@ -431,4 +435,29 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 	/* .container {
 		width: 1340px;
 	} */
+}
+
+
+.avatar-title {
+	background-color: rgba(254, 245, 234, 1) !important;
+	color: rgba(247, 147, 30)  !important;
+}
+
+.avatar-title  i{
+	font-size: 20px;
+}
+
+.dropdown-btn{
+
+padding:  9px 14px;
+
+border-radius: 8px;
+border: none;
+background-color: #FEF5EA;
+color: #F7931E;
+}
+
+.dropdown-btn:hover{
+	background-color: #F7931E;
+	color: #FEF5EA;
 }

@@ -1,23 +1,30 @@
 <div class="row ">
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('data_center'); ?>
-                </h4>
-            </div> <!-- end card body-->
+        <div  class="card-body">
+     
+     <h4  style ="color:#8B93A1"
+             class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i>
+              <?php echo get_phrase('Settings'); ?></h4>
+              <i style="color:#27344B ;  display: inline-block; font-size:24px; padding:16px " class="fa-solid fa-angle-right"></i>
+              <h4 style="  display: inline-block;color:#232F43;font-family: Outfit;
+             font-size: 24px;font-weight: 400;  " class="header-title my-1 s-header"><?php echo get_phrase('data_center'); ?>
+ </h4>
+
+</div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
 
 
-<div class="row ">
-    <div class="col-md-5 col-xl-6">
-        <div class="card">
+<div class="row  card">
+    <div class="col-md-5 col-xl-12">
+        <div class="col-md-5 col-xl-6">
             <div class="card-body">
                 <h5 class="header-title">
                     <?php echo get_phrase('import_your_data'); ?>
                 </h5>
-                <p>You can import your demo and your backup data from here.</p>
+                <p class="label-style"><?= get_phrase('you_can_import_your_demo_and_your_backup_data_from_here'); ?></p>
                 <form action="<?php echo site_url('data_center/demo_importer'); ?>" method="post" enctype="multipart/form-data" id="import_backup_data_form">
                     <div class="input-group mb-3">
                     	<div class="input-group">
@@ -26,27 +33,27 @@
 								<label class="custom-file-label ellipsis" for="data_file"><?php echo get_phrase('choose_your_demo_file'); ?></label>
 							</div>
 						</div>
-                        <span class="badge badge-light">Ex: uploads_v<?php echo get_settings('version'); ?>.zip</span>
+                        <span class=" text1-style"><img src="../assets/backend/images/Vector (1).svg" class="title-icon" alt=""> &nbsp;&nbsp;Ex: uploads_v<?php echo get_settings('version'); ?>.zip</span>
                     </div>
 
                     <div class="form-group">
-                        <button onclick="jQuery('#data-import-alert-modal').modal('show', {backdrop: 'static'});" type="button" class="btn btn-primary w-100"> <i class="mdi mdi-database-export"></i> <?php echo get_phrase('import'); ?></button>
+                        <button onclick="jQuery('#data-import-alert-modal').modal('show', {backdrop: 'static'});" type="button" class="submit-btn w-100"> <i class="mdi mdi-database-export"></i> <?php echo get_phrase('import'); ?></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="col-md-7 col-xl-6">
-        <div class="card">
+    <div  class="col-md-7 col-xl-6">
+        <div  style ="height:100vh" class="">
             <div class="card-body">
                 <div class="d-flex mb-3">
                     <h5><?php echo get_phrase('backup_your_website'); ?></h5>
-                    <a class="ml-auto btn btn-primary px-2 py-1" data-toggle="tooltip" title="<?php echo get_phrase('backup_your_current_data'); ?>" href="<?php echo site_url('data_center/create_backup_file'); ?>"><i class="dripicons-cloud-upload"></i> <?php echo get_phrase('keep_a_backup'); ?></a>
+                    <a class="ml-auto btn submit-btn px-2 py-1" data-toggle="tooltip" title="<?php echo get_phrase('backup_your_current_data'); ?>" href="<?php echo site_url('data_center/create_backup_file'); ?>"><i class="dripicons-cloud-upload"></i> <?php echo get_phrase('keep_a_backup'); ?></a>
                 </div>
 
 
                 <?php if($this->session->flashdata('imported_message')): ?>
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert  alert-style" role="alert">
                         <i class="dripicons-checkmark mr-2"></i> 
                         <?php echo $this->session->flashdata('imported_message'); ?>
                     </div>
@@ -58,7 +65,7 @@
                     $all_backups = array_filter(glob('backups/*'), 'is_dir');
                     if(count($all_backups) == 0): ?>
                         
-                    <div class="alert alert-light" role="alert">
+                    <div class=" alert alert-style" role="alert">
                         <i class="mdi mdi-folder-multiple-outline mr-2"></i> 
                         <?php echo get_phrase('No backup'); ?>
                     </div>
