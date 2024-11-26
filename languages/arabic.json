@@ -1088,5 +1088,7 @@
   "language_deleted_successfully": null,
   "language_added_successfully": null,
   "setup_payment_information":"إعداد معلومات الدفع",
-   "you_can_import_your_demo_and_your_backup_data_from_here":"يمكنك استيراد العرض التوضيحي وبيانات النسخ الاحتياطي الخاصة بك من هنا."
+   "you_can_import_your_demo_and_your_backup_data_from_here":"يمكنك استيراد العرض التوضيحي وبيانات النسخ الاحتياطي الخاصة بك من هنا.",
+   "click_to_send_manually":"انقر لإرسال يدويا",
+   "add_newsletter":"إضافة جريدة"
 }

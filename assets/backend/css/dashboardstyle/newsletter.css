@@ -1,0 +1,99 @@
+.newsletter__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding-top: 22px;
+    padding-bottom: 22px;
+
+    text-align: center;
+    border-radius: 8px;
+    min-height: 217px;
+    height: 100%;
+
+
+}
+
+.newsletter__content img {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+
+}
+
+.newsletter__content h6{
+
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 57px;
+    color: #EA9744;
+    margin-top: 8px;
+
+}
+
+.newsletter__content p {
+margin: 0;
+padding: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #232F43;
+
+}
+
+.newsletter__content small {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #A3A3A3;
+
+}
+
+.newsletter__content .send-manually{
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+  color: #F7931E;
+    
+}
+
+
+.newsletter-btn{
+
+padding: 8px 0px 0px 0px;
+
+border-radius: 8px ;
+border: 1px dotted #F7931E;
+
+padding: 7.5px 27.5px;
+
+font-size: 18px;
+font-weight: 500;
+line-height: 27px;
+color: #F7931E;
+
+}
+
+.newsletter-btn:hover{
+
+background-color: #F7931E;
+color: #FFFFFF;
+}
+
+
+
+.newsletter__content .send-manually {
+    margin-top: 8px; /* Add spacing from previous element */
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: underline;
+    color: #F7931E;
+    display: block; /* Ensure it behaves like a block-level element for consistent spacing */
+}

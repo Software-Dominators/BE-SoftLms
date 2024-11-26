@@ -1090,5 +1090,7 @@
   "language_deleted_successfully": "Language deleted successfully",
   "language_added_successfully": "Language added successfully",
   "setup_payment_information":"Setup payment information",
-  "you_can_import_your_demo_and_your_backup_data_from_here":"You can import your demo and your backup data from here"
+  "you_can_import_your_demo_and_your_backup_data_from_here":"You can import your demo and your backup data from here",
+  "click_to_send_manually":"Click to send manually",
+  "add_newsletter":"Add Newsletter"
 }

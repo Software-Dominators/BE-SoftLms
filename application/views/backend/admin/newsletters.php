@@ -1,26 +1,22 @@
 <div class="row ">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body d-flex justify-content-between align-items-center">
         <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-          <a href="#" onclick="showAjaxModal('<?php echo site_url('admin/newsletter_add_form'); ?>', '<?php echo get_phrase('Newsletter template') ?>')" class="btn btn-outline-primary btn-rounded alignToTitle mr-1"><i class=" mdi mdi-plus"></i> <?php echo get_phrase('Newsletter'); ?></a>
+        
         </h4>
+        <a href="#" onclick="showAjaxModal('<?php echo site_url('admin/newsletter_add_form'); ?>', '<?php echo get_phrase('Newsletter template') ?>')" class="newsletter-btn"> <?php echo get_phrase('Newsletter'); ?></a>
+        
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
 </div>
 
-<div class="row">
-  <div class="col-12">
-    <div class="card widget-inline">
-      <div class="card-body p-0" id="newsletter_statistics">
-        <?php include "newsletter_statistics.php"; ?>
-      </div>
-    </div> <!-- end card-box-->
-  </div> <!-- end col-->
-</div>
 
-<div class="row">
+        <?php include "newsletter_statistics.php"; ?>
+     
+
+<div class="row mt-5">
   <div class="col-lg-8">
     <div id="accordion" class="custom-accordion mb-4">
 
