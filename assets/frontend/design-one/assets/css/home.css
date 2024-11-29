@@ -1,0 +1,128 @@
+.course__content {
+    background: var(--light-grey-color);
+    width: 397px;
+    min-height: 607px;
+    height: 100%;
+    border-radius: 32px;
+    padding: 24px;
+
+}
+
+.course__top {
+    width: 349px;
+    height: 289px;
+    border-radius: 8px;
+    position: relative;
+    background-color: red;
+}
+
+.course__top img {
+    border-radius: 8px;
+}
+
+.course__top .favorite {
+    background-color: var(--white-color);
+    padding: 8px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--primary-color);
+    z-index: 99;
+
+}
+
+.course__top .duration {
+    background-color: var(--white-color);
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    color: #535353;
+    height: 33px;
+    padding: 6px 10px 6px 10px;
+    gap: 6px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    z-index: 99;
+}
+
+.course .course__middle {
+    margin-top: 16px;
+}
+
+.course__bottom .course__category {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+
+}
+
+.course__bottom .category .course_level {
+    text-decoration: none;
+}
+
+
+.course .course__title {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: var(--dark-grey-color);
+
+}
+
+.course .course__review {}
+
+.course .course__description {
+
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    color: var(--paragraph-color);
+
+}
+.course__bottom {
+    margin-top: 16px;
+}
+.course__instructor{
+    gap: 4.5px;
+}
+.course .course__instructor img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+
+}
+
+.course .course__instructor .instructor-name {
+    gap: 4px;
+}
+.course .course__instructor .instructor-name span{
+
+font-size: 14px;
+font-weight: 300;
+line-height: 21px;
+color: #6C6C6C;
+padding: 0;
+
+}
+
+.course .course__instructor .instructor-name h6 {
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+color: #101828;
+
+}
+.course .course__price {
+
+font-size: 32px;
+font-weight: 700;
+line-height: 48px;
+color: var(--primary-color);
+
+}

@@ -11,6 +11,7 @@
         white-space: normal
     }
 </style>
+
 <!---------- Banner Section Start ---------------->
 <section class="h-1-banner bannar-area pb-5">
     <div class="container">
@@ -194,6 +195,9 @@
 
 
 <?php if(get_frontend_settings('top_course_section') == 1): ?>
+
+
+    <?php  include_once('includes/courses.php'); ?>
 <!---------- Top courses Section start --------------->
 <section class="courses Ecourse grid-view-body py-5 wow  animate__animated animate__fadeInUp opacityOnUp" data-wow-duration="500" data-wow-delay="300">
     <div class="container">
