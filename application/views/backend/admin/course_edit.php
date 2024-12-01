@@ -58,6 +58,12 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                 <span class=""><?php echo get_phrase('BBB live class'); ?></span>
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="#zoom-live-class" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                                <i class="mdi mdi-camera"></i>
+                                                <span class=""><?php echo get_phrase('Zoom live class'); ?></span>
+                                            </a>
+                                        </li>
                                         <?php if (addon_status('live-class')) : ?>
                                             <li class="nav-item">
                                                 <a href="#live-class" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
@@ -182,6 +188,10 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 
                                     <div class="tab-pane" id="bbb-live-class">
                                         <?php include "bbb_live_class.php"; ?>
+                                    </div>
+
+                                    <div class="tab-pane" id="zoom-live-class">
+                                        <?php include "zoom_live_class.php"; ?>
                                     </div>
 
                                     <!-- LIVE CLASS CODE BASE -->
@@ -880,7 +890,7 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 
 
 <script type="text/javascript">
-  
+
     $(document).ready(function() {
         $('#thumbnail-picker-area').hide();
         $('#publish_date').hide();

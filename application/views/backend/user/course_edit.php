@@ -59,7 +59,14 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                                 <span class=""><?php echo get_phrase('BBB live class'); ?></span>
                                             </a>
                                         </li>
-                                        
+
+                                        <li class="nav-item">
+                                            <a href="#zoom-live-class" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                                <i class="mdi mdi-video-account"></i>
+                                                <span class=""><?php echo get_phrase('Zoom live class'); ?></span>
+                                            </a>
+                                        </li>
+
                                         <?php if (addon_status('live-class')) : ?>
                                             <li class="nav-item jitsiLiveClassNavItem">
                                                 <a href="#live-class" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
@@ -161,7 +168,7 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
                                         elseif ($course_details['course_type'] == 'scorm' && addon_status('scorm_course') == true) :
                                             include 'scorm_curriculum.php';
                                         elseif($course_details['course_type']== 'h5p' && addon_status('h5p') == true):
-                                            include 'h5p_curriculum.php' ; 
+                                            include 'h5p_curriculum.php' ;
                                         else:?>
                                             <?php if ($course_details['course_type'] == 'scorm_course') :?>
                                                 <div class="row justify-content-center">
@@ -191,6 +198,10 @@ $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 
                                     <div class="tab-pane" id="bbb-live-class">
                                         <?php include "bbb_live_class.php"; ?>
+                                    </div>
+
+                                    <div class="tab-pane" id="zoom-live-class">
+                                        <?php include "zoom_live_class.php"; ?>
                                     </div>
 
                                     <!-- LIVE CLASS CODE BASE -->

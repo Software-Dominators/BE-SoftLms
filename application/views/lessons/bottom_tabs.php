@@ -84,9 +84,9 @@
 	<?php endif; ?>
 
 	<div class="tab-pane fade" id="live-class-content" role="tabpanel" aria-labelledby="live-class-tab">
-		
+
 		<!-- BigBlueButton -->
-				
+
 		<?php $live_class_scheduled = 0; ?>
 		<?php $bbb_meeting = $this->db->where('course_id', $course_id)->get('bbb_meetings');
 		if ($bbb_meeting->num_rows() > 0) :
@@ -105,6 +105,24 @@
 			<hr>
 		<?php endif; ?>
 
+		<?php $zoom_meeting = $this->db->where('course_id', $course_id)->get('zoom_meetings');
+		if ($zoom_meeting->num_rows() > 0) :
+			$zoom_meeting = $zoom_meeting->row_array();
+			if ($zoom_meeting['join_url']) :
+				$live_class_scheduled = 1; ?>
+				<div class="live_class">
+					<i class="fa fa-calendar-check"></i> <?php echo get_phrase('Zoom live class schedule'); ?>
+					<div class="py-4">
+						<?php echo $zoom_meeting['instructions']; ?>
+					</div>
+					<a href="<?php echo site_url('user/join_zoom_meeting/'.$course_id); ?>" target="_blank" class="btn btn_zoom">
+						<i class="fa fa-video"></i>&nbsp;
+						<?php echo get_phrase('join_live_class'); ?>
+					</a>
+				</div>
+				<hr>
+			<?php endif; ?>
+		<?php endif; ?>
 
 		<?php if (addon_status('live-class')) : ?>
 			<?php $live_class = $this->db->get_where('live_class', array('course_id' => $course_id));

@@ -55,7 +55,7 @@ class User extends CI_Controller
     {
         // IF THE USER IS NOT AN INSTRUCTOR HE/SHE CAN NEVER ACCESS THE OTHER FUNCTIONS EXCEPT FOR BELOW FUNCTIONS.
         if ($this->session->userdata('is_instructor') != 1) {
-            $unprotected_routes = ['become_an_instructor', 'manage_profile', 'save_course_progress', 'start_quiz', 'retake_quiz', 'submit_quiz_answer', 'finish_quize_submission', 'join_bbb_meeting'];
+            $unprotected_routes = ['become_an_instructor', 'manage_profile', 'save_course_progress', 'start_quiz', 'retake_quiz', 'submit_quiz_answer', 'finish_quize_submission', 'join_bbb_meeting', 'join_zoom_meeting'];
 
             if (!in_array($method, $unprotected_routes)) {
                 redirect(site_url('user/become_an_instructor'), 'refresh');
@@ -864,7 +864,7 @@ class User extends CI_Controller
 
         //checkpoint(randomize)
         //checks if the randomize value is equal to 1 (true) to randomize the order of the questions
-        if($quiz_details['randomize'] == 1){
+        if ($quiz_details['randomize'] == 1) {
             $this->db->order_by('RAND()');
         }
 
@@ -1061,7 +1061,7 @@ class User extends CI_Controller
             redirect(site_url('certificate/' . $certificate->row('shareable_url')));
         } else {
             $this->session->set_flashdata('error_message', get_phrase('The course is not completed yet'));
-//            redirect(site_url('user/course_form/course_edit/' . $certificate->row('shareable_url'))); this is wrong redirect
+            //            redirect(site_url('user/course_form/course_edit/' . $certificate->row('shareable_url'))); this is wrong redirect
             redirect(site_url('user/course_form/course_edit/' . $course_id . '?tab=academic_progress'));
         }
     }
@@ -1218,7 +1218,7 @@ class User extends CI_Controller
                 // Rebuild the URL
                 $api_url = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $path;
                 //Sanitize API URL END
-                
+
                 //JOIN AS A viewer [JOIN LINK]
                 $viewer_details = $this->user_model->get_all_user($this->session->userdata('user_id'))->row_array();
                 $full_name = $viewer_details['first_name'] . ' ' . $viewer_details['last_name']; // The full name of the participant
@@ -1228,6 +1228,121 @@ class User extends CI_Controller
             } else {
                 $this->session->set_flashdata('error_message', get_phrase("Meeting not scheduled yet"));
             }
+            redirect($current_url, 'refresh');
+        } else {
+            $this->session->set_flashdata('error_message', get_phrase("Please purchase this course first"));
+            redirect(site_url('home/my_courses'), 'refresh');
+        }
+    }
+
+    function save_zoom_meeting($course_id = "")
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$this->crud_model->is_course_instructor($course_id, $user_id)) {
+            return;
+        }
+
+        $data['topic'] = $this->input->post('zoom_topic');
+        $data['duration'] = $this->input->post('zoom_duration');
+        $data['instructions'] = $this->input->post('instructions');
+        $data['join_url'] = null;
+
+        if ($this->db->where('course_id', $course_id)->get('zoom_meetings')->num_rows() > 0) {
+            $data['updated_at'] = time();
+            $this->db->where('course_id', $course_id)->update('zoom_meetings', $data);
+        } else {
+            $data['course_id'] = $course_id;
+            $data['created_at'] = time();
+            $data['updated_at'] = $data['created_at'];
+            $this->db->insert('zoom_meetings', $data);
+        }
+
+        echo get_phrase("Zoom Meeting has been updated");
+    }
+
+    function start_zoom_meeting($course_id = "")
+    {
+        $user_id = $this->session->userdata('user_id');
+        if (!$this->crud_model->is_course_instructor($course_id, $user_id)) {
+            return;
+        }
+
+        $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
+        $zoom_meeting = $this->db->where('course_id', $course_id)->get('zoom_meetings');
+        $current_url = site_url('admin/course_form/course_edit/' . $course_id . '?tab=zoom-live-class');
+
+        if ($zoom_meeting->num_rows() > 0) {
+            $zoom_meeting = $zoom_meeting->row_array();
+
+            if ($zoom_meeting['join_url']) {
+                $join_url = $zoom_meeting['join_url'];
+                echo $join_url;
+                return;
+            } else {
+                $this->load->library('zoom');
+
+                $result = $this->zoom->createMeeting([
+                    "agenda" => $course_details['title'],
+                    "topic" => $zoom_meeting['topic'],
+                    "type" => 1, // 1 => instant, 2 => scheduled, 3 => recurring with no fixed time, 8 => recurring with fixed time
+                    "duration" => $zoom_meeting['duration'], // in minutes
+                    "timezone" => get_settings('timezone'), // set your timezone
+                    "password" => '',
+                    "start_time" => (new DateTime(date('Y-m-d H:i:s')))->format('Y-m-d\TH:i:s\Z'), // set your start time
+                    // "template_id" => 'set your template id', // set your template id  Ex: "Dv4YdINdTk+Z5RToadh5ug==" from https://marketplace.zoom.us/docs/api-reference/zoom-api/meetings/meetingtemplates
+                    "pre_schedule" => false,  // set true if you want to create a pre-scheduled meeting
+                    "schedule_for" => null, // set your schedule for
+                    "settings" => [
+                        'join_before_host' => true, // if you want to join before host set true otherwise set false
+                        'host_video' => false, // if you want to start video when host join set true otherwise set false
+                        'participant_video' => false, // if you want to start video when participants join set true otherwise set false
+                        'mute_upon_entry' => false, // if you want to mute participants when they join the meeting set true otherwise set false
+                        'waiting_room' => false, // if you want to use waiting room for participants set true otherwise set false
+                        'audio' => 'both', // values are 'both', 'telephony', 'voip'. default is both.
+                        'auto_recording' => 'none', // values are 'none', 'local', 'cloud'. default is none.
+                        'approval_type' => 0, // 0 => Automatically Approve, 1 => Manually Approve, 2 => No Registration Required
+                    ],
+                ]);
+
+                // Handle response & redirect to meeting url
+                if ($result['status']) {
+                    $join_url = $result['data']['join_url'];
+
+                    if ($this->db->where('course_id', $course_id)->get('zoom_meetings')->num_rows() > 0) {
+                        $data['updated_at'] = time();
+                        $this->db->where('course_id', $course_id)->update('zoom_meetings', [
+                            'join_url' => $join_url,
+                        ]);
+                    }
+
+                    echo $join_url;
+                    return;
+                } else {
+                    $this->session->set_flashdata('error_message', get_phrase("Failed to create meeting."));
+                }
+            }
+        } else {
+            $this->session->set_flashdata('error_message', get_phrase("Please save your meeting info first"));
+        }
+
+        echo $current_url;
+    }
+
+    function join_zoom_meeting($course_id = "")
+    {
+        if (enroll_status($course_id) == 'valid') {
+            $zoom_meeting = $this->db->where('course_id', $course_id)->get('zoom_meetings');
+            $current_url = $_SERVER['HTTP_REFERER'];
+
+            if ($zoom_meeting->num_rows() > 0) {
+                $zoom_meeting = $zoom_meeting->row_array();
+
+                if ($zoom_meeting['join_url']) {
+                    redirect($zoom_meeting['join_url'], 'refresh');
+                }
+            }
+
+            $this->session->set_flashdata('error_message', get_phrase("Meeting not scheduled yet"));
             redirect($current_url, 'refresh');
         } else {
             $this->session->set_flashdata('error_message', get_phrase("Please purchase this course first"));

@@ -612,6 +612,10 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 						<a href="<?php echo site_url('admin/bbb_live_class_settings'); ?>"><?php echo get_phrase('BBB live class settings'); ?></a>
 					</li>
 
+					<li class="<?php if ($page_name == 'zoom_live_class_settings') echo 'active'; ?>">
+						<a href="<?php echo site_url('admin/zoom_live_class_settings'); ?>"><?php echo get_phrase('Zoom live class settings'); ?></a>
+					</li>
+
 					<li class="<?php if ($page_name == 'payment_settings') echo 'active'; ?>">
 						<a href="<?php echo site_url('admin/payment_settings'); ?>"><?php echo get_phrase('payment_settings'); ?></a>
 					</li>
