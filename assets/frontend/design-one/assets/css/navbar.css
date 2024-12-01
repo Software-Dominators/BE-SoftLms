@@ -1,0 +1,45 @@
+
+
+.navbar{
+    
+}
+
+.navbar-brand img{
+    width: 127px;
+    height: 47px;
+ 
+    
+}
+.navbar .navbar-nav{
+    gap: 32px;
+}
+.navbar .nav-link{
+
+font-size: 20px;
+font-weight: 400;
+line-height: 32px;
+color: #161616;
+
+}
+.navbar .nav-link.active{
+    color: var(--primary-color);
+}
+
+
+.navbar .icon{
+    padding:8px;
+    background-color: var(--bg-light-grey-color);
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+.link-list{
+    gap: 10px;
+}
+
+.icon-list{
+    gap: 10px;
+}
+.btn-list{
+    gap: 10px;
+}

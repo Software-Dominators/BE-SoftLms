@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/all.min.css'; ?>">
+<!-- <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/all.min.css'; ?>">
 
 <?php if($language_dir == 'rtl'): ?>
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/bootstrap.rtl.min.css'; ?>">
 <?php else: ?>
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/bootstrap.min.css'; ?>">
-<?php endif; ?>
+<?php endif; ?> -->
 
 
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/jquery.webui-popover.min.css'; ?>">
+<!-- <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/jquery.webui-popover.min.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/h-2-carousel.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/jquery.webui-popover.min.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/nice-select.css'; ?>">
@@ -20,10 +20,10 @@
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/responsive.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/summernote-0.8.20-dist/summernote-lite.min.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/global/tagify/tagify.css'; ?>">
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/global/toastr/toastr.css' ?>">
+<link rel="stylesheet" href="<?php echo base_url() . 'assets/global/toastr/toastr.css' ?>"> -->
 
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/animate.min.css'; ?>">
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/custom.css'; ?>">
+<!-- <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/animate.min.css'; ?>">
+<link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/custom.css'; ?>"> -->
 
 <?php if($language_dir == 'rtl'): ?>
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/default-new/css/rtl.css'; ?>">
