@@ -37,10 +37,14 @@
         <input type="radio" id="academy_cloud" name="lesson_type" class="custom-control-input" value="academy_cloud" <?php if($selected_lesson == 'academy_cloud') echo 'checked'; ?>>
         <label class="custom-control-label" for="academy_cloud">Academy cloud [<small class="badge"> <b><?php echo get_phrase('secured'); ?></b></small>]</label>
     </div> -->
-    
+
     <div class="custom-control custom-radio">
         <input type="radio" id="vimeo" name="lesson_type" class="custom-control-input" value="vimeo" <?php if($selected_lesson == 'vimeo') echo 'checked'; ?>>
         <label class="custom-control-label" for="vimeo">Vimeo <?php echo get_phrase('video'); ?></label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="bunny_file" name="lesson_type" class="custom-control-input" value="bunny" <?php if($selected_lesson == 'bunny') echo 'checked'; ?>>
+        <label class="custom-control-label" for="bunny_file">Bunny <?php echo get_phrase('video'); ?></label>
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" id="video_file" name="lesson_type" class="custom-control-input" value="video" <?php if($selected_lesson == 'video') echo 'checked'; ?>>
@@ -65,7 +69,7 @@
         <input type="radio" id="wasabi-storage" name="lesson_type" class="custom-control-input" value="wasabi-storage" <?php if($selected_lesson == 'wasabi-storage') echo 'checked'; ?>>
         <label class="custom-control-label" for="wasabi-storage"><?php echo get_phrase('Wasabi Storage Video'); ?></label>
     </div>
-    
+
     <div class="custom-control custom-radio">
         <input type="radio" id="google_drive_video" name="lesson_type" class="custom-control-input" value="google_drive_video" <?php if($selected_lesson == 'google_drive_video') echo 'checked'; ?>>
         <label class="custom-control-label" for="google_drive_video"><?php echo get_phrase('google_drive_video'); ?></label>
@@ -107,7 +111,7 @@
         }else{
             error_notify('<?php echo get_phrase('please_select_a_course'); ?>');
         }
-        
+
     }
 
     if($('select').hasClass('select2') == true){

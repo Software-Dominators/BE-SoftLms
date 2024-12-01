@@ -72,7 +72,6 @@ class Admin extends CI_Controller
             $this->crud_model->delete_category($param2);
             $this->session->set_flashdata('flash_message', get_phrase('data_deleted'));
             redirect(site_url('admin/categories'), 'refresh');
-
         } elseif ($param1 == "sub_category_image") {
             $this->crud_model->delete_subcategory_image($param2);
             $this->session->set_flashdata('flash_message', get_phrase('data_deleted'));
@@ -319,13 +318,15 @@ class Admin extends CI_Controller
         echo json_encode($json_data);
     }
 
-    public function complains_data(){ // this to show the complains page in the dashdoard
+    public function complains_data()
+    { // this to show the complains page in the dashdoard
         $page_data['page_name'] = 'complains';
         $page_data['page_title'] = get_phrase('complains');
         $this->load->view('backend/index', $page_data);
     }
 
-    public function server_side_complaints_data() { // this for the table of the complains in the admin dashboard
+    public function server_side_complaints_data()
+    { // this for the table of the complains in the admin dashboard
         // Get DataTable parameters
         $limit = $this->input->post('length');
         $start = $this->input->post('start');
@@ -353,7 +354,7 @@ class Admin extends CI_Controller
             $row['problem_type'] = $complaint->problem_type;
             $row['message'] = $complaint->message;
             $row['status'] = $complaint->status;
-            $row['action'] = '<a href="complain_replay_view/'.$complaint->id.'" class="btn btn-sm btn-primary">'.get_phrase('Replay').'</a>';
+            $row['action'] = '<a href="complain_replay_view/' . $complaint->id . '" class="btn btn-sm btn-primary">' . get_phrase('Replay') . '</a>';
             $data[] = $row;
         }
 
@@ -368,14 +369,15 @@ class Admin extends CI_Controller
         echo json_encode($output); // to make them readable for the datatabels library
     }
 
-    function complain_replay_view($id) { //show the page of the replay for the admin
+    function complain_replay_view($id)
+    { //show the page of the replay for the admin
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
 
         $page_data['page_name'] = 'complain_replay';
         $page_data['page_title'] = get_phrase('complain_replay');
-        $page_data['complain_id'] = $id ;
+        $page_data['complain_id'] = $id;
         $get_complain_data = $this->crud_model->get_complaint_data_via_id($id);
         if (!empty($get_complain_data)) {
             $page_data['complain_user_data'] = $this->crud_model->get_complaint_user_data_via_id($get_complain_data['user_id']);
@@ -393,7 +395,8 @@ class Admin extends CI_Controller
 
         $this->load->view('backend/index', $page_data);
     }
-    function complain_admin_replay() { // this controls the data out of the replay form and send it to the following targets
+    function complain_admin_replay()
+    { // this controls the data out of the replay form and send it to the following targets
         $this->crud_model->send_new_private_message();
         $this->crud_model->update_complain_data_for_replay();
         $this->session->set_flashdata('flash_message', get_phrase('the replay has arrived !'));
@@ -1284,14 +1287,15 @@ class Admin extends CI_Controller
             $page_data['languages'] = $this->crud_model->get_all_languages();
             $page_data['categories'] = $this->crud_model->get_categories();
             $this->load->view('backend/index', $page_data);
-        }elseif($param1 == 'course_duplicate'){
+        } elseif ($param1 == 'course_duplicate') {
             $this->duplicate_course($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Course Duplicate Successfully'));
             redirect(site_url('admin/courses'), 'refresh');
         }
     }
 
-    public function duplicate_course($id){
+    public function duplicate_course($id)
+    {
         $course = $this->db->where('id', $id)->get('course')->row_array();
         $max_course_id = $this->db->select_max('id')->get('course')->row_array();
         $course['id'] = $max_course_id['id'] + 1;
@@ -3285,6 +3289,37 @@ class Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
+    function bunny_stream_settings($type = '')
+    {
+        if ($type == 'update') {
+            $bunny_stream_settings = json_encode([
+                'hostname' => $_POST['hostname'],
+                'library_id' => $_POST['library_id'],
+                'api_key' => $_POST['api_key'],
+            ]);
+
+            if ($this->db->where('key', 'bunny_stream_settings')->get('settings')->num_rows() > 0) {
+                $this->db->update('settings', [
+                    'value' => $bunny_stream_settings,
+                ], [
+                    'key' => 'bunny_stream_settings',
+                ]);
+            } else {
+                $this->db->insert('settings', [
+                    'key' => 'bunny_stream_settings',
+                    'value' => $bunny_stream_settings,
+                ]);
+            }
+
+            $this->session->set_flashdata('flash_message', get_phrase('Bunny Stream Settings Updated Successfully'));
+            redirect(site_url('admin/bunny_stream_settings'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'bunny_stream_settings';
+        $page_data['page_title'] = get_phrase('Bunny Stream Settings');
+        $this->load->view('backend/index', $page_data);
+    }
+
     function bbb_live_class_settings($type = "")
     {
         if ($type == 'update') {
@@ -3324,32 +3359,33 @@ class Admin extends CI_Controller
         echo get_phrase("BigBlueButton Meeting has been updated");
     }
 
-    function start_bbb_meeting($course_id = ""){
+    function start_bbb_meeting($course_id = "")
+    {
         $course_details = $this->crud_model->get_courses($course_id)->row_array();
         $bbb_meeting = $this->db->where('course_id', $course_id)->get('bbb_meetings');
-        $current_url = site_url('admin/course_form/course_edit/'.$course_id.'?tab=bbb-live-class');
+        $current_url = site_url('admin/course_form/course_edit/' . $course_id . '?tab=bbb-live-class');
 
-        if($bbb_meeting->num_rows() > 0){
+        if ($bbb_meeting->num_rows() > 0) {
             $bbb_meeting = $bbb_meeting->row_array();
             //Sanitize API URL START
-                $api_url = get_settings('bbb_setting', true)['endpoint'] ?? '';
-                // Parse the URL
-                $parsed_url = parse_url($api_url);
-                // Remove the 'api' part if it exists in the path
-                $path = rtrim(str_replace('/api', '', $parsed_url['path']), '/');
-                // Rebuild the URL
-                $api_url = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $path;
+            $api_url = get_settings('bbb_setting', true)['endpoint'] ?? '';
+            // Parse the URL
+            $parsed_url = parse_url($api_url);
+            // Remove the 'api' part if it exists in the path
+            $path = rtrim(str_replace('/api', '', $parsed_url['path']), '/');
+            // Rebuild the URL
+            $api_url = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $path;
             //Sanitize API URL END
 
             //Create BBB meeting START
-                $query_data = http_build_query([
-                    'name' => $course_details['title'],
-                    'meetingID' => $bbb_meeting['meeting_id'],
-                    'attendeePW' => $bbb_meeting['viewer_pw'],
-                    'moderatorPW' => $bbb_meeting['moderator_pw'],
-                    'redirectURL' => $current_url,
-                ]);
-                $response = $this->crud_model->callBbbApi('create', $query_data, $bbb_meeting['meeting_id']);
+            $query_data = http_build_query([
+                'name' => $course_details['title'],
+                'meetingID' => $bbb_meeting['meeting_id'],
+                'attendeePW' => $bbb_meeting['viewer_pw'],
+                'moderatorPW' => $bbb_meeting['moderator_pw'],
+                'redirectURL' => $current_url,
+            ]);
+            $response = $this->crud_model->callBbbApi('create', $query_data, $bbb_meeting['meeting_id']);
             //Create BBB meeting END
 
             // Handle response & redirect to meeting url
@@ -3360,9 +3396,9 @@ class Admin extends CI_Controller
                 if ($returncode == 'SUCCESS') {
                     $moderator_details = $this->user_model->get_all_user($this->session->userdata('user_id'))->row_array();
                     //JOIN AS A viewer
-                    $full_name = $moderator_details['first_name'].' '.$moderator_details['last_name']; // The full name of the participant
+                    $full_name = $moderator_details['first_name'] . ' ' . $moderator_details['last_name']; // The full name of the participant
                     $role = 'moderator'; // The role of the user (either "viewer" or "moderator")
-                    $join_url = $api_url."/api/join?meetingID=".$bbb_meeting['meeting_id']."&fullName=$full_name&password=".$bbb_meeting['moderator_pw']."&joinViaHtml5=true&redirect=true&joinParam[role]=$role";
+                    $join_url = $api_url . "/api/join?meetingID=" . $bbb_meeting['meeting_id'] . "&fullName=$full_name&password=" . $bbb_meeting['moderator_pw'] . "&joinViaHtml5=true&redirect=true&joinParam[role]=$role";
                     echo $join_url;
                     return;
                 } else {
@@ -3371,8 +3407,7 @@ class Admin extends CI_Controller
             } else {
                 $this->session->set_flashdata('error_message', get_phrase("Failed to connect to BigBlueButton API"));
             }
-
-        }else{
+        } else {
             $this->session->set_flashdata('error_message', get_phrase("Please save your meeting info first"));
         }
         echo $current_url;
@@ -3480,16 +3515,17 @@ class Admin extends CI_Controller
         echo $current_url;
     }
 
-    function change_course_author($course_id = ""){
-        if(isset($_POST) && count($_POST) > 0){
-            if($_POST['instructor_id'] > 0){
+    function change_course_author($course_id = "")
+    {
+        if (isset($_POST) && count($_POST) > 0) {
+            if ($_POST['instructor_id'] > 0) {
                 $this->db->where('id', $course_id)->update('course', ['creator' => $_POST['instructor_id']]);
                 $this->session->set_flashdata('flash_message', get_phrase("Course author changed successfully"));
-            }else{
+            } else {
                 $this->session->set_flashdata('error_message', get_phrase("Something is wrong"));
             }
-            redirect(site_url('admin/course_form/course_edit/'.$course_id.'?tab=basic'), 'refresh');
-        }else{
+            redirect(site_url('admin/course_form/course_edit/' . $course_id . '?tab=basic'), 'refresh');
+        } else {
             $page_data['instructors'] = $this->user_model->get_instructor()->result_array();
             $page_data['course_details'] = $this->crud_model->get_course_by_id($course_id)->row_array();
             $this->load->view('backend/admin/change_course_author', $page_data);

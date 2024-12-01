@@ -12,7 +12,7 @@ $sections = $this->crud_model->get_section('course', $param2)->result_array();
             echo get_phrase("video_url").' [.mp4]';
         }elseif ($param3 == 'video') {
             echo get_phrase("video_file");
-        }elseif ($param3 == 'youtube' || $param3 == 'academy_cloud' || $param3 == 'vimeo') {
+        }elseif ($param3 == 'youtube' || $param3 == 'academy_cloud' || $param3 == 'vimeo' || $param3 == 'bunny') {
             echo get_phrase($param3).' '.get_phrase("video");
         }else{
             echo get_phrase($param3);
@@ -43,6 +43,7 @@ $sections = $this->crud_model->get_section('course', $param2)->result_array();
     <?php if ($param3 == 'youtube'): include('youtube_type_lesson_add.php'); endif; ?>
     <?php if ($param3 == 'academy_cloud'): include('academy_cloud_type_lesson_add.php'); endif; ?>
     <?php if ($param3 == 'vimeo'): include('vimeo_type_lesson_add.php'); endif; ?>
+    <?php if ($param3 == 'bunny'): include('bunny_type_lesson_add.php'); endif; ?>
     <?php if ($param3 == 'html5'): include('html5_type_lesson_add.php'); endif; ?>
     <?php if ($param3 == 'video'): include('video_type_lesson_add.php'); endif; ?>
     <?php if ($param3 == 'audio'): include('audio_type_lesson_add.php'); endif; ?>

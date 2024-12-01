@@ -41,6 +41,10 @@
         <label class="custom-control-label" for="vimeo">Vimeo <?php echo get_phrase('video'); ?></label>
     </div>
     <div class="custom-control custom-radio">
+        <input type="radio" id="bunny_file" name="lesson_type" class="custom-control-input" value="bunny" <?php if($selected_lesson == 'bunny') echo 'checked'; ?>>
+        <label class="custom-control-label" for="bunny_file">Bunny <?php echo get_phrase('video'); ?></label>
+    </div>
+    <div class="custom-control custom-radio">
         <input type="radio" id="video_file" name="lesson_type" class="custom-control-input" value="video" <?php if($selected_lesson == 'video') echo 'checked'; ?>>
         <label class="custom-control-label" for="video_file"><?php echo get_phrase('video_file'); ?></label>
     </div>
@@ -107,12 +111,11 @@
     function showLessonAddModal() {
         var course_id = $("#course_id_for_lesson").val();
         if(course_id > 0){
-            var url = "<?php echo site_url('modal/popup/lesson_add/'); ?>/"+course_id+'/'+$("input[name=lesson_type]:checked").val();
+            var url = "<?php echo site_url('modal/popup/lesson_add/'); ?>"+course_id+'/'+$("input[name=lesson_type]:checked").val();
             showAjaxModal(url, '<?php echo get_phrase('add_new_lesson'); ?>');
         }else{
             error_notify('<?php echo get_phrase('please_select_a_course'); ?>');
         }
-        
     }
 
     if($('select').hasClass('select2') == true){
