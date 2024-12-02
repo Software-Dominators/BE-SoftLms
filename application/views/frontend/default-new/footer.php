@@ -111,7 +111,7 @@
   </div>
 </footer>
 
-<hr>
+
 
 <!-- PAYMENT MODAL -->
 <!-- Modal -->

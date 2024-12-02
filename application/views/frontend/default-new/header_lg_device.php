@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg ">
+<!-- <div class="div-header">
+<img  src="<?= base_url('assets/frontend/design-one/assets/images/home/header-circle.svg') ?>" class="div-header__image">
+       
+</div> -->
+<nav class="navbar navbar-expand-lg z-index-3">
   <div class="container">
     <a class="navbar-brand" href="<?php echo site_url(); ?>">
       <img src="<?php echo site_url('uploads/system/' . get_frontend_settings('dark_logo')) ?>" alt="Logo">
@@ -98,46 +102,8 @@
 
 
 
-<header class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="wrapper_left">
-          <?php
-          $banner_title = site_phrase(get_frontend_settings('banner_title'));
-          $banner_title_arr = explode(' ', $banner_title);
-          ?>
-          <h1>
-            <?php
-            foreach ($banner_title_arr as $key => $value) {
-              if ($key == count($banner_title_arr) - 1) {
-                echo '<span class="d-inline-block">' . $value . '</span>';
-              } else {
-                echo $value . ' ';
-              }
-            }
-            ?>
-          </h1>
-          <p>
-            <?php echo site_phrase(get_frontend_settings('banner_sub_title')); ?>
-          </p>
-
-          <form action="<?php echo site_url('home/search'); ?>" method="get">
-            <input class="form-control" type="text" placeholder="<?php echo get_phrase('What do you want to learn'); ?>"
-              name="query">
-            <button type="submit">
-              Search
-            </button>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </form>
 
 
-        </div>
-      </div>
-    </div>
-  </div>
-
-</header>
 
 
 

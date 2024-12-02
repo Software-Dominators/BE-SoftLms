@@ -1,13 +1,46 @@
+.div-header {
+    position: relative;
+}
+
+.div-header__image {
+    position: absolute;
+    width: 414px;
+    height: 350px;
+    top: 105px;
+    left: -94px;
+
+
+}
+
+@media screen and (max-width: 768px) {
+    .div-header__image {
+        width: 244.67px;
+        height: 289px;
+        top: -46px;
+        left: -74px;
+        gap: 0px;
+        opacity: 0px;
+        z-index: 1;
+
+
+    }
+}
+
 /* ########################## wrapper ######################### */
+
 .wrapper {
-    height: 100vh;
+    min-height: 640px;
     background-color: var(--white-color);
 
 }
 
+
+
 .wrapper .wrapper_left {
     width: 540px;
     margin-top: 98px;
+    margin-inline-start: 100px;
+
 }
 
 .wrapper .wrapper_left h1 {
@@ -89,6 +122,90 @@
 
 }
 
+/* responsive */
+
+@media screen and (max-width: 1200px) {
+    .wrapper .wrapper_left {
+      
+        margin-inline-start: 50px;
+      
+    }  
+}
+@media screen and (max-width: 992px) {
+    .wrapper{
+        margin-bottom: 47px;
+    }
+    .wrapper .row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper .wrapper_left {
+        width: 100%;
+        margin-top: 35px;
+        margin-inline-start: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper .wrapper_left h1 {
+
+
+        font-size: 32px;
+
+        line-height: 48px;
+
+
+        width: 278px;
+
+
+
+    }
+
+
+
+    .wrapper .wrapper_left p {
+
+
+        margin-top: 16px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        width: 306px;
+    }
+
+    .wrapper .wrapper_left form {
+        width: 342px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .wrapper {
+        height: 100vh;
+    }
+
+    .wrapper .row {
+        flex-direction: column;
+    }
+
+    .wrapper .wrapper_right {
+        margin-top: 19px;
+    }
+
+    .wrapper_right img {
+        width: 231px;
+        height: 265px;
+
+
+    }
+}
+
 /* ########################## banner ######################### */
 .banner {
     width: 100%;
@@ -153,6 +270,7 @@
     .banner .banner__content {
         gap: 10px;
     }
+
     .banner .banner__text h6 {
 
         font-size: 16px;
@@ -502,7 +620,7 @@
 .latest-blog__content {
     padding: 16px;
     padding-bottom: 0px;
-    width: 397px;
+    max-width: 397px;
     border-radius: 24px;
     background-color: var(--bg-light-grey-color);
 
@@ -826,7 +944,26 @@
     /* Ensure it behaves like a block element */
 }
 
+.join .col-lg-6 {
+    position: relative;
+}
 
+.join .circle-girl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+}
+.join .circle-boy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    z-index: 1;
+}
+.join .join__content img{
+    z-index: 2;
+}
 @media screen and (max-width: 992px) {
 
     .join {
@@ -858,4 +995,9 @@
         margin-top: 8px;
         margin-bottom: 16px;
     }
+}
+
+.swiper-wrapper {
+    justify-content: space-between;
+    gap: 16px;
 }

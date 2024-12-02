@@ -13,6 +13,8 @@ if ($number_of_ratings > 0) {
 }
 ?>
 
+
+
 <!---------- Banner Start ---------->
 <section>
     <div class="bread-crumb courses-details">

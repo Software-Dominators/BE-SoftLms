@@ -9,6 +9,7 @@
     --paragraph-color: #575757;
     --white-color: #FFFFFF;
     --dark-withe-color: #FDFDFD;
+    --light-withe-color: #EFF2F1;
     --black-color: #000000;
     --bg-light-grey-color: #F5F5F5;
     --dark-blue-color: #2A176E;
@@ -41,7 +42,9 @@ a {
 ul {
     list-style: none;
 }
-
+a,img{
+    display: inline-block;
+}
 button {
     border: none;
     outline: none;
