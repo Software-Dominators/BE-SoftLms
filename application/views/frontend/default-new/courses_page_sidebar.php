@@ -31,8 +31,13 @@
                                     name="category" id="category-<?php echo $category['id']; ?>" onchange="filterCourse()"
                                     <?php if ($selected_category == $category['slug'])
                                         echo 'checked'; ?>>
+                                         
                                 <span> <?php echo $category['name']; ?></span>
                                 <span>(<?php echo $course_number; ?>)</span>
+
+                          
+           
+            <span>(<?php echo $course_number; ?>)</span>
                             </div>
                             <ul class="child">
                                 <?php foreach ($this->crud_model->get_sub_categories($category['id']) as $sub_category): ?>
