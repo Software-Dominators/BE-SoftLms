@@ -57,18 +57,7 @@ $selected_sorting = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'all';
         <div class="row">
 
 
-        <div class="col-md-3 p-0 m-0">
-        <?php include "courses_page_sidebar.php"; ?>
-        </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="grid-view courses-list-view">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-12">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-0 h-100">
                 <?php include "courses_page_sidebar.php"; ?>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-8">
@@ -85,6 +74,8 @@ $selected_sorting = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'all';
         </div>
     </div>
 </section>
+
+
 
 
 <script type="text/javascript">
