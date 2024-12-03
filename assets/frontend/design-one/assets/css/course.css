@@ -242,3 +242,22 @@ margin-bottom: 12px;
 .child li{
     margin-bottom: 8px;
 }
+
+
+.course-sidebar__rating{
+    display: flex;
+   gap: 8px;
+   align-items: center;
+}
+.course-sidebar__rating span{
+
+font-size: 18px;
+font-weight: 300;
+line-height: 27px;
+color: #282828;
+
+}
+.course-sidebar__rating i{
+    color: var(--secondary-color);
+    font-size: 16.67px;
+}

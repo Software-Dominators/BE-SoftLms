@@ -1,6 +1,4 @@
 <aside class="course-sidebar">
-
-
     <form action="<?php echo site_url('home/courses'); ?>" method="get" id="course_filter_form">
 
         <?php if (isset($_GET['query']) && !empty($_GET['query'])): ?>
@@ -71,20 +69,20 @@
 
                 <ul class="parent">
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" name="price" value="all" id="price_all"
+                        <input class="course-sidebar__check" type="radio" name="price" value="all" id="price_all"
                             onchange="filterCourse()" <?php if ($selected_price == 'all')
                                 echo 'checked'; ?>>
                         <span><?php echo get_phrase('All'); ?></span>
                     </li>
 
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" name="price" value="free" id="price_free"
+                        <input class="course-sidebar__check" type="radio" name="price" value="free" id="price_free"
                             onchange="filterCourse()" <?php if ($selected_price == 'free')
                                 echo 'checked'; ?>>
                         <span><?php echo get_phrase('Free'); ?></span>
                     </li>
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" name="price" value="paid" id="price_paid"
+                        <input class="course-sidebar__check" type="radio" name="price" value="paid" id="price_paid"
                             onchange="filterCourse()" <?php if ($selected_price == 'paid')
                                 echo 'checked'; ?>>
                         <span><?php echo get_phrase('Paid'); ?></span>
@@ -102,7 +100,7 @@
 
                 <ul class="parent">
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" name="level" value="all" id="level_all"
+                        <input class="course-sidebar__check" type="radio" name="level" value="all" id="level_all"
                             onchange="filterCourse()" <?php if ($selected_level == 'all')
                                 echo 'checked'; ?>>
                         <span class="text-13px"><?php echo get_phrase('All'); ?></span>
@@ -110,21 +108,21 @@
                     </li>
 
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" value="beginner" name="level" id="level_beginner"
+                        <input class="course-sidebar__check" type="radio" value="beginner" name="level" id="level_beginner"
                             onchange="filterCourse()" <?php if ($selected_level == 'beginner')
                                 echo 'checked'; ?>>
                         <span class="text-13px"><?php echo get_phrase('Beginner'); ?></span>
                     </li>
 
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" value="intermediate" name="level"
+                        <input class="course-sidebar__check" type="radio" value="intermediate" name="level"
                             id="level_intermediate" onchange="filterCourse()" <?php if ($selected_level == 'intermediate')
                                 echo 'checked'; ?>>
                         <span class="text-13px"><?php echo get_phrase('Intermediate'); ?></span>
                     </li>
 
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" value="advanced" name="level" id="level_advanced"
+                        <input class="course-sidebar__check" type="radio" value="advanced" name="level" id="level_advanced"
                             onchange="filterCourse()" <?php if ($selected_level == 'advanced')
                                 echo 'checked'; ?>>
                         <span class="text-13px"><?php echo get_phrase('Advanced'); ?></span>
@@ -147,7 +145,7 @@
 
                 <ul class="parent">
                     <li class="d-flex gap-2">
-                        <input class="form-check-input" type="radio" value="all" name="language" id="language_all"
+                        <input class="course-sidebar__check" type="radio" value="all" name="language" id="language_all"
                             onchange="filterCourse()" <?php if ($selected_language == 'all')
                                 echo 'checked'; ?>>
                         <span class="text-13px"><?php echo get_phrase('All'); ?></span>
@@ -156,7 +154,7 @@
                     $languages = $this->crud_model->get_all_languages();
                     foreach ($languages as $language): ?>
                         <li class="d-flex gap-2">
-                            <input class="form-check-input" type="radio" value="<?php echo strtolower($language); ?>"
+                            <input class="course-sidebar__check" type="radio" value="<?php echo strtolower($language); ?>"
                                 name="language" id="language_<?php echo $language; ?>" onchange="filterCourse()" <?php if ($selected_language == strtolower($language))
                                        echo 'checked'; ?>>
 
@@ -174,17 +172,36 @@
             <li>
                <h3 class="course-sidebar__heading"><?php echo get_phrase('Rating'); ?></h3> 
 
-               <ul class="pare">
-                <!--  -->
+               <ul class="parent">
+                <li>
+
+                <input class="" type="radio" name="rating" value="all" id="rating_all"
+                    onchange="filterCourse()" <?php if ($selected_rating == 'all')
+                        echo 'checked'; ?>>
+                        <span><?php echo get_phrase('All'); ?></span>
+                </li>
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                  <li class="d-flex gap-2 align-items-center">
+                  <input class="course-sidebar__check" type="radio" value="<?php echo $i; ?>" id="rating_<?php echo $i; ?>"
+                            onchange="filterCourse()" name="rating" <?php if ($selected_rating == $i)
+                                echo 'checked'; ?>>
+                                 <div class="course-sidebar__rating">
+                                 <span>(<?php echo $i; ?>)</span>
+                                 <i class="fa-solid fa-star"></i>
+                                 </div>
+                 </li>
+              <?php endfor; ?>
                </ul>
             </li>
 
         </ul>
+  
 
-
-
+       
       
+                <input id="sorting_hidden_input" type="hidden" name="sort_by" value="<?php echo $selected_sorting; ?>">
 
+</form>
 </aside>
 
 
@@ -211,7 +228,7 @@
             <h3><?php echo get_phrase('Categories'); ?></h3>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="all" name="category" id="category_all"
+                <input class="course-sidebar__check" type="radio" value="all" name="category" id="category_all"
                     onchange="filterCourse()" <?php if ($selected_category == 'all')
                         echo 'checked'; ?>>
 
@@ -227,7 +244,7 @@
                 <?php foreach ($categories as $category): ?>
                     <?php $course_number = $this->crud_model->get_active_course_by_category_id($category['id'], 'category_id')->num_rows(); ?>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="<?php echo $category['slug'] ?>" name="category"
+                        <input class="course-sidebar__check" type="radio" value="<?php echo $category['slug'] ?>" name="category"
                             id="category-<?php echo $category['id']; ?>" onchange="filterCourse()" <?php if ($selected_category == $category['slug'])
                                    echo 'checked'; ?>>
                         <label class="form-check-label" for="category-<?php echo $category['id']; ?>">
@@ -242,7 +259,7 @@
                             <?php $course_number = $this->crud_model->get_active_course_by_category_id($sub_category['id'], 'sub_category_id')->num_rows(); ?>
                             <li>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="<?php echo $sub_category['slug'] ?>"
+                                    <input class="course-sidebar__check" type="radio" value="<?php echo $sub_category['slug'] ?>"
                                         name="category" id="sub_category-<?php echo $sub_category['id']; ?>"
                                         onchange="filterCourse()" <?php if ($selected_category == $sub_category['slug'])
                                             echo 'checked'; ?>>
@@ -266,7 +283,7 @@
         <div class="course-price course-category">
             <h3><?php echo get_phrase('Price'); ?></h3>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="price" value="all" id="price_all"
+                <input class="course-sidebar__check" type="radio" name="price" value="all" id="price_all"
                     onchange="filterCourse()" <?php if ($selected_price == 'all')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="price_all">
@@ -274,7 +291,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="price" value="free" id="price_free"
+                <input class="course-sidebar__check" type="radio" name="price" value="free" id="price_free"
                     onchange="filterCourse()" <?php if ($selected_price == 'free')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="price_free">
@@ -282,7 +299,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="price" value="paid" id="price_paid"
+                <input class="course-sidebar__check" type="radio" name="price" value="paid" id="price_paid"
                     onchange="filterCourse()" <?php if ($selected_price == 'paid')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="price_paid">
@@ -293,7 +310,7 @@
         <div class="course-price course-category">
             <h3><?php echo get_phrase('Level'); ?></h3>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="level" value="all" id="level_all"
+                <input class="course-sidebar__check" type="radio" name="level" value="all" id="level_all"
                     onchange="filterCourse()" <?php if ($selected_level == 'all')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="level_all">
@@ -301,7 +318,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="beginner" name="level" id="level_beginner"
+                <input class="course-sidebar__check" type="radio" value="beginner" name="level" id="level_beginner"
                     onchange="filterCourse()" <?php if ($selected_level == 'beginner')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="level_beginner">
@@ -309,7 +326,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="intermediate" name="level" id="level_intermediate"
+                <input class="course-sidebar__check" type="radio" value="intermediate" name="level" id="level_intermediate"
                     onchange="filterCourse()" <?php if ($selected_level == 'intermediate')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="level_intermediate">
@@ -317,7 +334,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="advanced" name="level" id="level_advanced"
+                <input class="course-sidebar__check" type="radio" value="advanced" name="level" id="level_advanced"
                     onchange="filterCourse()" <?php if ($selected_level == 'advanced')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="level_advanced">
@@ -328,7 +345,7 @@
         <div class="course-price course-category">
             <h3><?php echo get_phrase('Language'); ?></h3>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="all" name="language" id="language_all"
+                <input class="course-sidebar__check" type="radio" value="all" name="language" id="language_all"
                     onchange="filterCourse()" <?php if ($selected_language == 'all')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="language_all">
@@ -340,7 +357,7 @@
                 $languages = $this->crud_model->get_all_languages();
                 foreach ($languages as $language): ?>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="<?php echo strtolower($language); ?>"
+                        <input class="course-sidebar__check" type="radio" value="<?php echo strtolower($language); ?>"
                             name="language" id="language_<?php echo $language; ?>" onchange="filterCourse()" <?php if ($selected_language == strtolower($language))
                                    echo 'checked'; ?>>
                         <label class="form-check-label" for="language_<?php echo $language; ?>">
@@ -359,7 +376,7 @@
         <div class="course-price course-category">
             <h3><?php echo get_phrase('Ratings'); ?></h3>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="rating" value="all" id="rating_all"
+                <input class="course-sidebar__check" type="radio" name="rating" value="all" id="rating_all"
                     onchange="filterCourse()" <?php if ($selected_rating == 'all')
                         echo 'checked'; ?>>
                 <label class="form-check-label" for="rating_all">
@@ -369,7 +386,7 @@
             <div class="course-icon">
                 <?php for ($i = 1; $i <= 5; $i++): ?>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="<?php echo $i; ?>" id="rating_<?php echo $i; ?>"
+                        <input class="course-sidebar__check" type="radio" value="<?php echo $i; ?>" id="rating_<?php echo $i; ?>"
                             onchange="filterCourse()" name="rating" <?php if ($selected_rating == $i)
                                 echo 'checked'; ?>>
                         <label class="form-check-label" for="rating_<?php echo $i; ?>">
