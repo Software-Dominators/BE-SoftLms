@@ -2,36 +2,7 @@
 
 
 
-<header class="contact-header header">
-    <div class="container">
-        <div class="row justify-content-md-between">
-            <div class="col-md-6  contact-header__left">
-            <div class="contact-header__top d-flex">
-                <a href="<?php echo site_url(); ?>" class="">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="home-link"><?php echo get_phrase('Home') ?></span>
-                        </a>
-                        <a href="#">
-                            <i class="fa-solid fa-chevron-right"></i>
-                            <span class="active-link"><?php echo $page_title; ?></span>
-                        </a>
-                </div>
-                <div class="contact-header__bottom">
-                <h1><?php echo $page_title; ?></h1>
-                <p><?php echo get_phrase('Connect with us to experience seamless communication. We value open dialogue and are eager to engage with you. Whether you have questions, ideas, or feedback, we are here to listen and respond.') ?></p>
-                
 
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="contact-header__right text-md-end ">
-                    <img loading="lazy" src="<?php echo base_url('assets/frontend/design-one/assets/images/contact/header.svg'); ?>">
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
 
 
