@@ -9,8 +9,8 @@
 		<textarea name="description" id="newsletter_description"></textarea>
 	</div>
 
-	<div class="form-group">
-		<button type="submit" class="btn btn-success"><?php echo get_phrase('Save'); ?></button>
+	<div class="d-flex w-100 my-3 justify-content-end">
+		<button type="submit" class="submit-btn"><?php echo get_phrase('Save'); ?></button>
 	</div>
 </form>
 

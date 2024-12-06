@@ -10,8 +10,8 @@
                             <i onclick="showAjaxModal('<?php echo site_url('addons/course_analytics/about_of_course_enrolments'); ?>', 'Student enrolments')" class="mdi mdi-information-outline cursor-pointer"></i>
                         </h4>
                     </div>
-                    <div class="col-lg-4 col-sm-12 float-right pt-2">
-                        <div class="input-group mb-3">
+                    <div class="col-lg-4 col-sm-12 float-right pt-2bg-info">
+                        <div class="input-group mb-3 bg-danger">
                             <select class="form-control" id="date_for_filter_chart">
                                 <?php $course_added_year = date('Y', $course_added_date); ?>
                                 <?php $course_added_month = date('m', $course_added_date); ?>
@@ -59,7 +59,7 @@
                                     
                                 <?php endfor; ?>
                             </select>
-                            <div class="input-group-append">
+                            <div class="input-group-append bg-info w-100">
                                 <a href="javascript:;" onclick="filter_enrolment_analytics()" class="input-group-text btn btn-light"><?php echo get_phrase('go'); ?></a>
                             </div>
                         </div>

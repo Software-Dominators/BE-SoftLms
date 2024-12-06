@@ -1,7 +1,10 @@
-<div class="course-grid   d-flex align-items-center">
-    <div class="row ">
-        <?php include 'courses_page_sorting_section.php'; ?>
+<div class="course-grid   d-flex align-items-center  w-100">
 
+    <div class="row  justify-content-between w-100">
+   <div class="col-12">
+   <?php include 'courses_page_sorting_section.php'; ?>
+
+   </div>
         <?php foreach ($courses as $course): ?>
             <?php
             $lessons = $this->crud_model->get_lessons('course', $course['id']);

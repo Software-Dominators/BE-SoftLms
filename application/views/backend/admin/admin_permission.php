@@ -11,7 +11,7 @@ $modules = [
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo ucwords($page_title); ?>
-                    <a href="<?php echo site_url('admin/admins'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"> <i class="mdi mdi-arrow-left"></i> <?php echo get_phrase('back_to_admins'); ?></a>
+                    <a href="<?php echo site_url('admin/admins'); ?>" class="add-btn alignToTitle"> <i class="mdi mdi-arrow-left"></i> <?php echo get_phrase('back_to_admins'); ?></a>
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -20,14 +20,14 @@ $modules = [
 
 
 <div class="row justify-content-center">
-    <div class="col-xl-8">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">
                     <?php echo get_phrase('assign_permission_for'); ?> : <?php echo $permission_assign_to['first_name'] . ' ' . $permission_assign_to['last_name']; ?>
                 </h4>
                 <div class="text-muted">
-                    <small> <strong><?php echo get_phrase('note'); ?></strong> : <?php echo get_phrase('you_can_toggle_the_switch_for_enabling_or_disabling_a_feature_to_access'); ?>.</small>
+                    <small class="admin-permission-note"> <strong><?php echo get_phrase('note'); ?></strong> : <?php echo get_phrase('you_can_toggle_the_switch_for_enabling_or_disabling_a_feature_to_access'); ?>.</small>
                 </div>
                 <div class="table-responsive-sm mt-4">
                     <table class="table table-striped table-centered mb-0">

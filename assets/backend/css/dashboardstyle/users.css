@@ -1,6 +1,8 @@
 @import "global-style.css";
 .user-email{
   color: #5FB0ED !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
 
 }
 /* for enrolled-students-courses  */
@@ -165,4 +167,10 @@
 .card{
   box-shadow: none !important;
   background-color: #fff !important;
+}
+/* admin permission note  */
+.admin-permission-note{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
 }

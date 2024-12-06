@@ -2,7 +2,13 @@
   <div class="col-xl-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('instructor_revenue'); ?></h4>
+      <h4
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Reports'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>  <?php echo get_phrase('instructor_revenue'); ?> </span>
+               
+                </h4>
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
@@ -12,7 +18,7 @@
   <div class="col-xl-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="mb-3 header-title"><?php echo get_phrase('instructor_revenue'); ?></h4>
+        <!-- <h4 class="mb-3 header-title"><?php echo get_phrase('instructor_revenue'); ?></h4> -->
         <div class="table-responsive-sm mt-4">
           <table id="basic-datatable" class="table table-striped table-centered mb-0">
             <thead>
@@ -35,7 +41,7 @@
                 ?>
                 <tr class="gradeU">
                   <td>
-                    <strong><a href="<?php echo site_url('home/course/' . slugify($course_data['title']) . '/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></strong><br>
+                    <strong class="badge badge-secondary"><a href="<?php echo site_url('home/course/' . slugify($course_data['title']) . '/' . $course_data['id']); ?>" target="_blank"><?php echo $course_data['title']; ?></a></strong><br>
                     <small class="text-muted"><?php echo get_phrase('enrolment_date') . ': ' . date('D, d-M-Y', $payment['date_added']); ?></small>
                     <?php if ($payment['coupon']) : ?>
                       <small class="d-block">
@@ -48,16 +54,12 @@
                       </small>
                     <?php endif; ?>
                   </td>
-                  <td>
-
-                    <b class="name"><?php echo $user_data['first_name'] . " " . $user_data['last_name']; ?></b>
-                    <p><small class="email"><?php echo $user_data['email']; ?></small></p>
-                  </td>
+                  <td><?php echo $user_data['first_name'] . ' ' . $user_data['last_name']; ?></td>
                   <td>
                     <?php echo currency($payment['amount']); ?>
                   </td>
                   <td>
-                   <span class="badge badge-secondary"><?php echo currency($payment['instructor_revenue']); ?></span>
+                    <?php echo currency($payment['instructor_revenue']); ?>
                   </td>
                 </tr>
               <?php endforeach; ?>

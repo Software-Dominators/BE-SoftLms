@@ -1,91 +1,195 @@
+<script src="https://js.stripe.com/v3/"></script>
+
 <div class="row ">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('instructor_settings'); ?></h4>
-            </div>
-        </div>
-    </div>
+                <h4 class="page-title">  <img src="../assets/backend/images/grip-dots-icon.svg" class="title-icon" alt=""> <?php echo get_phrase('instructor_payouts'); ?></h4>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
 </div>
 
-<div class="row">
-    <div class="col-xl-6">
+<div class="row justify-content-center">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3 header-title"><?php echo get_phrase('public_instructor_settings');?></h4>
+                <h4 class="mb-3 header-title"><?php echo get_phrase('list_of_payouts'); ?></h4>
+                <ul class="nav nav-tabs nav-bordered mb-3 payout-nav">
+                    <li class="nav-item">
+                        <a href="#completed-b1" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                            <span class="d-none d-lg-block "><?php echo get_phrase('completed_payouts'); ?></span>
+                        </a>
+                    </li>
 
-                <form action="<?php echo site_url('admin/instructor_settings/update'); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label><?php echo get_phrase('allow_public_instructor'); ?></label>
-                        <select class="form-control select2" data-toggle="select2" name="allow_instructor" required>
-                            <option value="1" <?php if(get_settings('allow_instructor') == 1) echo 'selected'; ?>><?php echo get_phrase('yes'); ?></option>
-                            <option value="0" <?php if(get_settings('allow_instructor') == 0) echo 'selected'; ?>><?php echo get_phrase('no'); ?></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="instructor_application_note"><?php echo get_phrase('instructor_application_note'); ?></label>
-                        <div class="form-group">
-                            <textarea class="form-control" name="instructor_application_note" rows="8" cols="80"><?php echo get_settings('instructor_application_note'); ?></textarea>
-                        </div>
-                    </div>
+                    <li class="nav-item">
+                        <a href="#pending-b1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                            <span class="d-none d-lg-block"><?php echo get_phrase('pending_payouts'); ?> <span class="badge badge-danger-lighten"><?php echo $pending_payouts->num_rows(); ?></span></span>
+                        </a>
+                    </li>
+                </ul>
 
-                    <div class="row justify-content-center">
-                        <div class="col-md-7">
-                            <button type="submit" class="btn btn-primary btn-block"><?php echo get_phrase('update_settings'); ?></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="mb-3 header-title"><?php echo get_phrase('instructor_commission_settings');?></h4>
-
-                <form action="<?php echo site_url('admin/instructor_settings/update'); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="instructor_revenue"><?php echo get_phrase('instructor_revenue_percentage'); ?></label>
-                        <div class="input-group">
-                            <input type="number" name = "instructor_revenue" id = "instructor_revenue" class="form-control" onkeyup="calculateAdminRevenue(this.value)" min="0" max="100" value="<?php echo get_settings('instructor_revenue'); ?>">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="mdi mdi-percent"></i></span>
+                <div class="tab-content">
+                    <div class="tab-pane show b active" id="completed-b1">
+                        <div class="row  align-items-center ">
+                            <div class="col-lg-12">
+                                <form class="row justify-content-between align-items-center" action="<?php echo site_url('admin/instructor_payout/filter_by_date_range') ?>" method="get">
+                                    <div class="col-lg-9 ">
+                                        <div class="form-group mb-0">
+                                            <div id="reportrange" class="form-control date-filter-input" data-toggle="date-picker-range" data-target-display="#selectedValue"  data-cancel-class="btn-light" style="width: 100%;">
+                                                <i class="mdi mdi-calendar"></i>&nbsp;
+                                                <span id="selectedValue"><?php echo date("F d, Y" , $timestamp_start) . " - " . date("F d, Y" , $timestamp_end);?></span> <i class="mdi mdi-menu-down"></i>
+                                            </div>
+                                            <input id="date_range" class="" type="hidden" name="date_range" value="<?php echo date("d F, Y" , $timestamp_start) . " - " . date("d F, Y" , $timestamp_end);?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 d-flex justify-content-end">
+                                        <button type="submit" class="btn filter-btn" id="submit-button" onclick="update_date_range();"> <?php echo get_phrase('filter');?></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="admin_revenue"><?php echo get_phrase('admin_revenue_percentage'); ?></label>
-                        <div class="input-group">
-                            <input type="number" name = "admin_revenue" id = "admin_revenue" class="form-control" value="0" disabled style="background: none; cursor: default;">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="mdi mdi-percent"></i></span>
-                            </div>
+                        <div class="table-responsive-sm mt-4">
+                            <table id="completed-payout" class="table table-striped table-centered mb-0 ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><?php echo get_phrase('image'); ?></th>
+                                        <th><?php echo get_phrase('instructor'); ?></th>
+                                        <th><?php echo get_phrase('payout_amount'); ?></th>
+                                        <th><?php echo get_phrase('payment_type'); ?></th>
+                                        <th><?php echo get_phrase('payout_date'); ?></th>
+                                        <th><?php echo get_phrase('action'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($completed_payouts->result_array() as $key => $completed_payout):
+                                        $completed_payout_user_data = $this->db->get_where('users', array('id' => $completed_payout['user_id']))->row_array(); ?>
+                                        <tr class="gradeU">
+                                            <td> <?php echo ++$key; ?> </td>
+                                            <td>
+                                                <img src="<?php echo $this->user_model->get_user_image_url($completed_payout_user_data['id']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                                            </td>
+                                            <td>
+                                              
+                                                <strong><?php echo $completed_payout_user_data['first_name'] . ' ' . $completed_payout_user_data['last_name']  . ' <br><span class="user-email"> '.$completed_payout_user_data["email"] . '</span>'; ?></strong>
+                                            </td>
+                                            <td> <?php echo currency($completed_payout['amount']); ?> </td>
+                                            <td > <?php echo ucfirst($completed_payout['payment_type']); ?> </td>
+                                            <td class="payment-amount"> <?php echo date('D, d M Y', $completed_payout['date_added']); ?> </td>
+                                            <td> <a href="<?php echo site_url('admin/invoice/'.$completed_payout['id']); ?>" class="btn btn-outline-primary btn-rounded btn-sm"><i class="mdi mdi-printer-settings"></i></a> </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-md-7">
-                            <button type="submit" class="btn btn-primary btn-block"><?php echo get_phrase('update_settings'); ?></button>
+                    <div class="tab-pane" id="pending-b1">
+                    <div class="row  align-items-center ">
+                            <div class="col-lg-12">
+                                <form class="row justify-content-between align-items-center" action="<?php echo site_url('admin/instructor_payout/filter_by_date_range') ?>" method="get">
+                                    <div class="col-lg-9 ">
+                                        <div class="form-group mb-0">
+                                            <div id="reportrange" class="form-control date-filter-input" data-toggle="date-picker-range" data-target-display="#selectedValue"  data-cancel-class="btn-light" style="width: 100%;">
+                                                <i class="mdi mdi-calendar"></i>&nbsp;
+                                                <span id="selectedValue"><?php echo date("F d, Y" , $timestamp_start) . " - " . date("F d, Y" , $timestamp_end);?></span> <i class="mdi mdi-menu-down"></i>
+                                            </div>
+                                            <input id="date_range" class="" type="hidden" name="date_range" value="<?php echo date("d F, Y" , $timestamp_start) . " - " . date("d F, Y" , $timestamp_end);?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 d-flex justify-content-end">
+                                        <button type="submit" class="btn filter-btn" id="submit-button" onclick="update_date_range();"> <?php echo get_phrase('filter');?></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive-sm mt-4">
+                            <table id="pending-payout" class="table table-striped table-centered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><?php echo get_phrase('image'); ?></th>
+                                        <th><?php echo get_phrase('instructor'); ?></th>
+                                        <th><?php echo get_phrase('payout_amount'); ?></th>
+                                        <th><?php echo get_phrase('payout_date'); ?></th>
+                                        <th><?php echo get_phrase('option'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pending_payouts->result_array() as $key => $pending_payout):
+                                        $pending_payout_user_data = $this->db->get_where('users', array('id' => $pending_payout['user_id']))->row_array();
+
+                                        $payment_keys = json_decode($pending_payout_user_data['payment_keys'], true);
+                                        $paypal_keys = $payment_keys['paypal'];
+                                        $stripe_keys = $payment_keys['stripe'];
+                                        $razorpay_keys = $payment_keys['razorpay'];
+                                        ?>
+                                        <tr class="gradeU">
+                                            <td> <?php echo ++$key; ?> </td>
+                                            <td>
+                                                <img src="<?php echo $this->user_model->get_user_image_url($pending_payout_user_data['id']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                                            </td>
+                                            <!-- <td>
+                                                <strong><?php echo $pending_payout_user_data['first_name'].' '.$pending_payout_user_data['last_name']; ?></strong>
+                                            </td> -->
+                                            <td>
+                                              
+                                              <strong><?php echo $pending_payout_user_data['first_name'] . ' ' . $pending_payout_user_data['last_name']  . ' <br><span class="user-email"> '.$pending_payout_user_data["email"] . '</span>'; ?></strong>
+                                          </td>
+                                            <td class="payment-amount"> <?php echo currency($pending_payout['amount']); ?> </td>
+                                            <td class="payment-date"> <?php echo date('D, d M Y', $pending_payout['date_added']); ?> </td>
+                                            <td style="text-align: center;">
+                                                <a class="btn btn-success" href="<?php echo site_url('admin/instructor_payment/' . $pending_payout['user_id']) ?>"> <i class="mdi mdi-credit-card"></i> <?php echo get_phrase('pay'); ?></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
     </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var instructor_revenue = $('#instructor_revenue').val();
-        calculateAdminRevenue(instructor_revenue);
+        initDataTable(['#pending-payout', '#completed-payout']);
     });
-    function calculateAdminRevenue(instructor_revenue) {
-        if(instructor_revenue <= 100){
-            var admin_revenue = 100 - instructor_revenue;
-            $('#admin_revenue').val(admin_revenue);
-        }else {
-            $('#admin_revenue').val(0);
-        }
+
+    function update_date_range()
+    {
+        var x = $("#selectedValue").html();
+        $("#date_range").val(x);
+    }
+
+    function stripe_checkout(stripe_public_key, payout_id){
+        var createCheckoutSession = function (stripe) {
+            return fetch("<?= site_url('admin/stripe_checkout_for_instructor_revenue/'); ?>"+payout_id, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    checkoutSession: 1,
+                }),
+            }).then(function (result) {
+                return result.json();
+            });
+        };
+
+        createCheckoutSession().then(function (data) {
+            if(data.sessionId){
+                Stripe(stripe_public_key).redirectToCheckout({
+                    sessionId: data.sessionId,
+                }).then(handleResult);
+            }else{
+                handleResult(data);
+            }
+        });
     }
 </script>

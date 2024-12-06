@@ -1,6 +1,4 @@
 /* general */
-
-
 :root {
     --primary-color: #754FFE;
     --secondary-color: #FFB600;
@@ -12,17 +10,21 @@
     --light-withe-color: #EFF2F1;
     --black-color: #000000;
     --bg-light-grey-color: #F5F5F5;
+    --bg-form-color: #FBFCFB;
     --dark-blue-color: #2A176E;
     --light-blue-color:  #754FFE1A;
-
+   
     --title-color: #161616;
     --placeholder-color: #6B6B6B;
+    --button-text-color: #FAF8F7;
+    --placeholder-light-color: #BDC0BC;
+    --label-color:#353535;
     --light-orange-color:  #FED05EC2;
+    --dark-orange-color: #FFD400;
     ;
 
 
 }
-
 
 
 
@@ -93,3 +95,4 @@ button {
     background-color: var(--secondary-color);
 
 }
+

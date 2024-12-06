@@ -2,14 +2,22 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('system_settings'); ?></h4>
+            <h4  
+            class=" header-style page-title"> <i 
+                style=" color: #232F43;font-size: 27px ; margin-inline-end:16px" 
+                class="dripicons-view-apps"></i>
+                 <?php echo get_phrase('Settings '); ?>  
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span style ="color : #232F43">    <?php echo get_phrase(' System settings'); ?>  </span>
+               
+                </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
 
 <div class="row">
-    <div class="col-xl-7">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12">
@@ -26,7 +34,7 @@
                             <input type="text" name = "system_title" id = "system_title" class="form-control" value="<?php echo get_settings('system_title');  ?>" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group website-keywords">
                             <label for="website_keywords"><?php echo get_phrase('website_keywords'); ?></label>
                             <input type="text" class="form-control bootstrap-tag-input" id = "website_keywords" name="website_keywords" data-role="tagsinput" style="width: 100%;" value="<?php echo get_settings('website_keywords');  ?>"/>
                         </div>
@@ -175,15 +183,18 @@
                             &nbsp;&nbsp;
                             <input type="radio" id="account_disable_no" value="0" name="account_disable" <?php if(get_settings('account_disable') == 0) echo 'checked'; ?>> <label for="account_disable_no"><?php echo get_phrase('No'); ?></label>
                         </div>
+                            <div class="action-btn w-100 d-flex justify-content-end my-3">
+                            <button type="button" class="submit-btn"
+                            onclick="checkRequiredFields()"><?php echo get_phrase('save'); ?></button>
+                            </div>
 
-
-                        <button type="button" class="btn btn-primary" onclick="checkRequiredFields()"><?php echo get_phrase('save'); ?></button>
+                   
                     </form>
                 </div>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
-    <div class="col-xl-5">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12">
@@ -199,8 +210,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary"><?php echo get_phrase('update'); ?></button>
+                        <div class="action-btn w-100 d-flex justify-content-end my-3">
+                        <button type="submit" class="submit-btn"><?php echo get_phrase('update'); ?></button>
+                                </div>
                     </form>
                 </div>
             </div> <!-- end card body-->

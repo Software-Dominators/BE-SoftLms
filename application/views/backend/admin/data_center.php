@@ -3,13 +3,15 @@
         <div class="card">
         <div  class="card-body">
      
-     <h4  style ="color:#8B93A1"
-             class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i>
-              <?php echo get_phrase('Settings'); ?></h4>
-              <i style="color:#27344B ;  display: inline-block; font-size:24px; padding:16px " class="fa-solid fa-angle-right"></i>
-              <h4 style="  display: inline-block;color:#232F43;font-family: Outfit;
-             font-size: 24px;font-weight: 400;  " class="header-title my-1 s-header"><?php echo get_phrase('data_center'); ?>
- </h4>
+        <h4  
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>    <?php echo get_phrase('data_center'); ?>  </span>
+               
+                </h4>
+
+
 
 </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -24,7 +26,9 @@
                 <h5 class="header-title">
                     <?php echo get_phrase('import_your_data'); ?>
                 </h5>
-                <p class="label-style"><?= get_phrase('you_can_import_your_demo_and_your_backup_data_from_here'); ?></p>
+
+
+                <p class="label-style"><?php echo get_phrase('you_can_import_your_demo_and_your_backup_data_from_here'); ?></p>
                 <form action="<?php echo site_url('data_center/demo_importer'); ?>" method="post" enctype="multipart/form-data" id="import_backup_data_form">
                     <div class="input-group mb-3">
                     	<div class="input-group">
@@ -81,7 +85,7 @@
                         <div class="p-2">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <div class="avatar-sm">
+                                    <div class="avatar-sm data-center-avatar">
                                         <span class="avatar-title rounded">
                                             <i class="mdi mdi-folder"></i>
                                         </span>

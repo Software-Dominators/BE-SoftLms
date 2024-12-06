@@ -3,10 +3,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="content d-flex justify-content-between align-items-center">
-                    <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i>
-                        <?php echo get_phrase('private_message'); ?></h4>
+             
 
-
+                        <h4
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+              
+                 <span>  <?php echo get_phrase('private_message'); ?></h4> </span>
+                </h4>
                     <div>
                         <a href="<?php echo site_url('admin/message/message_new'); ?>" class="new-message-btn">
                             <?php echo get_phrase('new_message'); ?>

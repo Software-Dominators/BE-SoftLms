@@ -1,5 +1,24 @@
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-xl-12">
+		<div class="card">
+		<div class="card-body ">
+
+
+				<h4  
+                class=" page-title"> 
+                <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i>
+			  <?php echo get_phrase('Blog'); ?>
+			  <i class="fa-solid fa-angle-right icon-header"></i>
+			  <span> 	<?php   echo get_phrase(' Blog_settings'); ?> </span>
+            
+                </h4>
+            </div> 
+		</div>
+  
+        </div> 
+</div>
+<div class="row">
+	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body">
 				<form action="<?php echo site_url('admin/blog_settings/update'); ?>" method="post" enctype="multipart/form-data">
@@ -30,8 +49,8 @@
 						<input type="file" name="blog_page_banner" id="blog_page_banner" class="form-control" accept="image/*">
 					</div>
 
-					<div class="form-group">
-						<button class="btn btn-primary" type="submit"><?php echo get_phrase('save_changes'); ?></button>
+					<div class="action-btn d-flex justify-content-end w-100 my-3 ">
+						<button class="submit-btn" type="submit"><?php echo get_phrase('save_changes'); ?></button>
 					</div>
 				</form>
 			</div>

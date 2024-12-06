@@ -2,39 +2,55 @@
 <div class="row ">
   <div class="col-xl-12">
     <div class="card">
-      <div class="card-body">
-        <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('certificate_settings'); ?></h4>
-      </div> <!-- end card body-->
+    <div  class="card-body">
+
+
+               <h4  
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>    <?php echo get_phrase('certificate_settings'); ?>  </span>
+               
+                </h4>
+
+</div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
 </div>
-
-<div class="row justify-content-center">
-  <div class="col-xl-6">
-    <div class="card">
+<div class="settings">
+<div class="card ">
+  <div class="col-xl-12">
+    <div class=" col-xl-12">
       <div class="card-body">
         <div class="col-lg-12">
           <form class="required-form" action="<?php echo site_url('addons/certificate/settings/text_update'); ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label><?php echo ucwords(get_phrase('certificate_template_text')); ?></label>
+              <label class="header-title"><?php echo ucwords(get_phrase('certificate_template_text')); ?></label>
               <p class="text-muted font-13">
                 N.B: <strong>"{student}"</strong> <?php echo strtolower(get_phrase('and')); ?> <strong>"{course}"</strong> <?php echo strtolower(get_phrase('represents_student_name_and_course_title_on_the_certificate')); ?>.
               </p>
               <textarea name="certificate_template" data-toggle="maxlength" class="form-control" maxlength="120" rows="10"
               placeholder="This textarea has a limit of 120 chars." required><?php echo get_settings('certificate_template'); ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary"><?php echo get_phrase('save'); ?></button>
+            <div class="action-btn w-100 d-flex justify-content-end">
+            <button type="submit" class="submit-btn"><?php echo get_phrase('save'); ?></button>
+            </div>
+         
           </form>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-xl-6">
+  
+ 
+</div>
+<div class="row">
+<div class="col-xl-12 ">
     <div class="card">
       <div class="card-body">
         <form class="required-form" action="<?php echo site_url('addons/certificate/settings/template_update'); ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label><?php echo ucwords(get_phrase('certificate_template')); ?></label>
+            <label class="header-title"><?php echo ucwords(get_phrase('certificate_template')); ?></label>
             <p class="text-muted font-13">
               N.B: <?php echo strtolower(get_phrase('make_sure_that_template_size_is_less_than')); ?> <strong>"1MB"</strong>.
             </p>
@@ -43,20 +59,22 @@
                     <div class="box" style="width: 250px;">
                         <div class="js--image-preview" style="background-image: url(<?php echo base_url('uploads/certificates/template.jpg'); ?>); background-color: #F5F5F5;"></div>
                         <div class="upload-options">
-                            <label for="certificate_template" class="btn"> <i class="mdi mdi-camera"></i> <?php echo get_phrase('certificate_template'); ?></label>
+                            <label  class="label-style" for="certificate_template" class="btn"> <i class="mdi mdi-camera"></i> <?php echo get_phrase('certificate_template'); ?></label>
                             <input id="certificate_template" style="visibility:hidden;" type="file" class="image-upload" name="certificate_template" accept="image/*" required>
                         </div>
                     </div>
                 </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary"><?php echo get_phrase('save'); ?></button>
+          <div class= "action-btn w-100 d-flex justify-content-end">
+          <button type="submit" class="submit-btn"><?php echo get_phrase('save'); ?></button>
+          </div>
+       
         </form>
       </div>
     </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-xl-12">
     <div class="card">
@@ -66,7 +84,7 @@
           @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap%27');
           @import url('https://fonts.googleapis.com/css2?family=Miss+Fajardose&display=swap%27');
         </style>
-        <label><?php echo ucwords(get_phrase('certificate_text_position')); ?></label>
+        <label class="header-title"><?php echo ucwords(get_phrase('certificate_text_position')); ?></label>
         <p class="text-muted font-13">
           N.B: <?php echo get_phrase('you_must_update_the_text_position_after_updating_the_certificate_template_text'); ?>
         </p>
@@ -83,11 +101,17 @@
           </style>
           <?php echo remove_js(htmlspecialchars_decode(get_settings('certificate-text-positons'))); ?>
         </div>
-        <a class="btn btn-primary mt-2" href="<?php echo site_url('addons/certificate/position'); ?>"><?php echo get_phrase('edit_text_position'); ?> <i class="mdi mdi-arrow-right"></i></a>
+        <div class= "action-btn w-100 d-flex justify-content-end mt-3">
+        <a class="submit-btn mt-2" href="<?php echo site_url('addons/certificate/position'); ?>">
+        <?php echo get_phrase('edit_text_position'); ?> <i class="mdi mdi-arrow-right"></i></a>
+          </div>
+     
       </div>
     </div>
 
   </div>
 </div>
+</div>
+
 
 

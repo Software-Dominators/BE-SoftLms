@@ -2,15 +2,23 @@
   <div class="col-xl-12">
     <div class="card">
       <div class="card-body d-flex justify-content-between align-items-center">
-        <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
+      <h4  
+                class=" header-style page-title"> 
+                <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <span>   <?php echo $page_title; ?> </span>
+              
+                </h4>
         
         </h4>
-        <a href="#" onclick="showAjaxModal('<?php echo site_url('admin/newsletter_add_form'); ?>', '<?php echo get_phrase('Newsletter template') ?>')" class="newsletter-btn"> <?php echo get_phrase('Newsletter'); ?></a>
+        <a href="#" 
+        onclick="showAjaxModal('<?php echo site_url('admin/newsletter_add_form'); ?>', '<?php echo get_phrase('Newsletter template') ?>')" class="add-btn  alignToTitle"> <?php echo get_phrase('Newsletter'); ?></a>
         
+
+   
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
-</div>
+
 
 
         <?php include "newsletter_statistics.php"; ?>
@@ -25,7 +33,10 @@
         <div class="card mb-0">
           <div class="card-header py-0" id="headingOne<?= $newsletter['id'] ?>">
             <h5 class="">
-              <a class="custom-accordion-title d-flex flex-wrap align-items-center <?php echo isset($_GET['tab']) && $_GET['tab'] == $newsletter['id'] ? '' : 'collapsed'; ?> pt-2 pb-2" data-toggle="collapse" href="#collapseOne<?= $newsletter['id']; ?>" aria-expanded="true" aria-controls="collapseOne<?= $newsletter['id'] ?>">
+              <a class="custom-accordion-title  d-flex flex-wrap align-items-center 
+              <?php echo isset($_GET['tab']) && $_GET['tab'] == $newsletter['id'] ? '' : 'collapsed'; ?>
+               pt-2 pb-2" data-toggle="collapse" href="#collapseOne<?= $newsletter['id']; ?>" 
+                aria-expanded="true" aria-controls="collapseOne<?= $newsletter['id'] ?>">
                 <p class="mb-0">
                   <i class="mdi mdi-arrow-right-bold-outline"></i>
                   <?php echo $newsletter['subject']; ?>
@@ -61,7 +72,7 @@
 
     </div> <!-- end custom accordions-->
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-12 ">
     <div class="alert alert-info" role="alert">
       <h4 class="alert-heading"><?php echo get_phrase('Heads up'); ?>!</h4>
       <p>If you want to send a newsletter to more than 20 users at once, the system will automatically divide them into chunks of 20. Every minute, the server will initiate a process to send 20 emails at a time. In order to complete this task, the website needs to remain active in a browser until all the emails are successfully sent.</p>

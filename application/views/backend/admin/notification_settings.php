@@ -1,17 +1,26 @@
 <div class="row ">
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('website_notification'); ?></h4>
-            </div>
+       <div  class="card-body">
+     
+                 <h4  
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>   <?php echo get_phrase('website_notification'); ?> </span>
+               
+                </h4>
+</div> <!-- end card body-->
         </div>
     </div>
 </div>
+<div>
 
-<div class="row justify-content-center">
-    <div class="col-xl-12">
+</div>
+<div   class="row justify-content-center ">
+    <div  class="col-xl-12">
         <div class="card">
-            <div class="card-body">
+            <div  class="card-body">
 
 
                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
@@ -40,44 +49,46 @@
                     <div class="tab-pane <?php  echo $tab == 'smtp-settings' ? 'show active':''; ?>" id="smtpSettings">
                         <h4 class="mb-3 header-title"><?php echo get_phrase('SMTP settings');?></h4>
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-12">
                                 <form class="required-form" action="<?php echo site_url('admin/notification_settings/smtp_settings'); ?>" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="smtp_protocol"><?php echo get_phrase('protocol'); ?> <small>(smtp or ssmtp or mail)</small><span class="required">*</span></label>
+                                        <label class="label-style" for="smtp_protocol"><?php echo get_phrase('protocol'); ?> <small>(smtp or ssmtp or mail)</small><span class="required">*</span></label>
                                         <input type="text" name = "protocol" id = "smtp_protocol" class="form-control" value="<?php echo get_settings('protocol');  ?>" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="smtp_crypto"><?php echo get_phrase('smtp_crypto'); ?> <small>(ssl or tls)</small><span class="required">*</span></label>
+                                        <label class="label-style" for="smtp_crypto"><?php echo get_phrase('smtp_crypto'); ?> <small>(ssl or tls)</small><span class="required">*</span></label>
                                         <input type="text" name = "smtp_crypto" id = "smtp_crypto" class="form-control" value="<?php echo get_settings('smtp_crypto');  ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="smtp_host"><?php echo get_phrase('smtp_host'); ?><span class="required">*</span></label>
+                                        <label  class="label-style"for="smtp_host"><?php echo get_phrase('smtp_host'); ?><span class="required">*</span></label>
                                         <input type="text" name = "smtp_host" id = "smtp_host" class="form-control" value="<?php echo get_settings('smtp_host');  ?>" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="smtp_port"><?php echo get_phrase('smtp_port'); ?><span class="required">*</span></label>
+                                        <label class="label-style" for="smtp_port"><?php echo get_phrase('smtp_port'); ?><span class="required">*</span></label>
                                         <input type="text" name = "smtp_port" id = "smtp_port" class="form-control" value="<?php echo get_settings('smtp_port');  ?>" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="smtp_from_email"><?php echo get_phrase('smtp_from_email'); ?><span class="required">*</span></label>
+                                        <label class="label-style" for="smtp_from_email"><?php echo get_phrase('smtp_from_email'); ?><span class="required">*</span></label>
                                         <input type="text" name = "smtp_from_email" id = "smtp_from_email" class="form-control" value="<?php echo get_settings('smtp_from_email');  ?>" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div  class="label-style"class="form-group">
                                         <label for="smtp_user"><?php echo get_phrase('smtp_username'); ?><span class="required">*</span></label>
                                         <input type="text" name = "smtp_user" id = "smtp_user" class="form-control" value="<?php echo get_settings('smtp_user');  ?>" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="smtp_pass"><?php echo get_phrase('smtp_password'); ?><span class="required">*</span></label>
+                                        <label class="label-style" for="smtp_pass"><?php echo get_phrase('smtp_password'); ?><span class="required">*</span></label>
                                         <input onfocus="$(this).attr('type', 'text');" onblur="$(this).attr('type', 'password');" type="password" name = "smtp_pass" id = "smtp_pass" class="form-control" value="<?php echo get_settings('smtp_pass');  ?>" required>
                                     </div>
-
-                                    <button type="button" class="btn btn-primary" onclick="checkRequiredFields()"><?php echo get_phrase('save'); ?></button>
+                                  <div class="d-flex justify-content-end w-100 my-4 ">
+                                  <button type="button" class="submit-btn" onclick="checkRequiredFields()"><?php echo get_phrase('save'); ?></button>
+                                  </div>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -113,7 +124,7 @@
                                                     <p><?php echo get_phrase('To '.$user_type); ?>: <?php echo $template; ?></p>
                                                 <?php endforeach; ?>
                                             </td>
-                                            <td>
+                                            <td class = "notification-edit-btn">
                                                 <a onclick="showRightModal('<?php echo site_url('admin/edit_email_template/'.$notification_row['id']); ?>', '<?php echo nl2br($notification_row['setting_title']) ?>')" class="btn btn-primary btn-rounded" href="javascript:;" data-toggle="tooltip" title="<?php echo get_phrase('Edit email template'); ?>" style="min-width: 40px;"><i class="mdi mdi-pencil"></i></a>
                                             </td>
                                         </tr>
@@ -176,7 +187,6 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function () {
     initSummerNote(['#about_us', '#terms_and_condition', '#privacy_policy', '#cookie_policy', '#refund_policy']);
   });
 

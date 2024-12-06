@@ -1,0 +1,142 @@
+
+
+.contact-header{
+min-height: 541px;
+background-color: var(--primary-color);
+}
+
+.contact-header__left{
+    margin-top: 54px;
+
+}
+.contact-header__top{
+    gap: 6px;
+}
+.contact-header__top i{
+    font-size: 18px;
+    color: var(--light-withe-color);
+}
+.contact-header__top a{
+    line-height: 36px;
+    font-size: 24px;
+}
+.contact-header__top .home-link{
+color: var( --light-withe-color);
+font-weight: 400;
+}
+
+.contact-header__top .active-link{
+ color: var( --dark-orange-color);
+ font-weight: 500;
+}
+
+.contact-header__bottom h1{
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 84px;
+color: var(--white-color);
+margin-top:16px ;
+margin-bottom:8px ;
+    
+}
+
+.contact-header__bottom p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var( --dark-withe-color);
+   
+}
+
+
+.contact-header__right{
+    margin-top: 107.54px;
+}
+
+.contact-header__right img{
+    width: 402.96px;
+height: 237.43px;
+
+
+}
+
+/* responsive */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #################### form ########################### */
+
+.form{
+    padding: 40px 40px 36px 40px ;
+    background-color: var(--bg-form-color);
+    box-shadow: 0px 0px 4px 0px #00000029;
+    border-radius: 24px;
+
+}
+.form h2{
+
+font-size: 32px;
+font-weight: 600;
+line-height: 48px;
+color: var(--title-color);
+
+}
+
+.form input[type=text],.form textarea{
+    /* //width: Fill (608px)px; */
+height: 48px;
+padding: 8px 16px 8px 16px;
+gap: 8px;
+border-radius: 10px ;
+border: 1px solid #E4E4E4
+
+}
+.form textarea{
+    height: 183px;  
+}
+.form input::placeholder,.form textarea::placeholder{
+font-size: 16px;
+font-weight: 300;
+line-height: 24px;
+color: var(--placeholder-light-color);
+
+}
+
+.form label{
+margin-bottom: 8px;
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+color: var( --label-color);
+
+}
+
+.form button{
+
+border-radius: 8px ;
+background-color: var(--primary-color);
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+color: var(   --button-text-color);
+
+
+}
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.form .form-group{
+    margin-bottom: 24px;
+}

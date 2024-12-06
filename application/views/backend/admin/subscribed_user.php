@@ -2,7 +2,16 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
+        
+
+
+
+                <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('newsletter'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>   <?php echo $page_title; ?>   </span>
+               
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->

@@ -2,8 +2,11 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('admin/admin_form/add_admin_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_admin'); ?></a>
+              
+                <h4  
+                class="page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                 <span>  <?php echo $page_title; ?> </span>
+                 <a href="<?php echo site_url('admin/admin_form/add_admin_form'); ?>" class="add-btn alignToTitle"><?php echo get_phrase('add_admin'); ?></a>
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -36,7 +39,7 @@
                                         <img src="<?php echo $this->user_model->get_user_image_url($user['id']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                                     </td>
                                     <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
-                                    <td><?php echo $user['email']; ?></td>
+                                    <td class="user-email"><?php echo $user['email']; ?></td>
                                     <td><?php echo $user['phone']; ?></td>
                                     <td>
                                         <?php if (!is_root_admin($user['id'])) : ?>

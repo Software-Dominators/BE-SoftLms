@@ -14,8 +14,9 @@
 		</div>
 	<?php endforeach; ?>
 
-	<div class="form-group">
-		<button type="submit" class="btn btn-primary"><?php echo get_phrase('Save changes'); ?></button>
+	<div class="d-flex w-100 justify-content-end my-3">
+
+		<button type="submit" class="submit-btn"><?php echo get_phrase('Save changes'); ?></button>
 	</div>
 </form>
 

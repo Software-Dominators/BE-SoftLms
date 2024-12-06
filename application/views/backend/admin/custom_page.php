@@ -2,10 +2,21 @@
   <div class="col-xl-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="page-title"> <i class="mdi mdi-web title_icon"></i> <?php echo get_phrase('custom_pages'); ?>
-          <a href="<?php echo site_url('admin/add_custom_page'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle mr-1"><i class="mdi mdi-plus"></i> <?php echo get_phrase('add_a_new_page'); ?></a>
+      <h4 class=" page-title"> <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i> 
+   
+      <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+				 <span>      <?php echo get_phrase('custom_pages'); ?> </span>
+          <a href="<?php echo site_url('admin/add_custom_page'); ?>"
+           class=" add-btn alignToTitle"> <?php echo get_phrase('add_a_new_page'); ?></a>
         </h4>
       </div> <!-- end card body-->
+
+ 
+    
+
+
+
     </div> <!-- end card -->
   </div><!-- end col-->
 </div>
@@ -51,4 +62,3 @@
       </div>
     </div>
   </div>
-</div>

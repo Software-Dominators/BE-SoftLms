@@ -1,18 +1,28 @@
 <?php
 
 ?>
+<style>
+    .btn{
+	width: auto;
+	padding:7.5px 38px;
+}
+h3 , h4 , p {
+    font-family : var(--main-font--) !important;
+}
+</style>
 <!-- start page title -->
 <div class="row ">
     <div class="col-xl-12">
         <div class="card card-new2">
-            <div class="card-body">
+            <div class="card-body"> 
 
-                <h4 style="color:#8B93A1"
-                    class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i>
-                    <?php echo get_phrase('Settings'); ?></h4>
-                <i style="color:#27344B ;  display: inline-block; font-size:24px; padding:16px " class="fa-solid fa-angle-right"></i>
-                <h4 style="  display: inline-block;color:#232F43;font-family: Outfit;
-                font-size: 24px;font-weight: 400;  " class="header-title my-1 s-header"> <?= get_phrase('setup_payment_information'); ?></h4>
+            <h4  
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>  <?=get_phrase('setup_payment_information'); ?>  </span>
+                
+                </h4>
 
                 <!-- <button  type="button" onclick="save_bbb_meeting()" class=" w-15 btn-new add-btn">Edit</button> -->
             </div> <!-- end card body-->
@@ -70,7 +80,7 @@
 
 
             <div class=" text-right w-100 mb-3">
-                <button class="submit-btn payment-btn" type="submit"><?php echo get_phrase('update_system_currency'); ?></button>
+                <button class="submit-btn btn" type="submit"><?php echo get_phrase('update_system_currency'); ?></button>
             </div>
 
         </form>
@@ -159,7 +169,7 @@
 
 
                 <div class=" text-right w-100 mb-3">
-                    <br> <button class=" submit-btn payment-btn" type="submit"><?php echo get_phrase('update'); ?> <?php echo $payment_gateway['title']; ?> <?php echo get_phrase('settings'); ?></button>
+                    <br> <button class=" submit-btn btn" type="submit"><?php echo get_phrase('update'); ?> <?php echo $payment_gateway['title']; ?> <?php echo get_phrase('settings'); ?></button>
                 </div>
 
             </form>

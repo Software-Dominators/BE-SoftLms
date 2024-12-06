@@ -103,15 +103,32 @@
 												</div>
 											</td>
 											<td>
-												<a href="<?php echo site_url('admin/manage_language/edit_phrase/' . $language); ?>" class="btn btn-info">
+
+											<div class="dropright dropright">
+                                            <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu ">
+                               
+                                                <li>
+													<a class="dropdown-item"  href="<?php echo site_url('admin/manage_language/edit_phrase/' . $language); ?>" class="">
 													<?php echo get_phrase('edit_phrase'); ?>
 												</a>
-												<a href="<?php echo site_url('admin/export_language/' . $language); ?>" class="btn btn-success">
+											</li>
+                                                <li>
+												<a class="dropdown-item" href="<?php echo site_url('admin/export_language/' . $language); ?>" class="">
 													<?php echo get_phrase('export'); ?>
 												</a>
-												<a href="javascript:;" onclick="confirm_modal('<?php echo site_url('admin/manage_language/delete_language/' . $language); ?>')" class="btn btn-danger">
+												</li>
+
+												<li>
+												<a class="dropdown-item"  href="javascript:;" onclick="confirm_modal('<?php echo site_url('admin/manage_language/delete_language/' . $language); ?>')" class="">
 													<?php echo get_phrase('delete_language'); ?>
 												</a>
+												</li>
+                                            </ul>
+                                        </div>
+											
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -140,14 +157,15 @@
 
 					<!----ADD NEW LANGUAGE---->
 					<div class="tab-pane" id="add_lang" style="padding: 30px">
-						<div class="row">
+						<div style ="height:90vh ;" class="row ">
 							<div class="col-xl-6">
+							<h4 class="mb-3 header-title"><?php echo get_phrase('Add new language');?></h4>
 								<form class="" action="<?php echo site_url('admin/manage_language/add_language'); ?>" method="post">
 									<div class="form-group mb-3">
-										<label for="language"><?php echo get_phrase('add_new_language'); ?></label>
-										<input type="text" id="language" name="language" class="form-control" placeholder="<?php echo get_phrase('no_special_character_or_space_is_allowed') . '. ' . get_phrase('valid_examples') . ' : French, Spanish, Bengali etc'; ?>">
+										<label  for="language"><?php echo get_phrase('add_new_language'); ?></label>
+										<input type="text" id="language" name="language" class="form-control input-style" placeholder="French,.....">
 									</div>
-									<button type="submit" class="btn btn-primary" name="button"><?php echo get_phrase('save'); ?></button>
+									<button type="submit" class="btn submit-btn  btn-new1 w-15" name="button"><?php echo get_phrase('Add language'); ?></button>
 								</form>
 							</div>
 						</div>
@@ -158,20 +176,20 @@
 					<div class="tab-pane" id="import_language" style="padding: 30px">
 						<div class="row">
 							<div class="col-xl-6">
-								<p>Import your language files from here.</p>
+								<p  class="label-style">Import your language files from here.</p>
 								<form action="<?php echo site_url('admin/language_import'); ?>" method="post" enctype="multipart/form-data">
 									<div class="input-group mb-3">
 										<div class="input-group">
 											<div class="custom-file">
-												<input type="file" class="custom-file-input" name="language_files[]" id="language_files" onchange="changeTitleOfImageUploader(this)" accept=".json" multiple required>
-												<label class="custom-file-label ellipsis" for="language_files"><?php echo get_phrase('choose_your_json_file'); ?></label>
+												<input type="file" class="custom-file-input input-style" value ="Upload" name="language_files[]" id="language_files" onchange="changeTitleOfImageUploader(this)" accept=".json" multiple required>
+												<label style = "color:#282828;" class="custom-file-label ellipsis" for="language_files"><?php echo get_phrase('Lourem ipsum'); ?></label>
 											</div>
 										</div>
-										<span class="badge badge-light">Ex: english.json</span>
+										<span class=" text1-style">  <img src="../assets/backend/images/Vector (1).svg" class="title-icon" alt=""> &nbsp;&nbsp;Ex: english.json</span>
 									</div>
 
 									<div class="form-group">
-										<button type="submit" class="btn btn-primary"> <i class="mdi mdi-database-export"></i> <?php echo get_phrase('import'); ?></button>
+										<button type="submit" class="btn submit-btn  btn-new2 w-15"> <?php echo get_phrase('import'); ?></button>
 									</div>
 								</form>
 							</div>

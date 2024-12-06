@@ -57,10 +57,10 @@ $selected_sorting = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'all';
         <div class="row">
 
 
-        <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-0 h-100">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-12 ps-0 h-100  filter-side">
                 <?php include "courses_page_sidebar.php"; ?>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-8">
+            <div class="col-lg-9 col-md-12 ">
                 <?php include 'courses_page_' . $layout . '_layout.php'; ?>
 
                 <?php if (count($courses) == 0): ?>
@@ -86,4 +86,30 @@ $selected_sorting = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'all';
 
         $('#course_filter_form').submit();
     }
+</script>
+
+
+<script>
+ $(document).ready(function () {
+    function updateContainerClass() {
+        if ($(window).width() <= 992) {
+            $(".course-wrapper .container-fluid")
+                .removeClass("container-fluid")
+                .addClass("container");
+        } else {
+            $(".course-wrapper .container")
+                .removeClass("container")
+                .addClass("container-fluid");
+        }
+    }
+
+    // Run on page load
+    updateContainerClass();
+
+    // Run on window resize
+    $(window).resize(function () {
+        updateContainerClass();
+    });
+});
+
 </script>

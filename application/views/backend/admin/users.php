@@ -1,20 +1,27 @@
 <div class="row ">
-    <div class="col-xl-12">
+    <div class="col-xl-12 ">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                    <a href="<?php echo site_url('admin/user_form/add_user_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_student'); ?></a>
+                
+            <h4  class=" page-title">
+               <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps">
+                </i>
+                 <span>  <?php echo $page_title; ?> </span>
+                 <a href="<?php echo site_url('admin/user_form/add_user_form'); ?>" class="add-btn alignToTitle"><?php echo get_phrase('add_student'); ?></a>
                 </h4>
+
+               
+</div>
             </div> <!-- end card body-->
         </div> <!-- end card -->
-    </div><!-- end col-->
 </div>
+
 
 <div class="row">
   <div class="col-lg-12">
       <div class="card">
         <div class="card-body" data-collapsed="0">
-          <h4 class="mb-3 header-title"><?php echo get_phrase('student'); ?></h4>
+          <!-- <h4 class="mb-3 header-title"><?php echo get_phrase('student'); ?></h4> -->
           <table class="table table-striped table-centered w-100" id="server_side_users_data">
             <thead>
               <tr>
@@ -47,6 +54,12 @@
         "type": "POST",
         "data":{  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' }
       },
+      language: {
+            paginate: {
+                previous: "<i class='mdi mdi-chevron-left'>",
+                next: "<i class='mdi mdi-chevron-right'>"
+            }
+        },
       "columns": [
         { "data": "key" },
         { "data": "photo" },

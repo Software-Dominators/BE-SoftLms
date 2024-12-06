@@ -57,6 +57,16 @@ body {
 
 
 }
+input[data-switch]:checked+label {
+	background-color: var(--btn-bg-color);
+    /* background-color: #97989a; */
+}
+input[data-switch=bool]+label {
+	background-color: #97989a;
+}
+.jq-icon-info{
+	background-color: #0acf97 !important;
+}
 /* form{
 	height: 100vh;
 } */
@@ -86,20 +96,21 @@ body {
 	font-weight: 400;
 	font-size: 24px;
 	line-height: 36px;
-	color: var(--main-color--);
+	color: #8B93A1;
 	margin: 32px !important;
+
 	
 }
-.page-title img {
-	margin-inline-end: 16px;
+
+.page-title .fa-angle-right {
+	margin: 0 24px;
+	color: #232F43;
 }
 .page-title span {
-	color: #8B93A1;
+	color: #232F43;
 	
 }
-.page-title span i {
-	margin: 0 16px;
-}
+
 /* style for add btn on each page  */
 .add-btn {
 	font-weight: 500;
@@ -119,7 +130,7 @@ body {
 	color: var(--txt-color);
 }
 /* style for filter btn on  pages  */
-.filter-btn {
+.filter-btn , .btn-info{
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
@@ -128,6 +139,12 @@ body {
 	padding: 8px ;
 	border-radius: 8px;
 	color: var(--txt-color);
+	border: none !important;
+	box-shadow: none !important;
+	transition: 0.5s all;
+}
+.filter-btn:hover , .btn-info:hover{
+	opacity: 0.8s !important;
 }
 .date-filter-input{
 	border: 1px solid #D6D6D6;
@@ -161,21 +178,30 @@ body {
 	outline:2px solid var(--second-color--) !important;
 	background-color: var(--light-orange-action-color) !important;
 }
-.table .dropright .dropdown-menu{
+.table .dropright .dropdown-menu  ,  .dropleft .dropdown-menu{
 	box-shadow: 0px 4px 4px 0px #00000040;
     min-width:142px ;
 	min-height:119px ;
 	border-radius:8px ;
 	
 }
-.table .dropright .dropdown-item {
+.dropright , .dropleft{
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+
+td ,th{
+text-align: center !important;
+}
+.table .dropright .dropdown-item ,  .dropleft .dropdown-item{
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 21px;
 	color: #3E4B62;
 	transition: 0.25s all;
 }
-.table .dropright .dropdown-item:hover{
+.table .dropright .dropdown-item:hover  ,  .dropleft .dropdown-item:hover{
 	background-color: #FEF5EA ;
 	color:var(--btn-bg-color) ;
 }
@@ -291,11 +317,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
   border: none !important;
 }
 /* style for action-btn in table  */
-.table .dropright button{
+.table .dropright button ,  .dropleft button{
 	
-	background-color: var(--light-orange-action-color);
-	border-radius: 8px;
-	max-width: 32px;
+	background-color: var(--light-orange-action-color) !important;
+	border-radius: 8px !important;
+    min-width: 32px;
 	min-height: 32px;
 	border: none;
 	outline: none;
@@ -303,23 +329,32 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 	justify-content: center;
 	align-items: center;
 	transition: 0.25s all;
-	color: var(--btn-bg-color);
+	color: var(--btn-bg-color) !important;
 	border:none !important;
 	outline: none !important;
 	box-shadow: none !important;
 }
-.table .dropright button i {
+.table .dropright button i  ,  .dropleft button i{
 	font-size: 10px;
 	
 }
-.table .dropright button:hover{
+.table .dropright button:hover ,  .dropleft button:hover{
 	background-color: var(--btn-bg-color);
 	color: var(--txt-color);
 }
-
-
+/* for next and previous button on top stepper on add and edit  */
+ 
+.scrollable-tab-btn-left ,
+.scrollable-tab-btn-right{
+	border: none !important;
+}
+/* for select menu in enrollments section  */
+.select2-container .select2-selection--multiple .select2-selection__choice {
+	background-color: var(--light-orange-action-color) !important;
+	color: var(--btn-bg-color);
+}
 /* delete modal new style  */
-.delete-modal .modal-content{
+ .modal-content{
 	max-width: 465px !important;
 	border-radius: 8px !important;
 }
@@ -366,14 +401,20 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 .submit-btn{
 	background-color: var(--btn-bg-color);
 	color: var(--txt-color);
+	transition: 0.5s ease all;
 }
 .submit-btn:hover{
 	opacity: 0.7;
 	color: #fff !important;
 }
 .cancel-btn{
-	border: 1px solid var(--bg-btn-color);
+	border: 1px solid var(--btn-bg-color);
 	color:var(--btn-bg-color);
+	background-color: transparent;
+	transition: 0.5s ease all;
+}
+.cancel-btn:hover{
+	opacity: 0.7;
 }
 /* cancel button in delete modal style  */
 .delete-modal .error-cancel-btn{
@@ -393,10 +434,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 }
 .modal .action-btns{
 	gap: 50px;
-}
-.payment-btn{
-	width: auto;
-	padding:7.5px 38px;
 }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
@@ -435,29 +472,4 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 	/* .container {
 		width: 1340px;
 	} */
-}
-
-
-.avatar-title {
-	background-color: rgba(254, 245, 234, 1) !important;
-	color: rgba(247, 147, 30)  !important;
-}
-
-.avatar-title  i{
-	font-size: 20px;
-}
-
-.dropdown-btn{
-
-padding:  9px 14px;
-
-border-radius: 8px;
-border: none;
-background-color: #FEF5EA;
-color: #F7931E;
-}
-
-.dropdown-btn:hover{
-	background-color: #F7931E;
-	color: #FEF5EA;
 }

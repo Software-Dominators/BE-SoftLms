@@ -79,7 +79,28 @@ function confirm_modal(delete_url)
     document.getElementById('update_link').setAttribute('href' , delete_url);
 }
 </script>
-
+<!-- delete  modal  -->
+<div id="alert-modal" class="modal fade delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <div class="error-icon">
+                    <i class="fa-solid fa-exclamation"></i>
+                    </div>
+               
+                    <h4 class=" header"><?php echo get_phrase("heads_up"); ?>!</h4>
+                    <p class=""><?php echo get_phrase("are_you_sure"); ?>?</p>
+                    <div class="action-btns d-flex">
+                    <button type="button" class="error-cancel-btn" data-dismiss="modal"><?php echo get_phrase("cancel"); ?></button>
+                    <a href="#" id="update_link" class="delete-btn"><?php echo get_phrase("continue"); ?></a>
+                    </div>
+               
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 <!-- Info Alert Modal -->
 <div id="alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">

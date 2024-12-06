@@ -14,7 +14,13 @@
 
 
 }
-
+.newsletter .row {
+    /* gap:16px; */
+}
+.newsletter .col-lg-3{
+    /* padding: 0 !important; */
+    min-width: 266px !important;
+}
 .newsletter__content img {
     width: 33px;
     height: 33px;
@@ -96,4 +102,31 @@ color: #FFFFFF;
     text-decoration: underline;
     color: #F7931E;
     display: block; /* Ensure it behaves like a block-level element for consistent spacing */
+}
+.custom-modal-div button[type='submit'] {
+    border: none;
+	outline: none;
+	width: 188px;
+	font-size: 18px;
+	font-weight: 500;
+	line-height:27px ;
+	margin-top: 16px;
+	border-radius: 8px;
+	padding: 7.5px;
+	min-width: 188px;
+	transition: 0.25s all;
+    color:#fff;
+    background-color: var(--btn-bg-color);
+}
+.back-btn {
+    background-color: var(--btn-bg-color) !important;
+    border: none !important ;
+    transition: 0.5s all;
+    color: #fff !important ;
+    min-width: 95px;
+}
+.back-btn:hover{
+    background-color: transparent !important;
+    border: 2px solid var(--btn-bg-color) !important ;
+    color: var(--btn-bg-color) !important;
 }

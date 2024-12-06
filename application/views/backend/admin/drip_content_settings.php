@@ -2,7 +2,15 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-play-protected-content title_icon"></i> <?php echo get_phrase('drip_content_settings'); ?>
+             
+
+				
+				<h4  
+                class=" header-style page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('Settings'); ?> 
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>  	<?php echo get_phrase('drip_content_settings'); ?></span>
+               
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -10,9 +18,19 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-7">
+
+	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-body">
+				<div class="row">
+				<div class="col-lg-7 rounded">
+		<div class="alert light-blue-color" role="alert">
+			<h4 class="alert-heading"><?php echo get_phrase('attention'); ?>!</h4>
+            <p class="mb-0"><?php echo get_phrase('the_auto_checkmark_is_only_applicable_for_video_lessons'); ?>.</p>
+            <a href="https://creativeitem.com/docs/academy-lms/drip-content-settings" target="_blank"><?php echo get_phrase('learn_more'); ?></a>
+        </div>
+	</div>
+				</div>
 				<h3 class="mb-3 header-title"><?php echo get_phrase('manage_your_drip_content_settings'); ?></h3>
 				<form action="<?php echo site_url('admin/drip_content_settings/update'); ?>" method="post">
 					<div class="form-group">
@@ -50,20 +68,14 @@
                         <textarea name="locked_lesson_message" id = "locked_lesson_message" class="form-control" rows="5"><?php echo $drip_content_settings['locked_lesson_message']; ?></textarea>
                     </div>
 
-                    <div class="form-group">
-                    	<button type="submit" class="btn btn-primary"><?php echo get_phrase('save_changes'); ?></button>
+                    <div class="d-flex justify-content-end w-100">
+                    	<button type="submit" class="submit-btn"><?php echo get_phrase('save_changes'); ?></button>
                     </div>
 				</form>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-5">
-		<div class="alert alert-info" role="alert">
-			<h4 class="alert-heading"><?php echo get_phrase('attention'); ?>!</h4>
-            <p class="mb-0"><?php echo get_phrase('the_auto_checkmark_is_only_applicable_for_video_lessons'); ?>.</p>
-            <a href="https://creativeitem.com/docs/academy-lms/drip-content-settings" target="_blank"><?php echo get_phrase('learn_more'); ?></a>
-        </div>
-	</div>
+
 </div>
 
 <script type="text/javascript">

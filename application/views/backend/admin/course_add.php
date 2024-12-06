@@ -758,7 +758,7 @@
         overflow-x: hidden;
     }
 </style>
-<!-- 
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#thumbnail-picker-area').hide();
@@ -774,4 +774,4 @@
             $('#publish_date').hide();
         });
     });
-</script> -->
+</script>

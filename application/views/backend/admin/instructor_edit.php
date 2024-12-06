@@ -10,7 +10,13 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?> </h4>
+            <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                <?php echo get_phrase('instructor'); ?>
+                 <i class="fa-solid fa-angle-right"></i>
+                 <span>  <?php echo $page_title; ?> </span>
+              
+                </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
@@ -20,11 +26,11 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3"><?php echo get_phrase('instructor_edit_form'); ?></h4>
+                <!-- <h4 class="header-title mb-3"><?php echo get_phrase('instructor_edit_form'); ?></h4> -->
 
                 <form class="required-form" action="<?php echo site_url('admin/instructors/edit/'.$user_id); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
-                        <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
+                        <ul class="nav nav-pills nav-justified form-wizard-header mb-3 stepper">
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
@@ -65,54 +71,54 @@
                             <div class="tab-pane" id="basic_info">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="first_name"><?php echo get_phrase('first_name'); ?> <span class="required">*</span> </label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $user_data['first_name']; ?>" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="last_name"><?php echo get_phrase('last_name'); ?> <span class="required">*</span> </label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $user_data['last_name']; ?>" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label"><?php echo get_phrase('a_short_title_about_yourself'); ?></label>
                                             <div class="col-md-9">
                                                 <textarea rows="5" id="short-title" class="form-control" name="title" placeholder="<?php echo get_phrase('short_title'); ?>"><?php echo $user_data['title']; ?></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="skills"><?php echo get_phrase('skills'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control bootstrap-tag-input" id = "skills" name="skills" data-role="tagsinput" style="width: 100%;" value="<?php echo $user_data['skills'];  ?>"/>
                                                 <small class="text-muted"><?php echo get_phrase('write_your_skill_and_click_the_enter_button'); ?></small>
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('biography'); ?></label>
                                             <div class="col-md-9">
                                                 <textarea name="biography" id = "summernote-basic" class="form-control"><?php echo $user_data['biography']; ?></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="phone"><?php echo get_phrase('Phone'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" value="<?php echo $user_data['phone']; ?>" id="phone" name="phone">
                                             </div>
                                         </div>
 
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="address"><?php echo get_phrase('address'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" value="<?php echo $user_data['address']; ?>" id="address" name="address">
                                             </div>
                                         </div>
 
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="user_image"><?php echo get_phrase('user_image'); ?></label>
                                             <div class="col-md-9">
                                                 <div class="d-flex">
@@ -132,12 +138,21 @@
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
+                                <ul class="list-inline mb-0 wizard text-center pagination-btns">
+                                <li class="previous list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-left-bold"></i> </a>
+                                </li>
+                                <li class="next list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-right-bold"></i> </a>
+                                </li>
+                            </ul>
+
                             </div>
 
                             <div class="tab-pane" id="login_credentials">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="email"> <?php echo get_phrase('email'); ?> <span class="required">*</span> </label>
                                             <div class="col-md-9">
                                                 <input type="email" id="email" name="email" class="form-control" value="<?php echo $user_data['email']; ?>" required>
@@ -145,24 +160,32 @@
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
+                                <ul class="list-inline mb-0 wizard text-center pagination-btns">
+                                <li class="previous list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-left-bold"></i> </a>
+                                </li>
+                                <li class="next list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-right-bold"></i> </a>
+                                </li>
+                            </ul>
                             </div>
 
                             <div class="tab-pane" id="social_information">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="facebook_link"> <?php echo get_phrase('facebook'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" id="facebook_link" name="facebook_link" class="form-control" value="<?php echo $social_links['facebook']; ?>">
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="twitter_link"><?php echo get_phrase('twitter'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" id="twitter_link" name="twitter_link" class="form-control" value="<?php echo $social_links['twitter']; ?>">
                                             </div>
                                         </div>
-                                        <div class="form-group row mb-3">
+                                        <div class="form-group  mb-3">
                                             <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('linkedin'); ?></label>
                                             <div class="col-md-9">
                                                 <input type="text" id="linkedin_link" name="linkedin_link" class="form-control" value="<?php echo $social_links['linkedin']; ?>">
@@ -170,6 +193,14 @@
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
+                                <ul class="list-inline mb-0 wizard text-center pagination-btns">
+                                <li class="previous list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-left-bold"></i> </a>
+                                </li>
+                                <li class="next list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-right-bold"></i> </a>
+                                </li>
+                            </ul>
                             </div>
 
 
@@ -195,7 +226,7 @@
                                                     }
                                                     ?>
 
-                                                    <div class="form-group row mb-3">
+                                                    <div class="form-group  mb-3">
                                                         <label class="col-md-3 col-form-label" for="<?php echo $payment_gateway['identifier'].$index; ?>"> <?php echo get_phrase($index); ?></label>
                                                         <div class="col-md-9">
                                                             <input type="text" id="<?php echo $payment_gateway['identifier'].$index; ?>" name="gateways[<?php echo $payment_gateway['identifier']; ?>][<?php echo $index; ?>]" value="<?php echo $value; ?>" class="form-control">
@@ -208,32 +239,42 @@
                                         <?php endforeach; ?>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
+                                <ul class="list-inline mb-0 wizard text-center pagination-btns">
+                                <li class="previous list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-left-bold"></i> </a>
+                                </li>
+                                <li class="next list-inline-item">
+                                    <a href="javascript:;" class="btn "> <i class="mdi mdi-arrow-right-bold"></i> </a>
+                                </li>
+                            </ul>
                             </div>
-                            <div class="tab-pane" id="finish">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="tab-pane finish" id="finish">
+                                <div class="row justify-content-center">
+                                    <div class="col-10">
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0"><?php echo get_phrase('thank_you'); ?> !</h3>
+                                        <div class="icon">
+                                        <img src="../../assets/backend/images/success-icon.svg" class="success-icon" alt="">
+                                             </div>
 
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
+                                            <h3 class="w-75 mb-2 mx-auto"><?php echo get_phrase('You are all done'); ?></h3>
+                                            <h4 class=""><?php echo get_phrase('The instructor is ready to add'); ?> !</h4>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
+                                                <button type="button" class="btn submit-btn" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
                             </div>
 
-                            <ul class="list-inline mb-0 wizard">
+                            <!-- <ul class="list-inline mb-0 wizard">
                                 <li class="previous list-inline-item">
                                     <a href="javascript:;" class="btn btn-info">Previous</a>
                                 </li>
                                 <li class="next list-inline-item float-right">
                                     <a href="javascript:;" class="btn btn-info">Next</a>
                                 </li>
-                            </ul>
+                            </ul> -->
 
                         </div> <!-- tab-content -->
                     </div> <!-- end #progressbarwizard-->

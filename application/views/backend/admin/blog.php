@@ -2,8 +2,24 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body py-2">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('blogs'); ?>
+                <!-- <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('blogs'); ?>
                     <a href="<?php echo site_url('admin/add_blog'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_new_blog'); ?></a>
+                </h4> -->
+
+                
+                <h4   style ="color:#8B93A1"class="  page-title"> 
+				
+                <a href="<?php echo site_url('admin/add_blog'); ?>" class="add-btn alignToTitle"><?php echo get_phrase('add_new_blog'); ?></a>
+			  <i style=" color: #232F43;font-size: 27px" class="dripicons-view-apps"></i>
+			
+              <span>   <?php echo get_phrase('Blog'); ?> </span>
+			
+				
+				<a href="<?php echo site_url('admin/blog_settings'); ?>" > 
+				<img  class=" alignToTitle"src="../assets/backend/images/Frame 1000002078.svg"  
+				 alt="" style ="margin-left: 20px">  </a>
+			
+					
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
