@@ -5,7 +5,8 @@
 
 
 <header class="contact-header header">
-  
+    <img src="<?php echo base_url('assets/frontend/design-one/assets/images/contact/left.svg'); ?>" class="contact-header__left-img">
+    <img src="<?php echo base_url('assets/frontend/design-one/assets/images/contact/right.svg'); ?>" class="contact-header__right-img">
     <div class="container">
         <div class="row justify-content-md-between">
             <div class="col-md-6  contact-header__left">

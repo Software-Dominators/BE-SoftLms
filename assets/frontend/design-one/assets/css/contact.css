@@ -147,7 +147,8 @@
 }
 
 .form input[type=text],
-.form textarea {
+.form textarea,
+.form select {
     /* //width: Fill (608px)px; */
     height: 48px;
     padding: 8px 16px 8px 16px;
@@ -162,7 +163,8 @@
 }
 
 .form input::placeholder,
-.form textarea::placeholder {
+.form textarea::placeholder,
+form select::placeholder,form input[type=file]::placeholder {
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
@@ -201,50 +203,55 @@
 }
 
 @media screen and (max-width: 992px) {
-    
-.form {
-    padding: 24px;
-    top:-100px ;
+
+    .form {
+        padding: 24px;
+        top: -100px;
+    }
+
+    .form h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .form input[type=text],
+    .form textarea {
+        /* //width: Fill (608px)px; */
+        height: 32px;
+    }
+
+    .form textarea {
+        height: 90px;
+
+    }
+
+    .form input::placeholder,
+    .form textarea::placeholder,
+    form select::placeholder {
+
+        font-size: 12px;
+        line-height: 18px;
+
+
+    }
+
+    .form label {
+
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+
+
 }
 
-.form h2 {
-font-size: 20px;
-line-height: 30px;
-}
-.form input[type=text],
-.form textarea {
-    /* //width: Fill (608px)px; */
-    height: 32px;
-}
-
-.form textarea {
-    height: 90px;
-
-}
-.form input::placeholder,
-.form textarea::placeholder {
-
-font-size: 12px;
-line-height: 18px;
-
-
-}
-
-.form label {
-
-font-size: 14px;
-line-height: 21px;
-}
-
-
-    
-}
 @media (max-width: 768px) {
     .form {
         top: -114px;
     }
-    
+
 }
+
 /* contact information */
 .contact__info {
     margin-top: 50px;
@@ -306,17 +313,17 @@ line-height: 21px;
 }
 
 
-@media  (max-width: 992px) {
-    
+@media (max-width: 992px) {
+
     .contact__info {
         margin-top: 37px;
     }
-    
+
     .contact .contact__info h2 {
         font-size: 20px;
-        line-height: 30px; 
+        line-height: 30px;
     }
-    
+
     .contact .contact__info-list {
 
         gap: 24px;
@@ -325,50 +332,147 @@ line-height: 21px;
 
 
     .contact .contact__info-list li {
-     
+
         gap: 5px;
- 
+
     }
-    
+
     .contact .contact__info-list li i {
         padding: 8px;
         font-size: 18px;
-    
+
     }
 
 
-    
 
-.contact .contact__info-list li p {
 
+    .contact .contact__info-list li p {
+
+        font-size: 16px;
+
+        line-height: 24px;
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+
+
+    }
+
+    .contact .contact__info-list li small {
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+.contact-header {
+    position: relative;
+    overflow: hidden;
+    /* Ensures pseudo-elements don't overflow */
+}
+
+.contact-header__left-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 30%;
+    object-fit: cover;
+}
+
+.contact-header__right-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 30%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+/* Style the file input */
+/* .styled-file-input {
+    display: inline-block;
+    font-family: inherit;
     font-size: 16px;
-
-    line-height: 24px;
-
-font-size: 12px;
-
-line-height: 18px;
-
-
-
-}
-
-.contact .contact__info-list li small {
- 
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-
+    padding: 10px 20px;
+    border: 2px solid #007bff;
     
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+} */
+
+/* Change the hover effect */
+.styled-file-input:hover {
+    /* background-color: #007bff;
+    color: #ffffff;
+    border-color: #0056b3; */
+    /* Darker blue */
+}
+
+/* Style the focus state */
+/* .styled-file-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+} */
+
+/* Remove the default "Choose File" text */
+.styled-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+/* Custom style for the button text */
+.styled-file-input::before {
+    content: 'Choose File';
+    display: inline-block;
+    cursor: pointer;
+    width: 118px;
+    height: 38px;
+    padding: 8px 0px 0px 0px;
+    gap: 10px;
+    border-radius: 8px;
+    background: #BBBBBB;
+    text-align: center;
+left: 5px;
+
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+color: #FAF8F7;
 
 }
-    
-}
 
+/* Hover effect for the custom button */
+/* .styled-file-input:hover::before {
+    background-color: #0056b3;
+    border-color: #004085;
+} */
 
-
-
-
-
-
-
+/* Change button text when a file is selected */
+/* .styled-file-input:active::before {
+    background-color: #004085;
+    border-color: #00325b;
+} */
