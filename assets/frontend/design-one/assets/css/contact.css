@@ -202,6 +202,8 @@ form select::placeholder,form input[type=file]::placeholder {
     margin-bottom: 24px;
 }
 
+
+
 @media screen and (max-width: 992px) {
 
     .form {
@@ -464,15 +466,3 @@ line-height: 24px;
 color: #FAF8F7;
 
 }
-
-/* Hover effect for the custom button */
-/* .styled-file-input:hover::before {
-    background-color: #0056b3;
-    border-color: #004085;
-} */
-
-/* Change button text when a file is selected */
-/* .styled-file-input:active::before {
-    background-color: #004085;
-    border-color: #00325b;
-} */

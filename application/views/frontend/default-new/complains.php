@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                     <label for="course"><?php echo get_phrase('Choose problem type') ?></label>
-                        <select class="form-control" name="problem_type">
+                        <select class="form-control custom-select-menu" name="problem_type">
                             <?php if ($user_data['role_id'] == 1) { ?>
                                 <option value="" selected="" hidden>What is the type of the problem</option>
                                 <option value="sign_problem">Sign Problem</option>

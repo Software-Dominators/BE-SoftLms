@@ -1,42 +1,75 @@
 <?php include "breadcrumb.php"; ?>
 
 <?php $website_faqs = json_decode(get_frontend_settings('website_faqs'), true); ?>
-<?php if(count($website_faqs) > 0): ?>
-<!---------- Questions Section Start  -------------->
-<section class="faq">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-12 col-12 d-flex align-items-center">
-                <div class="faq-img d-none d-md-inline-block">
-                    <img loading="lazy" src="<?php echo site_url('assets/frontend/default-new/image/faq2.jpg') ?>">
-                </div>
-            </div>
-            <div class="col-lg-7 col-md-7 col-sm-12 col-12">
-                <div class="faq-accrodion">
-                    <div class="faq-acc-heading">
-                        <h4><?php echo get_phrase('FAQS') ?></h4>
-                        <h1><?php echo get_phrase('Looking for answers?') ?></h1>
-                    </div>
-                    <div class="accordion" id="accordionFaq">
-                        <?php foreach($website_faqs as $key => $faq): ?>
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="<?php echo 'faqItemHeading'.$key; ?>">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo 'faqItempanel'.$key; ?>" aria-expanded="true" aria-controls="<?php echo 'faqItempanel'.$key; ?>">
-                                    <?php echo $faq['question']; ?>
+<?php if (count($website_faqs) > 0): ?>
+    <!---------- Questions Section Start  -------------->
+
+    <section class="faq">
+        <div class="container">
+            <div class="row">
+
+
+
+                <div class="accordion" id="accordionExample">
+                    <?php foreach ($website_faqs as $key => $faq): ?>
+                        <!-- start -->
+
+
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="<?= 'heading' . $key ?>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#<?= 'collapse' . $key ?>" aria-expanded="false"
+                                    aria-controls="<?= 'collapse' . $key ?>">
+                                    <?= $key . '. ' . $faq['question']; ?>
                                 </button>
-                              </h2>
-                              <div id="<?php echo 'faqItempanel'.$key; ?>" class="accordion-collapse collapse" aria-labelledby="<?php echo 'faqItemHeading'.$key; ?>"  data-bs-parent="#accordionFaq">
+                            </h2>
+                            <div id="<?= 'collapse' . $key ?>" class="accordion-collapse collapse"
+                                aria-labelledby="<?= 'heading' . $key ?>" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p><?php echo nl2br($faq['answer']); ?></p>
+                                    <p>
+                                        <?php echo nl2br($faq['answer']); ?>
+                                    </p>
                                 </div>
-                              </div>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                        </div>
+                        <!-- end -->
+
+                    <?php endforeach; ?>
+
+
+
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!---------- Questions Section End  -------------->
+    </section>
+    <!---------- Questions Section End  -------------->
 <?php endif; ?>
+
+
+
+
+<script>
+   $(document).ready(function () {
+    // Apply border to .accordion-item when the button is expanded (not collapsed) on page load
+    $('.accordion-button').each(function() {
+        if (!$(this).hasClass('collapsed')) {
+            $(this).closest('.accordion-item').css('border', '1px solid #A1A1A1'); // Add border when expanded
+        }
+    });
+
+    // Toggle the border when an accordion button is clicked
+    $('.accordion-button').on('click', function () {
+        var $accordionItem = $(this).closest('.accordion-item');
+        
+        // Check if the button has the 'collapsed' class (if not, it's expanded)
+        if ($(this).hasClass('collapsed')) {
+            $accordionItem.css('border', 'none'); // Remove border when collapsed
+        } else {
+            $accordionItem.css('border', '1px solid #A1A1A1'); // Add border when expanded
+        }
+    });
+});
+
+</script>
+=
