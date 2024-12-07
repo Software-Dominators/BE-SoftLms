@@ -164,7 +164,8 @@
 
 .form input::placeholder,
 .form textarea::placeholder,
-form select::placeholder,form input[type=file]::placeholder {
+form select::placeholder,
+form input[type=file]::placeholder {
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
@@ -409,39 +410,6 @@ form select::placeholder,form input[type=file]::placeholder {
 
 
 
-
-
-
-/* Style the file input */
-/* .styled-file-input {
-    display: inline-block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: 2px solid #007bff;
-    
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #007bff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-} */
-
-/* Change the hover effect */
-.styled-file-input:hover {
-    /* background-color: #007bff;
-    color: #ffffff;
-    border-color: #0056b3; */
-    /* Darker blue */
-}
-
-/* Style the focus state */
-/* .styled-file-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-} */
-
-/* Remove the default "Choose File" text */
 .styled-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
@@ -458,11 +426,14 @@ form select::placeholder,form input[type=file]::placeholder {
     border-radius: 8px;
     background: #BBBBBB;
     text-align: center;
-left: 5px;
+    left: 5px;
 
-font-size: 16px;
-font-weight: 500;
-line-height: 24px;
-color: #FAF8F7;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #FAF8F7;
 
 }
+
+
+

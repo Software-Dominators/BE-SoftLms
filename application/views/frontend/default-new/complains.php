@@ -38,33 +38,28 @@
     <div class="container">
         <div class="row justify-content-md-between justify-content-center">
             <div class="col-md-6 form col-11">
-                <h2><?php echo get_phrase('Contact Us') ?></h2>
+                <h2><?php echo get_phrase('Complain Form') ?></h2>
                 <form action="<?php echo base_url('home/put_complains'); ?>" method="POST">
                     <div class="row">
 
-
-                        <div class="form-group col-md-6">
-                            <label for="first_name"><?php echo get_phrase('First Name') ?></label>
-                            <input id="first_name" name="first_name" type="text" class="form-control" id="first_name"
+<!-- name -->
+                        <div class="form-group col-md-12">
+                            <label for="name"><?php echo get_phrase(' Name') ?></label>
+                            <input id="name" name="name" type="text" class="form-control" id="name"
                                 placeholder="<?php echo get_phrase('First Name') ?>">
 
                         </div>
-                        <div class="form-group col-md-6">
-
-                            <label for="last_name"><?php echo get_phrase('Last Name') ?></label>
-                            <input id="last_name" name="last_name" type="text" class="form-control"
-                                placeholder="<?php echo get_phrase('Last Name') ?>">
-
-                        </div>
-                    </div>
+               
+              <!-- email -->
 
                     <div class="form-group ">
 
-                        <label for="first_name"><?php echo get_phrase('Email ') ?> </label>
+                        <label for="name"><?php echo get_phrase('Email ') ?> </label>
                         <input name="email" type="text" class="form-control" id="email"
                             placeholder="<?php echo get_phrase('Email ') ?>">
 
                     </div>
+                    <!-- phone -->
                     <div class="form-group ">
                         <label for="phone"><?php echo get_phrase('Phone') ?></label>
                         <input name="phone" type="text" class="form-control" id="phone"
@@ -72,7 +67,7 @@
 
                     </div>
 
-
+<!-- course -->
                     <div class="form-group">
                         <label for="course"><?php echo get_phrase('Choose the course with the problem') ?></label>
                         <select class="form-control" id="course" name="course_id">
@@ -82,6 +77,7 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <!-- problem type -->
                     <div class="form-group">
                     <label for="course"><?php echo get_phrase('Choose problem type') ?></label>
                         <select class="form-control custom-select-menu" name="problem_type">
@@ -99,20 +95,22 @@
                             <?php } ?>
                         </select>
                     </div>
-
+<!-- upload document -->
 
                     <div class="form-group ">
                         <div class="mb-3">
                             <label for="address"><?php echo get_phrase('Upload Document /Photo') ?></label>
-                            <input name="address" type="file" class="form-control styled-file-input" >
+                            <input  type="file" class="form-control styled-file-input" >
                         </div>
+                    </div>
+                    <!-- message -->
                         <div class="form-group ">
                             <label for="message"><?php echo get_phrase('Write your message') ?></label>
                             <textarea name="message" class="form-control" aria-label="With textarea" id="message"
                                 placeholder="<?php echo get_phrase('Write your message'); ?>"></textarea>
                         </div>
                 
-                        <div class="form-group ">
+                        <!-- <div class="form-group ">
                                 <div class="form-check">
                                     <input name="i_agree" class="form-check-input" type="checkbox" value="1"
                                         id="i_agree">
@@ -121,7 +119,7 @@
                                        
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
                         <div class="form-group ">
                             <button type="submit"
                                 class="btn btn-primary w-100"><?php echo get_phrase('Submit'); ?></button>

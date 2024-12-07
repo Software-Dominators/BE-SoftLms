@@ -667,7 +667,7 @@
     background-color: var(--bg-light-grey-color);
     border-radius: 32px;
     /* height: 100%; */
-    gap: 16px;
+    gap: 24px;
 }
 
 .course-list__content-image {
@@ -800,10 +800,10 @@
         padding: 18px;
         padding-top: 16px;
         border-radius: 24px;
-    
+    gap: 16px;
 
     }
-
+ 
     .course-list__content-image {
 
         border-radius: 8px;
@@ -888,6 +888,10 @@
         font-size: 24px;
         line-height: 36px;
 
+    }
+
+    .course-list__content-image{
+        width: 100%;
     }
 }
 
