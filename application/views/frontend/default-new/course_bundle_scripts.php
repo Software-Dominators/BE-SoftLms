@@ -36,6 +36,12 @@
 	    });
 	}
 
+	$('#course_bundle_search-btn').on('click', function(e){
+		e.preventDefault();
+		var search_string = $('#course_bundle_search input').val();
+		getBundlesBySearchString(search_string);
+	})
+
 	function bundle_rating(bundle_id) {
 		var rating = $('#user_bundle_rating').val();
 		var comment = $('#user_bundle_comment').val();

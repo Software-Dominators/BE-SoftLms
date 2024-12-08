@@ -1,4 +1,7 @@
+
+
 <header class="contact-header header">
+
     <img src="<?php echo base_url('assets/frontend/design-one/assets/images/contact/left.svg'); ?>"
         class="contact-header__left-img">
     <img src="<?php echo base_url('assets/frontend/design-one/assets/images/contact/right.svg'); ?>"
@@ -71,7 +74,7 @@
                     <div class="form-group">
                         <label for="course"><?php echo get_phrase('Choose the course with the problem') ?></label>
                         <select class="form-control" id="course" name="course_id">
-                            <option value="0" selected="" hidden>witch course</option>
+                            <option value="0" hidden>witch course</option>
                             <?php foreach ($courses_data as $course) { ?>
                                 <option value="<?= $course['id'] ?>"><?= $course['title'] ?></option>
                             <?php } ?>
@@ -110,16 +113,6 @@
                                 placeholder="<?php echo get_phrase('Write your message'); ?>"></textarea>
                         </div>
                 
-                        <!-- <div class="form-group ">
-                                <div class="form-check">
-                                    <input name="i_agree" class="form-check-input" type="checkbox" value="1"
-                                        id="i_agree">
-                                    <label class="" for="i_agree">
-                                        <?php echo get_phrase('I agree that my submitted data is being collected and stored.'); ?>
-                                       
-                                    </label>
-                                </div>
-                            </div> -->
                         <div class="form-group ">
                             <button type="submit"
                                 class="btn btn-primary w-100"><?php echo get_phrase('Submit'); ?></button>

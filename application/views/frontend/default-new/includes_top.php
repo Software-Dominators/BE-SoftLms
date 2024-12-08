@@ -10,3 +10,6 @@
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/global/tagify/tagify.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/global/toastr/toastr.css' ?>"><link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/design-one/assets/css/import.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/frontend/design-one/assets/css/import.css'; ?>">
+
+
+

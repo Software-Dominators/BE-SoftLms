@@ -14,13 +14,14 @@
     --dark-blue-color: #2A176E;
     --light-blue-color:  #754FFE1A; 
     --title-color: #161616;
+    --subtitle-color: #1A1A1A;
     --placeholder-color: #6B6B6B;
     --button-text-color: #FAF8F7;
     --placeholder-light-color: #BDC0BC;
     --label-color:#353535;
     --light-orange-color:  #FED05EC2;
     --dark-orange-color: #FFD400;
-    ;
+  
 
 
 }
@@ -94,4 +95,54 @@ button {
     background-color: var(--secondary-color);
 
 }
+
+
+
+
+.page-item:last-child .page-link {
+    border-top-right-radius:none;
+    border-bottom-right-radius: none;
+}
+
+.pagination {
+    margin-top: 64px;
+    display: flex;
+    gap: 8px;
+}
+
+.pagination  .page-item{
+    width: 32px !important;
+height: 32px !important;
+padding: 5px 4px 5px 4px;
+
+border-radius: 4px !important;
+border: 1px solid #DCDCDC;
+background: #FFFFFF;
+
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+} 
+/* .pagination  .page-item a{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+line-height: 20px;
+color:#535353;
+
+} 
+.pagination  .page-item.active{
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+}
+
+
+
+.pagination .page-item.active {
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+    border: 1px solid var(--secondary-color); 
+} */
 
