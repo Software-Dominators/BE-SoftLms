@@ -13,6 +13,71 @@ if ($number_of_ratings > 0) {
 }
 ?>
 
+<section class="course">
+    <div class="container-md-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-8">
+                <div class="course__left">
+                    <figure class="course__image mb-0">
+                        <img loading="lazy" class="w-100 h-100" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>">
+                        <div class="course__play d-flex justify-content-center align-items-center"
+                            onclick="lesson_preview('<?php echo site_url('home/course_preview/' . $course_details['id']); ?>', '<?php echo get_phrase($course_details['title']) ?>')">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </figure>
+
+                    <div class="course_nav-tabs text-center">
+                        <ul class="nav nav-tabs w-100 d-flex justify-content-center align-items-center" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                                    <span><?php echo get_phrase('Overview'); ?></span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <span><?php echo get_phrase('Instructor') ?></span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                    <span class="ms-2"><?php echo get_phrase('Reviews') ?></span>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Tabs Content -->
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <p>Welcome to the Home tab!</p>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <p>This is the Profile tab content.</p>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <p>Get in touch through the Contact tab.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-3">
+                <div class="course__right">
+                    <h3><?php echo get_phrase('Course Content (Curriculum)'); ?></h3>
+                    <h6>
+                        <?php echo $this->crud_model->get_section('course', $course_id)->num_rows() . ' ' . get_phrase('Section') . ' . ' . $lessons->num_rows() . ' ' . get_phrase('lessons') . ' . ' . $course_duration . ' ' . get_phrase('Total duration'); ?>
+                    </h6>
+
+
+                    <div class="course__curriculum">
+                    <?php include "course_page_curriculum.php"; ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!---------- Banner Start ---------->
@@ -217,31 +282,32 @@ if ($number_of_ratings > 0) {
                             </div>
                         <?php endif; ?>
 
-                        <?php if($course_details['status'] == 'upcoming'):?>
-                        <div class="enrol">
-                            <div class="icon">
-                                <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/c-enrold-2.png') ?>">
-                                <h4><?php echo get_phrase('Category') ?></h4>
+                        <?php if ($course_details['status'] == 'upcoming'): ?>
+                            <div class="enrol">
+                                <div class="icon">
+                                    <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/c-enrold-2.png') ?>">
+                                    <h4><?php echo get_phrase('Category') ?></h4>
+                                </div>
+                                <h5><?php echo $this->db->where('id', $course_details['sub_category_id'])->get('category')->row('name'); ?></h5>
                             </div>
-                            <h5><?php echo $this->db->where('id', $course_details['sub_category_id'])->get('category')->row('name'); ?></h5>
-                        </div>
-                        <?php if($course_details['publish_date']):?>
-                        <div class="enrol">
-                            <div class="icon">
-                                <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/publish.svg') ?>">
-                                <h4><?php echo get_phrase('Publish Date') ?></h4>
+                            <?php if ($course_details['publish_date']): ?>
+                                <div class="enrol">
+                                    <div class="icon">
+                                        <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/publish.svg') ?>">
+                                        <h4><?php echo get_phrase('Publish Date') ?></h4>
+                                    </div>
+                                    <h5><?php echo date('j F Y', strtotime($course_details['publish_date'])); ?></h5>
+                                </div>
+                            <?php endif;
+                        else: ?>
+                            <div class="enrol">
+                                <div class="icon">
+                                    <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/c-enrold-2.png') ?>">
+                                    <h4><?php echo get_phrase('Skill level') ?></h4>
+                                </div>
+                                <h5><?php echo get_phrase($course_details['level']); ?></h5>
                             </div>
-                            <h5><?php echo date('j F Y', strtotime($course_details['publish_date'])); ?></h5>
-                        </div>
-                        <?php endif; else:?>
-                        <div class="enrol">
-                            <div class="icon">
-                                <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/c-enrold-2.png') ?>">
-                                <h4><?php echo get_phrase('Skill level') ?></h4>
-                            </div>
-                            <h5><?php echo get_phrase($course_details['level']); ?></h5>
-                        </div>
-                        <?php endif;?>
+                        <?php endif; ?>
 
 
                         <div class="enrol">
