@@ -1,7 +1,4 @@
-<div class="course-description">
-    <h3 class="description-head"><?php echo get_phrase('Course Description') ?></h3>
-    <?php echo $course_details['description']; ?>
-</div>
+
 
 <div class="course-description">
     <h3 class="description-head"><?php echo get_phrase('What will i learn?') ?></h3>

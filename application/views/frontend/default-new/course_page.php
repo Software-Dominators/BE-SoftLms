@@ -13,12 +13,34 @@ if ($number_of_ratings > 0) {
 }
 ?>
 
+
+
+<script>
+    $(document).ready(function () {
+  function toggleContainerClass() {
+    if ($(window).width() <= 768) {
+      $('.course__resize').addClass('container');
+    } else {
+      $('.course__resize').removeClass('container');
+    }
+  }
+
+  // Run on page load
+  toggleContainerClass();
+
+  // Run on window resize
+  $(window).resize(function () {
+    toggleContainerClass();
+  });
+});
+</script>
+
 <section class="course">
-    <div class="container-md-fluid">
+    <div class=" container-fluid  ">
         <div class="row">
-            <div class="col-lg-6 col-md-8">
-                <div class="course__left">
-                    <figure class="course__image mb-0">
+            <div class="col-lg-6 col-md-6">
+                <div class="course__left  ">
+                    <figure class="course__image mb-0 course__resize">
                         <img loading="lazy" class="w-100 h-100" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>">
                         <div class="course__play d-flex justify-content-center align-items-center"
                             onclick="lesson_preview('<?php echo site_url('home/course_preview/' . $course_details['id']); ?>', '<?php echo get_phrase($course_details['title']) ?>')">
@@ -45,24 +67,13 @@ if ($number_of_ratings > 0) {
                             </li>
                         </ul>
 
-                        <!-- Tabs Content -->
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <p>Welcome to the Home tab!</p>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <p>This is the Profile tab content.</p>
-                            </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                <p>Get in touch through the Contact tab.</p>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-3">
-                <div class="course__right">
+            <div class="col-lg-5 col-md-5 bg-info">
+                <div class="course__right course__resize">
                     <h3><?php echo get_phrase('Course Content (Curriculum)'); ?></h3>
                     <h6>
                         <?php echo $this->crud_model->get_section('course', $course_id)->num_rows() . ' ' . get_phrase('Section') . ' . ' . $lessons->num_rows() . ' ' . get_phrase('lessons') . ' . ' . $course_duration . ' ' . get_phrase('Total duration'); ?>
@@ -77,7 +88,21 @@ if ($number_of_ratings > 0) {
             </div>
         </div>
     </div>
+
+<!-- Tabs Content -->
+    <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <?php include "course_page_summary.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <?php include "course_page_instructor.php"; ?>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <p>Get in touch through the Contact tab.</p>
+                            </div>
+                        </div>
 </section>
+
 
 
 <!---------- Banner Start ---------->

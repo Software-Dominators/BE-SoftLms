@@ -1,9 +1,16 @@
-.course{
+.course {
     margin-top: 22px;
 }
-.course .row{
+
+.course .row {
     gap: 24px;
+
 }
+
+.course .row .col-lg-6 {
+    padding: 0;
+}
+
 .course__image {
     width: 100%;
     /* width: 894px; */
@@ -39,7 +46,6 @@
 
 }
 
-.course_nav-tabs {}
 
 .course_nav-tabs .nav-tabs {
     background: #FBFCFB;
@@ -98,93 +104,497 @@
     /* Ensure no outline is shown */
 }
 
+
+/* responsive */
+
+
+@media (max-width: 992px) {
+    .course {
+        margin-top: 0;
+    }
+
+    .course .row {
+        gap: 20px;
+    }
+
+    .course__image {
+        /* width: 343px;  */
+        height: 433px;
+        border-radius: 8px;
+        background: #00000033;
+
+
+
+    }
+
+
+    .course_nav-tabs .nav-tabs {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        gap: 16px;
+    }
+
+    .course_nav-tabs .nav-tabs li button span,
+    .course_nav-tabs .nav-tabs .nav-link.active {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+
+}
+
+
 /*########################### Course Right ###########################3 */
-.course__right h3{
+.course__right h3 {
 
-font-size: 24px;
-font-weight: 500;
-line-height: 36px;
-color: #282828;
-
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
 }
 
-.course__right h6{
-
-font-size: 16px;
-font-weight: 300;
-line-height: 24px;
-color:#5D5D5D;
-margin: 8px;
-margin-bottom: 16px;
-}
-
-.course__curriculum  .accordion .accordion-item:not(:last-child) {
+.course__right h6 {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #5D5D5D;
+    margin-top: 8px;
     margin-bottom: 16px;
 }
-.course__curriculum  .accordion .accordion-button{
+
+.course__curriculum .accordion .accordion-item:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.course__curriculum .accordion .accordion-button {
     padding: 12px 24px;
     background-color: #F5F6F5;
     gap: 4px;
     position: relative;
 }
 
-.course__curriculum  .accordion .accordion-button h3{
-font-size: 20px;
-font-weight: 400;
-line-height: 30px;
-color: #282828;
-margin: 0;
+.course__curriculum .accordion .accordion-button h3 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #282828;
+    margin: 0;
 
 }
 
-.course__curriculum  .accordion .accordion-button h6{
-font-size: 16px;
-font-weight: 300;
-line-height: 24px;
-color: #5D5D5D;
-margin: 0;
+.course__curriculum .accordion .accordion-button h6 {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #5D5D5D;
+    margin: 0;
 }
-
-
-
-
-
-
-
 
 .course__curriculum .accordion-button {
-    display: flex; /* Enable flexbox for alignment */
-    justify-content: space-between; /* Space out content and the icon */
-    align-items: center; /* Center content vertically */
-    position: relative; /* Allow absolute positioning for pseudo-elements */
+    display: flex;
+    /* Enable flexbox for alignment */
+    justify-content: space-between;
+    /* Space out content and the icon */
+    align-items: center;
+    /* Center content vertically */
+    position: relative;
+    /* Allow absolute positioning for pseudo-elements */
 
 }
 
 .course__curriculum .accordion-button::after {
-    content: "\f078"; /* Font Awesome icon */
+    content: "\f078";
+    /* Font Awesome icon */
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     font-size: 19px;
     color: #282828;
     transition: transform 0.3s ease;
-    margin-left: auto; /* Push icon to the right */
+    margin-left: auto;
+    /* Push icon to the right */
     display: flex;
-    align-items: center; /* Ensure vertical centering inside flex container */
+    align-items: center;
+    /* Ensure vertical centering inside flex container */
 }
 
 .course__curriculum .accordion-button:not(.collapsed)::after {
-    transform: rotate(180deg); /* Rotate on expand */
+    transform: rotate(180deg);
+    /* Rotate on expand */
 }
 
 .course__curriculum .accordion-button.collapsed::after {
-    transform: rotate(0deg); /* Default rotation */
+    transform: rotate(0deg);
+    /* Default rotation */
 }
 
 
 
 
 .accordion-button:focus {
-    outline: none; /* Removes the default focus outline */
-    box-shadow: none; /* Removes any focus shadow */
+    outline: none;
+    /* Removes the default focus outline */
+    box-shadow: none;
+    /* Removes any focus shadow */
+}
+
+
+
+/* lessons */
+.course__lesson li:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.course__lesson-left {
+    gap: 12px;
+}
+
+.course__lesson-left i {
+    font-size: 16;
+    color: var(--primary-color);
+}
+
+.course__lesson-left h3 {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #353535;
+
+}
+
+.course__lesson-right {
+    gap: 12px;
+}
+
+.course__lesson-right .duration {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #353535;
+
+}
+
+.course__lesson-right .preview {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #353535;
+}
+
+.course__lesson-right .preview i,
+.course__study-plan i {
+    font-size: 16;
+    color: var(--primary-color);
+}
+
+
+
+
+@media (max-width: 992px) {
+
+
+    .course__right h3 {
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+    .course__right h6 {
+        font-size: 12px;
+        line-height: 18px;
+
+
+    }
+
+    .course__curriculum .accordion .accordion-item {
+        border-radius: 16px;
+        border: 1px solid #E4E4E4;
+
+
+    }
+
+    .course__curriculum .accordion-header,
+    .course__curriculum .accordion .accordion-button {
+        border-radius: 16px;
+
+    }
+
+    .course__curriculum .accordion .accordion-button {
+        padding: 10px 16px;
+
+    }
+
+    .course__curriculum .accordion .accordion-button h3 {
+        font-size: 14px;
+        line-height: 21px;
+
+
+    }
+
+
+    .course__curriculum .accordion .accordion-button h6 {
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+    .course__lesson {
+        padding: 0;
+    }
+
+    .course__lesson li:not(:last-child) {
+        margin-bottom: 13px;
+    }
+
+    .course__lesson-left {
+        gap: 7px;
+    }
+
+    .course__lesson-left i {
+        font-size: 14;
+    }
+
+    .course__lesson-left h3 {
+
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+
+
+    }
+
+    .course__lesson-right {
+        gap: 7px;
+    }
+
+
+
+    .course__lesson-right .duration {
+
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .course__lesson-right .preview {
+        font-size: 12px;
+        line-height: 20px;
+
+    }
+
+    .course__lesson-right .preview i,
+    .course__study-plan i {
+        font-size: 12;
+
+    }
+
+
+
+
+}
+
+
+/*############################## course__summary############################ */
+.course-summary {
+    margin-top: 33.5px;
+}
+
+.course-summary__details {
+    gap: 16px;
+}
+
+.course-summary__details>div {
+    gap: 58px;
+
+}
+
+.course-summary__details p {
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    color: #505050;
+
+}
+
+.course-summary__details i {
+    font-size: 20px;
+    color: var(--primary-color);
+
+}
+
+.course-summary_tag {
+    gap: 9.5px;
+}
+
+.course-summary__rating {
+    gap: 8.5px;
+}
+
+.course-summary__rating ul {
+    gap: 8px;
+    padding: 0;
+}
+
+.course-summary__rating ul li i {
+    color: var(--secondary-color) !important;
+    font-size: 21px;
+}
+
+.course-summary__rating p {
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    color: #161616;
+
+}
+
+.course-summary__description {
+    margin-top: 32px;
+}
+
+.course-summary__description h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+.course-summary__description p {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #505050;
+
+}
+
+.course-summary__requirements ul,
+.course-summary__what-learn ul {
+    padding: 0;
+}
+
+.course-summary__requirements ul li:not(:last-child),
+.course-summary__what-learn ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.course-summary__requirements li,
+.course-summary__what-learn li {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #505050;
+    display: flex;
+    align-items: center;
+
+}
+
+.course-summary__requirements li i {
+    font-size: 24px;
+    color: #6BB577;
+    margin-inline-end: 16px;
+}
+
+
+/* ##################course-instructor############# */
+
+.course-instructor {
+    margin-top: 33.5px;
+}
+
+.course-instructor .row {
+    gap: 24px;
+}
+
+.course-instructor__content {
+    background: #FBFCFB;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    min-width: 737px;
+    /* min-height: 236px; */
+    border-radius: 32px;
+    padding: 24px;
+    gap: 28px;
+
+}
+
+.course-instructor__img {
+    width: 181px;
+    min-height: 188px;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.course-instructor__text h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #1A1A1A;
+
+}
+
+.course-instructor__text p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #5D5D5D;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+}
+
+.course-instructor__text small {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #5D5D5D;
+
+}
+.course-instructor__social{
+    margin-top: 26px;
+    /* margin-bottom: 36px; */
+}
+.course-instructor__social a {
+    margin-inline-end: 29px;
+    
+}
+
+.course-instructor__social i{
+    padding: 15px;
+    font-size: 20px;
+    background: #754FFE17;
+    border-radius: 5px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+    display: inline-block;
+
+}
+
+
+.course-instructor_profile{
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+color: var(--primary-color);
+}
+
+.course-instructor_profile {
+    display: inline-block;
+    position: relative;
+}
+
+.course-instructor_profile::after {
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -1px;
+    position: absolute;
+    border-bottom: 3px solid #754FFE;
+    transition: width 0.3s ease-in-out;
+    /* Smooth width animation */
 }
 
