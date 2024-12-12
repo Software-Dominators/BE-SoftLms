@@ -2,7 +2,7 @@
 
 
 
-<header class="contact-header header">
+<!-- <header class="contact-header header">
     <div class="container">
         <div class="row justify-content-md-between">
             <div class="col-md-6  contact-header__left">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-</header>
+</header> -->
 
 
 
@@ -44,8 +44,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="<?php echo site_url(); ?>">
-                                    <img loading="lazy" class="brd-home mb-1"
-                                        src="<?php echo base_url('assets/frontend/default-new/image/c-bread-crumb-home.png') ?>">
+                                <i class="fa-solid fa-house"></i>
                                     <span><?php echo get_phrase('Home') ?></span>
                                 </a>
                             </li>
@@ -55,17 +54,17 @@
                             </li>
                         </ol>
                     </nav>
-                    <h1 class="bg-primary
+                    <h1 class="
                     
                     
                     "><?php echo $page_title; ?></h1>
                 </div>
-                <div class="col-3 ms-auto d-none d-sm-inline-block">
+                <!-- <div class="col-3 ms-auto d-none d-sm-inline-block">
                     <div class="book-img">
                         <img loading="lazy"
                             src="<?php echo base_url('assets/frontend/default-new/image/brd-book.png') ?>" alt="">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

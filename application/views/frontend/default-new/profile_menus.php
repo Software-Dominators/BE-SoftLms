@@ -4,9 +4,9 @@ $this->db->where('read_status !=', 1);
 $unreaded_message = $this->db->get('message')->num_rows();
 ?>
 
-<div class="wish-list-search mb-5">
-    <div class="row">
-        <div class="col-md-12">
+<div class="wish-list-search ">
+    <div class="">
+        <div class="">
             <div class="student-profile-info">
                 <img loading="lazy" class="profile-image" src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>">
                 <h4><?php echo $user_details['first_name'].' '.$user_details['last_name']; ?></h4>

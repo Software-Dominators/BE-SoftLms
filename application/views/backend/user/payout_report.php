@@ -3,8 +3,10 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('payout_report'); ?>
-                    <a href = "javascript:void(0)" class="btn btn-outline-primary btn-rounded alignToTitle" onclick="showAjaxModal('<?php echo site_url('modal/popup/request_withdrawal'); ?>', '<?php echo get_phrase('request_a_new_withdrawal'); ?>')"><i class="mdi mdi-plus"></i><?php echo get_phrase('request_a_new_withdrawal'); ?></a>
+                <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                 <span>   <?php echo get_phrase('payout_report'); ?> </span>
+                 <a href = "javascript:void(0)" class="add-btn alignToTitle" onclick="showAjaxModal('<?php echo site_url('modal/popup/request_withdrawal'); ?>', '<?php echo get_phrase('request_a_new_withdrawal'); ?>')"><?php echo get_phrase('request_a_new_withdrawal'); ?></a>
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -15,8 +17,8 @@
     <div class="col-lg-4">
         <div class="card text-white bg-danger">
             <div class="card-body">
-                <div class="float-right bg-white">
-                    <i class="mdi mdi-currency-usd widget-icon text-danger"></i>
+                <div class="float-right bg-white ">
+                    <i class="mdi mdi-currency-usd widget-icon text-danger " style="background-color:#E8F3FC;"></i>
                 </div>
                 <h5 class="text-white font-weight-normal mt-0" title="<?php echo get_phrase('pending_amount'); ?>"><?php echo get_phrase('pending_amount'); ?></h5>
                 <h3 class="mt-3 mb-3">
@@ -31,7 +33,7 @@
         <div class="card text-white bg-success">
             <div class="card-body">
                 <div class="float-right bg-white">
-                    <i class="mdi mdi-currency-usd widget-icon text-success"></i>
+                    <i class="mdi mdi-currency-usd widget-icon text-success" style="background-color:#E8F3FC;"></i>
                 </div>
                 <h5 class="text-white font-weight-normal mt-0" title="<?php echo get_phrase('total_payout_amount'); ?>"><?php echo get_phrase('total_payout_amount'); ?></h5>
                 <h3 class="mt-3 mb-3">
@@ -46,7 +48,7 @@
         <div class="card text-white bg-info">
             <div class="card-body">
                 <div class="float-right bg-white">
-                    <i class="mdi mdi-currency-usd widget-icon text-primary"></i>
+                    <i class="mdi mdi-currency-usd widget-icon text-primary" style="background-color:#E8F3FC;"></i>
                 </div>
                 <h5 class="text-white font-weight-normal mt-0" title="<?php echo get_phrase('requested_withdrawal_amount'); ?>"><?php echo get_phrase('requested_withdrawal_amount'); ?></h5>
                     <?php if ($requested_withdrawal_amount > 0): ?>

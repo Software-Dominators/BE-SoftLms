@@ -652,7 +652,7 @@
         border: 1px solid red;
     } */
 </style>
-<script>
+<!-- <script>
     $(document).ready(function () {
         var form = $('.required-form')
         var input = $('input[required]')
@@ -665,7 +665,7 @@
         });
 
     })
-</script>
+</script> -->
 
 <script type="text/javascript">
     $(document).ready(function () {

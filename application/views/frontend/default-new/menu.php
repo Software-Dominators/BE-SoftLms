@@ -1,10 +1,10 @@
 
- <ul class="navbar-nav main-nav-wrap me-auto mb-2 mb-lg-0">
+ <ul class="navbar-nav main-nav-wrap me-auto mb-2 mb-lg-0 bg-danger">
     <li class="nav-item">
         <a class="nav-link header-dropdown" href="#" id="navbarDropdown" >
             <i class="fas fa-bars pr-5"></i> <?php echo site_phrase('courses'); ?>
         </a>
-        <ul class="navbarHover">
+        <ul class="navbarHover bg-info">
         <?php  $categories = $this->crud_model->get_categories()->result_array();
             foreach ($categories as $key => $category):?>
             <li  class="dropdown-submenu">

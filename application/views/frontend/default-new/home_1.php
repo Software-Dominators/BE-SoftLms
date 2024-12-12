@@ -178,10 +178,10 @@
 
 
                 <!-- Slider main container -->
-                <div class="swiper">
-                    <!-- Additional required wrapper -->
+                <!-- <div class="swiper">
+             
                     <div class="swiper-wrapper">
-                        <!-- Slides -->
+                   
 
                         <?php foreach ($top_instructor_ids as $top_instructor_id):
 
@@ -204,18 +204,107 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        ...
+                   
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+
+               
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+            
+                </div> -->
+                    <!-- Slider main container -->
+                    <div class=" swiper inst-swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+
+                        <!-- <?php foreach ($top_instructor_ids as $top_instructor_id):
+
+                            $top_instructor = $this->user_model->get_all_user($top_instructor_id['creator'])->row_array();
+
+                            ?> -->
+                            <!-- <div class="swiper-slide">
+                                <div class="top-instructor__content">
+
+                                    <img src="<?php echo $this->user_model->get_user_image_url($top_instructor['id']); ?>"
+                                        class="w-100 top-instructor__image">
+
+                                    <div class="top-instructor__info">
+                                        <h3><?php echo $top_instructor['first_name'] . ' ' . $top_instructor['last_name']; ?>
+                                        </h3>
+                                        <a href="<?php echo site_url('home/instructor_page/' . $top_instructor['id']); ?>">view
+                                            profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="swiper-slide">
+                                <div class="top-instructor__content">
+                                       <img src="<?= base_url('assets/frontend/design-one/assets/images/home/top-inst-img.png'); ?>"/>
+                                       <div class="top-instructor__info">
+                                       <h3>  Mahmoud Galal </h3>
+                                       <a href=""> View profile  </a>
+                                </div>
+                        </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="top-instructor__content">
+                                       <img src="<?= base_url('assets/frontend/design-one/assets/images/home/top-inst-img.png'); ?>"/>
+                                       <div class="top-instructor__info">
+                                       <h3>  Mahmoud Galal </h3>
+                                       <a href=""> View profile  </a>
+                                </div>
+                        </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="top-instructor__content">
+                                       <img src="<?= base_url('assets/frontend/design-one/assets/images/home/top-inst-img.png'); ?>"/>
+                                       <div class="top-instructor__info">
+                                       <h3>  Mahmoud Galal </h3>
+                                       <a href=""> View profile  </a>
+                                </div>
+                        </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="top-instructor__content">
+                                       <img src="<?= base_url('assets/frontend/design-one/assets/images/home/top-inst-img.png'); ?>"/>
+                                       <div class="top-instructor__info">
+                                       <h3>  Mahmoud Galal </h3>
+                                       <a href=""> View profile  </a>
+                                </div>
+                        </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="top-instructor__content">
+                                       <img src="<?= base_url('assets/frontend/design-one/assets/images/home/top-inst-img.png'); ?>"/>
+                                       <div class="top-instructor__info">
+                                       <h3>  Mahmoud Galal </h3>
+                                       <a href=""> View profile  </a>
+                                </div>
+                        </div>
+                            </div>
+                        <!-- <?php endforeach; ?> -->
+                        <!-- ... -->
                     </div>
                     <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>
 
                     <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-
-                    <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                     <div class="swiper-controls d-flex w-100 justify-content-end">
+                     <div class="swiper-button-prev">  <i class="fa-solid fa-angle-left"></i></div>
+                     <div class="swiper-button-next active">  <i class="fa-solid fa-angle-right"></i></div>
+                     </div>
+             
                 </div>
+
 
 
             </div>
