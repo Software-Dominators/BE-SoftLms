@@ -5,11 +5,11 @@
             <?php foreach ($multi_instructor_id_arr as $instructor_id): ?>
                 <?php if ($instructor_id > 0): ?>
                     <?php $instructor = $this->user_model->get_all_user($instructor_id)->row_array(); ?>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="course-instructor__content d-flex ">
                             <div>
-                            <img class="course-instructor__img" loading="lazy"
-                                src="<?php echo $this->user_model->get_user_image_url($instructor['id']); ?>">
+                                <img class="course-instructor__img" loading="lazy"
+                                    src="<?php echo $this->user_model->get_user_image_url($instructor['id']); ?>">
 
                             </div>
                             <div class=" d-flex flex-column w-100">
@@ -18,7 +18,7 @@
                                     <h2><?php echo $instructor['first_name'] . ' ' . $instructor['last_name']; ?></h2>
                                     <p><?php echo $instructor['title']; ?></p>
                                     <small><?php echo ($instructor['biography']) ? strip_tags($instructor['biography']) : ''; ?>
-                                       
+
 
                                 </div>
                                 <div class="course-instructor__social">
@@ -40,7 +40,7 @@
                                     <?php endforeach; ?>
                                 </div>
 
-                                <div class="d-flex justify-content-end align-items-end mt-auto   " >
+                                <div class="d-flex justify-content-end align-items-end mt-auto   ">
                                     <a class="course-instructor_profile "
                                         href="<?php echo site_url('home/instructor_page/' . $instructor_id) ?>"
                                         target="_blank"><?php echo get_phrase('View Profile'); ?></a>
@@ -49,12 +49,12 @@
                             </div>
                         </div>
                     </div>
-     
 
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-            </div>
+
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </section>
 
 
