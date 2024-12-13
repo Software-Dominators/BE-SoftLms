@@ -1,9 +1,12 @@
-<div class="row ">
+<div class="row">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('courses'); ?>
-                    <a href="<?php echo site_url('user/course_form/add_course'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i><?php echo get_phrase('add_new_course'); ?></a>
+               
+                <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                 <span>  <?php echo get_phrase('courses'); ?> </span>
+                 <a href="<?php echo site_url('user/course_form/add_course'); ?>" class="add-btn alignToTitle"><?php echo get_phrase('add_new_course'); ?></a>
                 </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->

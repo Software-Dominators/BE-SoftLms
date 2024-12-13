@@ -150,7 +150,7 @@ input[data-switch=bool]+label {
 	border: 1px solid #D6D6D6;
 	border-radius: 8px;
 	padding: 8px 16px;
-;
+
 }
 .date-filter-input::placeholder{
 	color:#505050;
@@ -351,7 +351,13 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 /* for select menu in enrollments section  */
 .select2-container .select2-selection--multiple .select2-selection__choice {
 	background-color: var(--light-orange-action-color) !important;
-	color: var(--btn-bg-color);
+	color: var(--btn-bg-color) !important;
+}
+.select2-container .select2-selection--multiple .select2-selection__choice:hover {
+	color: var(--btn-bg-color) !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected]:hover, .daterangepicker .ranges li.active:hover {
+	color: var(--btn-bg-color) !important;
 }
 /* delete modal new style  */
  .modal-content{
@@ -434,42 +440,4 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.previous
 }
 .modal .action-btns{
 	gap: 50px;
-}
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
-
-}
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {  
-	/* .container {
-		width: 720px;
-		margin-left: auto;
-		margin-right: auto;
-	} */
-	/* .inside_dashboard {
-	max-width: 90% !important;
-	} */
-    
-}
-/* Large devices (desktops, 992px and up) */
-
-@media (min-width: 992px) { 
-	/* .container {
-		width: 920px;
-	} */
-
-}
-
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {  
-	/* .container {
-		width: 1140px;
-	} */
-
-}
-@media (min-width: 1400px) {  
-	/* .container {
-		width: 1340px;
-	} */
 }

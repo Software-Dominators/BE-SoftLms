@@ -7,21 +7,37 @@ $razorpay_keys = $payment_keys['razorpay'];
 ?>
 <!-- start page title -->
 <div class="row ">
+
   <div class="col-xl-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('setup_payment_informations'); ?></h4>
+
+             <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                 <span>    <?php echo get_phrase('setup_payment_informations'); ?> </span>
+                 
+                </h4>
       </div> <!-- end card body-->
     </div> <!-- end card -->
   </div><!-- end col-->
 </div>
 
 <div class="row">
-  <div class="col-md-8" style="padding: 0;">
+  
+  <div class="col-md-12" style="padding: 0;">
+
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="header-title"><p><?php echo get_phrase('setup_your_payment_settings'); ?></p></h4>
+        <div class="col-md-12">
+    <div class="hint-style " role="alert">
+      <h4 class="alert-heading"><?php echo get_phrase('be_careful'); ?>!</h4>
+      <p>Just configure the payment gateway you want to use, leave the rest blank.</p>
+      <hr>
+      <p>Also, make sure that you have configured your payment settings correctly</p>
+    </div>
+  </div>
+
           <form class="" action="<?php echo site_url('user/payout_settings/paypal_settings'); ?>" method="post" enctype="multipart/form-data">
 
             
@@ -44,9 +60,9 @@ $razorpay_keys = $payment_keys['razorpay'];
                         }
                         ?>
 
-                        <div class="form-group row mb-3">
+                        <div class=" form-group mb-3">
                             <label class="col-md-3 col-form-label" for="<?php echo $payment_gateway['identifier'].$index; ?>"> <?php echo get_phrase($index); ?></label>
-                            <div class="col-md-9">
+                            <div class="col-md-12">
                                 <input type="text" id="<?php echo $payment_gateway['identifier'].$index; ?>" name="gateways[<?php echo $payment_gateway['identifier']; ?>][<?php echo $index; ?>]" value="<?php echo $value; ?>" class="form-control">
                                 <small><?php echo get_phrase("required_for_instructor"); ?></small>
                             </div>
@@ -55,20 +71,13 @@ $razorpay_keys = $payment_keys['razorpay'];
                     <hr>
                 </div>
             <?php endforeach; ?>
-            <div class="form-group w-100">
-              <button class="btn btn-primary float-right" type="submit"><?php echo get_phrase('save_changes'); ?></button>
+            <div class="d-flex justify-content-end w-100">
+              <button class="submit-btn" type="submit"><?php echo get_phrase('save_changes'); ?></button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="alert alert-warning" role="alert">
-      <h4 class="alert-heading"><?php echo get_phrase('be_careful'); ?>!</h4>
-      <p>Just configure the payment gateway you want to use, leave the rest blank.</p>
-      <hr>
-      <p>Also, make sure that you have configured your payment settings correctly</p>
-    </div>
-  </div>
+
 </div>

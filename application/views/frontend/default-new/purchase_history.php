@@ -4,22 +4,24 @@ $purchase_history = $this->db->get('payment',$per_page, $this->uri->segment(3));
 <?php include "breadcrumb.php"; ?>
 
   <!-------- Wish List body section start ------>
-<section class="wish-list-body">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-12">
+<section class="">
+    <div class="">
+        <div class="profile-container">
+            <div class="profile-menu">
                 <?php include "profile_menus.php"; ?>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-12">
-                <div class="purchase-body common-card">
-                    <table class="table">
+            <div class="profile-content container">
+                <div class="profile container">
+                    <div class="row">
+                        <div class="col-12">
+                        <table class="table">
                         <thead class="table-head">
-                            <tr>
-                                <th scope="col"><h6><?php echo get_phrase('Purchased courses') ?></h6></th>
-                                <th scope="col"><h6><?php echo get_phrase('Payment method') ?></h6></th>
-                                <th scope="col"><h6><?php echo get_phrase('Price') ?></h6></th>
-                                <th scope="col"><h6><?php echo get_phrase('Purchased Date') ?></h6></th>
-                                <th scope="col" class="w-auto"><h6 class="text-end"><?php echo get_phrase('Invoice') ?></h6></th>
+                            <tr class="bg-info">
+                                <th scope="" colspan="2"><?php echo get_phrase('Purchased courses') ?></th>
+                                <th scope="" colspan="2"><?php echo get_phrase('Payment method') ?></th>
+                                <th scope="" colspan="2"><?php echo get_phrase('Price') ?></th>
+                                <th scope="" colspan="2"><?php echo get_phrase('Purchased Date') ?></th>
+                                <th scope="" class="w-auto"><?php echo get_phrase('Invoice') ?></th>
                             </tr>
                         </thead>
                         <div class="purchase-2">
@@ -50,6 +52,9 @@ $purchase_history = $this->db->get('payment',$per_page, $this->uri->segment(3));
                             </tbody>
                         </div>
                     </table>
+                        </div>
+                    </div>
+                 
                 </div>
             </div>
         </div>

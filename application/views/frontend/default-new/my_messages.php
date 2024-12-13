@@ -2,19 +2,21 @@
 <?php include "breadcrumb.php"; ?>
 
 <!--------  Wish List body section start------>
-<section class="wish-list-body message">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
+<!-- wish-list-body message -->
+<section class="">
+    <div class="profile-container">
+        <div class="profile-menu">
+         
                 <?php include "profile_menus.php"; ?>
             </div>
-            <div class="col-lg-9">
+            <div class="profile-content container">
+                <div class="profile container">
                 <div class="conversation-fulllll-body common-card">
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="conversation ">
                                 <h5 class="d-flex align-items-center">
-                                    <?php echo get_phrase('Message') ?>
+                                    <?php echo get_phrase('Users') ?>
                                     <a href="#" onclick="$('.message-box-content').toggleClass('d-hidden');" class="btn ms-auto" data-bs-toggle="tooltip" title="<?php echo get_phrase('New message') ?>" data-><i class="fas fa-plus"></i></a>
                                 </h5>
                                 <form action="#">
@@ -47,11 +49,11 @@
                                         endif;
                                     ?>
                                         <div class="conversation-body-border" onclick="redirectTo('<?php echo site_url('home/my_messages/read_message/' . $row['message_thread_code']); ?>')">
-                                            <div class="conversation-body-1 <?php if (isset($message_thread_code) && $message_thread_code == $row['message_thread_code']) echo 'active'; ?>">
+                                            <div class=" <?php if (isset($message_thread_code) && $message_thread_code == $row['message_thread_code']) echo 'active'; ?>">
                                                 <div class="conversation-1">
-                                                    <div class="conversation-heading">
+                                                    <div class="conversation-heading d-flex align-items-center">
                                                         <div class="conversation-img">
-                                                            <img loading="lazy" class="rounded-circle" src="<?php echo $this->user_model->get_user_image_url($conversation_user_info['id']); ?>">
+                                                            <img class=""loading="lazy" class="" src="<?php echo $this->user_model->get_user_image_url($conversation_user_info['id']); ?>">
                                                             <?php if ($number_of_unreaded_message > 0) : ?>
                                                                 <p><?php echo $number_of_unreaded_message; ?></p>
                                                             <?php endif; ?>
@@ -65,14 +67,18 @@
                                                             <h6 class="ellipsis-line-2"><?php echo $conversation_user_info['email']; ?></h6>
                                                         </div>
                                                     </div>
+                                                    <div class="msg-time d-flex justify-content-end">
+                                                <p class="" ><?php echo get_past_time($last_messages_details['timestamp']); ?></p>
                                                 </div>
-                                                <div class="conversation-body-1-text mt-0">
+                                                </div>
+                                                <!-- <div class="conversation-body-1-text mt-0">
                                                     <p class="ellipsis-line-2" style="margin-top: 2px;">
                                                         <i class="fa-regular fa-comment-dots m-0"></i>
                                                         <?php echo $last_messages_details['message']; ?>
                                                     </p>
-                                                </div>
-                                                <p class="text-10px" style="line-height: 18px;"><?php echo get_past_time($last_messages_details['timestamp']); ?></p>
+                                                </div> -->
+                                             
+                                                
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -111,14 +117,14 @@
                                             } ?>
                                             <div class="conversation-msg-full">
                                                 <div class="parrent parrent-3rd">
-                                                    <div class="parrent-2">
+                                                    <div class="parrent-2 d-flex align-items-center">
                                                         <div class="child-img">
                                                             <img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($conversation_user['id']); ?>">
                                                         </div>
                                                         <div class="child-text">
                                                             <div class="child-text-body02">
                                                                 <div class="child-name">
-                                                                    <h5><a href="#"><?php echo $conversation_user['first_name'] . ' ' . $conversation_user['last_name']; ?></a></h5>
+                                                                    <!-- <h5><a href="#"><?php echo $conversation_user['first_name'] . ' ' . $conversation_user['last_name']; ?></a></h5> -->
                                                                     <p><?php get_past_time($message['timestamp']) ?></p>
                                                                 </div>
                                                                 <div class="child-description">
@@ -144,11 +150,11 @@
                                         <?php endforeach; ?>
                                     </div>
 
-                                    <div class="conversation-sending">
-                                        <form action="<?php echo site_url('home/my_messages/send_reply/' . $message_thread_code); ?>" method="post">
+                                    <div class="conversation-sending ">
+                                        <form class="d-flex align-items-center w-100" action="<?php echo site_url('home/my_messages/send_reply/' . $message_thread_code); ?>" method="post">
                                             <textarea class="form-control" placeholder="<?php echo get_phrase('Write your message') ?>..." name="message"></textarea>
                                             
-                                            <button type="submit" class="btn btn-primary float-end mb-3"><?php echo get_phrase('Send') ?></button>
+                                            <button type="submit" class="send-btn"><?php echo get_phrase('Send') ?></button>
                                         </form>
                                     </div>
                                 </div>
@@ -186,6 +192,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+             
             </div>
         </div>
     </div>

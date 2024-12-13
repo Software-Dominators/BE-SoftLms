@@ -149,7 +149,11 @@
     .label-style2{
         color: #282828;
     }
-    
+    .hint-style{
+        background-color: #EEF6FD !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+    }
     .alert-style{
     max-width: 688px !important;
     min-height: 122px !important;
