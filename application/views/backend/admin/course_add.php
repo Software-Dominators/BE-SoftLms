@@ -652,7 +652,20 @@
         border: 1px solid red;
     } */
 </style>
+<!-- <script>
+    $(document).ready(function () {
+        var form = $('.required-form')
+        var input = $('input[required]')
+        var select = $('#select2-sub_category_id-container')
+        form.on('submit', function (event) {
+            event.preventDefault(); // Prevents the default form submission
+            console.log($('label:has(span.required)'));
+            // Process form data as needed
+            // Add your custom form submission logic here
+        });
 
+    })
+</script> -->
 
 <script type="text/javascript">
     $(document).ready(function () {

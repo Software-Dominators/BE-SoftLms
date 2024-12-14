@@ -31,23 +31,23 @@ $razorpay_keys = $payment_keys['razorpay'];
   font-size:20px;
  }
 </style>
-<section class="wish-list-body ">
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<section class=" ">
+<div class="">
+    <div class="profile-container">
+        <div class="profile-menu">
             <?php include "profile_menus.php"; ?>
           </div>
-        <div class="col-md-9 mt-5 mb-3">
-          <div class="col-md-12 ">
+        <div class="profile-content container">
+          <div class="oprofile container">
             <div class="profile-ful-body common-card">
               <div>
-                 <div class="alert alert-warning mb-3" role="alert">
+                 <!-- <div class="alert alert-warning mb-3" role="alert">
                       <h4 class="alert-heading"><?php echo get_phrase('be_careful'); ?>!</h4>
                       <p><?php echo get_phrase('Just configure the payment gateway you want to use, leave the rest blank.')?></p>
                       <hr>
                       <p><?php echo get_phrase('Also, make sure that you have configured your payment settings correctly')?></p>
                   </div>
-                 <h4 class="header-title"><p><?php echo get_phrase('setup_your_payment_settings'); ?></p></h4>
+                 <h4 class="header-title"><p><?php echo get_phrase('setup_your_payment_settings'); ?></p></h4> -->
                 <form class="affiliate_form" action="<?php echo site_url('home/frontend_payout_settings/paypal_settings'); ?>" method="post" enctype="multipart/form-data"> 
                   <?php $payment_gateways = $this->db->get('payment_gateways')->result_array();
                       foreach($payment_gateways as $key => $payment_gateway):
@@ -68,19 +68,22 @@ $razorpay_keys = $payment_keys['razorpay'];
                               }
                               ?>
 
-                              <div class="form-group row mb-3">
-                                  <label class="text-dark fw-600" for="<?php echo $payment_gateway['identifier'].$index; ?>"> <?php echo get_phrase($index); ?></label>
+                              <div class="form-group row ">
+                                <div class="col-md-8">
+                                <label class="" for="<?php echo $payment_gateway['identifier'].$index; ?>"> <?php echo get_phrase($index); ?></label>
                                   <div class="input-div">
-                                      <input type="text" id="<?php echo $payment_gateway['identifier'].$index; ?>" name="gateways[<?php echo $payment_gateway['identifier']; ?>][<?php echo $index; ?>]" value="<?php echo $value; ?>" class="form-control bg-white-2 text-14px">
+                                      <input type="text" id="<?php echo $payment_gateway['identifier'].$index; ?>" name="gateways[<?php echo $payment_gateway['identifier']; ?>][<?php echo $index; ?>]" value="<?php echo $value; ?>" class="form-control ">
                                       <small><?php echo get_phrase("required_for_instructor"); ?></small>
                                   </div>
+                                </div>
+                             
                               </div>
                           <?php endforeach; ?>
                          
                       </div>
                    <?php endforeach; ?>
-                  <div class="form-group w-100">
-                     <button class="btn btn-primary float-right" type="submit"><?php echo get_phrase('save_changes'); ?></button>
+                  <div class=" w-100">
+                     <button class="submit-btn" type="submit"><?php echo get_phrase('save_changes'); ?></button>
                   </div>
                 </form>
               </div>

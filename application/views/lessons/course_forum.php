@@ -12,7 +12,7 @@ if(!isset($searching_value)){
 	$number_of_searching_rows = count($questions);
 }
 ?>
-<div id="question-body">
+<div id="question-body" class="lesson__forum resize-container ">
 	<div class="row justify-content-center">
 		<div class="col-md-8 pt-3">
 
@@ -24,21 +24,28 @@ if(!isset($searching_value)){
 				</div>
 			<?php endif; ?>
 
-			<div class="row">
-				<div class="col-md-12 question-search p-0 mt-2">
-					<input id="question_search_input" type="text" onkeyup="enter_event(event)" value="<?= $searching_value; ?>" class="form-control m-0 question-search-input" placeholder="<?= site_phrase('search_questions'); ?>..." name="">
-					<button id="searching_btn" class="btn btn-secondary w-100" onclick="search_questions('<?= $course_id; ?>');"><i class="fas fa-search"></i></button>
+			<div class="row  ">
+				
+				<div class="col-md-12 question-search ">
+				<div class="lesson__forum-search-question ">
+					<input id="question_search_input" type="text" onkeyup="enter_event(event)" value="<?= $searching_value; ?>" class="question-search-input" placeholder="<?= site_phrase('search_questions'); ?>..." name="">
+					<button id="searching_btn"  onclick="search_questions('<?= $course_id; ?>');">
+						<?= site_phrase('search'); ?>
+					</button>
+					<i class="fa fa-search"></i>
+				</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8 pt-5 pb-3">
+		<div class="col-md-8 lesson__forum-add-question">
 			<?php if(!isset($searching_value)): ?>
-				<span class="question-header-left mt-2 d-inline-block"><?php echo $number_of_total_questions; ?> <?= site_phrase('questions_in_this_course'); ?>.</span>
+				<p><?php echo $number_of_total_questions; ?> <?= site_phrase('questions_in_this_course'); ?>.</p>
 			<?php else: ?>
-				<span class="question-header-left mt-2 d-inline-block"><?php echo site_phrase('found').' '.$number_of_searching_rows; ?> <?= site_phrase('questions'); ?></span>
+				<p><?php echo site_phrase('found').' '.$number_of_searching_rows; ?> <?= site_phrase('questions'); ?></p>
 			<?php endif; ?>
-			<a href="javascript:;" class="question-header-right btn btn-primary float-end" onclick="load_question_form('<?= $course_id; ?>')">
-				<i class="fas fa-plus"></i>
+			<a href="javascript:;" class="d-flex justify-content-center align-items-center " onclick="load_question_form('<?= $course_id; ?>')">
+				<i class="fas fa-plus me"></i>
+			
 			</a>
 		</div>
 		<?php foreach($questions as $key=>$question):
@@ -56,7 +63,7 @@ if(!isset($searching_value)){
 			$question_comments = $forum->course_forum_model->get_child_question($question['id']);
 			$commented_user = $forum->course_forum_model->get_child_question($question['id'], $this->session->userdata('user_id'))->num_rows();
 			?>
-			<div class="col-md-8 border-top user-course-questions py-3 hide-search-processing">
+			<div class="col-md-8 border-top user-course-questions py-3 hide-search-processing mt-4">
 				<div class="row">
 					<div class="col-md-10 col-lg-10 col-xl-11 cursor-pointer" onclick="question_comments('<?= $question['id']; ?>')">
 						<h6><?= $question['title']; ?></h6>

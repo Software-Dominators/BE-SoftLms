@@ -2,14 +2,16 @@
 <?php include "breadcrumb.php"; ?>
 
 <!-------- Wish List body section start ------>
-<section class="wish-list-body grid-view-body">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-12">
+<!-- wish-list-body grid-view-body -->
+<section class="">
+    <div class="profile-container">
+        <div class="profile-menu ">
+          
                 <?php include "profile_menus.php"; ?>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-12">
-                <div class="courses wishlist-course mt-5">
+            <div class="profile-content container ">
+			<!-- courses wishlist-course -->
+                <div class="container profile ">
                     <div class="courses-card">
                         <div class="row">
                         	<?php foreach(json_decode($wishlist, true) as $course_id):

@@ -7,8 +7,8 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 ?>
 
 <?php if ($get_lesson_type == 'youtube_video_url') : ?>
-	<div class="p-3 <?php if ($full_page) echo 'bg-black'; ?>">
-		<div class="plyr__video-embed " id="player">
+	<div class=" <?php if ($full_page) echo 'bg-black'; ?>">
+		<div class="plyr__video-embed  lesson__video" id="player">
 			<iframe height="500" src="<?php echo $lesson_details['video_url']; ?>?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
 		</div>
 	</div>

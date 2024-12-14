@@ -3,7 +3,11 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('sales_report'); ?></h4>
+                <h4  
+                class="  page-title"> <i style=" color: #232F43;font-size: 27px; margin-inline-end:16px;" class="dripicons-view-apps"></i>
+                 <span>   <?php echo get_phrase('sales_report'); ?> </span>
+        
+                </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
@@ -13,11 +17,11 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3 header-title"><?php echo get_phrase('sales_report'); ?></h4>
+             
                 <div class="row justify-content-md-center">
-                    <div class="col-xl-6">
-                        <form class="form-inline" action="<?php echo site_url('user/sales_report/filter_by_date_range') ?>" method="get">
-                            <div class="col-xl-10">
+                    <div class="col-xl-8">
+                        <form class="d-flex aligns-items-start" action="<?php echo site_url('user/sales_report/filter_by_date_range') ?>" method="get">
+                            <div class="col-xl-9">
                                 <div class="form-group">
                                     <div id="reportrange" class="form-control" data-toggle="date-picker-range" data-target-display="#selectedValue" data-cancel-class="btn-light" style="width: 100%;">
                                         <i class="mdi mdi-calendar"></i>&nbsp;
@@ -27,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-2">
-                                <button type="submit" class="btn btn-info" id="submit-button" onclick="update_date_range();"> <?php echo get_phrase('filter'); ?></button>
+                                <button type="submit" class="filter-btn" id="submit-button" onclick="update_date_range();"> <?php echo get_phrase('filter'); ?></button>
                             </div>
                         </form>
                     </div>

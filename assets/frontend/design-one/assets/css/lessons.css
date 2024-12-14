@@ -1,0 +1,472 @@
+/* remove default */
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link,
+.nav-tabs {
+
+    border: none;
+    outline: none;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    background-color: inherit;
+    border-color: none;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* lesson */
+.lesson {
+    margin-top: 22px;
+    padding: 0;
+}
+
+.lesson .padding-start-0 {
+    padding-inline-start: 0px;
+}
+
+
+/* taps */
+.lesson__tap li button span {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    color: #353535;
+
+}
+
+.lesson__tap {
+    background: #FBFCFB;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    gap: 38px;
+    padding-inline-start: 80px;
+}
+
+
+
+
+.lesson__tap .nav-tabs .nav-item.show .nav-link,
+.lesson__tap .nav-tabs .nav-link.active span {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #282828;
+
+}
+
+.lesson__tap .nav-tabs .nav-link.active span {
+    display: inline-block;
+    position: relative;
+}
+
+.lesson__tap.nav-tabs .nav-link.active span::after {
+    content: "";
+    width: 0;
+    /* Initially set to 0 */
+    left: 0;
+    bottom: -8px;
+    position: absolute;
+    border-bottom: 3px solid #754FFE;
+    transition: width 0.3s ease-in-out;
+    /* Smooth width animation */
+}
+
+.lesson__tap .nav-tabs .nav-link.active span::after {
+    width: 100%;
+    /* Expands to full width when active */
+}
+
+.lesson__tap .nav-tabs .nav-link {
+    border: none;
+    /* Remove default border */
+    outline: none;
+    /* Ensure no outline is shown */
+}
+
+
+
+/* responsive */
+@media (max-width: 991px) {
+    .lesson {
+        margin-top: 0;
+
+    }
+
+    .lesson__tap {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        gap: 16px;
+        padding-inline-start: 0;
+    }
+
+    .lesson__tap li button span {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .lesson__tap .nav-tabs .nav-item.show .nav-link,
+    .lesson__tap .nav-tabs .nav-link.active span {
+
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .lesson__tap.nav-tabs .nav-link {
+        padding: 0 !important;
+    }
+}
+
+
+
+
+/* ###############################lesson assignment ############################*/
+.lesson__assignment .lesson__assignment-content:not(:last-child) {
+    margin-bottom: 22px;
+}
+
+.lesson__tap-content {
+    margin-top: 51px;
+
+}
+
+
+.lesson__assignment-content {
+    padding: 16px 24px;
+    background: #FDFDFD;
+    border: 1px solid #E4E4E4;
+    border-radius: 16px;
+
+}
+
+.lesson__assignment-top h3 {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+.lesson__assignment-book-img {
+    width: 26px;
+    height: 23.46px;
+    margin-inline-end: 6.27px;
+
+}
+
+.lesson__assignment-top p {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #ED4C5C;
+
+
+}
+
+.lesson__assignment-middle {
+    margin-top: 16px;
+}
+
+.lesson__assignment-total-marks {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #434343;
+    margin-bottom: 0;
+}
+
+.lesson__assignment-questions h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #434343;
+    margin-top: 16px;
+    margin-bottom: 8px;
+
+}
+
+.lesson__assignment-bottom {
+    margin-top: 16px;
+    margin-top: auto;
+}
+
+.lesson__assignment-answer-link {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--primary-color);
+    position: relative;
+    /* To position the ::after element relative to this element */
+}
+
+.lesson__assignment-answer-link::after {
+    content: '';
+    /* Empty content to create the underline */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* Position the line just below the text */
+    width: 100%;
+    /* Match the width of the text */
+    height: 2px;
+    /* Adjust the thickness of the underline */
+    background-color: var(--primary-color);
+    /* Match the color of the text */
+}
+
+.lesson__assignment-notfound {
+    width: 706px;
+    height: 71px;
+    padding: 16px 24px 16px 24px;
+    background-color: #F5F6F5;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #282828;
+
+}
+
+/* responsive */
+
+
+@media screen and (max-width: 991px) {
+
+
+    .lesson__assignment .lesson__assignment-content:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+    .lesson__tap-content {
+        margin-top: 24px;
+
+    }
+
+
+    .lesson__assignment-content {
+        padding: 16px;
+        min-height: 272px;
+        /* height: 100%; */
+    }
+
+
+    .lesson__assignment-top {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start !important;
+    }
+
+    .lesson__assignment-top h3 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+
+    .lesson__assignment-top p {
+        font-size: 14px;
+        line-height: 21px;
+
+
+    }
+
+
+
+    .lesson__assignment-middle {
+        margin-top: 8px;
+    }
+
+    .lesson__assignment-total-marks {
+
+        font-size: 14px;
+        line-height: 21px;
+
+    }
+
+    .lesson__assignment-questions h4 {
+        margin-top: 8px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+
+    .lesson__assignment-answer-link {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+
+    .lesson__assignment-notfound {
+        width: 100%;
+        height: 49px;
+        padding: 16px 24px 16px 24px;
+        font-size: 12px;
+        line-height: 18px;
+
+
+    }
+
+}
+
+
+/* ###############################lesson live class ############################*/
+
+
+.lesson__forum-search-question {
+    width: 700px;
+    height: 56px;
+    border-radius: 16px;
+    position: relative;
+
+
+
+}
+
+.lesson__forum-search-question input {
+    border: 1px solid #D6D6D6 !important;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    background: #FDFDFD;
+    padding-inline-start: 49px;
+
+}
+
+.lesson__forum-search-question input::placeholder {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #939393;
+
+
+}
+
+.lesson__forum-search-question button {
+
+    background-color: var(--primary-color);
+    color: #FAF8F7;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    position: absolute;
+    right: 7.02px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 8px !important;
+    cursor: pointer;
+    width: 131.38px !important;
+    height: 42px !important;
+
+    padding: 8px;
+
+    border-radius: 8px !important;
+
+
+}
+
+
+.lesson__forum-search-question i {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14;
+    color: #939393;
+
+}
+
+.lesson__forum-add-question {
+    margin-top: 8px;
+}
+
+.lesson__forum-add-question p {
+
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    color: #787878;
+
+}
+
+.lesson__forum-add-question a {
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+
+
+}
+
+.lesson__forum-add-question a i {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 991px) {
+    .lesson__forum-search-question {
+        width: 343px;
+        height: 46px;
+
+
+    }
+
+    .lesson__forum-search-question input {
+        padding-inline-start: 49px;
+
+    }
+
+
+
+
+
+    .lesson__forum-search-question input::placeholder {
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #939393;
+
+
+    }
+
+    .lesson__forum-search-question button {
+
+        width: 82.24px !important;
+        height: 33px !important;
+        padding: 8px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .lesson__forum-search-question i {
+        left: 12px;
+
+    }
+
+    .lesson__forum-add-question p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .lesson__forum-add-question a {
+        width: 32px;
+        height: 32px;
+    }
+
+    .lesson__forum-add-question a i {
+        font-size: 18px;
+    }
+
+}

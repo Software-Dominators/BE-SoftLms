@@ -1,0 +1,277 @@
+.profile-container{
+    display: flex;
+    min-height: 100vh;
+}
+.profile-container .profile-content{
+    padding-top: 42px !important;
+}
+/* sidebar edits  */
+.profile-container .profile-menu{
+ max-width: 321px !important;
+ background-color: #F5F6F5 !important;
+ padding-top: 42px !important;
+
+}
+.profile-container .wish-list-course{
+    margin-top: 32px;
+}
+.profile .student-profile-info{
+    margin-top: 0 !important;
+}
+.profile .student-profile-info img{
+   width:96px;
+   height: 96px;
+   margin-bottom: 17px !important;
+}
+
+.profile-container .student-profile-info h4 {
+    font-weight:400 !important;
+    font-size: 20px !important;
+    line-height:  30px !important;
+    color: #353535 !important;
+}
+.profile-container .student-profile-info span {
+    font-weight:400 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #353535 !important;
+}
+.btn-profile-menu{
+    border-radius: 0 !important;
+}
+.profile-container .btn-profile-menu{
+    padding: 14px 30px;
+    color:#353535 !important;
+    font-weight:300 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+   
+}
+
+.btn-profile-menu:hover, .btn-profile-menu.active{
+   background-color: #754FFE17 !important;
+   color: var(--primary-color) !important;
+   border-radius: none !important;
+   border-inline-start: 3px solid var(--primary-color);
+}
+.profile-container .common-card{
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.profile-container .profile-parrent {
+    align-items: center !important;
+}
+.profile-container .profile-parrent img{
+    margin-top: 0 !important;
+    height:102px !important;
+    width: 102px !important;
+}
+.profile-container .child-text{
+    margin-left: 0 !important;
+}
+.profile-container .profile-input-section label   , .affiliate_form label{
+    font-weight:400 ;
+    font-size: 18px ;
+    line-height: 27px;
+    color: #353535 ;
+    margin-bottom:8px ;
+}
+.profile-container .form-control:disabled{
+    background-color: transparent !important;
+}
+.profile-container .form-control{
+    border: 1px solid #E4E4E4 !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    color: #BDC0BC !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    margin-bottom: 32px !important;
+
+}
+.profile-container .input-group-text{
+    background-color: #754FFE17 !important;
+    color: #754FFE !important;
+}
+.profile-container .input-group {
+    margin-bottom: 32px !important;
+}
+.profile-container .input-group .form-control{
+    border-radius: 0 8px 0 8px !important;
+    margin-bottom: 0 !important;
+}
+.profile-container .submit-btn{
+    border: none ;
+    outline: none ;
+    min-width: 151px;
+    background-color:var(--primary-color) ;
+    color: #FAF8F7 ;
+    padding: 8px;
+    font-weight: 500 ;
+    font-size: 16px ;
+    line-height: 24px ;
+    margin-top: 22px;
+    border-radius: 8px;
+    transition: 0.5 all;
+
+}
+.profile-container .submit-btn:hover{
+    opacity: 0.8;
+}
+.profile-container .upload-button{
+    font-weight: 500 ;
+    font-size: 16px ;
+    line-height: 24px ;
+}
+.profile-container .upload-button , input[type="file" ] {
+    background-color: transparent !important;
+}
+/* pruchase history page  */
+.profile-container table{
+    padding-top: 52px;
+}
+.profile-container th{
+    color: #8492A6 ;
+    font-weight: 300 ;
+    font-size: 14px ;
+    line-height: 21px ;
+    background-color: chartreuse;
+}
+.table > :not(caption) > * > *{
+    width: 10% !important;
+}
+table {
+    width: 100%; /* Full width of the table */
+    border-collapse: collapse; /* Merge borders for cleaner look */
+    table-layout: fixed; /* Consistent layout for cells */
+  }
+  
+  /* payout settings  */
+  .affiliate_form h4{
+    border-bottom: none !important;
+    padding-top: 10px !important;
+    border-top: 1px solid rgb(248, 241, 241);
+  }
+  .affiliate_form .form-control {
+    margin-bottom: 0 !important;
+  }
+  .affiliate_form .input-div{
+    margin-bottom: 32px !important;
+  }
+/* messages page  */
+ .conversation{
+    margin-top: 0 !important;
+}
+.conversation h5{
+    color: #515D72 ;
+    font-weight: 400 ;
+    font-size: 32px !important;
+    line-height: 48px ;
+    margin-bottom: 16px;
+}
+.conversation form {
+    position: relative;
+}
+.conversation .search-btn .form-control{
+    box-shadow: 0px 0px 4px 0px #00000029 !important;
+    font-size:16px !important;
+    font-weight: 400 !important;
+    color:#BBBBBB !important;
+    padding:5px !important;
+}
+.conversation .search-btn .form-control::placeholder{
+    margin-inline-start: 5px !important;
+}
+.conversation-fulllll-body .search-btn{
+    top: 50% !important;
+    transform: translateY(-50%);
+    left:17px !important;
+    padding-inline-end: 25px !important;
+    
+}
+.conversation-fulllll-body .search-btn i{
+    font-size:16px !important;
+    color:#BBBBBB !important;
+    padding-inline-end:25px !important;
+}
+.conversation .conversation-1{
+    margin-bottom: 24px ;
+}
+.conversation .conversation-heading{
+    gap:12px;
+
+}
+.conversation .conversation-img , .child-img {
+    width:46px;
+    height:46px;
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+}
+.conversation .conversation-img img ,  .child-img img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50%;
+    object-fit: cover;
+ 
+}
+.conversation .conversation-name h5{
+    margin-bottom: 0 !important;
+}
+.conversation .conversation-name h5 a , .parrent-text h5 a{
+    font-size:18px !important;
+    font-weight: 400 !important;
+    line-height: 27px;
+    color:#2B3A53 !important;
+}
+.conversation .conversation-name h6 , .parrent-text p{
+    font-size:14px !important;
+    font-weight: 400 !important;
+    line-height: 21px;
+    color:#939393 !important;
+}
+.conversation .msg-time p{
+   font-size: 14px ;
+}
+.conversation-body-border{
+    border-bottom: none !important;
+}
+.conversation .conversation-img, .parrent .child-img{
+    background-color: transparent !important;
+}
+.c-border {
+    border: 1px solid #D6D6D6 !important;
+}
+.conversation-msg-full{
+    padding: 22px 32px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+}
+.child-description p{
+    margin-bottom: 0 !important;
+}
+.parrent-2, .conversation-sending form{
+    gap: 16px;
+}
+.conversation-sending textarea {
+    max-height: 50px !important;
+    padding:32px !important;
+    overflow: hidden;
+  
+}
+ .send-btn{
+    border: none;
+    outline: none;
+    background-color: #F7931E !important;
+    border-radius: 8px !important;
+    min-width: 133px !important;
+    color: #FAF8F7 !important;
+    font-size:16px !important;
+    font-weight: 500 !important;
+    line-height: 25px !important;
+    padding: 8px !important;
+}

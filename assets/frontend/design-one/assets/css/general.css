@@ -45,6 +45,7 @@ a {
 
 ul {
     list-style: none;
+    
 }
 a,img{
     display: inline-block;
@@ -94,6 +95,47 @@ button {
 .btn-secondary {
     background-color: var(--secondary-color);
 
+}
+.bread-crumb{
+    background-image: url(../images/home/other-hero-bg.svg) !important;
+    background-size: cover;
+    min-height: 42vh !important;
+    padding: 0 !important;
+
+}
+.bread-crumb .row {
+    flex-direction: column ;
+    justify-content: center;
+}
+.breadcrumb-item{
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    /* line-height: 36px !important; */
+   
+}
+.breadcrumb-item i{
+    font-size: 24px !important;
+    padding: 0 !important;
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+   
+}
+.bread-crumb .fa-chevron-right{
+    transform: translateY(3px);
+}
+.bread-crumb span{
+    margin-right: 0 !important;
+}
+.breadcrumb-item.active span{
+    font-weight: 500 !important;
+    color: #FFD400 !important;
+}
+.bread-crumb h1 {
+    font-size: 56px;
+    font-weight: 600;
+    /* line-height: 84px; */
+    color: #fff;
+    margin-bottom: 0 !important;
 }
 
 

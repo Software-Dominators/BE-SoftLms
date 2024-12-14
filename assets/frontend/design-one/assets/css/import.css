@@ -6,7 +6,9 @@
 @import "courses.css";
 @import "course.css";
 @import "contact.css";
-@import"breadcrumb.css";
+@import "breadcrumb.css";
 @import "faq.css";
 @import "course-bundle.css";
-
+@import "profile-menu.css";
+@import "lesson-sidebar.css";
+@import"lessons.css";
