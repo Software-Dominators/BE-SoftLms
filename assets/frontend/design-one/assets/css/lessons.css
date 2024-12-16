@@ -21,6 +21,21 @@
 }
 
 /* lesson */
+
+
+.lesson__notfound {
+    width: 706px;
+    height: 71px;
+    padding: 16px 24px 16px 24px;
+    background-color: #F5F6F5;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #282828;
+
+}
+
 .lesson {
     margin-top: 22px;
     padding: 0;
@@ -222,18 +237,7 @@
     /* Match the color of the text */
 }
 
-.lesson__assignment-notfound {
-    width: 706px;
-    height: 71px;
-    padding: 16px 24px 16px 24px;
-    background-color: #F5F6F5;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
-    color: #282828;
 
-}
 
 /* responsive */
 
@@ -469,4 +473,285 @@
         font-size: 18px;
     }
 
+}
+
+/* ############## `lesson__certificate-circle` ############## */
+.lesson__certificate-completed .d-flex {
+    gap: 17px;
+}
+
+.lesson__certificate-completed img {
+    width: 160.87px;
+    height: 160.87px;
+
+}
+
+.lesson__certificate-completed h4 {
+
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 48px;
+    color: #353535;
+
+}
+
+.lesson__certificate-completed p {
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #353535;
+
+}
+
+.lesson__certificate-completed a {
+    color: var(--primary-color) !important;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    position: relative;
+}
+
+
+.lesson__certificate-completed a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.lesson__certificate-not-completed .progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background:
+        radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        conic-gradient(#754FFE 75%, #754FFE42 0);
+}
+
+.lesson__certificate-not-completed {
+    gap: 17px;
+}
+
+.lesson__certificate-not-completed span {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+.lesson__certificate-not-completed h6 {
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: center;
+    color: #353535;
+
+}
+
+/* responsive */
+
+
+@media screen and (max-width: 991px) {
+
+    .lesson__certificate-completed img {
+        width: 164.55px;
+        height: 160.87px;
+
+
+
+    }
+
+    .lesson__certificate-completed h4 {
+        font-size: 20px;
+        line-height: 30px;
+
+
+
+    }
+
+    .lesson__certificate-completed p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+
+
+    }
+
+    .lesson__certificate-completed a {
+
+        font-size: 18px;
+        line-height: 27px;
+
+
+    }
+
+
+    .lesson__certificate-not-completed {
+        gap: 8px;
+    }
+
+    .lesson__certificate-not-completed span {
+
+        font-size: 18px;
+        line-height: 27px;
+
+
+
+    }
+
+    .lesson__certificate-not-completed h6 {
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+}
+
+/* lesson__live-class */
+
+.lesson__live-class {
+    min-width: 706px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    background: #FDFDFD;
+    border: 1px solid #E4E4E4;
+}
+
+.lesson__live-class .live {
+    width: 79.06px;
+    height: 27.37px;
+    background: #FB4A59;
+    color: #F2F2F2;
+    margin-bottom: 12.32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.lesson__live-class .meeting-id {
+    color: #282828;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    margin-bottom: 8px;
+
+}
+
+.lesson__live-class .schedule {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #868686;
+    margin-bottom: 8px;
+
+}
+
+.lesson__live-class p {
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #6B6B6B;
+    margin-bottom: 8px;
+
+}
+
+
+.lesson__live-class-zoom {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--primary-color) !important;
+    position: relative;
+
+}
+
+.lesson__live-class-zoom::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+
+/* responsive */
+@media screen and (max-width: 991px) {
+    .lesson__live-class {
+        padding: 16px;
+        width: 343px;
+
+    }
+
+    .lesson__live-class .live {
+        width: 55px;
+        height: 31px;
+        margin-bottom: 7.78px;
+    }
+
+
+
+
+
+
+    .lesson__live-class .meeting-id {
+        font-size: 18px;
+        line-height: 27px;
+        margin-bottom: 8px;
+
+
+    }
+
+    .lesson__live-class .schedule {
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+
+
+    }
+
+    .lesson__live-class p {
+        font-size: 12px;
+
+        line-height: 18px;
+
+
+
+    }
+
+
+    .lesson__live-class-zoom {
+        font-size: 16px;
+        line-height: 24px;
+
+
+    }
+
+
+}
+
+@media (max-width: 767px) {
+    .lesson__live-class {
+
+        max-width: 100%;
+
+    }
 }

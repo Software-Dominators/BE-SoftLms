@@ -66,6 +66,7 @@ class Certificate extends CI_Controller
 
     //GENERATE CERTIFICATE
     public function generate_certificate($certificate_identifier = "") {
+    
         $page_data['certificate_identifier'] = $certificate_identifier;
         $this->load->view('certificate/index', $page_data);
     }

@@ -105,9 +105,79 @@ if ($language_dirs) {
 	</nav>
 
 
+	<section class="lesson">
+		<div class="container-fluid">
+			<div class="row bg-info">
+				<?php if ($course_details['course_type'] == 'general'): ?><!-- first if stat -->
+
+					<!-- #################  sidebar ############################## -->
+					<?php if(!is_array($lesson_details)): ?>
+						<div class="col-12">
+						<h5 class="w-100 text-center text-black"><?php echo get_phrase('Course content not found') ?></h5>
+						<p class="w-100 text-center"><?php echo get_phrase('Please ensure that your course has at least one section and one lesson.'); ?></p>
+						</div>
+						<?php endif; ?>
+
+					<div class="<?= $full_page ? 'col-lg-12' : 'col-lg-4'; ?> order-2">
+						<?php include "sidebar.php"; ?>
+					</div>
+
+					<!--  ############## Content ################ -->
+					<div class="<?= $full_page ? 'col-lg-12' : 'col-lg-8'; ?> order-1">
+						<?php if(is_array($lesson_details)): ?>
+							<div class="course-playing-content">
+								<div  <?php if($full_page) echo 'style="margin-top: -2px; margin-left: -12px; margin-right: -12px;"'; ?>>
+									<?php if(in_array($lesson_details['id'], $locked_lesson_ids) && $course_details['enable_drip_content']): ?>
+					                    <div class="py-5">
+					                        <?php echo remove_js(htmlspecialchars_decode_($drip_content_settings['locked_lesson_message'])); ?>
+					                    </div>
+					                <?php else: ?>
+					                	<?php if(in_array($lesson_details['section_id'], $restricted_section_ids)): ?>
+					                		<div class="py-5">
+					                			<div class="locked-card">
+								                    <i class="fas fa-lock text-30px"></i>
+								                    <h6 class="w-100 text-center text-dark my-2"><?php echo get_phrase('This section is not included in the current study plan'); ?></h6>
+								                    <small class="text-12px"><?php echo date('d M Y h:i A', $section['start_date']).' - '.date('d M Y h:i A', $section['end_date']); ?></small>
+								                </div>
+					                		</div>
+										<?php else: ?>
+										<div class="lesson__type">
+										<?php include $course_details['course_type'].'_course_content_body.php'; ?>
+										</div>
+										<?php endif ?>
+									<?php endif; ?>
+								</div>
+								<div class="content">
+								
+										<?php include "bottom_tabs.php"; ?>
+									
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+					
+
+	          <!--  ############## Content Body ################ -->
+					<?php else: ?><!-- first if else  -->
+					<div class="col-lg-12">
+						<?php include $course_details['course_type'].'_course_content_body.php'; ?>
+						<div class="row">
+							<div class="col-md-12 pt-5">
+								<?php include "bottom_tabs.php"; ?>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?><!-- first if end -->
+			</div>
+		</div>
+	</section>
+
+
+
+
 
 	<!-- Start Course Playing -->
-	<section class=" lesson">
+	<section class="lesson">
 		<div class="container-fluid">
 			<div class="row  justify-content-center">
 				<!-- Sidebar -->

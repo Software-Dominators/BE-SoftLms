@@ -22,7 +22,7 @@ $is_restricted = 1;
 
 
 <?php if (is_array($sections) && count($sections) > 0): ?>
-  <aside class="lesson-sidebar resize-container">
+  <aside class="lesson-sidebar container">
     <header class="lesson-sidebar__header">
       <h3><?php echo get_phrase('Course Content'); ?></h3>
     </header>
@@ -204,7 +204,7 @@ $is_restricted = 1;
 
       <?php endforeach; ?>
     </div>
-    </div>
+    
   </aside>
 <?php endif; ?>
 

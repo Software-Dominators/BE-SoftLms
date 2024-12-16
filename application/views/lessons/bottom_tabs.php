@@ -1,75 +1,82 @@
 <div class="lesson__tap">
-<ul class="nav nav-tabs  resize-container " role="tablist">
+	<ul class="nav nav-tabs container " role="tablist">
 
-<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
+		<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
 
-	<li class="nav-item " role="presentation">
-		<button class="nav-link" id="summary-class-tab" data-bs-toggle="tab" data-bs-target="#summary-class-content"
-			type="button" role="tab" aria-controls="summary-class-content" aria-selected="true">
+			<li class="nav-item " role="presentation">
+				<button class="nav-link" id="summary-class-tab" data-bs-toggle="tab" data-bs-target="#summary-class-content"
+					type="button" role="tab" aria-controls="summary-class-content" aria-selected="true">
 
 
-			<span><?php echo get_phrase('Summary'); ?></span>
-		</button>
-	</li>
-<?php endif; ?>
+					<span><?php echo get_phrase('Summary'); ?></span>
+				</button>
+			</li>
+		<?php endif; ?>
 
-<li class="nav-item" role="presentation">
-	<button class="nav-link" id="live-class-tab" data-bs-toggle="tab" data-bs-target="#live-class-content"
-		type="button" role="tab" aria-controls="live-class-content" aria-selected="true">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="live-class-tab" data-bs-toggle="tab" data-bs-target="#live-class-content"
+				type="button" role="tab" aria-controls="live-class-content" aria-selected="true">
 
-		<span><?php echo get_phrase('Live class'); ?>
-		</span>
-	</button>
-</li>
+				<span><?php echo get_phrase('Live class'); ?>
+				</span>
+			</button>
+		</li>
 
-<?php if (addon_status('assignment')): ?>
-	<li class="nav-item" role="presentation">
-		<button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment-content"
-			type="button" role="tab" aria-controls="assignment-content" aria-selected="true">
-			<span>
-				<?php echo get_phrase('Assignment'); ?>
-			</span>
-		</button>
-	</li>
-<?php endif ?>
-<?php if (addon_status('forum')): ?>
-	<li class="nav-item" role="presentation">
-		<button class="nav-link" onclick="load_questions('<?= $course_id; ?>')" id="forum-tab" data-bs-toggle="tab"
-			data-bs-target="#forum-content" type="button" role="tab" aria-controls="forum-content" aria-selected="true">
+		<?php if (addon_status('assignment')): ?>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment-content"
+					type="button" role="tab" aria-controls="assignment-content" aria-selected="true">
+					<span>
+						<?php echo get_phrase('Assignment'); ?>
+					</span>
+				</button>
+			</li>
+		<?php endif ?>
+		<?php if (addon_status('forum')): ?>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" onclick="load_questions('<?= $course_id; ?>')" id="forum-tab" data-bs-toggle="tab"
+					data-bs-target="#forum-content" type="button" role="tab" aria-controls="forum-content"
+					aria-selected="true">
 
-			<span><?php echo get_phrase('Forum'); ?>
-			</span>
-		</button>
-	</li>
-<?php endif ?>
-<?php if (addon_status('noticeboard')): ?>
-	<li class="nav-item" role="presentation">
-		<button class="nav-link" id="noticeboard-tab" onclick="load_course_notices('<?= $course_id; ?>')"
-			data-bs-toggle="tab" data-bs-target="#noticeboard-content" type="button" role="tab"
-			aria-controls="noticeboard-content" aria-selected="true">
-			<span>
-				<?php echo get_phrase('Noticeboard'); ?>
-			</span>
-		</button>
-	</li>
-<?php endif ?>
-<?php if (addon_status('certificate')): ?>
+					<span><?php echo get_phrase('Forum'); ?>
+					</span>
+				</button>
+			</li>
+		<?php endif ?>
+		<?php if (addon_status('noticeboard')): ?>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="noticeboard-tab" onclick="load_course_notices('<?= $course_id; ?>')"
+					data-bs-toggle="tab" data-bs-target="#noticeboard-content" type="button" role="tab"
+					aria-controls="noticeboard-content" aria-selected="true">
+					<span>
+						<?php echo get_phrase('Noticeboard'); ?>
+					</span>
+				</button>
+			</li>
+		<?php endif ?>
+		<?php if (addon_status('certificate')): ?>
 
-	<li class="nav-item" role="presentation">
-		<button class="nav-link" id="certificate-tab"
-			onclick="actionTo('<?php echo site_url('addons/certificate/certificate_progress/' . $course_details['id']); ?>')"
-			data-bs-toggle="tab" data-bs-target="#certificate-content" type="button" role="tab"
-			aria-controls="certificate-content" aria-selected="true">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="certificate-tab"
+					onclick="actionTo('<?php echo site_url('addons/certificate/certificate_progress/' . $course_details['id']); ?>')"
+					data-bs-toggle="tab" data-bs-target="#certificate-content" type="button" role="tab"
+					aria-controls="certificate-content" aria-selected="true">
 
-			<span><?php echo get_phrase('Certificate'); ?></span>
+					<span><?php echo get_phrase('Certificate'); ?></span>
 
-		</button>
-	</li>
-<?php endif ?>
-</ul>
+				</button>
+			</li>
+		<?php endif ?>
+	</ul>
 </div>
 
-<div class="tab-content ct-tabs-content lesson__tap-content   resize-container ">
+<div class="container d-flex justify-content-center mt-5">
+
+	<div class="lesson__certificate-circle ">
+
+	</div>
+</div>
+<div class="tab-content  lesson__tap-content  container ">
 	<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
 		<div class="tab-pane fade" id="summary-class-content" role="tabpanel" aria-labelledby="summary-class-tab">
 
@@ -97,9 +104,9 @@
 		</div>
 	<?php endif; ?>
 
-	<div class="tab-pane fade" id="live-class-content" role="tabpanel" aria-labelledby="live-class-tab">
+	<div class="tab-pane fade border-0" id="live-class-content" role="tabpanel" aria-labelledby="live-class-tab">
 
-		<?php include 'live_class_body.php'; ?>
+		<?php include 'course-live-class.php'; ?>
 	</div>
 
 	<?php if (addon_status('assignment')): ?>
@@ -122,7 +129,7 @@
 
 		</div>
 
-		
+
 	<?php endif; ?>
 </div>
 

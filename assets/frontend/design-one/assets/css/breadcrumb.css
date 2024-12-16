@@ -2,59 +2,52 @@
 
     min-height: 307px;
     background-color: var(--primary-color);
-position: relative;
-margin-bottom: 40px;
+    position: relative;
+    margin-bottom: 40px;
 
 }
 
-.breadcrumb__top-img{
+.breadcrumb__top-img {
     position: absolute;
     top: 0;
     left: 0;
-   
+
     height: 90%;
 }
-.breadcrumb__bottom-img{
+
+.breadcrumb__bottom-img {
     position: absolute;
     bottom: 0;
     right: 0;
     height: 90%;
-   
- 
+
+
 }
+
 .breadcrumb .breadcrumb__top {
     margin-top: 58px;
     gap: 8px;
-   
+
 }
 
 .breadcrumb .breadcrumb__top a {
     line-height: 36px;
     font-size: 24px;
+    font-weight: 500;
 
 }
 
 .breadcrumb .breadcrumb__top i {
-
+    font-size: 24px;
     color: var(--light-withe-color);
 }
 
 .breadcrumb .breadcrumb__home-link {
     color: var(--light-withe-color);
-
-    font-weight: 400;
-
-
-
 }
 
 .breadcrumb .breadcrumb__active-link {
     color: var(--dark-orange-color);
-
-    font-weight: 500;
-
-
-
 }
 
 .breadcrumb .breadcrumb__bottom {
