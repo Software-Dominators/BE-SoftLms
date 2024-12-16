@@ -3,6 +3,10 @@
   <component name="PHPUnit">
     <option name="directories">
       <list>
+        <option value="$PROJECT_DIR$/tests" />
+        <option value="$PROJECT_DIR$/application/libraries/openpayu_php/tests" />
+        <option value="$PROJECT_DIR$/application/libraries/razorpay-php/tests" />
+        <option value="$PROJECT_DIR$/application/libraries/Stripe/tests" />
         <option value="$PROJECT_DIR$/application/libraries/xendit/tests" />
       </list>
     </option>

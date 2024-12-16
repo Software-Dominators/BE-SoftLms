@@ -1,3 +1,61 @@
+<style>
+    .mian-orange {
+        background-color: #F7931E;
+    }
+
+    .label-font-size {
+        font-size: 18px !important;
+    }
+
+    .nowrap {
+        text-wrap: nowrap !important;
+    }
+
+    .btn-ctm-ani {
+        transition: all 0.5s ease;
+    }
+
+    .btn-ctm-ani:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+    .label-clr-gry {
+        color: #868686;
+    }
+
+    .row-nom-nop {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .btn-wz-no-btn-cls {
+        border-radius: 6px;
+        background: white;
+        border: 2px solid #F7931E;
+        outline: none;
+        color: #F7931E;
+        font-weight: bold;
+        padding: 7px 34px;
+        transition: .3s;
+    }
+
+    .btn-wz-no-btn-cls:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
+        color: white;
+        background: #F7931E;
+    }
+
+    .btn-wz-no-btn-cls-nxt {
+        border-radius: 8px;
+        background: #F7931E;
+        border: none;
+        outline: none;
+        color: white;
+    }
+</style>
+
 <div class="row ">
     <div class="col-xl-12">
         <div class="card">
@@ -82,9 +140,6 @@
                                             </a>
                                         </li>
                                         <li class="w-100 bg-white pb-3">
-                                            <!--ajax page loader-->
-
-                                            <!--end ajax page loader-->
                                         </li>
                                     </ul>
 
@@ -95,11 +150,12 @@
 
                                 <div class="tab-content b-0 mb-0">
                                     <div class="tab-pane" id="basic">
-                                        <div class="row justify-content-center">
+                                        <div class="label-font-size row-nom-nop justify-content-start">
                                             <div class="col-xl-8">
                                                 <?php if (addon_status('scorm_course') || addon_status('h5p')): ?>
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-md-2 col-form-label"
+                                                    <div class="form-group column mb-3">
+                                                        <label
+                                                            class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                             for="course_type"><?php echo get_phrase('course_type'); ?></label>
                                                         <div class="col-md-10">
                                                             <select class="form-control select2" data-toggle="select2"
@@ -119,8 +175,9 @@
                                                 <?php else: ?>
                                                     <input type="hidden" name="course_type" value="general">
                                                 <?php endif; ?>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="course_title"><?php echo get_phrase('course_title'); ?>
                                                         <span class="required">*</span> </label>
                                                     <div class="col-md-10">
@@ -130,24 +187,27 @@
                                                             required>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="short_description"><?php echo get_phrase('short_description'); ?></label>
                                                     <div class="col-md-10">
                                                         <textarea name="short_description" id="short_description"
                                                             class="form-control"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="description"><?php echo get_phrase('description'); ?></label>
                                                     <div class="col-md-10">
                                                         <textarea name="description" id="description"
                                                             class="form-control"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="sub_category_id"><?php echo get_phrase('category'); ?>
                                                         <span class="required">*</span></label>
                                                     <div class="col-md-10">
@@ -171,8 +231,9 @@
                                                             class="text-muted"><?php echo get_phrase('select_sub_category'); ?></small>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="level"><?php echo get_phrase('level'); ?></label>
                                                     <div class="col-md-10">
                                                         <select class="form-control select2" data-toggle="select2"
@@ -189,8 +250,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="language_made_in"><?php echo get_phrase('language_made_in'); ?></label>
                                                     <div class="col-md-10">
                                                         <select class="form-control select2" data-toggle="select2"
@@ -203,49 +265,55 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group row-nom-nop mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="enable_drip_content"><?php echo get_phrase('enable_drip_content'); ?></label>
-                                                    <div class="col-md-10 pt-2">
+                                                    <div class="pl-2 pt-2">
                                                         <input type="checkbox" name="enable_drip_content" value="1"
-                                                            id="enable_drip_content" data-switch="primary">
+                                                            id="enable_drip_content" data-switch="warning">
                                                         <label for="enable_drip_content" data-on-label="On"
                                                             data-off-label="Off"></label>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group row-nom-nop mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="enable_certificate"><?php echo get_phrase('enable_certificate'); ?></label>
-                                                    <div class="col-md-10 pt-2">
+                                                    <div class="pl-2 pt-2">
                                                         <input type="checkbox" name="enable_certificate" value="1"
-                                                            id="enable_certificate" data-switch="primary" checked>
+                                                            id="enable_certificate" data-switch="warning" checked>
                                                         <label for="enable_certificate" data-on-label="On"
                                                             data-off-label="Off"></label>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label pt-1"
+                                                <div class="form-group column mb-3">
+                                                    <label style="text-wrap:nowrap;"
+                                                        class="col-md-2 col-form-label pt-1"
                                                         for="enable_drip_content"><?php echo get_phrase('Create as a'); ?></label>
                                                     <div class="col-md-10 pt-1">
                                                         <div class="custom-control custom-radio mb-1">
                                                             <input type="radio" id="status_active" name="status"
                                                                 class="custom-control-input" value="active" checked>
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="status_active"><?php echo get_phrase('Active course'); ?></label>
                                                         </div>
 
                                                         <div class="custom-control custom-radio mb-1">
                                                             <input type="radio" id="status_private" name="status"
                                                                 class="custom-control-input" value="private">
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="status_private"><?php echo get_phrase('Private course'); ?></label>
                                                         </div>
 
                                                         <div id="upcoming" class="custom-control  custom-radio mb-1">
                                                             <input type="radio" id="status_upcoming" name="status"
                                                                 class="custom-control-input" value="upcoming">
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="status_upcoming"><?php echo get_phrase('Upcoming course'); ?></label>
                                                         </div>
                                                         <!-- New Upcoming Image -->
@@ -256,7 +324,8 @@
                                                                         id="upcoming_image_thumbnail"
                                                                         name="upcoming_image_thumbnail" accept="image/*"
                                                                         onchange="changeTitleOfImageUploader(this)">
-                                                                    <label class="custom-file-label"
+                                                                    <label style="text-wrap:nowrap;"
+                                                                        class="custom-file-label"
                                                                         for="upcoming_image_thumbnail"><?php echo get_phrase('upcoming_image_thumbnail'); ?></label>
                                                                 </div>
                                                             </div>
@@ -265,7 +334,7 @@
                                                         </div>
                                                         <!-- New Upcoming Image -->
                                                         <div class="form-group mb-3" id="publish_date">
-                                                            <label class="col-form-label"
+                                                            <label class="label-clr-gry nowrap col-form-label"
                                                                 for="input_publish_date"><?php echo get_phrase('publish_date'); ?>
                                                                 <span class="required">*</span> </label>
                                                             <input type="datetime-local" class="form-control"
@@ -276,12 +345,13 @@
                                                 </div>
 
 
-                                                <div class="form-group row mb-3">
+                                                <div class="form-group column mb-3">
                                                     <div class="offset-md-2 col-md-10">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input"
                                                                 name="is_top_course" id="is_top_course" value="1">
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="is_top_course"><?php echo get_phrase('check_if_this_course_is_top_course'); ?></label>
                                                         </div>
                                                     </div>
@@ -291,14 +361,15 @@
                                     </div> <!-- end tab pane -->
 
                                     <div class="tab-pane" id="info">
-                                        <div class="row justify-content-center">
+                                        <div class="label-font-size row-nom-nop justify-content-start">
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="faq"><?php echo get_phrase('course_faq'); ?></label>
                                                     <div class="col-md-10">
                                                         <div id="faq_area">
-                                                            <div class="d-flex mt-2">
+                                                            <div class=" mt-2">
                                                                 <div class="flex-grow-1 px-3">
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control"
@@ -310,13 +381,13 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="">
-                                                                    <button type="button" class="btn btn-success btn-sm"
-                                                                        style="" name="button" onclick="appendFaq()"><i
-                                                                            class="fa fa-plus"></i></button>
+                                                                    <button type="button" class="btn-wz-no-btn-cls"
+                                                                        style="" name="button"
+                                                                        onclick="appendFaq()"><?php echo get_phrase("add_new_question") ?></button>
                                                                 </div>
                                                             </div>
                                                             <div id="blank_faq_field">
-                                                                <div class="d-flex mt-2">
+                                                                <div class=" mt-2">
                                                                     <div class="flex-grow-1 px-3">
                                                                         <div class="form-group">
                                                                             <input type="text" class="form-control"
@@ -340,12 +411,13 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row mb-3 pt-2">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3 pt-2">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="requirements"><?php echo get_phrase('requirements'); ?></label>
                                                     <div class="col-md-10">
                                                         <div id="requirement_area">
-                                                            <div class="d-flex mt-2">
+                                                            <div class=" mt-2">
                                                                 <div class="flex-grow-1 px-3">
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control"
@@ -354,14 +426,13 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="">
-                                                                    <button type="button" class="btn btn-success btn-sm"
+                                                                    <button type="button" class="btn-wz-no-btn-cls"
                                                                         style="" name="button"
-                                                                        onclick="appendRequirement()"><i
-                                                                            class="fa fa-plus"></i></button>
+                                                                        onclick="appendRequirement()"><?php echo get_phrase("add_new_question") ?></button>
                                                                 </div>
                                                             </div>
                                                             <div id="blank_requirement_field">
-                                                                <div class="d-flex mt-2">
+                                                                <div class=" mt-2">
                                                                     <div class="flex-grow-1 px-3">
                                                                         <div class="form-group">
                                                                             <input type="text" class="form-control"
@@ -382,12 +453,13 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row mb-3 pt-2">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3 pt-2">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="outcomes"><?php echo get_phrase('outcomes'); ?></label>
                                                     <div class="col-md-10">
                                                         <div id="outcomes_area">
-                                                            <div class="d-flex mt-2">
+                                                            <div class=" mt-2">
                                                                 <div class="flex-grow-1 px-3">
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control"
@@ -396,13 +468,13 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="">
-                                                                    <button type="button" class="btn btn-success btn-sm"
-                                                                        name="button" onclick="appendOutcome()"><i
-                                                                            class="fa fa-plus"></i></button>
+                                                                    <button type="button" class="btn-wz-no-btn-cls"
+                                                                        name="button"
+                                                                        onclick="appendOutcome()"><?php echo get_phrase("add_new_outcome") ?></button>
                                                                 </div>
                                                             </div>
                                                             <div id="blank_outcome_field">
-                                                                <div class="d-flex mt-2">
+                                                                <div class=" mt-2">
                                                                     <div class="flex-grow-1 px-3">
                                                                         <div class="form-group">
                                                                             <input type="text" class="form-control"
@@ -427,23 +499,25 @@
                                     </div>
 
                                     <div class="tab-pane" id="pricing">
-                                        <div class="row justify-content-center">
+                                        <div class="label-font-size row-nom-nop justify-content-start">
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
+                                                <div class="form-group column mb-3">
                                                     <div class="offset-md-2 col-md-10">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input"
                                                                 name="is_free_course" id="is_free_course" value="1"
                                                                 onclick="togglePriceFields(this.id)">
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="is_free_course"><?php echo get_phrase('check_if_this_is_a_free_course'); ?></label>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="paid-course-stuffs">
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-md-2 col-form-label"
+                                                    <div class="form-group column mb-3">
+                                                        <label
+                                                            class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                             for="price"><?php echo get_phrase('course_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
                                                         <div class="col-md-10">
                                                             <input type="number" class="form-control" id="price"
@@ -452,8 +526,9 @@
                                                                 min="0">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-md-2 col-form-label"
+                                                    <div class="form-group column mb-3">
+                                                        <label
+                                                            class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                             for="section_price"><?php echo get_phrase('section_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
                                                         <div class="col-md-10">
                                                             <input type="number" class="form-control" id="section_price"
@@ -462,8 +537,9 @@
                                                                 min="0">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-md-2 col-form-label"
+                                                    <div class="form-group column mb-3">
+                                                        <label
+                                                            class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                             for="lesson_price"><?php echo get_phrase('lesson_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
                                                         <div class="col-md-10">
                                                             <input type="number" class="form-control" id="lesson_price"
@@ -473,19 +549,21 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row mb-3">
+                                                    <div class="form-group column mb-3">
                                                         <div class="offset-md-2 col-md-10">
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                     name="discount_flag" id="discount_flag" value="1">
-                                                                <label class="custom-control-label"
+                                                                <label style="text-wrap:nowrap;"
+                                                                    class="custom-control-label"
                                                                     for="discount_flag"><?php echo get_phrase('check_if_this_course_has_discount'); ?></label>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row mb-3">
-                                                        <label class="col-md-2 col-form-label"
+                                                    <div class="form-group column mb-3">
+                                                        <label
+                                                            class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                             for="discounted_price"><?php echo get_phrase('discounted_price') . ' (' . currency_code_and_symbol() . ')'; ?></label>
                                                         <div class="col-md-10">
                                                             <input type="number" class="form-control"
@@ -502,31 +580,33 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <div class="form-group row mb-3">
+                                                <div class="form-group column mb-3">
                                                     <label
-                                                        class="col-md-2 col-form-label"><?php echo get_phrase('Expiry period'); ?></label>
+                                                        class="nowrap col-md-2 col-form-label"><?php echo get_phrase('Expiry period'); ?></label>
                                                     <div class="col-md-10 pt-2 d-flex">
                                                         <div class="custom-control custom-radio mr-2">
                                                             <input type="radio" id="lifetime_expiry_period"
                                                                 name="expiry_period" class="custom-control-input"
                                                                 value="lifetime" onchange="checkExpiryPeriod(this)"
                                                                 checked>
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="lifetime_expiry_period"><?php echo get_phrase('Lifetime'); ?></label>
                                                         </div>
                                                         <div class="custom-control custom-radio">
                                                             <input type="radio" id="limited_expiry_period"
                                                                 name="expiry_period" class="custom-control-input"
                                                                 value="limited_time" onchange="checkExpiryPeriod(this)">
-                                                            <label class="custom-control-label"
+                                                            <label style="text-wrap:nowrap;"
+                                                                class="custom-control-label"
                                                                 for="limited_expiry_period"><?php echo get_phrase('Limited time'); ?></label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row mb-3" id="number_of_month"
+                                                <div class="form-group column mb-3" id="number_of_month"
                                                     style="display: none">
                                                     <label
-                                                        class="col-md-2 col-form-label"><?php echo get_phrase('Number of month'); ?></label>
+                                                        class="nowrap col-md-2 col-form-label"><?php echo get_phrase('Number of month'); ?></label>
                                                     <div class="col-md-10">
                                                         <input class="form-control" type="number" name="number_of_month"
                                                             min="1">
@@ -538,11 +618,12 @@
                                         </div> <!-- end row -->
                                     </div> <!-- end tab-pane -->
                                     <div class="tab-pane" id="media">
-                                        <div class="row justify-content-center">
+                                        <div class="label-font-size flex-column row-nom-nop justify-content-start">
 
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="course_overview_provider"><?php echo get_phrase('course_overview_provider'); ?></label>
                                                     <div class="col-md-10">
                                                         <select class="form-control select2" data-toggle="select2"
@@ -560,8 +641,9 @@
                                             </div> <!-- end col -->
 
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="course_overview_url"><?php echo get_phrase('course_overview_url'); ?></label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control"
@@ -577,10 +659,11 @@
                                         </div> <!-- end row -->
                                     </div>
                                     <div class="tab-pane" id="seo">
-                                        <div class="row justify-content-center">
+                                        <div class="label-font-size flex-column row-nom-nop justify-content-start">
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="website_keywords"><?php echo get_phrase('meta_keywords'); ?></label>
                                                     <div class="col-md-10">
                                                         <input type="text" class="form-control bootstrap-tag-input"
@@ -592,8 +675,9 @@
                                                 </div>
                                             </div> <!-- end col -->
                                             <div class="col-xl-8">
-                                                <div class="form-group row mb-3">
-                                                    <label class="col-md-2 col-form-label"
+                                                <div class="form-group column mb-3">
+                                                    <label
+                                                        class="label-clr-gry nowrap inline col-form-label align-content-center"
                                                         for="meta_description"><?php echo get_phrase('meta_description'); ?></label>
                                                     <div class="col-md-10">
                                                         <textarea name="meta_description"
@@ -604,7 +688,7 @@
                                         </div> <!-- end row -->
                                     </div>
                                     <div class="tab-pane" id="finish">
-                                        <div class="row">
+                                        <div class="row-nom-nop" style="font-size:18px !important;">
                                             <div class="col-12">
                                                 <div class="text-center">
                                                     <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
@@ -624,14 +708,17 @@
                                         </div> <!-- end row -->
                                     </div>
 
-                                    <ul class="list-inline mb-0 wizard text-center">
-                                        <li class="previous list-inline-item">
+                                    <ul class="list-inline mb-0 wizard text-right">
+                                        <!-- <li class="previous list-inline-item">
                                             <a href="javascript:;" class="btn btn-info"> <i
                                                     class="mdi mdi-arrow-left-bold"></i> </a>
-                                        </li>
-                                        <li class="next list-inline-item">
-                                            <a href="javascript:;" class="btn btn-info"> <i
-                                                    class="mdi mdi-arrow-right-bold"></i> </a>
+                                        </li> -->
+                                        <li class=" btn-ctm-ani next list-inline-item">
+                                            <a href="javascript:;"
+                                                class="btn-wz-no-btn-cls-nxt text-white bold py-1 px-5" style="">
+                                                <!-- <i class="mdi mdi-arrow-right-bold"></i> -->
+                                                Next
+                                            </a>
                                         </li>
                                     </ul>
 
@@ -657,12 +744,12 @@
         var form = $('.required-form')
         var input = $('input[required]')
         var select = $('#select2-sub_category_id-container')
-        form.on('submit', function (event) {
-            event.preventDefault(); // Prevents the default form submission
-            console.log($('label:has(span.required)'));
-            // Process form data as needed
-            // Add your custom form submission logic here
-        });
+        // form.on('submit', function (event) {
+        //     event.preventDefault(); // Prevents the default form submission
+        //     console.log($('label:has(span.required)'));
+        //     // Process form data as needed
+        //     // Add your custom form submission logic here
+        // });
 
     })
 </script>

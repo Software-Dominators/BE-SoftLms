@@ -1,0 +1,168 @@
+@import "global-style.css";
+.user-email{
+  color: #5FB0ED !important;
+
+}
+/* for enrolled-students-courses  */
+.enrolled-courses-list{
+    max-width: 354px ;
+    gap: 16px;
+    list-style: none;
+}
+.enrolled-courses-list li{
+  min-width: 169px;
+  min-height: 38px;
+  border-radius: 6px;
+  background-color: #E8F3FC;
+  color: #329AE8;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* style for instructor-payout page  */
+.payout-nav.nav-bordered {
+  border-color:  #F1F1F1 !important;
+}
+.payout-nav.nav-bordered li a.active {
+  border-bottom: 3px solid #F7931E !important;
+}
+
+
+.payment-amount {
+  background-color: #E8F3FC;
+  color:#329AE8 ;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 130px;
+  padding: 7px;
+  border-radius: 6px;
+  text-align: center;
+}
+.document{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.document a{
+  border-bottom: 1px solid #2B3A53;
+}
+.badge-success{
+  background-color: #DEFFEE !important;
+  color: #42AC7E !important;
+}
+.badge-success , .badge-danger , .details-btn{
+
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  text-align: center !important;
+  border-radius: 6px !important;
+  max-width: 113px !important;
+}
+.badge-danger{
+  background-color: #fb8989 !important;
+  color: #f56e6e !important;
+}
+.details-btn{
+  background-color: #FEF5EA;
+  color: var(--second-color--);
+}
+/* .payment-date{
+  color:#2B3A53 ;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+} */
+/* style for users add form  */
+.tab-pane label {
+  color: #868686;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  margin-bottom: 8px;
+}
+.tab-pane input::placeholder {
+  color: #282828 !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.tab-pane input {
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+ 
+  border: 1px solid #D6D6D6 !important;
+}
+.tab-pane .icon{
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.finish h3{
+  color: #29387E;
+  ;
+  font-weight: 500 ;
+  font-size: 38px ;
+  line-height: 57px ;
+}
+.finish h4{
+  color: #29387E;
+  font-weight: 500 ;
+  font-size: 20px ;
+  line-height: 30px ;
+  margin-bottom: 20px;
+}
+.pagination-btns .next , .pagination-btns .previous {
+  background-color: var(--btn-bg-color) !important;
+  margin-top: 24px ;
+}
+.pagination-btns a {
+  color: #fff !important;
+}
+/* style for instructor settings page  */
+.instructor-settings h4{
+  color: #515D72;
+  font-weight: 400 ;
+  font-size: 20px ;
+  line-height: 30px ;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+.instructor-settings h4 i {
+  margin-inline-end: 8px;
+  font-size: 5px;
+}
+.instructor-settings label {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #868686;
+  margin-bottom: 8px;
+}
+.instructor-settings input , .instructor-settings select , .instructor-settings textarea {
+  border-radius: 8px;
+  padding:8px 16px ;
+  /* max-width:609px  !important; */
+  margin-bottom: 24px;
+  border: 1px solid #D6D6D6;
+}
+.form-group{
+  max-width:609px  !important;
+}
+.instructor-settings input::placeholder{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #282828;
+}
+.card{
+  box-shadow: none !important;
+  background-color: #fff !important;
+}

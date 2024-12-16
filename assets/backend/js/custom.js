@@ -279,6 +279,7 @@ function checkRequiredFields() {
     });
 
   if (pass === 1) {
+    console.log("reatched here safe");
     $("form.required-form").submit();
   } else {
     error_required_field();
