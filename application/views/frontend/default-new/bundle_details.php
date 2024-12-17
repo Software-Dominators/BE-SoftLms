@@ -356,16 +356,15 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 
 					<div class="bundle-details-header__card-bottom">
-							<?php $is_purchase = $this->db->where('user_id', $this->session->userdata('user_id'))->where('bundle_id', $bundle_details['id'])->get('bundle_payment')->num_rows(); ?>
-							<?php if ($is_purchase > 0): ?>
-								<a
-									href="<?php echo site_url('home/my_bundles'); ?>"><?php echo get_phrase('My Bundles'); ?></a>
-							<?php else: ?>
-								<a href="<?php echo site_url('course_bundles/buy/' . $bundle_details['id']); ?>">
-										
-									<?php echo get_phrase('Buy subscription'); ?></a>
-							<?php endif ?>
-						</div>
+						<?php $is_purchase = $this->db->where('user_id', $this->session->userdata('user_id'))->where('bundle_id', $bundle_details['id'])->get('bundle_payment')->num_rows(); ?>
+						<?php if ($is_purchase > 0): ?>
+							<a href="<?php echo site_url('home/my_bundles'); ?>"><?php echo get_phrase('My Bundles'); ?></a>
+						<?php else: ?>
+							<a href="<?php echo site_url('course_bundles/buy/' . $bundle_details['id']); ?>">
+
+								<?php echo get_phrase('Buy subscription'); ?></a>
+						<?php endif ?>
+					</div>
 
 				</div>
 			</div>
@@ -379,69 +378,127 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 <section class="bundle-details">
 	<div class="container">
 		<div class="row">
-			
-		</div>
-	</div>
-</section>
 
-<hr>
-<hr>
-<hr>
+			<h2 class="bundle-details__title"><?php echo get_phrase('Included Courses') ?></h2>
 
-<!---------- Bread Crumb Area Start ---------->
-<section>
-	<div class="bread-crumb">
-		<div class="container">
-			<div class="row">
+
+			<!-- start card -->
+			<?php foreach (json_decode($bundle_details['course_ids']) as $key => $course_id):
+				$this->db->where('id', $course_id);
+				$this->db->where('status', 'active');
+				$course = $this->db->get('course')->row_array();
+
+				$lessons = $this->crud_model->get_lessons('course', $course['id']);
+				$instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();
+				$course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course['id']);
+				$total_rating = $this->crud_model->get_ratings('course', $course['id'], true)->row()->rating;
+				$number_of_ratings = $this->crud_model->get_ratings('course', $course['id'])->num_rows();
+				if ($number_of_ratings > 0) {
+					$average_ceil_rating = ceil($total_rating / $number_of_ratings);
+				} else {
+					$average_ceil_rating = 0;
+				}
+				?>
 				<div class="col-md-8">
-					<h1 class="mb-0 mt-5 mb-4" style="font-size: 40px;"><?php echo $bundle_details['title']; ?></h1>
-					<p class="info ellipsis-line-2 fw-400 text-white mb-4">
-						<?php echo strip_tags($bundle_details['bundle_details']); ?>
-					</p>
+					<a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
+						class="checkPropagation  bundle-details__content  d-flex flex-md-row flex-column">
+						<div class="bundle-details__content-left ">
+							<img loading="lazy" class="w-100 h-100"
+								src="<?php echo $this->crud_model->get_course_thumbnail_url($course['id']); ?>">
 
-					<div class="col-12 course-heading-info mb-5">
-						<div class="info-tag">
-							<img loading="lazy" width="25px" height="25px" class="rounded-circle object-fit-cover me-1"
-								src="<?php echo $this->user_model->get_user_image_url($bundle_details['user_id']); ?>">
-							<p class="text-12px mt-5px me-1"><?php echo get_phrase('Created By'); ?></p>
-							<p class="text-15px mt-1">
-								<a class="created-by-instructor"
-									href="<?php echo site_url('home/instructor_page/' . $bundle_details['user_id']); ?>"><?php echo $created_by['first_name'] . ' ' . $created_by['last_name']; ?></a>
-							</p>
-						</div>
 
-						<div class="info-tag">
-							<i class="fa-regular fa-user text-15px mt-7px"></i>
-							<p class="text-15px mt-1"><?php echo count(json_decode($bundle_details['course_ids'])); ?>
-								<?php echo get_phrase('Courses included'); ?>
-							</p>
-						</div>
 
-						<div class="info-tag">
-							<div class="icon">
-								<ul class="d-flex align-items-center">
-									<?php for ($i = 1; $i < 6; $i++): ?>
-										<?php if ($i <= $bundle_average_ceil_rating): ?>
-											<li class="me-0"><i class="fa-solid fa-star text-15px  mt-7px text-warning"></i>
-											</li>
-										<?php else: ?>
-											<li class="me-0"><i class="fa-solid fa-star text-light text-15px  mt-7px"></i></li>
-										<?php endif; ?>
-									<?php endfor; ?>
-									<p class="text-15px mt-1">
-										(<?php echo $ratings->num_rows() . ' ' . get_phrase('Reviews'); ?>)</p>
-								</ul>
+							<div class="courses-icon <?php if (in_array($course['id'], $my_wishlist_items))
+								echo 'red-heart'; ?>" id="coursesWishlistIcon<?php echo $course['id']; ?>">
+								<i class="fa-solid fa-heart checkPropagation"
+									onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course['id']); ?>')"></i>
 							</div>
 						</div>
 
 
-					</div>
+						<div class="bundle-details__content-right d-flex flex-column">
+							<div class="bundle-details__content-right-top d-flex justify-content-between align-items-center">
+								<h3><?php echo $course['title']; ?></h3>
+							</div>
+
+							<ul class="bundle-details__content-right-list d-flex flex-md-row flex-column">
+
+								<li>
+									<i class="fa-regular fa-circle-play"></i>
+									<p><?php echo get_phrase('lessons') .':'; ?>
+									<span><?= $lessons->num_rows() ?></span></p>
+								</li>
+								<li>
+									<i class="fa-regular fa-clock"></i>
+									<p>
+									<?php echo get_phrase('Hour') .':'; ?>
+									<span><?php echo $course_duration; ?></span>
+			                                 </p>
+								</li>
+								<li>
+									<i class="fa-solid fa-language"></i>
+									<p>
+									<?php echo get_phrase('Language') .':'; ?>
+									<span><?php echo site_phrase($course['language']); ?></span>
+									</p>
+								</li>
+								<li>
+
+									<p><?php echo $average_ceil_rating; ?></p>
+									<p><i class="fa-solid fa-star <?php if ($number_of_ratings > 0)
+										echo 'filled'; ?>"></i>
+									</p>
+									<p>(<?php echo $number_of_ratings; ?> 	<?php echo get_phrase('Reviews') ?>)</p>
+
+								</li>
+
+							</ul>
+
+
+
+
+
+							<p><?php echo $course['short_description']; ?></p>
+
+							<div class="bundle-details__content-right-bottom d-flex align-items-center justify-content-between">
+							<div class="courses-price-left">
+												<?php if ($course['is_free_course']): ?>
+													<h5 class="price-free"><?php echo get_phrase('Free'); ?></h5>
+												<?php elseif ($course['discount_flag']): ?>
+													<h5><?php echo currency($course['discounted_price']); ?></h5>
+													<p class="mt-1"><del><?php echo currency($course['price']); ?></del></p>
+												<?php else: ?>
+													<h5><?php echo currency($course['price']); ?></h5>
+												<?php endif; ?>
+											</div>
+							</div>
+
+                           </div>
+
+
+						</div>
+
+
+
+
+
+
+					</a>
 				</div>
-			</div>
+
+			<?php endforeach; ?>
+
+			<!-- end card -->
+
+
 		</div>
 	</div>
 </section>
-<!---------- Bread Crumb Area End ---------->
+
+<hr>
+<hr>
+<hr>
+
 
 <!-- Start Instructor -->
 <section class="pb-120 pt-50">
