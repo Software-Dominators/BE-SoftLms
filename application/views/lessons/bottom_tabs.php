@@ -76,7 +76,7 @@
 
 <div class="tab-content  lesson__tap-content   ">
 	<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
-		<div class="tab-pane fade" id="summary-class-content" role="tabpanel" aria-labelledby="summary-class-tab">
+		<div class="tab-pane fade lesson_summary" id="summary-class-content" role="tabpanel" aria-labelledby="summary-class-tab">
 
 
 			<?php $resource_files = $this->db->order_by('id', 'desc')->where('lesson_id', $lesson_details['id'])->get('resource_files')->result_array(); ?>

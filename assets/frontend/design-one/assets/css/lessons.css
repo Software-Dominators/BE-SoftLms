@@ -656,12 +656,16 @@
 
 /* lesson__live-class */
 
+.lesson__live-class:not(:last-of-type(.lesson__live-class)) {
+    margin-bottom: 14px;
+}
 .lesson__live-class {
     /* min-width: 706px; */
     padding: 16px 24px;
     border-radius: 16px;
     background: #FDFDFD;
     border: 1px solid #E4E4E4;
+
 }
 
 .lesson__live-class .live {
@@ -782,3 +786,15 @@
     }
 }
 
+/* summary  */
+
+.lesson_summary{
+    margin-inline-start: 80px;
+}
+
+
+@media (max-width: 768px) {
+    .lesson_summary {
+        margin-inline-start: 16px;
+    }
+}

@@ -1,0 +1,347 @@
+.bundle-details-header {
+    background-color: var(--primary-color);
+    min-height: 476px;
+}
+
+.bundle-details-header .top {
+    gap: 8px;
+    margin-top: 38px;
+}
+
+.bundle-details-header .top a {
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+    color: var(--light-withe-color);
+
+}
+
+.bundle-details-header .top .active-link {
+    color: var(--dark-orange-color);
+}
+
+.bundle-details-header .top a i {
+    font-size: 24px;
+    margin-inline-end: 8px;
+}
+
+.bundle-details-header .middle {
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.bundle-details-header .middle h1 {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 84px;
+    color: var(--white-color);
+
+    margin-bottom: 16px;
+}
+
+.bundle-details-header .middle p {
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--light-withe-color);
+
+}
+
+.bundle-details-header .bottom {
+    gap: 20px;
+}
+
+.bundle-details-header .bottom .creator {
+    gap: 9.5px;
+}
+
+.bundle-details-header .bottom .creator img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+.bundle-details-header .bottom .creator a {
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--white-color);
+
+}
+
+.bundle-details-header .bottom .creator a span {
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+
+
+}
+
+
+.bundle-details-header .bottom .include-tag {
+    gap: 9.5px;
+}
+
+.bundle-details-header .bottom .include-tag ul {
+    padding: 0;
+    margin: 0;
+}
+
+.bundle-details-header .bottom .include-tag i.fa-circle-play {
+    font-size: 20px;
+    color: var(--primary-color);
+    padding: 10px;
+    background-color: var(--white-color);
+    border-radius: 50%;
+}
+
+.bundle-details-header .bottom .include-tag p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    color: var(--white-color);
+    margin-bottom: 0;
+}
+
+.bundle-details-header .bottom .include-tag .start {
+    gap: 8px;
+}
+
+.bundle-details-header .bottom .include-tag .start li i {
+    font-family: 25px;
+    color: #FFD400;
+
+}
+
+
+
+.bundle-details-header__card {
+    margin-top: 55px;
+    padding: 24px;
+    background-color: var(--bg-form-color);
+    border-radius: 24px;
+    box-shadow: 0px 0px 4px 0px var(--shadow-color);
+
+}
+
+.bundle-details-header__card p {
+    color: var(--placeholder-color);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+}
+
+.bundle-details-header__card h5 {
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--label-color);
+
+}
+
+.bundle-details-header__card-price {
+    padding-bottom: 16px;
+    position: relative;
+}
+
+.bundle-details-header__card-price::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid #E4E4E4;
+}
+
+.bundle-details-header__card-price h4 {
+    color: var(--primary-color);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 57px;
+
+
+}
+
+.bundle-details-header__card-middle {
+    margin-top: 16px;
+}
+
+
+.bundle-details-header__card-bottom a {
+    padding-block: 10px;
+    background-color: var(--primary-color);
+    width: 100%;
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: var(--button-text-color);
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+    .bundle-details-header .bottom {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .bundle-details-header {
+        min-height: 450px;
+
+    }
+
+    .bundle-details-header .top {
+        margin-top: 26px;
+
+    }
+
+    .bundle-details-header .top a {
+        font-size: 12px;
+        line-height: 18px
+    }
+
+    .bundle-details-header .top a i {
+        font-size: 12px;
+    }
+
+
+
+
+
+    .bundle-details-header .middle {
+        margin-top: 32px;
+        margin-bottom: 16px;
+    }
+
+    .bundle-details-header .middle h1 {
+        font-size: 28px;
+        line-height: 42px;
+        margin-bottom: 8px;
+    }
+
+    .bundle-details-header .middle p {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .bundle-details-header .bottom {
+        gap: 15px;
+        flex-direction: column;
+
+    }
+
+    .bundle-details-header .bottom .creator {
+        gap: 8px;
+    }
+
+    .bundle-details-header .bottom .creator img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+
+    }
+
+    .bundle-details-header .bottom .creator a {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .bundle-details-header .bottom .creator a span {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 18px;
+    }
+
+
+    .bundle-details-header .bottom .include-tag {
+        gap: 8px;
+    }
+
+    .bundle-details-header .bottom .include-tag i.fa-circle-play {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .bundle-details-header .bottom .include-tag p {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 18px;
+
+    }
+
+    .bundle-details-header .bottom .include-tag .start {
+        gap: 4px;
+    }
+
+    .bundle-details-header .bottom .include-tag .start li i {
+        font-family: 20px;
+
+
+    }
+
+    /* card */
+    .bundle-details-header__card {
+        margin-top: 0;
+        padding: 15px 24px;
+        border-radius: 16px;
+    }
+
+    .bundle-details-header__card p {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 18px;
+
+
+    }
+
+    .bundle-details-header__card h5 {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+    }
+
+    .bundle-details-header__card-price {
+        padding-bottom: 8px;
+    }
+
+    .bundle-details-header__card-price h4 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 36px;
+
+    }
+
+    .bundle-details-header__card-middle {
+        margin-top: 8px;
+    }
+
+
+    .bundle-details-header__card-bottom a {
+        padding-block: 4px;
+        margin-top: 24px;
+
+    }
+
+
+    .bundle-details-header {
+        position: relative;
+    }
+
+    .bundle-details-header .col-md-4 {
+        position: absolute;
+        width: 343px;
+        bottom: -138px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

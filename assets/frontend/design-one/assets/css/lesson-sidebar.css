@@ -119,10 +119,37 @@
 .lesson-sidebar__lesson-checkbox {
     width: 20px;
     height: 20px;
-    background-color: #754FFE;
+    border-radius: 4px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    box-shadow: none;
+    background-color: var(--white-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    cursor: pointer !important;
 
+}
+.lesson-sidebar__lesson-checkbox[type="checkbox"]:checked,
+.lesson-sidebar__lesson-checkbox[type=radio]:checked {
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+    position: relative;
+}
 
-
+.lesson-sidebar__lesson-checkbox[type="checkbox"]:checked:after,
+.lesson-sidebar__lesson-checkbox[type=radio]:checked:after {
+    content: "\f00c";
+    /* Unicode for checkmark */
+    font-family: "Font Awesome 6 Free";
+    /* Ensure Font Awesome is loaded */
+    position: absolute;
+    inset-inline-start: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: var(--white-color);
+    /* White checkmark */
+    font-weight: bold;
 }
 
 .lesson-sidebar__lesson-title {

@@ -24,13 +24,16 @@
     --text-danger:#ED4C5C;
     --text-success:#4BAE4F;
     --text-primary:#754FFE;
+    --shadow-color:#00000029;
 
   
 
 
 }
 
-
+.text-primary{
+    color: var(--text-primary) !important;
+}
 
 body {
     background-color: var(--white-color);
