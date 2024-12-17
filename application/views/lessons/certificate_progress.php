@@ -2,7 +2,7 @@
 
 
 <?php if (course_progress($course_id) == 100): ?>
-    <div class="lesson__certificate-completed">
+    <div class="lesson__certificate-completed  ">
 
         <div class="d-flex justify-content-center align-items-center flex-column">
             <img src="<?= site_url('assets/frontend/design-one/assets/images/lesson/congratulation.svg') ?>"
@@ -17,7 +17,7 @@
         </div>
     </div>
 <?php else: ?>
-    <div class="lesson__certificate-not-completed d-flex justify-content-center flex-column">
+    <div class="lesson__certificate-not-completed d-flex justify-content-center flex-column " >
 
         <div class="progress-bar" data-percent="<?php echo course_progress($course_id); ?>" data-duration="1000"
             data-color="#ccc, #198754"><span><?php echo course_progress($course_id); ?>%</span></div>

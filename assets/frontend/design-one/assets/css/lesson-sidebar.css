@@ -35,7 +35,7 @@
 }
 
 .lesson-sidebar .accordion-item {
-    border: 1px solid #E4E4E4;
+    border: 1px solid #E4E4E4 !important;
 }
 
 .lesson-sidebar .accordion .accordion-item:not(:last-child) {

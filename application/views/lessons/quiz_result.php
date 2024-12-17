@@ -8,11 +8,11 @@
     $total_obtained_mark = $quiz_results['total_obtained_marks'];
     ?>
     <div class="card">
-        <div class="card-body">
-            <h4 class="w-100 text-center mb-2"><?php echo get_phrase('quiz_results'); ?></h4>
-            <p class="w-100 text-center mb-1"><?php echo get_phrase('total_marks'); ?> : <?php echo $total_mark; ?></p>
-            <p class="w-100 text-center mb-1"><?php echo get_phrase('Pass mark'); ?> : <?php echo $pass_mark; ?></p>
-            <p class="w-100 text-center my-0 fw-700 <?php if($pass_mark <= $total_obtained_mark){echo 'text-success';}else{echo 'text-danger';} ?>"><?php echo get_phrase('obtained_marks'); ?> : <?php echo $total_obtained_mark; ?></>
+        <div class="card-body quiz__result">
+            <h4 class="w-100 text-center mb-2 title"><?php echo get_phrase('quiz_results'); ?></h4>
+            <p class="w-100 text-center mb-1  total_marks"><?php echo get_phrase('total_marks'); ?> : <?php echo $total_mark; ?></p>
+            <p class="w-100 text-center mb-1 pass_mark"><?php echo get_phrase('Pass mark'); ?> : <?php echo $pass_mark; ?></p>
+            <p class="w-100 text-center my-0 fw-700 result <?php if($pass_mark <= $total_obtained_mark){echo 'text-success';}else{echo 'text-danger';} ?>"><?php echo get_phrase('obtained_marks'); ?> : <?php echo $total_obtained_mark; ?></>
         </div>
     </div>
     
@@ -30,9 +30,9 @@
         if($quiz_question['type'] == 'multiple_choice' || $quiz_question['type'] == 'single_choice'): ?>
             <?php $input_type = ($quiz_question['type'] == 'multiple_choice')? 'checkbox' : 'radio'; ?>
         <hr class="bg-secondary">
-        <div class="row justify-content-center">
-            <div class="col-md-1 pt-1 text-start"><b><?php echo $question_number; ?>.</b></div>
-            <div class="col-md-9">
+        <div class="d-flex align-items-center">
+            <p class="quiz__question-number me-2"><?php echo $question_number; ?>.</p>
+            <div class="quiz__question">
                 <?php echo remove_js(htmlspecialchars_decode_($quiz_question['title'])); ?>
             </div>
         </div>
@@ -45,16 +45,17 @@
 
                     <div class="form-group">
 
-                        <input id="option_<?php echo $question_number.'_'.$key; ?>" type="<?php echo $input_type; ?>" value="<?php echo $key; ?>"  disabled <?php if(in_array($key, $user_answers)) echo 'checked'; ?>>
-                        <label class="<?php echo $input_type; ?> text-dark" for="option_<?php echo $question_number.'_'.$key; ?>"><?php echo $option; ?></label><br>
+                        <input class="quiz__input" id="option_<?php echo $question_number.'_'.$key; ?>" type="<?php echo $input_type; ?>" value="<?php echo $key; ?>"  disabled <?php if(in_array($key, $user_answers)) echo 'checked'; ?>>
+                        <label class="<?php echo $input_type; ?> quiz__label" for="option_<?php echo $question_number.'_'.$key; ?>"><?php echo $option; ?></label><br>
                     </div>
                 <?php endforeach; ?>
 
                 <?php if(!in_array($quiz_question['id'], $my_correct_answer_question_ids)): ?>
-                    <div class="w-100 text-danger fw-bold">
+                    <div class="w-100  quiz__wrong d-flex align-items-center">
                         <i class="fas fa-times"></i> <?php echo site_phrase('wrong'); ?>!!
                     </div>
-                    <div class="w-100 text-success fw-bold">
+                    <div class="w-100  quiz__correct d-flex align-items-center">
+                        <i class="fas fa-check"></i>
                         <?php echo site_phrase('correct_answer'); ?> : 
                         <?php
                             foreach(json_decode($quiz_question['correct_answers'], true) as $ans_arr_key => $correct_answer):
@@ -70,7 +71,8 @@
                         ?>
                     </div>
                 <?php else: ?>
-                    <div class="w-100 text-success fw-bold">
+                    <div class="w-100 text-success fw-bold ">
+                     
                         <i class="fas fa-check"></i> <?php echo site_phrase('correct'); ?>.
                     </div>
                 <?php endif; ?>
@@ -78,9 +80,9 @@
         </div>
     <?php elseif($quiz_question['type'] == 'fill_in_the_blank'): ?>
         <hr class="bg-secondary">
-        <div class="row justify-content-center">
-            <div class="col-1 pt-1"><b><?php echo $question_number; ?>.</b></div>
-            <div class="col-md-9">
+        <div class="d-flex align-items-center">
+            <p class="quiz__question-number pe-2"><?php echo $question_number; ?>.</b></p>
+            <div class="quiz__question">
                 <?php
                 $correct_answers = json_decode($quiz_question['correct_answers'], true);
                 $question_title = remove_js(htmlspecialchars_decode_($quiz_question['title']));
@@ -104,10 +106,11 @@
                     <?php endforeach; ?>
 
                     <?php if(!in_array($quiz_question['id'], $my_correct_answer_question_ids)): ?>
-                        <div class="w-100 text-danger fw-bold">
+                        <div class="w-100 d-flex align-items-center   quiz__wrong">
                             <i class="fas fa-times"></i> <?php echo site_phrase('wrong'); ?>!!
                         </div>
-                        <div class="w-100 text-success fw-bold">
+                        <div class="w-100  quiz__correct d-flex align-items-center">
+                            <i class="fas fa-check"></i>
                             <?php echo site_phrase('correct_answer'); ?> : 
                             <?php
                                 foreach(json_decode($quiz_question['correct_answers'], true) as $correct_answer):
@@ -133,7 +136,7 @@
         <div class="row justify-content-center">
             <div class="col-md-1"></div>
             <div class="col-md-9">
-                <a class="btn btn-dark text-white mt-5" href="<?php echo site_url('user/start_quiz/'.$lesson_details['id'].'/retake'); ?>"><?php echo get_phrase('take_the_quiz_again'); ?> <i class="fas fa-chevron-right"></i></a>
+                <a class="btn btn-primary-outline mt-5" href="<?php echo site_url('user/start_quiz/'.$lesson_details['id'].'/retake'); ?>"><?php echo get_phrase('take_the_quiz_again'); ?> <i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
     <?php endif; ?>

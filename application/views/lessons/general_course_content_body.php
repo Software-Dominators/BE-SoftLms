@@ -31,7 +31,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 		$video_id = $url_array_2[1];
 	endif; ?>
 
-	<div class="p-3 <?php if ($full_page)
+	<div class=" <?php if ($full_page)
 		echo 'bg-black'; ?>">
 		<video id="player" playsinline controls>
 			<source class="remove_video_src"
@@ -50,7 +50,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 	<?php $video_details = $this->video_model->getVideoDetails($lesson_details['video_url']);
 	$video_id = $video_details['video_id']; ?>
 
-	<div class="p-3 <?php if ($full_page)
+	<div class=" <?php if ($full_page)
 		echo 'bg-black'; ?>">
 		<div class="plyr__video-embed" id="player">
 			<iframe height="500"
@@ -62,7 +62,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 	<!-- ############# other video############### -->
 <?php elseif ($get_lesson_type == 'amazon_video_url' || $get_lesson_type == 'wasabi_video_url' || $get_lesson_type == 'academy_cloud' || $get_lesson_type == 'html5_video_url'): ?>
 
-	<div class="p-3 <?php if ($full_page)
+	<div class=" <?php if ($full_page)
 		echo 'bg-black'; ?>">
 		<video poster="<?php echo $lesson_thumbnail_url; ?>" id="player" playsinline controls>
 			<source class="remove_video_src" src="<?php echo $lesson_details['video_url']; ?>" type="video/mp4">
@@ -76,7 +76,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 	<!-- ############# video file############### -->
 <?php elseif ($get_lesson_type == 'video_file'): ?>
 
-	<div class="p-3 <?php if ($full_page)
+	<div class=" <?php if ($full_page)
 		echo 'bg-black'; ?>">
 		<video poster="<?php echo $lesson_thumbnail_url; ?>" id="player" playsinline controls>
 			<source
@@ -127,7 +127,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 	<!-- ############# image############### -->
 <?php elseif ($get_lesson_type == 'image_file'): ?>
 	<?php $img_size = getimagesize('uploads/lesson_files/' . $lesson_details['attachment']); ?>
-	<img width="100%" style="max-width: <?php echo $img_size[0] . 'px'; ?>" height="auto"
+	<img height="auto" class="w-100"
 		src="<?php echo site_url('files?course_id=' . $course_details['id'] . '&lesson_id=' . $lesson_details['id'] . '&type=image'); ?>" />
 <?php elseif ($get_lesson_type == 'text_file'): ?>
 

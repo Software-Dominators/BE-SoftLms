@@ -35,9 +35,9 @@ $timer = time_to_seconds($lesson_details['duration']);
     src="<?php echo site_url('assets/lessons/flipclock-timer/flipclock.min.js'); ?>"></script>
 
 
-<div class="card">
+<div class="card  lesson__quiz">
     <div class="card-header">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-8">
                 <h5 class="d-md-flex w-100"><?php echo $lesson_details['title']; ?></h5>
             </div>
@@ -70,7 +70,8 @@ $timer = time_to_seconds($lesson_details['duration']);
                 <?php if ($is_course_instructor == 1): ?>
                     <div class="col-md-6 mt-4">
                         <p class="text-center fw-bold text-danger"><?php echo get_phrase('total_participant_students'); ?> :
-                            <?php echo $quiz_results->num_rows(); ?></p>
+                            <?php echo $quiz_results->num_rows(); ?>
+                        </p>
                         <div class="form-group">
                             <span class="text-muted"><?php echo site_phrase('participant_students'); ?></span>
                             <select onchange="viewAnswerSheet(this.value)" class="form-control" name="participant_students">
@@ -81,7 +82,8 @@ $timer = time_to_seconds($lesson_details['duration']);
                                     ?>
                                     <option value="<?php echo $participant_student['quiz_result_id']; ?>" <?php if (isset($preloaded_result_id) && $preloaded_result_id == $participant_student['quiz_result_id'])
                                            echo 'selected'; ?>>
-                                        <?php echo $student_details['first_name'] . ' ' . $student_details['last_name']; ?></option>
+                                        <?php echo $student_details['first_name'] . ' ' . $student_details['last_name']; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                             <small

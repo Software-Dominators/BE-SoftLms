@@ -81,7 +81,7 @@
     position: relative;
 }
 
-.lesson__tap.nav-tabs .nav-link.active span::after {
+.lesson__tap .nav-tabs .nav-link.active span::after {
     content: "";
     width: 0;
     /* Initially set to 0 */
@@ -108,7 +108,7 @@
 
 
 /* responsive */
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .lesson {
         margin-top: 0;
 
@@ -139,7 +139,38 @@
 }
 
 
+@media (max-width: 768px) {
+    .lesson__tap .nav-tabs{
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+    }
+    .lesson__tap .nav-link{
+        padding: 0;
+    }
+    /* .lesson__tap .nav-item:not(:last-child){
+        margin-inline-end: 38px;
+    } */
+    
+    .lesson__tap-content{
+        padding-inline:16px ;
+    }
+}
 
+@media (max-width: 576px) {
+    .lesson__tap .nav-tabs{
+        gap: 20px;
+    }  
+}
+
+@media (max-width: 480px) {
+    .lesson__tap .nav-tabs{
+        gap: 10px;
+    }
+    
+}
 
 /* ###############################lesson assignment ############################*/
 .lesson__assignment .lesson__assignment-content:not(:last-child) {
@@ -617,11 +648,16 @@
     }
 
 }
+@media (max-width: 576px) {
+    .lesson__certificate-not-completed {
+        max-width: 332px;
+    }
+}
 
 /* lesson__live-class */
 
 .lesson__live-class {
-    min-width: 706px;
+    /* min-width: 706px; */
     padding: 16px 24px;
     border-radius: 16px;
     background: #FDFDFD;
@@ -692,24 +728,21 @@
 
 
 /* responsive */
-@media screen and (max-width: 991px) {
+@media  (max-width: 992px) {
+
     .lesson__live-class {
+       
+        
+
         padding: 16px;
         width: 343px;
 
     }
-
     .lesson__live-class .live {
         width: 55px;
         height: 31px;
         margin-bottom: 7.78px;
     }
-
-
-
-
-
-
     .lesson__live-class .meeting-id {
         font-size: 18px;
         line-height: 27px;
@@ -717,15 +750,11 @@
 
 
     }
-
     .lesson__live-class .schedule {
 
         font-size: 12px;
 
         line-height: 18px;
-
-
-
     }
 
     .lesson__live-class p {
@@ -736,8 +765,6 @@
 
 
     }
-
-
     .lesson__live-class-zoom {
         font-size: 16px;
         line-height: 24px;
@@ -748,10 +775,10 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .lesson__live-class {
-
-        max-width: 100%;
-
+       margin-inline-start:16px ;
+        min-width: 343px;
     }
 }
+

@@ -1,0 +1,148 @@
+.assignment-form {
+    border-radius: 16px;
+    background-color: #F5F6F5;
+
+padding: 40px;
+}
+
+.assignment-form__title {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+.assignment-form__go-back {
+    color: var(--primary-color) !important;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    position: relative;
+}
+
+
+.assignment-form__go-back::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+
+
+
+.assignment-form  input[type=text],
+.assignment-form  textarea
+ {
+    /* //width: Fill (608px)px; */
+    height: 48px;
+    padding: 8px 16px 8px 16px;
+    gap: 8px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4
+}
+
+.assignment-form  textarea {
+    height: 183px;
+
+}
+
+.assignment-form  input::placeholder,
+.assignment-form  textarea::placeholder,
+form input[type=file]::placeholder {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--placeholder-light-color);
+
+}
+
+.assignment-form  label {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--label-color);
+
+}
+
+.assignment-form  button {
+
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--button-text-color);
+
+
+}
+
+
+
+/* responsive */
+
+@media (max-width: 992px) {
+    .assignment-form {
+        padding: 24px;
+    }
+
+   .assignment-form__title,
+    .assignment-form__go-back {
+     
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .assignment-form input[type=text],
+    .assignment-form textarea {
+        /* //width: Fill (608px)px; */
+        height: 32px;
+    }
+
+    .assignment-form textarea {
+        height: 90px;
+
+    }
+
+    .assignment-form input::placeholder,
+    .assignment-form textarea::placeholder,
+    form input[type=file]::placeholder {
+        font-size: 12px;
+        line-height: 18px;
+
+
+    }
+
+    .assignment-form label {
+
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+
+
+}
+
+
+@media (max-width: 768px) {
+    .assignment-form {
+        padding: 16px;
+    }
+    .assignment-form {
+        top: -114px;
+    }
+
+    .assignment-form__title,
+    .assignment-form__go-back {
+     
+        font-size: 15px;
+        line-height: 20px;
+    }
+}

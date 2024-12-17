@@ -7,9 +7,9 @@
 				method="post" enctype="multipart/form-data">
 				<?php $input_type = ($quiz_question['type'] == 'multiple_choice') ? 'checkbox' : 'radio'; ?>
 				<hr class="bg-secondary">
-				<div class="row justify-content-center">
-					<div class="col-md-1 pt-1 text-start"><b><?php echo $question_number; ?>.</b></div>
-					<div class="col-md-9">
+				<div class="d-flex align-items-center">
+					<p class="pe-2 quiz__question-number"><?php echo $question_number; ?>.</p>
+					<div class=" quiz__question">
 						<?php echo remove_js(htmlspecialchars_decode_($quiz_question['title'])); ?>
 					</div>
 				</div>
@@ -18,19 +18,19 @@
 					<div class="col-md-9">
 						<?php foreach (json_decode($quiz_question['options'], true) as $key => $option): ?>
 							<?php $key++; ?>
-							<div class="form-group">
+							<div class="form-group align-items-center d-flex">
 								<input onchange="submit_quiz_answer('submitForm<?php echo $question_number; ?>');"
 									id="option_<?php echo $question_number . '_' . $key; ?>" type="<?php echo $input_type; ?>"
-									value="<?php echo $key; ?>" name="answer[]">
-								<label class="<?php echo $input_type; ?> text-dark"
+									value="<?php echo $key; ?>" name="answer[]" class="quiz__input">
+								<label class="<?php echo $input_type; ?>  quiz__label"
 									for="option_<?php echo $question_number . '_' . $key; ?>"><?php echo $option; ?></label><br>
 							</div>
 						<?php endforeach; ?>
 						<!-- Add flag checkbox -->
 						<div class="flag-container mt-2">
-							<input type="checkbox" id="flag-<?php echo $question_number; ?>" class="question-flag-checkbox"
+							<input type="checkbox" id="flag-<?php echo $question_number; ?>" class="question-flag-checkbox "
 								onchange="toggleQuestionFlag(<?php echo $question_number; ?>)">
-							<label for="flag-<?php echo $question_number; ?>" class="flag-label">
+							<label for="flag-<?php echo $question_number; ?>" class="flag-label  ">
 								Flag for review
 							</label>
 						</div>
@@ -40,13 +40,13 @@
 		</div>
 	<?php elseif ($quiz_question['type'] == 'fill_in_the_blank'): ?>
 		<div class="question-wrapper" id="question-<?php echo $question_number; ?>">
-			<form class="ajaxFormSubmission" id="submitForm<?php echo $question_number; ?>"
+			<form class="ajaxFormSubmission  quiz-form" id="submitForm<?php echo $question_number; ?>"
 				action="<?php echo site_url('user/submit_quiz_answer/' . $quiz_question['quiz_id'] . '/' . $quiz_question['id'] . '/' . $quiz_question['type']); ?>"
 				method="post" enctype="multipart/form-data">
 				<hr class="bg-secondary">
-				<div class="row justify-content-center">
-					<div class="col-1 pt-1"><b><?php echo $question_number; ?>.</b></div>
-					<div class="col-md-9">
+				<div class="d-flex align-items-center">
+					<p class="pe-2  quiz__question-number"><?php echo $question_number; ?>.</p>
+					<div class="quiz__question">
 						<?php
 						$correct_answers = json_decode($quiz_question['correct_answers'], true);
 						$question_title = remove_js(htmlspecialchars_decode_($quiz_question['title']));

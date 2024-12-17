@@ -3,7 +3,7 @@
 
 		<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
 
-			<li class="nav-item " role="presentation">
+			<li class="nav-item  " role="presentation">
 				<button class="nav-link" id="summary-class-tab" data-bs-toggle="tab" data-bs-target="#summary-class-content"
 					type="button" role="tab" aria-controls="summary-class-content" aria-selected="true">
 
@@ -70,20 +70,18 @@
 	</ul>
 </div>
 
-<div class="container d-flex justify-content-center mt-5">
 
-	<div class="lesson__certificate-circle ">
 
-	</div>
-</div>
-<div class="tab-content  lesson__tap-content  container ">
+
+
+<div class="tab-content  lesson__tap-content   ">
 	<?php if (isset($lesson_details) && is_array($lesson_details) && count($lesson_details) > 0): ?>
 		<div class="tab-pane fade" id="summary-class-content" role="tabpanel" aria-labelledby="summary-class-tab">
 
 
 			<?php $resource_files = $this->db->order_by('id', 'desc')->where('lesson_id', $lesson_details['id'])->get('resource_files')->result_array(); ?>
 			<?php if (is_array($resource_files) && count($resource_files) > 0): ?>
-				<div class="row mb-4">
+				<div class="row mb-4 ">
 					<div class="col-auto">
 						<h6 class="text-dark pt-2"><?php echo get_phrase('Attached Files'); ?>:</h6>
 					</div>
@@ -132,6 +130,9 @@
 
 	<?php endif; ?>
 </div>
+
+
+
 
 
 <?php if (addon_status('forum')): ?>
