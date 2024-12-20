@@ -258,6 +258,142 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 		color: #676C7D !important;
 	}
 </style>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+
+
+
+<style>
+	/* Ensure the Swiper container has relative positioning */
+	.swiper {
+		position: relative;
+		height: auto;
+	}
+
+	/* Override default positioning to cancel "top" */
+	.swiper-button-prev,
+	.swiper-button-next {
+		position: absolute;
+		/* Override default static position */
+		bottom: 0px;
+		/* Place the buttons below the slider */
+		top: auto;
+		/* Cancel the default "top" positioning */
+		transform: translateY(0);
+		/* Reset any vertical transform */
+		z-index: 10;
+		/* Ensure buttons are above other elements */
+	}
+
+	/* Center the buttons horizontally below the slider */
+	.swiper-button-prev {
+		left: 45%;
+		/* Adjust to move slightly to the left */
+	}
+
+	.swiper-button-next {
+		right: 45%;
+		/* Adjust to move slightly to the right */
+	}
+
+	/* Optional styling for the buttons */
+	.swiper-button-prev,
+	.swiper-button-next {
+		box-shadow: -4px 4px 20px 0px #20B4861F;
+		background: #754FFE;
+		border-radius: 8px;
+		width: 44px;
+		height: 44px;
+	}
+
+	.swiper-button-prev.disabled,
+	/* .swiper-button-next.disabled{
+		box-shadow: -4px 4px 20px 0px #20B4861F;
+		background: #FFFFFF;
+
+		border: 1px solid #A1A1A1
+	} */
+
+
+
+	.swiper-button-next.swiper-button-disabled,
+	.swiper-button-prev.swiper-button-disabled {
+		box-shadow: -4px 4px 20px 0px #20B4861F;
+		background: #FFFFFF;
+
+		border: 1px solid #A1A1A1
+	}
+
+	.swiper-button-next:after,
+	.swiper-button-prev:after {
+		font-family: swiper-icons;
+		font-size: 15px;
+		color: var(--white-color);
+	}
+
+
+
+	.swiper-button-next.swiper-button-disabled:after,
+	.swiper-button-prev.swiper-button-disabled:after {
+		font-family: swiper-icons;
+		font-size: 15px;
+		color: #A1A1A1;
+	}
+
+	.swiper-pagination {
+		bottom: -39px;
+	}
+
+	.swiper-pagination-bullet {
+		width: 12px;
+		height: 12px;
+		background: #CFD3D6;
+		display: inline-block;
+		border-radius: 50%;
+
+
+
+	}
+
+	.swiper-pagination-bullet-active {
+		background: #754FFE;
+
+	}
+
+	.swiper {
+		position: relative;
+		/* background-color: red; */
+		height: 500px;
+	}
+
+	.review__navigation {
+		z-index: 9999;
+		position: absolute;
+		bottom: 32px;
+		width: 50%;
+		justify-content: space-between !important;
+	
+	}
+.review__navigation-btn{
+	gap: 16px;
+}
+	.review__navigation .swiper-button-next,
+	.review__navigation .swiper-button-prev ,.swiper-pagination{
+		position: static;
+
+	}
+	.bundle-details-reviews .swiper{
+		overflow-x: visible;
+
+	}
+</style>
+
+
+
 
 <header class="bundle-details-header">
 	<div class="container">
@@ -399,7 +535,7 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 					$average_ceil_rating = 0;
 				}
 				?>
-				<div class="col-lg-8 col-md-6">
+				<div class="col-md-8">
 					<a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
 						class="checkPropagation  bundle-details__content  d-flex flex-lg-row flex-column ">
 						<div class="bundle-details__content-left">
@@ -426,7 +562,8 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 								<h3><?php echo $course['title']; ?></h3>
 							</div>
 
-							<ul class="bundle-details__content-right-list d-flex flex-lg-row flex-column order-3 order-lg-2">
+							<ul
+								class="bundle-details__content-right-list d-flex flex-lg-row flex-column order-3 order-lg-2">
 
 								<li>
 									<i class="fa-regular fa-circle-play"></i>
@@ -493,8 +630,208 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 
 		</div>
+
+
+		<div class="bundle-details__description">
+			<h4><?php echo get_phrase('Description') ?></h4>
+			<p><?php echo $bundle_details['bundle_details']; ?></p>
+
+		</div>
 	</div>
 </section>
+
+
+
+
+
+
+
+<section class="bundle-details-reviews">
+	<div class="container">
+		<header>
+			<h2><?php echo get_phrase('Reviews') ?></h2>
+		</header>
+		<div class="swiper">
+			<div class="swiper-wrapper">
+				<!-- Review Slide -->
+				<div class="swiper-slide">
+					<div class="review__content">
+						<div class="top d-flex align-items-center justify-content-between">
+							<div class="left d-flex align-items-center">
+								<img src="https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?ga=GA1.1.1496705496.1696341355&semt=ais_hybrid"
+									alt="">
+								<div class="d-flex flex-column justify-content-between">
+									<p><i class="fa-solid fa-star"></i></p>
+									<h6>Wade Warren</h6>
+								</div>
+							</div>
+							<div class="right">
+								<span>2 weeks ago</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<p>Really enjoyed the course. I've had an interest in where AI could go for a little while
+								now and this course has given me so many other ideas and use cases - a real must for
+								anyone with an interest in harnessing the power of AI.</p>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="review__content">
+						<div class="top d-flex align-items-center justify-content-between">
+							<div class="left d-flex align-items-center">
+								<img src="https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?ga=GA1.1.1496705496.1696341355&semt=ais_hybrid"
+									alt="">
+								<div class="d-flex flex-column justify-content-between">
+									<p><i class="fa-solid fa-star"></i></p>
+									<h6>Wade Warren</h6>
+								</div>
+							</div>
+							<div class="right">
+								<span>2 weeks ago</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<p>Really enjoyed the course. I've had an interest in where AI could go for a little while
+								now and this course has given me so many other ideas and use cases - a real must for
+								anyone with an interest in harnessing the power of AI.</p>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="review__content">
+						<div class="top d-flex align-items-center justify-content-between">
+							<div class="left d-flex align-items-center">
+								<img src="https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?ga=GA1.1.1496705496.1696341355&semt=ais_hybrid"
+									alt="">
+								<div class="d-flex flex-column justify-content-between">
+									<p><i class="fa-solid fa-star"></i></p>
+									<h6>Wade Warren</h6>
+								</div>
+							</div>
+							<div class="right">
+								<span>2 weeks ago</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<p>Really enjoyed the course. I've had an interest in where AI could go for a little while
+								now and this course has given me so many other ideas and use cases - a real must for
+								anyone with an interest in harnessing the power of AI.</p>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="review__content">
+						<div class="top d-flex align-items-center justify-content-between">
+							<div class="left d-flex align-items-center">
+								<img src="https://img.freepik.com/free-photo/waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg?ga=GA1.1.1496705496.1696341355&semt=ais_hybrid"
+									alt="">
+								<div class="d-flex flex-column justify-content-between">
+									<p><i class="fa-solid fa-star"></i></p>
+									<h6>Wade Warren</h6>
+								</div>
+							</div>
+							<div class="right">
+								<span>2 weeks ago</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<p>Really enjoyed the course. I've had an interest in where AI could go for a little while
+								now and this course has given me so many other ideas and use cases - a real must for
+								anyone with an interest in harnessing the power of AI.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Repeat the above swiper-slide for additional reviews -->
+			</div>
+			<!-- Swiper Pagination -->
+			
+			<!-- Swiper Navigation -->
+
+
+			<div class="d-flex justify-content-end">
+			<div class="review__navigation  d-flex justify-content-between align-items-center">
+			       <div class="swiper-pagination text-start"></div>
+				   <div class="d-flex justify-content-end review__navigation-btn">
+				   <div class="swiper-button-prev"></div>
+				   <div class="swiper-button-next"></div>
+				   </div>
+			</div>
+			</div>
+
+		</div>
+
+
+
+	</div>
+</section>
+<!-- 
+<script>
+	const swiper = new Swiper('.swiper', {
+		slidesPerView: 1, // Number of slides visible at a time
+		spaceBetween: 1, // Space between slides
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		breakpoints: {
+			768: { slidesPerView: 1 }, // Show 2 slides on medium screens
+			1024: { slidesPerView: 2 }, // Show 3 slides on large screens
+		},
+	});
+</script>
+ -->
+
+
+
+ <script>
+	const swiper = new Swiper('.swiper', {
+		slidesPerView: 1, // Default number of visible slides
+		spaceBetween: 24, // Space between slides (adjust as needed)
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		breakpoints: {
+			// Medium screens (e.g., tablets)
+			768: {
+				slidesPerView: 1, // Show 1 slide for medium screens
+				spaceBetween: 20, // Adjust spacing as needed
+			},
+			// Large screens (e.g., desktops)
+			1024: {
+				slidesPerView: 2.28, // Show 2 full slides and 1/3 of a slide
+				spaceBetween: 30, // Adjust spacing as needed
+			},
+		},
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <hr>
 <hr>

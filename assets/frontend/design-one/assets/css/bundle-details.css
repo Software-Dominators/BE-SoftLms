@@ -528,12 +528,56 @@
 
 }
 
+.bundle-details__description {
+    margin-block: 70px;
 
+}
+
+.bundle-details__description h4 {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+.bundle-details__description p {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #505050;
+    margin-top: 16px;
+
+}
 
 
 /* responsive */
 
 
+@media (max-width: 1200px) and (min-width: 992px) {
+
+    .bundle-details__content-right-list {
+        gap: 8px;
+    }
+
+    .bundle-details__content-right-list li {
+        gap: 8px;
+
+
+    }
+
+    .bundle-details__content-right-list li i {
+        font-size: 14px;
+    }
+
+    .bundle-details__content-right-list li p {
+
+        font-size: 10px;
+        line-height: 18px;
+    }
+}
 
 @media (max-width: 992px) {
     .bundle-details {
@@ -620,7 +664,27 @@
 
 
 
+    .bundle-details__description {
+        margin-block: 40px;
 
+    }
+
+    .bundle-details__description h4 {
+
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .bundle-details__description p {
+
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        margin-top: 12px;
+
+
+    }
 
 
 }
@@ -628,13 +692,61 @@
 
 
 @media (max-width:992px) and (min-width: 768px) {
-    .bundle-details .row{
-        gap: 0;
-    }
-    
+    .bundle-details__content {
 
-    .bundle-details__content {  
         height: 100%;
     }
-   
+
 }
+
+/* ########################### bundle details  reviews Section ########################## */
+
+.bundle-details-reviews .review__content {
+    padding: 24px;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0px 12px 12px 0px #00000029;
+    border-radius: 12px;
+    gap: 18px;
+    width: 589px;
+}
+.bundle-details-reviews .top .left{
+    gap: 24px;
+}
+.bundle-details-reviews .top img {
+    width: 66px;
+    height: 66px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+}
+
+.bundle-details-reviews .top h6{
+
+font-size: 20px;
+font-weight: 500;
+line-height: 30px;
+color: #1A1A1A;
+
+}
+.bundle-details-reviews .top .right span{
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+color: #868686;
+
+}
+
+.review__content .bottom p{
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+   color: #5D5D5D;
+    
+}
+
+
+
+/* ########################### bundle details  reviews Section ########################## */
+
+
+
