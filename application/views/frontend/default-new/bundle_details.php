@@ -377,11 +377,11 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 <section class="bundle-details">
 	<div class="container">
-		<div class="row">
-
+		<header>
 			<h2 class="bundle-details__title"><?php echo get_phrase('Included Courses') ?></h2>
 
-
+		</header>
+		<div class="row">
 			<!-- start card -->
 			<?php foreach (json_decode($bundle_details['course_ids']) as $key => $course_id):
 				$this->db->where('id', $course_id);
@@ -399,47 +399,53 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 					$average_ceil_rating = 0;
 				}
 				?>
-				<div class="col-md-8">
+				<div class="col-lg-8 col-md-6">
 					<a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
-						class="checkPropagation  bundle-details__content  d-flex flex-md-row flex-column">
-						<div class="bundle-details__content-left ">
+						class="checkPropagation  bundle-details__content  d-flex flex-lg-row flex-column ">
+						<div class="bundle-details__content-left">
 							<img loading="lazy" class="w-100 h-100"
 								src="<?php echo $this->crud_model->get_course_thumbnail_url($course['id']); ?>">
+							<div class="bundle-details__heart <?php echo in_array($course['id'], $my_wishlist_items) ? 'red-heart' : ''; ?>"
+								id="coursesWishlistIcon<?php echo $course['id']; ?>">
+								<i class="fa-heart checkPropagation <?php echo in_array($course['id'], $my_wishlist_items) ? 'fa-solid' : 'fa-regular'; ?>"
+									onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course['id']); ?>')">
+								</i>
+							</div>
 
 
-
-							<div class="courses-icon <?php if (in_array($course['id'], $my_wishlist_items))
-								echo 'red-heart'; ?>" id="coursesWishlistIcon<?php echo $course['id']; ?>">
-								<i class="fa-solid fa-heart checkPropagation"
-									onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course['id']); ?>')"></i>
+							<div class="bundle-details__level">
+								<h3><?php echo get_phrase($course['level']); ?></h3>
 							</div>
 						</div>
 
 
-						<div class="bundle-details__content-right d-flex flex-column">
-							<div class="bundle-details__content-right-top d-flex justify-content-between align-items-center">
+
+						<div class="bundle-details__content-right d-flex flex-column  w-100">
+							<div
+								class="bundle-details__content-right-top d-flex justify-content-between align-items-center order-1">
 								<h3><?php echo $course['title']; ?></h3>
 							</div>
 
-							<ul class="bundle-details__content-right-list d-flex flex-md-row flex-column">
+							<ul class="bundle-details__content-right-list d-flex flex-lg-row flex-column order-3 order-lg-2">
 
 								<li>
 									<i class="fa-regular fa-circle-play"></i>
-									<p><?php echo get_phrase('lessons') .':'; ?>
-									<span><?= $lessons->num_rows() ?></span></p>
+									<p><?php echo get_phrase('lessons') . ':'; ?>
+										<span><?= $lessons->num_rows() ?></span>
+									</p>
 								</li>
 								<li>
 									<i class="fa-regular fa-clock"></i>
 									<p>
-									<?php echo get_phrase('Hour') .':'; ?>
-									<span><?php echo $course_duration; ?></span>
-			                                 </p>
+										<?php echo get_phrase('Hour') . ':'; ?>
+										<span><?php echo $course_duration; ?></span>
+									</p>
 								</li>
 								<li>
 									<i class="fa-solid fa-language"></i>
 									<p>
-									<?php echo get_phrase('Language') .':'; ?>
-									<span><?php echo site_phrase($course['language']); ?></span>
+										<?php echo get_phrase('Language') . ':'; ?>
+										<span><?php echo site_phrase($course['language']); ?></span>
 									</p>
 								</li>
 								<li>
@@ -453,39 +459,34 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 								</li>
 
 							</ul>
+							<p class="order-lg-3 order-2"><?php echo $course['short_description']; ?></p>
 
 
+							<div
+								class="bundle-details__content-right-bottom order-4 mt-auto  d-flex align-items-center justify-content-between">
+								<div class="bundle-details__price d-flex">
+									<span><?= get_phrase('Price') . ':'; ?></span>
+									<?php if ($course['is_free_course']): ?>
+										<h6><?php echo get_phrase('Free'); ?></h6>
+									<?php elseif ($course['discount_flag']): ?>
+										<h5><?php echo currency($course['discounted_price']); ?></h5>
+										<p><?php echo currency($course['price']); ?></p>
+									<?php else: ?>
+										<p><?php echo currency($course['price']); ?></p>
+									<?php endif; ?>
+								</div>
 
 
-
-							<p><?php echo $course['short_description']; ?></p>
-
-							<div class="bundle-details__content-right-bottom d-flex align-items-center justify-content-between">
-							<div class="courses-price-left">
-												<?php if ($course['is_free_course']): ?>
-													<h5 class="price-free"><?php echo get_phrase('Free'); ?></h5>
-												<?php elseif ($course['discount_flag']): ?>
-													<h5><?php echo currency($course['discounted_price']); ?></h5>
-													<p class="mt-1"><del><?php echo currency($course['price']); ?></del></p>
-												<?php else: ?>
-													<h5><?php echo currency($course['price']); ?></h5>
-												<?php endif; ?>
-											</div>
+								<span class="bundle-details__compare checkPropagation"
+									onclick="redirectTo('<?php echo base_url('home/compare?course-1=' . slugify($course['title']) . '&course-id-1=' . $course['id']); ?>');">
+									<?php echo get_phrase('Compare'); ?>
+								</span>
 							</div>
-
-                           </div>
-
 
 						</div>
 
-
-
-
-
-
 					</a>
 				</div>
-
 			<?php endforeach; ?>
 
 			<!-- end card -->
