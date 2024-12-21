@@ -180,7 +180,7 @@
                <ul class="parent">
                 <li>
 
-                <input class="" type="radio" name="rating" value="all" id="rating_all"
+                <input class="course-sidebar__check" type="radio" name="rating" value="all" id="rating_all"
                     onchange="filterCourse()" <?php if ($selected_rating == 'all')
                         echo 'checked'; ?>>
                         <span><?php echo get_phrase('All'); ?></span>

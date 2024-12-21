@@ -1,6 +1,6 @@
 <div class="row align-items-center sorting justify-content-end  sorting-desktop">
 
-    <div class="col-lg-8  d-flex justify-content-between ">
+    <div class="col-xl-8   d-flex justify-content-between ">
         <select id="sorting_select_input" class="select-control form-select nice-select sorting-select"
             aria-label="Default select example" onchange="filterCourse()">
             <option value="newest" <?php if ($selected_sorting == 'newest')

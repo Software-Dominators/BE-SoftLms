@@ -274,31 +274,7 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 		height: auto;
 	}
 
-	/* Override default positioning to cancel "top" */
-	.swiper-button-prev,
-	.swiper-button-next {
-		position: absolute;
-		/* Override default static position */
-		bottom: 0px;
-		/* Place the buttons below the slider */
-		top: auto;
-		/* Cancel the default "top" positioning */
-		transform: translateY(0);
-		/* Reset any vertical transform */
-		z-index: 10;
-		/* Ensure buttons are above other elements */
-	}
 
-	/* Center the buttons horizontally below the slider */
-	.swiper-button-prev {
-		left: 45%;
-		/* Adjust to move slightly to the left */
-	}
-
-	.swiper-button-next {
-		right: 45%;
-		/* Adjust to move slightly to the right */
-	}
 
 	/* Optional styling for the buttons */
 	.swiper-button-prev,
@@ -309,16 +285,6 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 		width: 44px;
 		height: 44px;
 	}
-
-	.swiper-button-prev.disabled,
-	/* .swiper-button-next.disabled{
-		box-shadow: -4px 4px 20px 0px #20B4861F;
-		background: #FFFFFF;
-
-		border: 1px solid #A1A1A1
-	} */
-
-
 
 	.swiper-button-next.swiper-button-disabled,
 	.swiper-button-prev.swiper-button-disabled {
@@ -344,9 +310,7 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 		color: #A1A1A1;
 	}
 
-	.swiper-pagination {
-		bottom: -39px;
-	}
+
 
 	.swiper-pagination-bullet {
 		width: 12px;
@@ -366,30 +330,110 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 	.swiper {
 		position: relative;
-		/* background-color: red; */
-		height: 500px;
+		/* height: 500px; */
 	}
 
 	.review__navigation {
 		z-index: 9999;
-		position: absolute;
-		bottom: 32px;
-		width: 50%;
-		justify-content: space-between !important;
-	
+		/* position: absolute;
+		bottom: 32px; */
+		height: 132px;
+
 	}
-.review__navigation-btn{
-	gap: 16px;
-}
+
+	.review__navigation-btn {
+		gap: 16px;
+	}
+
 	.review__navigation .swiper-button-next,
-	.review__navigation .swiper-button-prev ,.swiper-pagination{
+	.review__navigation .swiper-button-prev,
+	.swiper-pagination {
 		position: static;
 
 	}
-	.bundle-details-reviews .swiper{
+
+	.bundle-details-reviews .swiper {
 		overflow-x: visible;
 
 	}
+
+
+	/* phone */
+
+
+	.review__navigation-mobile .swiper-button-next,
+	.review__navigation-mobile .swiper-button-prev {
+		width: 32px;
+		height: 32px;
+		padding: 10px 7px 10px 7px;
+		background-color: #DFE9F5;
+		border-radius: 50%;
+
+	}
+
+	.review__navigation-mobile .swiper-button-next.swiper-button-disabled,
+	.review__navigation-mobile .swiper-button-prev.swiper-button-disabled {
+		background-color: #EFF2F1;
+
+	}
+
+
+	.review__navigation-mobile .swiper-button-next:after,
+	.review__navigation-mobile .swiper-button-prev:after {
+		font-family: "Font Awesome 6 Free";
+		font-weight: 900;
+		font-size: 18px;
+		color: #754FFE;
+	}
+
+	.review__navigation-mobile .swiper-button-next:after {
+		content: "\f061";
+	}
+
+	.review__navigation-mobile .swiper-button-prev:after {
+		content: "\f060";
+	}
+
+	.review__navigation-mobile .swiper-button-next.swiper-button-disabled:after,
+	.review__navigation-mobile .swiper-button-prev.swiper-button-disabled:after {
+		font-family: "Font Awesome 6 Free";
+		font-weight: 900;
+		font-size: 18px;
+		color: #A0A0A0;
+	}
+
+	.review__navigation-mobile .swiper-button-next.swiper-button-disabled:after {
+		content: "\f061";
+	}
+
+	.review__navigation-mobile .swiper-button-prev.swiper-button-disabled:after {
+		content: "\f060";
+	}
+
+
+
+	.review__navigation-mobile .swiper-pagination-bullet {
+		width: 5px;
+		height: 5px;
+		background: #DFE9F5;
+		display: inline-block;
+		border-radius: 50%;
+	}
+
+	.review__navigation-mobile .swiper-pagination-bullet-active {
+		background: #754FFE;
+		width: 10px;
+		height: 10px;
+
+
+
+	}
+	/* .review__navigation-mobile,
+	.review__navigation-mobile .swiper-button-prev,
+	.review__navigation-mobile .swiper-button-next,
+	.review__navigation-mobile .swiper-pagination {
+		display: none;
+	} */
 </style>
 
 
@@ -698,6 +742,7 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 						</div>
 					</div>
 				</div>
+
 				<div class="swiper-slide">
 					<div class="review__content">
 						<div class="top d-flex align-items-center justify-content-between">
@@ -720,6 +765,7 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 						</div>
 					</div>
 				</div>
+
 				<div class="swiper-slide">
 					<div class="review__content">
 						<div class="top d-flex align-items-center justify-content-between">
@@ -742,22 +788,69 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 						</div>
 					</div>
 				</div>
+
+
+				<?php $ratings = $this->course_bundle_model->get_bundle_wise_ratings($bundle_details['id']);
+				foreach ($ratings->result_array() as $key => $rating):
+					$user_details = $this->user_model->get_user($rating['user_id'])->row_array();
+					?>
+
+					<div class="swiper-slide">
+						<div class="review__content">
+							<div class="top d-flex align-items-center justify-content-between">
+								<div class="left d-flex align-items-center">
+									<img src="<?php echo $this->user_model->get_user_image_url($rating['user_id']); ?>"
+										alt="user rating">
+									<div class="d-flex flex-column justify-content-between">
+										<p>
+											<i class="fa-solid fa-star"></i>
+											<span><?php echo $rating['rating']; ?></span>
+
+										</p>
+										<h6><?php echo $user_details['first_name'] . ' ' . $user_details['last_name']; ?>
+										</h6>
+									</div>
+								</div>
+								<div class="right">
+									<span><?php echo date('d-M-Y', $rating['date_added']); ?></span>
+								</div>
+							</div>
+							<div class="bottom">
+								<p><?php echo $rating['comment']; ?></p>
+							</div>
+						</div>
+					</div>
+
+				<?php endforeach; ?>
+
 
 				<!-- Repeat the above swiper-slide for additional reviews -->
 			</div>
 			<!-- Swiper Pagination -->
-			
+
 			<!-- Swiper Navigation -->
 
 
-			<div class="d-flex justify-content-end">
-			<div class="review__navigation  d-flex justify-content-between align-items-center">
-			       <div class="swiper-pagination text-start"></div>
-				   <div class="d-flex justify-content-end review__navigation-btn">
-				   <div class="swiper-button-prev"></div>
-				   <div class="swiper-button-next"></div>
-				   </div>
-			</div>
+			<div class="d-flex justify-content-end " id="swiper-reviews">
+
+			
+			<!-- <div class="review__navigation  review__navigation-mobile d-flex justify-content-between align-items-center w-100 ">
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination "></div>
+					<div class="swiper-button-next"></div>
+
+				</div>-->
+				<div class="review__navigation  review__navigation-desktop w-50  d-flex justify-content-between align-items-center">
+					<div class="swiper-pagination text-start"></div>
+					<div class="d-flex justify-content-end review__navigation-btn">
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
+				</div> 
+
+
+
+
 			</div>
 
 		</div>
@@ -766,30 +859,55 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 	</div>
 </section>
-<!-- 
+
+<!-- <h3 class="mb-3">Great product, smooth purchase</h3> -->
+		
+
 <script>
-	const swiper = new Swiper('.swiper', {
-		slidesPerView: 1, // Number of slides visible at a time
-		spaceBetween: 1, // Space between slides
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-		pagination: {
-			el: '.swiper-pagination',
-			clickable: true,
-		},
-		breakpoints: {
-			768: { slidesPerView: 1 }, // Show 2 slides on medium screens
-			1024: { slidesPerView: 2 }, // Show 3 slides on large screens
-		},
-	});
-</script>
- -->
 
 
 
- <script>
+
+	$(document).ready(function () {
+    function updateNavigation() {
+        if ($(window).width() <= 768) { // Mobile screen width threshold
+            if (!$('.review__navigation-mobile').length) { // Check if the mobile layout doesn't already exist
+                $('#swiper-reviews .review__navigation-desktop').replaceWith(`
+                    <div class="review__navigation review__navigation-mobile d-flex justify-content-between align-items-center w-100">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                `);
+            }
+        } else {
+            if (!$('.review__navigation-desktop').length) { // Check if the desktop layout doesn't already exist
+                $('#swiper-reviews .review__navigation-mobile').replaceWith(`
+                    <div class="review__navigation review__navigation-desktop w-50 d-flex justify-content-between align-items-center">
+                        <div class="swiper-pagination text-start"></div>
+                        <div class="d-flex justify-content-end review__navigation-btn">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                `);
+            }
+        }
+    }
+
+    // Run on page load
+    updateNavigation();
+
+    // Run on window resize
+    $(window).resize(function () {
+        updateNavigation();
+    });
+
+
+
+
+
+
 	const swiper = new Swiper('.swiper', {
 		slidesPerView: 1, // Default number of visible slides
 		spaceBetween: 24, // Space between slides (adjust as needed)
@@ -805,15 +923,34 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 			// Medium screens (e.g., tablets)
 			768: {
 				slidesPerView: 1, // Show 1 slide for medium screens
-				spaceBetween: 20, // Adjust spacing as needed
+				spaceBetween: 0, // Adjust spacing as needed
+			},
+			// Larger tablets or small desktops
+			992: {
+				slidesPerView: 2, // Show 2 full slides for larger tablets
+				spaceBetween: 10, // Adjust spacing as needed
+			},
+			1200: {
+				slidesPerView: 2, // Show 2 full slides and 1/3 of a slide
+				spaceBetween: 10, // Adjust spacing as needed
 			},
 			// Large screens (e.g., desktops)
-			1024: {
-				slidesPerView: 2.28, // Show 2 full slides and 1/3 of a slide
+			1400: {
+				slidesPerView: 2, // Show 2 full slides and 1/3 of a slide
+				spaceBetween: 15, // Adjust spacing as needed
+			},
+
+			// Extra-large screens
+			1600: {
+				slidesPerView: 2.28, // Show 2 slides for extra-large screens
 				spaceBetween: 30, // Adjust spacing as needed
 			},
-		},
+		}
+
 	});
+
+});
+
 </script>
 
 
@@ -832,146 +969,3 @@ $created_by = $this->user_model->get_all_user($bundle_details['user_id'])->row_a
 
 
 
-
-<hr>
-<hr>
-<hr>
-
-
-<!-- Start Instructor -->
-<section class="pb-120 pt-50">
-	<div class="container">
-		<h4 class="s_title_one pb-30"><?php echo get_phrase('Included Courses') ?></h4>
-		<div class="grid-view-body courses pb-0 bg-transparent courses-list-view-body">
-			<div class="courses-card courses-list-view-card">
-				<div class="row">
-					<div class="col-md-8">
-						<?php foreach (json_decode($bundle_details['course_ids']) as $key => $course_id):
-							$this->db->where('id', $course_id);
-							$this->db->where('status', 'active');
-							$course = $this->db->get('course')->row_array();
-
-							$lessons = $this->crud_model->get_lessons('course', $course['id']);
-							$instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();
-							$course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course['id']);
-							$total_rating = $this->crud_model->get_ratings('course', $course['id'], true)->row()->rating;
-							$number_of_ratings = $this->crud_model->get_ratings('course', $course['id'])->num_rows();
-							if ($number_of_ratings > 0) {
-								$average_ceil_rating = ceil($total_rating / $number_of_ratings);
-							} else {
-								$average_ceil_rating = 0;
-							}
-							?>
-							<!-- Course List Card -->
-							<a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
-								class="courses-list-view-card-body courses-card-body checkPropagation">
-								<div class="courses-card-image ">
-									<img loading="lazy"
-										src="<?php echo $this->crud_model->get_course_thumbnail_url($course['id']); ?>">
-									<div class="courses-icon <?php if (in_array($course['id'], $my_wishlist_items))
-										echo 'red-heart'; ?>" id="coursesWishlistIcon<?php echo $course['id']; ?>">
-										<i class="fa-solid fa-heart checkPropagation"
-											onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course['id']); ?>')"></i>
-									</div>
-									<div class="courses-card-image-text">
-										<h3><?php echo get_phrase($course['level']); ?></h3>
-									</div>
-								</div>
-								<div class="courses-text w-100">
-									<div class="courses-d-flex-text">
-										<h5><?php echo $course['title']; ?></h5>
-										<span class="compare-img checkPropagation"
-											onclick="redirectTo('<?php echo base_url('home/compare?course-1=' . slugify($course['title']) . '&course-id-1=' . $course['id']); ?>');">
-											<img loading="lazy"
-												src="<?php echo base_url('assets/frontend/default-new/image/compare.png') ?>">
-											<?php echo get_phrase('Compare'); ?>
-										</span>
-									</div>
-									<div class="review-icon">
-										<p><?php echo $average_ceil_rating; ?></p>
-										<p><i class="fa-solid fa-star <?php if ($number_of_ratings > 0)
-											echo 'filled'; ?>"></i>
-										</p>
-										<p>(<?php echo $number_of_ratings; ?> 	<?php echo get_phrase('Reviews') ?>)</p>
-										<p><i
-												class="fas fa-closed-captioning"></i><?php echo site_phrase($course['language']); ?>
-										</p>
-									</div>
-									<p class="ellipsis-line-2"><?php echo $course['short_description']; ?></p>
-									<div class="courses-price-border">
-										<div class="courses-price">
-											<div class="courses-price-left">
-												<?php if ($course['is_free_course']): ?>
-													<h5 class="price-free"><?php echo get_phrase('Free'); ?></h5>
-												<?php elseif ($course['discount_flag']): ?>
-													<h5><?php echo currency($course['discounted_price']); ?></h5>
-													<p class="mt-1"><del><?php echo currency($course['price']); ?></del></p>
-												<?php else: ?>
-													<h5><?php echo currency($course['price']); ?></h5>
-												<?php endif; ?>
-											</div>
-											<div class="courses-price-right ">
-												<p class="me-2"><i class="fa-regular fa-list-alt p-0 text-15px"></i>
-													<?php echo $lessons->num_rows() . ' ' . get_phrase('lessons'); ?></p>
-												<p><i class="fa-regular fa-clock text-15px p-0"></i>
-													<?php echo $course_duration; ?></p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<!-- End Course List Card -->
-						<?php endforeach; ?>
-
-						<h4 class="s_title_one pb-20 mt-5"><?php echo get_phrase('Description') ?></h4>
-						<div class="s_info_one pb-30"><?php echo $bundle_details['bundle_details']; ?></div>
-
-
-						<h4 class="s_title_one pb-20"><?php echo get_phrase('Reviews') ?></h4>
-						<div class="row">
-							<div class="col-md-12">
-								<?php $ratings = $this->course_bundle_model->get_bundle_wise_ratings($bundle_details['id']);
-								foreach ($ratings->result_array() as $key => $rating):
-									$user_details = $this->user_model->get_user($rating['user_id'])->row_array();
-									?>
-									<div class="reviews-border" id="userReview<?php echo $rating['id']; ?>">
-										<div class="row <?php if ($key >= 1)
-											echo 'border-top'; ?>">
-											<div class="col-lg-3 col-md-3 col-sm-5 col-5 my-3 text-center">
-												<h5 class="text-center text-black fw-500">
-													<?php echo $user_details['first_name'] . ' ' . $user_details['last_name']; ?>
-												</h5>
-												<p class="text-center my-0">
-													<?php echo date('d-M-Y', $rating['date_added']); ?>
-												</p>
-												<h1 class="my-0 p-0"><?php echo $rating['rating']; ?></h1>
-												<div class="icon">
-													<?php for ($i = 1; $i <= 5; $i++): ?>
-														<?php if ($rating['rating'] >= $i): ?>
-															<i class="fa-solid fa-star text-warning"></i>
-														<?php else: ?>
-															<i class="fa-solid fa-star"></i>
-														<?php endif; ?>
-													<?php endfor; ?>
-												</div>
-											</div>
-											<div class="col-lg-9 col-md-9 col-sm-7 col-7 my-3">
-												<!-- <h3 class="mb-3">Great product, smooth purchase</h3> -->
-												<p class="text-14px"><?php echo $rating['comment']; ?></p>
-											</div>
-										</div>
-
-									</div>
-								<?php endforeach; ?>
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-	</div>
-</section>
-<!-- End Instructor -->

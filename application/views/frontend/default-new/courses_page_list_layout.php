@@ -19,7 +19,7 @@
             }
             ?>
 
-<div class="col-12">
+<div class="col-xl-9 col-12 ">
     <a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
         class="courses-list-view-card-body courses-card-body checkPropagation course-list__content d-flex  justify-content-between flex-md-row flex-column ">
 

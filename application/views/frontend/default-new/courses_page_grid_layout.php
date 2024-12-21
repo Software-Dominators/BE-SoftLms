@@ -1,6 +1,6 @@
-<div class="course-grid   d-flex align-items-center  w-100">
+<div class="course-grid   d-flex align-items-center  w-100 ">
 
-    <div class="row  justify-content-between w-100">
+    <div class="row  w-100  m-0  ">
    <div class="col-12">
    <?php include 'courses_page_sorting_section.php'; ?>
 
@@ -19,7 +19,7 @@
             }
             ?>
 
-            <div class="col-lg-4 col-md-6  ">
+            <div class="col-xl-4 col-md-6 course-grid__card  ">
                 <a href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>"
                     class="course-grid__content">
                     <figure class="course-grid__content-image">

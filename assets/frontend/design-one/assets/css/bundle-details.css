@@ -719,6 +719,22 @@
     border-radius: 50%;
 }
 
+
+.bundle-details-reviews .top p {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+ color: #1A1A1A;
+
+    
+}
+
+.bundle-details-reviews .top i{
+    font-size: 21px;
+    color: #FFD400;
+}
+
 .bundle-details-reviews .top h6{
 
 font-size: 20px;
@@ -746,7 +762,52 @@ color: #868686;
 
 
 
-/* ########################### bundle details  reviews Section ########################## */
+/* responsive */
+
+@media (max-width: 992px) {
 
 
+    .bundle-details-reviews .review__content {
+        padding: 16px 24px;
+        width: 342px;
+    }
+   
+    .bundle-details-reviews .top img {
+        border: 2px solid var(--primary-color);
+        width: 50px;
+        height: 50px;
 
+
+    }
+
+    .bundle-details-reviews .top p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+    
+    }
+
+    .bundle-details-reviews .top h6{
+font-size: 16px;
+line-height: 24px;        
+        }
+        .bundle-details-reviews .top .right span{
+          
+            font-size: 12px;
+            line-height: 18px;
+        
+            
+        
+        }
+
+}
+
+
+@media(max-width: 768px){
+    
+    .bundle-details-reviews .review__content {
+   
+        width: 100%;
+    }
+
+}
