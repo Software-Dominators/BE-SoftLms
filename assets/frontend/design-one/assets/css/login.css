@@ -1,0 +1,308 @@
+.login-header {
+    height: 541px;
+    background-color: var(--primary-color);
+
+
+}
+
+.login-header__left {
+    padding-top: 75.5px;
+}
+
+.login-header__left h1 {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 84px;
+    color: var(--white-color);
+}
+
+.login-header__left p {
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--dark-withe-color);
+    margin-top: 8px;
+}
+
+
+.login-header__right img {
+    width: 500px;
+    height: 500px;
+    margin-top: 167px;
+
+}
+
+
+/* responsive */
+
+
+
+@media (max-width: 992px) {
+
+
+
+    .login-header {
+
+        height: 603px;
+        margin-top: 37px;
+
+    }
+
+    .login-header__left {
+        padding-top: 0;
+    }
+
+    .login-header__left h1 {
+
+        font-size: 36px;
+        line-height: 54px;
+
+
+    }
+
+    .login-header__left p {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 11px;
+    }
+
+
+    .login-header__right img {
+        width: 238px;
+        height: 238px;
+        margin-top: 0;
+
+    }
+}
+
+
+
+
+/* login */
+.login {
+    margin-bottom: 68px;
+}
+
+.login__form {
+    margin-top: -286px;
+    padding: 40px;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    background: #FBFCFB;
+    border-radius: 24px;
+
+}
+
+.login__form .form-group:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.login__form .form-group label {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--label-color);
+    margin-bottom: 8px;
+
+}
+
+.login__form .form-group input {
+    padding: 8px 16px 8px 16px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4 !important;
+    background: #FDFDFD !important;
+    height: 48px;
+}
+
+.login__form .form-group input::placeholder {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--placeholder-light-color) !important;
+
+}
+
+.login__forget-password {
+    margin-top: 8px;
+
+}
+
+
+
+.login__forget-password a,
+.login__forget-password i {
+    font-size: 16px;
+
+    color: #868686;
+
+}
+
+.login__forget-password a {
+    font-weight: 300;
+    line-height: 24px;
+    margin-inline-start: 8px;
+
+}
+
+
+.login__form button {
+
+    padding-block: 8px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    ;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--button-text-color);
+
+}
+
+
+.login__have-account {
+    gap: 2px;
+    margin-top: 16px;
+}
+
+.login__have-account p,
+.login__have-account a {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+}
+
+.login__have-account p {
+    margin-bottom: 0;
+    color: #292D32;
+}
+
+.login__have-account a {
+    color: var(--primary-color);
+
+}
+
+
+
+.login__line {
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-block: 20px;
+}
+
+
+.login__line::before {
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 1.5px;
+    background-color: #6e798a72;
+    right: 0;
+    top: 50%;
+}
+
+
+.login__line::after {
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 1.5px;
+    background-color: #6e798a72;
+    left: 0;
+    top: 50%;
+}
+
+.login__form-error {
+    margin-top: 8px;
+}
+.login__form-error small,
+.login__form-error i {
+    font-size: 16px;
+    color: #E81010;
+
+}
+
+.login__form-error small {
+    font-weight: 300;
+    line-height: 24px;
+    margin-inline-start: 8px;
+
+}
+
+/* responsive */
+@media (max-width: 992px) {
+
+
+    .login {
+        margin-bottom: 34px;
+    }
+
+    .login__form {
+        margin-top: -183px;
+        padding: 24px;
+        padding-bottom: 52px;
+
+
+    }
+
+    .login__form .form-group label {
+        font-size: 14px;
+        line-height: 21px;
+
+
+
+    }
+
+    .login__form .form-group input {
+        height: 32px;
+
+    }
+
+
+
+
+
+    .login__form .form-group input::placeholder {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .login__forget-password a,
+    .login__forget-password i {
+        font-size: 12px;
+    }
+
+    .login__forget-password a {
+        line-height: 18px;
+    }
+
+
+
+
+    .login__form button {
+
+        padding-block: 4px;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+    .login__have-account {
+        margin-top: 8px;
+    }
+
+    .login__have-account p,
+    .login__have-account a {
+
+        font-size: 14px;
+        line-height: 21px;
+
+    }
+
+
+
+
+
+}
