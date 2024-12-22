@@ -16,7 +16,7 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-			
+
 			//Editable
 			if($user_type == 'user'){
 				$to_user = $this->db->get_where('users', array('email' => $to))->row_array();
@@ -47,7 +47,7 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-			
+
 			//Editable
 			if($user_type == 'admin'){
 				$new_user = $this->db->get_where('users', array('id' => $new_user_id))->row_array();
@@ -87,7 +87,7 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-			
+
 			//Editable
 			if($user_type == 'user'){
 				$query = $this->db->get_where('users', array('email' => $to));
@@ -140,7 +140,7 @@ class Email_model extends CI_Model
 
 	public function course_purchase_notification($student_id = "", $payment_method = "", $amount_paid = "")
 	{
-		
+
 		// $purchased_courses 	= $this->session->userdata('cart_items');
 		// $student_data 		= $this->user_model->get_all_user($student_id)->row_array();
 		// $student_full_name 	= $student_data['first_name'] . ' ' . $student_data['last_name'];
@@ -162,12 +162,19 @@ class Email_model extends CI_Model
 		//End editable
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
-		foreach($this->session->userdata('cart_items') as $course_id){
+		foreach($this->session->userdata('cart_items') as $cart_item){
 			foreach(json_decode($notification['user_types'], true) as $user_type){
-				
+				// TODO: PER_LESSON_SECTION_TASK
+				// TODO: Handle Notification based on purchased item type (course, section, lesson)
+
+				$cart_item_details = cart_items_get_item_details($cart_item);
+
+				if ($cart_item_details) {
+					$course_details = $cart_item_details['course_details'];
+				}
+
 				//Editable
 				if($user_type == 'admin'){
-					$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 					$student_details = $this->user_model->get_all_user($student_id)->row_array();
 					$instructor_details = $this->user_model->get_all_user($course_details['creator'])->row_array();
 					$to_user = $this->db->get_where('users', array('role_id' => 1))->row_array();
@@ -185,7 +192,6 @@ class Email_model extends CI_Model
 				}
 
 				if($user_type == 'instructor'){
-					$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 					$student_details = $this->user_model->get_all_user($student_id)->row_array();
 					$to_user = $this->user_model->get_all_user($course_details['creator'])->row_array();
 					$replaces['course_title'] = '<a href="'.site_url('home/course/'.slugify($course_details['title']).'/'.$course_details['id']).'" target="_blank">'.$course_details['title'].'</a>';
@@ -193,7 +199,6 @@ class Email_model extends CI_Model
 					$replaces['paid_amount'] = $amount_paid;
 				}
 				if($user_type == 'student'){
-					$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 					$instructor_details = $this->user_model->get_all_user($course_details['creator'])->row_array();
 					$to_user = $this->user_model->get_all_user($student_id)->row_array();
 
@@ -229,9 +234,9 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-				
+
 			//Editable
-			
+
 			if($user_type == 'instructor'){
 				$certificate = $this->db->get_where('certificates', array('course_id' => $course_id,'student_id' => $student_id))->row_array();
 				$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
@@ -279,7 +284,7 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-			
+
 			//Editable
 			if($user_type == 'student'){
 				$to_user = $this->db->get_where('users', array('email' => $to))->row_array();
@@ -364,12 +369,12 @@ class Email_model extends CI_Model
 
 	function bundle_purchase_notification_bundle_creator($bundle_details = "", $admin_details = "", $bundle_creator_details = "", $student_details = "")
 	{
-		
+
 	}
 
 	function bundle_purchase_notification_student($bundle_details = "", $admin_details = "", $bundle_creator_details = "", $student_details = "")
 	{
-		
+
 	}
 
 	function send_notice($notice_id = "", $course_id = "")
@@ -380,7 +385,7 @@ class Email_model extends CI_Model
 
 		$notification = $this->db->where('type', $type)->get('notification_settings')->row_array();
 		foreach(json_decode($notification['user_types'], true) as $user_type){
-			
+
 			//Editable
 			if($user_type == 'student'){
 				$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
@@ -458,7 +463,7 @@ class Email_model extends CI_Model
 		//Update new verification code
 		$this->db->where('id', $user_id)
 		->update('users', array('verification_code' => $new_device_verification_code));
-		
+
 		//600 seconds = 10 minutes
 		$this->session->set_userdata('new_device_code_expiration_time', (time() + 600));
 		$this->session->set_userdata('new_device_user_email', $row['email']);
@@ -595,7 +600,7 @@ class Email_model extends CI_Model
 		$this->send_email_when_delete_an_affiliator_request($email, $name);
 	}
 
-	
+
 	public function send_email_when_reactove_an_affiliator_request($email = "", $name = "")
 	{
 		$this->send_email_when_approed_an_affiliator($email, $name);
@@ -679,8 +684,16 @@ class Email_model extends CI_Model
 	public function course_gift_notification($enrol_student_id="", $payer_user_id = "")
 	{
 		//{"payer":"You have gift a course to [user_name] [course_title]","receiver":"You have received a course gift by [user_name] [course_title]"}
-		foreach($this->session->userdata('cart_items') as $course_id){
-			$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
+		foreach($this->session->userdata('cart_items') as $cart_item){
+			// TODO: PER_LESSON_SECTION_TASK
+			// TODO: Handle Notification based on purchased item type (course, section, lesson)
+
+			$cart_item_details = cart_items_get_item_details($cart_item);
+
+			if ($cart_item_details) {
+				$course_details = $cart_item_details['course_details'];
+			}
+
 			$payer_details = $this->user_model->get_all_user($payer_user_id)->row_array();
 			$enrol_student_details = $this->user_model->get_all_user($enrol_student_id)->row_array();
 			$instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array();
@@ -724,7 +737,7 @@ class Email_model extends CI_Model
 	//notify the reciever/ enrolled student of the gift success
 	public function course_gift_notification_enrol_student($course_id = "", $payer_user_id = "", $enrol_student_id="")
 	{
-		
+
 	}
 
 	function course_completion($user_id = "", $course_id = ""){
@@ -812,7 +825,7 @@ class Email_model extends CI_Model
 	public function send_smtp_mail($msg = NULL, $sub = NULL, $to = NULL, $from = NULL)
 	{
 		ini_set('max_execution_time', 300);
-		
+
 		if(!is_array($to)){
 			$to = array($to);
 		}
@@ -845,7 +858,7 @@ class Email_model extends CI_Model
 		$this->email->initialize($config);
 
 		//for showing "to me" in gmail inbox To: users own email
-		
+
 		$this->email->from($from, get_settings('system_name'));
 		$this->email->subject($sub);
 		$this->email->message($msg);
@@ -863,13 +876,13 @@ class Email_model extends CI_Model
 			// echo $this->email->print_debugger();
 			// die();
 		}
-		
+
 	}
 
 
 
 
 
-	
-	
+
+
 }

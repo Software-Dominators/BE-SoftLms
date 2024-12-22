@@ -41,10 +41,9 @@
                               <span class="badge badge-dark-lighten badge-pill"><?php echo currency($offline_payment['amount']); ?></span>
                             </td>
                             <td>
-                              <h5><?php echo get_phrase($offline_payment['item_type']); ?>: </h5>
-
                               <?php if($offline_payment['item_info'] != ""): ?>
                                 <?php foreach(json_decode($offline_payment['item_info']) as $item): ?>
+                                    <h5><?php echo get_phrase($item->type ?? $offline_payment['item_type']); ?>: </h5>
                                     <p><i class="mdi mdi-arrow-right"></i> <?php echo $item->title; ?></p>
                                 <?php endforeach; ?>
                               <?php endif; ?>

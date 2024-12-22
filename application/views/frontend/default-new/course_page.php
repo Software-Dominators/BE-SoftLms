@@ -1,6 +1,7 @@
 <?php
 $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-$lessons = $this->crud_model->get_lessons('course', $course_details['id']);
+$sections = $this->crud_model->get_section('course', $course_details['id'])->result_array();
+$lessons = $this->crud_model->get_lessons('course', $course_details['id'])->result_array();
 $instructor_details = $this->user_model->get_all_user($course_details['creator'])->row_array();
 $course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course_details['id']);
 $number_of_enrolments = $this->crud_model->enrol_history($course_details['id'])->num_rows();
@@ -270,8 +271,7 @@ if ($number_of_ratings > 0) {
 
                         <!-- button -->
                         <div class="button">
-                            <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                            <?php if (is_purchased($course_details['id'])) : ?>
+                            <?php if (is_purchased(['course_id' => $course_details['id']])) : ?>
                                 <a href="<?php echo site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_details['id']) ?>"><i class="far fa-play-circle"></i> <?php echo get_phrase('Start Now'); ?></a>
                                 <?php if ($course_details['is_free_course'] != 1) : ?>
                                     <a href="#" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $course_details['id'] . '?gift=1'); ?>')"><i class="fas fa-gift"></i> <?php echo get_phrase('Gift someone else'); ?></a>
@@ -280,11 +280,31 @@ if ($number_of_ratings > 0) {
                                 <?php if ($course_details['is_free_course'] == 1) : ?>
                                     <a href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"><?php echo get_phrase('Enroll Now'); ?></a>
                                 <?php else : ?>
+                                    <?php
+                                        $cart_items = $this->session->userdata('cart_items');
+                                        $course_in_cart_items = cart_items_get_index('course', $course_details['id']) !== null;
+                                        $section_in_cart_items = count($sections) > 0 ? cart_items_get_index('section', $sections[0]['id']) !== null : false;
+                                        $lesson_in_cart_items = count($lessons) > 0 ? cart_items_get_index('lesson', $lessons[0]['id']) !== null : false;
+                                    ?>
 
                                     <!-- Cart button -->
-                                    <a id="added_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (!in_array($course_details['id'], $cart_items)) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove from cart'); ?></a>
-                                    <a id="add_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (in_array($course_details['id'], $cart_items)) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add to cart'); ?></a>
+                                    <a id="added_course_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (!$course_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove from cart'); ?></a>
+                                    <a id="add_course_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if ($course_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add to cart'); ?></a>
                                     <!-- Cart button ended-->
+
+                                    <?php if (count($sections) > 0) : ?>
+                                    <!-- Cart button -->
+                                    <a id="added_section_to_cart_btn_<?php echo $sections[0]['id']; ?>" class="<?php if (!$section_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $sections[0]['id'] . '/_/section'); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove section from cart'); ?></a>
+                                    <a id="add_section_to_cart_btn_<?php echo $sections[0]['id']; ?>" class="<?php if ($section_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $sections[0]['id'] . '/_/section'); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add section to cart'); ?></a>
+                                    <!-- Cart button ended-->
+                                    <?php endif; ?>
+
+                                    <?php if (count($lessons) > 0) : ?>
+                                    <!-- Cart button -->
+                                    <a id="added_lesson_to_cart_btn_<?php echo $lessons[0]['id']; ?>" class="<?php if (!$lesson_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $lessons[0]['id'] . '/_/lesson'); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove lesson from cart'); ?></a>
+                                    <a id="add_lesson_to_cart_btn_<?php echo $lessons[0]['id']; ?>" class="<?php if ($lesson_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $lessons[0]['id'] . '/_/lesson'); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add lesson to cart'); ?></a>
+                                    <!-- Cart button ended-->
+                                    <?php endif; ?>
 
                                     <a href="#" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $course_details['id']); ?>')"><i class="fas fa-credit-card"></i> <?php echo get_phrase('Buy Now'); ?></a>
                                 <?php endif; ?>
@@ -415,7 +435,7 @@ if ($number_of_ratings > 0) {
 
 
 <?php if (addon_status('affiliate_course') && $is_affiliattor == 1) : ?>
-    <?php include 'affiliate_course_modal.php';  // course_addon  single line /adding 
+    <?php include 'affiliate_course_modal.php';  // course_addon  single line /adding
     ?>
 <?php endif; ?>
 

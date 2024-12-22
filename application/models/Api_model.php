@@ -76,7 +76,7 @@ class Api_model extends CI_Model
 			$category['number_of_courses'] = $number_of_courses;
 			$response[$key] = $category;
 		}
-		
+
 		return $response;
 	}
 
@@ -358,7 +358,7 @@ class Api_model extends CI_Model
                     }else{
 
                         if($this->db->get_where('ci_sessions', ['id' => $pre_session])->num_rows() > 0){
-                            array_push($updated_session_arr, $pre_session);                        
+                            array_push($updated_session_arr, $pre_session);
                         }
                     }
                     $removeable_device = $removeable_device - 1;
@@ -368,7 +368,7 @@ class Api_model extends CI_Model
                 if(!in_array($current_session_id, $pre_sessions)){
                     if(count($pre_sessions) >= get_settings('allowed_device_number_of_loging')){
                         $this->email_model->new_device_login_alert($user_id);
-                        
+
                         $response['validity'] = 0;
                         $response['device_verification'] = 1;
                     }else{
@@ -414,7 +414,7 @@ class Api_model extends CI_Model
 	            return $response;
             }
 
-            
+
 
             if ($query->num_rows() > 0) {
 
@@ -460,7 +460,7 @@ class Api_model extends CI_Model
 	// 		$userdata['last_name'] = $row['last_name'];
 	// 		$userdata['email'] = $row['email'];
 	// 		$userdata['role'] = strtolower(get_user_role('user_role', $row['id']));
-			
+
 	// 		$userdata['session_id'] = $session_id;
 	// 		$userdata['validity'] = 1;
 	// 	} else {
@@ -522,7 +522,7 @@ class Api_model extends CI_Model
             	$response['email_verification'] = get_settings('student_email_verification');
 		        $response['status'] = 403;
 		        $response['validity'] = false;
-            } 
+            }
             if (get_settings('student_email_verification') == 'enable') {
             	 if($validity === 'unverified_user'){
             	 	$credentials = array('email' => $_POST['email'], 'status' => 0);
@@ -785,7 +785,7 @@ class Api_model extends CI_Model
 	{
 		// 0 represents Not purchased, 1 represents Purchased, 2 represents Pending
 		if ($user_id > 0) {
-			if (enroll_status($course_id, $user_id) == 'valid') {
+			if (enroll_status(['course_id' => $course_id, 'user_id' => $user_id]) == 'valid') {
 				return 1;
 			}else{
 				return 0;
@@ -977,7 +977,7 @@ class Api_model extends CI_Model
 
 		return $response;
 	}
-	
+
 
 	function forgot_password_post(){
     	$email = $this->input->post('email');
@@ -1004,7 +1004,7 @@ class Api_model extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		$this->db->where('status', 1);
 		$bundle_courses = $this->db->get('course_bundle')->result_array();
-		
+
 		foreach ($bundle_courses as $key => $bundle_course) {
 			$ratings = $this->course_bundle_model->get_bundle_wise_ratings($bundle_course['id']);
 			$bundle_total_rating = $this->course_bundle_model->sum_of_bundle_rating($bundle_course['id']);
@@ -1023,7 +1023,7 @@ class Api_model extends CI_Model
 
 		return $result;
 	}
-	
+
 	public function bundle_courses_get($bundle_id = "", $user_id = "")
 	{
 		$this->load->model('addons/course_bundle_model');
@@ -1062,7 +1062,7 @@ class Api_model extends CI_Model
 		}else{
 			$result['subscription_status'] = 'invalid';
 		}
-		
+
 		// This block of codes return the required data of bundle courses
 		$bundle_course_ids = json_decode($bundle_details['course_ids']);
 
@@ -1081,7 +1081,7 @@ class Api_model extends CI_Model
 		$this->db->order_by('id', 'desc');
 		$this->db->where('user_id', $user_id);
 		$bundle_payments = $this->db->get('bundle_payment')->result_array();
-		
+
 		foreach ($bundle_payments as $key => $bundle_payment) {
 			$this->db->where('id', $bundle_payment['bundle_id']);
 			$bundle_details = $this->db->get('course_bundle')->row_array();
@@ -1113,7 +1113,7 @@ class Api_model extends CI_Model
 		$my_bundle_course_details = array();
 		$course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
 		array_push($my_bundle_course_details, $course_details);
-		
+
 		$my_bundle_course_details = $this->course_data($my_bundle_course_details);
 		foreach ($my_bundle_course_details as $key => $my_course) {
 			if (isset($my_course['id']) && $my_course['id'] > 0) {
@@ -1210,7 +1210,7 @@ class Api_model extends CI_Model
 			$question_arr[$key] = $question;
 			$question_arr[$key]['user_name'] = $user_details['first_name'].' '.$user_details['last_name'];
 			$question_arr[$key]['user_image'] = $this->user_model->get_user_image_url($question['user_id']);
-			
+
 
 			$upvoted_user_arr = json_decode($question['upvoted_user_id']);
 			if(is_array($upvoted_user_arr)){

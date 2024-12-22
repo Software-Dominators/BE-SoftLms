@@ -8,7 +8,7 @@ class Offline_payment extends CI_Controller
 	{
 		parent::__construct();
 		date_default_timezone_set(get_settings('timezone'));
-		
+
 		// Your own constructor code
 		$this->load->database();
 		$this->load->library('session');
@@ -55,7 +55,11 @@ class Offline_payment extends CI_Controller
 		        }
 			}elseif($offline_payment['item_type'] == 'course'){
 				//add purchase course in cart
-				$this->session->set_userdata('cart_items', $item_ids);
+				$this->session->set_userdata('cart_items', []);
+				$items_info = json_decode($offline_payment['item_info'], true);
+				foreach ($items_info as $item_info) {
+					cart_items_add($item_info['type'] ?? 'course', $item_info['id']);
+				}
 				//insert value
 				$this->crud_model->enrol_student($offline_payment['user_id']);
 				$this->crud_model->course_purchase($offline_payment['user_id'], 'offline', $offline_payment['amount']);
@@ -128,7 +132,7 @@ class Offline_payment extends CI_Controller
 		}
 
 		if ($param1 == 'approve'){
-			
+
 			$offline_payment = $this->offline_payment_model->offline_payment_all_data($id)->row_array();
 			$item_ids = json_decode($offline_payment['item_id']);
 
@@ -156,7 +160,10 @@ class Offline_payment extends CI_Controller
 		        }
 			}elseif($offline_payment['item_type'] == 'course'){
 				//add purchase course in cart
-				$this->session->set_userdata('cart_items', $item_ids);
+				$this->session->set_userdata('cart_items', []);
+				foreach ($item_ids as $item_id) {
+					cart_items_add('course', $item_id);
+				}
 				//insert value
 				$this->crud_model->enrol_student($offline_payment['user_id']);
 				$this->crud_model->course_purchase($offline_payment['user_id'], 'offline', $offline_payment['amount']);
@@ -207,7 +214,7 @@ class Offline_payment extends CI_Controller
 		}
 
 		$status = "error";
-		$course_id = $this->session->userdata('cart_items');
+		$course_id = cart_items_get_first_item_course_id();
 		$file_extension = pathinfo($_FILES['payment_document']['name'], PATHINFO_EXTENSION);
 		if ($file_extension == 'jpg' || $file_extension == 'pdf' || $file_extension == 'txt' || $file_extension == 'png' || $file_extension == 'docx') :
 			if ($this->session->userdata('total_price_of_checking_out') > 0) :
@@ -224,7 +231,7 @@ class Offline_payment extends CI_Controller
 
 		if ($payment_request_mobile) {
 			$user_id = $this->session->userdata('user_id');
-			redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/' . $status, 'refresh');
+			redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/' . $status, 'refresh');
 		} else {
 			redirect(site_url('home/purchase_history'), 'refresh');
 		}

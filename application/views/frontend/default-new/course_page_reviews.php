@@ -1,11 +1,11 @@
-<?php 
+<?php
 $user_id = $this->session->userdata('user_id');
 $admin_login = $this->session->userdata('admin_login');
 $my_rating = $this->db->where('user_id', $user_id)->where('ratable_id', $course_details['id'])->where('ratable_type', 'course')->get('rating'); ?>
-<?php if($my_rating->num_rows() == 0 && enroll_status($course_details['id'])): ?>
+<?php if($my_rating->num_rows() == 0 && enroll_status(['course_id' => $course_details['id']])): ?>
     <div class="comment instructor-student-feed-back" id="course_page_add_review_form">
         <h1 class="ritt"><?php echo get_phrase('Write a Review') ?></h1>
-        
+
         <div class="row">
             <div class="col-lg-12">
                 <form class="ajaxForm" action="<?php echo site_url('home/rate_course'); ?>" method="post">
@@ -23,7 +23,7 @@ $my_rating = $this->db->where('user_id', $user_id)->where('ratable_id', $course_
                     </div>
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
 <?php endif; ?>
 
@@ -83,7 +83,7 @@ $user_details = $this->user_model->get_user($rating['user_id'])->row_array();
                         </div>
                     </form>
                 </div>
-            </div> 
+            </div>
         <?php endif; ?>
     </div>
 <?php endforeach; ?>

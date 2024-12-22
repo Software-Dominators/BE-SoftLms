@@ -136,11 +136,11 @@ class Offline_payment_model extends CI_Model
 		$offline_payment_courses = $this->db->get_where('offline_payment', array('user_id' => $user_id))->result_array();
 		foreach ($offline_payment_courses as $row) {
 			$course_ids = json_decode($row['course_id'], true);
-			if (in_array($course_id, $course_ids)) {
-				if ($row['status'] == 0) {
-					return "pending";
-				} elseif ($row['status'] == 1) {
-					return "approved";
+			foreach ($course_ids as $cart_item) {
+				if ($cart_item['type'] == 'course' && $cart_item['id'] == $course_id) {
+					return $row['status'] == 0 ? "pending"
+					: ($row['status'] == 1 ? "approved"
+					: "suspended");
 				}
 			}
 		}

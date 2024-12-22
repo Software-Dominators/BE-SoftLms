@@ -16,6 +16,11 @@ class Crud_model extends CI_Model
         $this->output->set_header('Pragma: no-cache');
     }
 
+    public function __get($var)
+    {
+        return get_instance()->$var;
+    }
+
     public function get_categories($param1 = "")
     {
         if ($param1 != "") {
@@ -1024,15 +1029,15 @@ class Crud_model extends CI_Model
     }
 
     public function get_complaints_data() {// all the data for each complains
-    
+
         $this->db->select('*');
         $this->db->from('complains');
         $query = $this->db->get();
-    
+
         return $query->result();
     }
 
-    function update_complain_data_for_replay() { // as the name say 
+    function update_complain_data_for_replay() { // as the name say
         $data['replay_admin_id']=$this->session->userdata('user_id');
         $data['replay_message']=$this->input->post('message');
         $data['replay_date']=date("Y-m-d H:i:s");
@@ -1042,9 +1047,9 @@ class Crud_model extends CI_Model
     }
 
 
-    public function get_complaint_data_via_id($id) {// as the name say 
+    public function get_complaint_data_via_id($id) {// as the name say
         $this->db->select('*');
-        $this->db->from('complains'); 
+        $this->db->from('complains');
         $this->db->where('id', $id);
         $query = $this->db->get();
         // $query_result =$query->result();
@@ -1053,79 +1058,79 @@ class Crud_model extends CI_Model
     }
     public function get_complaint_user_data_via_id($id) {// as the name say with typoo put it work
         $this->db->select('*');
-        $this->db->from('users'); 
+        $this->db->from('users');
         $this->db->where('id', $id);
         $query = $this->db->get();
         // $query_result =$query->result();
-    
+
         return $query->row_array();
     }
 
 
-    public function get_course_name_with_id($id) { // as the name say 
-        $this->db->select('title');  
-        $this->db->from('course'); 
-        $this->db->where('id', $id);  
+    public function get_course_name_with_id($id) { // as the name say
+        $this->db->select('title');
+        $this->db->from('course');
+        $this->db->where('id', $id);
         $query = $this->db->get();
-        
+
         if ($query->num_rows() > 0) {
-            return $query->row()->title;  
+            return $query->row()->title;
         } else {
-            return '-';  
+            return '-';
         }
     }
     public function get_courses_data_for_complain_form() {
         $this->db->select('*');
-        $this->db->from('course');  
+        $this->db->from('course');
         $query = $this->db->get();
-        
+
         // You're returning a single row here
-        return $query->result_array();  
+        return $query->result_array();
     }
-    
+
 
 
     //the following id for the complain teble search integration
     public function get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir) {
         $this->db->select('*');
         $this->db->from('complains');
-        
-        
+
+
         if (!empty($search_value)) {
             $this->db->like('name', $search_value);
             $this->db->or_like('email', $search_value);
         }
-    
-        
+
+
         $this->db->limit($limit, $start);
         $this->db->order_by($order_column, $order_dir);
-        
+
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     public function count_all_complaints() {
         return $this->db->count_all('complains');
     }
-    
+
     public function count_filtered_complaints($search_value) {
         $this->db->select('*');
         $this->db->from('complains');
-        
-        
-        
+
+
+
         if (!empty($search_value)) {
             $this->db->like('name', $search_value);
             $this->db->or_like('email', $search_value);
         }
-        
+
         return $this->db->count_all_results();
     }
     // end complain teble search integration
 
 
 
-    
+
     function get_course_thumbnail_url($course_id, $type = 'course_thumbnail')
     {
         // Course media placeholder is coming from the theme config file. Which has all the placehoder for different images. Choose like course type.
@@ -2661,11 +2666,23 @@ class Crud_model extends CI_Model
 
     public function enrol_student($enrol_user_id, $payer_user_id = "")
     {
+        $purchased_items = $this->session->userdata('cart_items');
+        foreach ($purchased_items as $purchased_item) {
+            $purchased_item_details = cart_items_get_item_details($purchased_item);
 
+            if (!$purchased_item_details) continue;
 
-        $purchased_courses = $this->session->userdata('cart_items');
-        foreach ($purchased_courses as $purchased_course) {
-            $course_details = $this->get_course_by_id($purchased_course)->row_array();
+            $course_details = $purchased_item_details ? $purchased_item_details['course_details'] : null;
+            $section_details = $purchased_item_details ? $purchased_item_details['section_details'] : null;
+            $lesson_details = $purchased_item_details ? $purchased_item_details['lesson_details'] : null;
+
+            $enrol_keys = [
+                'user_id' => $enrol_user_id,
+                'course_id' => $course_details ? $course_details['id'] : null,
+                'section_id' => $section_details ? $section_details['id'] : null,
+                'lesson_id' => $lesson_details ? $lesson_details['id'] : null,
+            ];
+
             if ($course_details['expiry_period'] > 0) {
                 $days = $course_details['expiry_period'] * 30;
                 $data['expiry_date'] = strtotime("+" . $days . " days");
@@ -2673,20 +2690,23 @@ class Crud_model extends CI_Model
                 $data['expiry_date'] = null;
             }
 
-
-            if ($this->db->get_where('enrol', ['user_id' => $enrol_user_id, 'course_id' => $purchased_course])->num_rows() == 0) {
+            if ($this->db->get_where('enrol', $enrol_keys)->num_rows() == 0) {
                 if ($payer_user_id) {
                     $data['gifted_by'] = $payer_user_id;
                 } else {
                     $data['gifted_by'] = 0;
                 }
                 $data['user_id'] = $enrol_user_id;
-                $data['course_id'] = $purchased_course;
+                $data['course_id'] = $enrol_keys['course_id'];
+                $data['section_id'] = $enrol_keys['section_id'];
+                $data['lesson_id'] = $enrol_keys['lesson_id'];
                 $data['date_added'] = strtotime(date('D, d-M-Y'));
                 $this->db->insert('enrol', $data);
             } else {
                 $data['last_modified'] = time();
-                $this->db->where('course_id', $purchased_course);
+                $this->db->where('course_id', $enrol_keys['course_id']);
+                $this->db->where('section_id', $enrol_keys['section_id']);
+                $this->db->where('lesson_id', $enrol_keys['lesson_id']);
                 $this->db->where('user_id', $enrol_user_id);
                 $this->db->update('enrol', $data);
             }
@@ -2789,10 +2809,10 @@ class Crud_model extends CI_Model
     }
     public function course_purchase($user_id, $method, $amount_paid, $param1 = "", $param2 = "")
     {
-        $purchased_courses = $this->session->userdata('cart_items');
+        $purchased_items = $this->session->userdata('cart_items');
         $applied_coupon = $this->session->userdata('applied_coupon');
 
-        foreach ($purchased_courses as $purchased_course) {
+        foreach ($purchased_items as $purchased_item) {
 
             if ($method == 'stripe') {
                 //param1 transaction_id, param2 session_id for stripe
@@ -2807,19 +2827,27 @@ class Crud_model extends CI_Model
 
             $data['user_id'] = $user_id;
             $data['payment_type'] = $method;
-            $data['course_id'] = $purchased_course;
-            $course_details = $this->get_course_by_id($purchased_course)->row_array();
 
-            if ($course_details['discount_flag'] == 1) {
+            $purchased_item_details = cart_items_get_item_details($purchased_item);
+
+            $course_details = $purchased_item_details ? $purchased_item_details['course_details'] : null;
+            $section_details = $purchased_item_details ? $purchased_item_details['section_details'] : null;
+            $lesson_details = $purchased_item_details ? $purchased_item_details['lesson_details'] : null;
+
+            $data['course_id'] = $course_details ? $course_details['id'] : null;
+            $data['section_id'] = $section_details ? $section_details['id'] : null;
+            $data['lesson_id'] = $lesson_details ? $lesson_details['id'] : null;
+
+            if ($purchased_item['type'] == 'course' && $course_details['discount_flag'] == 1) {
                 $data['amount'] = $course_details['discounted_price'];
                 if (addon_status('affiliate_course')  && $this->session->userdata('course_referee') != "" && $this->session->userdata('course_reffer_id')) {
-                    $aff['buying_amount'] = $course_details['discounted_price']; // after discount ,he paid this price 
+                    $aff['buying_amount'] = $course_details['discounted_price']; // after discount ,he paid this price
                     $aff['note'] = "discounted";
                 }
             } else {
-                $data['amount'] = $course_details['price'];
+                $data['amount'] = $purchased_item_details['price'];
                 if (addon_status('affiliate_course')  && $this->session->userdata('course_referee') != "" && $this->session->userdata('course_reffer_id')) {
-                    $aff['buying_amount'] = $course_details['price'];
+                    $aff['buying_amount'] = $purchased_item_details['price'];
                     $aff['note'] = "actual price";
                 }
             }
@@ -2838,7 +2866,6 @@ class Crud_model extends CI_Model
             }
 
             if (addon_status('affiliate_course')  && $this->session->userdata('course_referee') != "" && $this->session->userdata('course_reffer_id')) {
-
                 $aff['affiliate_amount'] = ceil(($aff['buying_amount'] *  get_settings('affiliate_addon_percentage')) / 100);
                 $data['amount'] = $data['amount'] - $aff['affiliate_amount'];
             }
@@ -2851,8 +2878,6 @@ class Crud_model extends CI_Model
                 $total_tax_on_courses_price = 0;
             }
             $data['tax'] = $total_tax_on_courses_price;
-
-
 
             if (get_user_role('role_id', $course_details['creator']) == 1) {
                 $data['admin_revenue'] = $data['amount'];
@@ -2896,8 +2921,7 @@ class Crud_model extends CI_Model
                     $this->session->unset_userdata('course_reffer_id');
                 }
             endif;
-            // course_addon end 
-
+            // course_addon end
         }
     }
 
@@ -4272,15 +4296,7 @@ class Crud_model extends CI_Model
     // GET DISCOUNTED PRICE AFTER APPLYING COUPON
     public function get_discounted_price_after_applying_coupon($coupon_code)
     {
-        $total_price  = 0;
-        foreach ($this->session->userdata('cart_items') as $cart_item) {
-            $course_details = $this->crud_model->get_course_by_id($cart_item)->row_array();
-            if ($course_details['discount_flag'] == 1) {
-                $total_price += $course_details['discounted_price'];
-            } else {
-                $total_price  += $course_details['price'];
-            }
-        }
+        $total_price  = cart_items_get_total();
 
         if ($this->check_coupon_validity($coupon_code)) {
             $coupon_details = $this->get_coupon_details_by_code($coupon_code)->row_array();
@@ -5135,7 +5151,7 @@ class Crud_model extends CI_Model
 
             if (in_array($user_id, $course_instructors)) {
                 return true;
-            } elseif (enroll_status($course_id) == 'valid') {
+            } elseif (enroll_status(['course_id' => $course_id]) == 'valid') {
                 return true;
             }
         }

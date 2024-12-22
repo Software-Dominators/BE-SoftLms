@@ -1,6 +1,12 @@
 <?php $cart_items = $this->session->userdata('cart_items'); ?>
 <?php foreach($cart_items as $cart_item): ?>
-	<?php $course_details = $this->crud_model->get_course_by_id($cart_item)->row_array(); ?>
+	<?php
+		$cart_item_details = cart_items_get_item_details($cart_item);
+
+		$course_details = $cart_item_details ? $cart_item_details['course_details'] : null;
+		$section_details = $cart_item_details ? $cart_item_details['section_details'] : null;
+		$lesson_details = $cart_item_details ? $cart_item_details['lesson_details'] : null;
+	?>
 	<?php $instructor = $this->user_model->get_all_user($course_details['creator'])->row_array(); ?>
 	<div class="path_pos_wish-2">
 	  <div class="path_pos_wish">
@@ -12,16 +18,24 @@
 	            <span onclick="actionTo('<?php echo site_url('home/handle_cart_items/'.$course_details['id']) ?>');" class="cart-minus checkPropagation rounded-circle m-0 p-0 w-auto h-auto"><i class="fa-solid fa-minus m-1 text-9px"></i></span>
 	          </div>
 	          <div class="text">
-	            <h4><?php echo $course_details['title']; ?></h4>
+	            <h4>
+					<?php echo $course_details['title']; ?>
+					<?php if($cart_item['type'] == 'section' || $cart_item['type'] == 'lesson'): ?>
+						<?php echo " > " . $section_details['title']; ?>
+					<?php endif; ?>
+					<?php if($cart_item['type'] == 'lesson'): ?>
+						<?php echo " > " . $lesson_details['title']; ?>
+					<?php endif; ?>
+				</h4>
 	            <p><?php echo get_phrase('By'); ?> <?php echo $instructor['first_name'].' '.$instructor['last_name']; ?></p>
 	            <div class="spandiv">
 	             	<?php if($course_details['is_free_course']): ?>
 	                    <span><?php echo get_phrase('Free'); ?></span>
-	                <?php elseif($course_details['discount_flag']): ?>
+	                <?php elseif($cart_item['type'] == 'course' && $course_details['discount_flag']): ?>
 	                    <span><?php echo currency($course_details['discounted_price']); ?></span>
 	                    <del><?php echo currency($course_details['price']); ?></del>
 	                <?php else: ?>
-	                    <span><?php echo currency($course_details['price']); ?></span>
+	                    <span><?php echo currency($cart_item_details['price']); ?></span>
 	                <?php endif; ?>
 	            </div>
 	          </div>

@@ -34,6 +34,10 @@ class Home extends CI_Controller
         }
 
         ini_set('memory_limit', '1024M');
+        // $this->session->set_userdata('cart_items', []);
+        // echo "<pre>";
+        // var_dump($this->session->userdata('cart_items'));
+        // die();
     }
 
     public function index()
@@ -52,12 +56,10 @@ class Home extends CI_Controller
             $page_data['courses_data'] = $this->crud_model->get_courses_data_for_complain_form();
             $page_data['user_data'] = $this->session->userdata();
             $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
-
         } else {
 
             $this->session->set_flashdata('error_message', get_phrase('you can not do this'));
             redirect(base_url('/'));
-
         }
     }
 
@@ -304,7 +306,7 @@ class Home extends CI_Controller
 
 
 
-        //course_addon end 
+        //course_addon end
 
 
         $this->access_denied_courses($course_id);
@@ -504,44 +506,145 @@ class Home extends CI_Controller
         }
 
         $course_id = $this->input->post('course_id');
-        $previous_cart_items = $this->session->userdata('cart_items');
-        if (in_array($course_id, $previous_cart_items)) {
-            $key = array_search($course_id, $previous_cart_items);
-            unset($previous_cart_items[$key]);
-        } else {
-            array_push($previous_cart_items, $course_id);
-        }
+        $previous_cart_items = cart_items_add('course', $course_id, true);
 
-        $this->session->set_userdata('cart_items', $previous_cart_items);
         if ($return_number == 'true') {
             echo sizeof($previous_cart_items);
         } else {
             $this->load->view('frontend/' . get_frontend_settings('theme') . '/cart_items');
         }
     }
-    public function handle_cart_items($course_id = "", $identifier = "")
+    public function handle_cart_items($cart_item_id = "", $identifier = "", $cart_item_type = "course")
     {
         if (!$this->session->userdata('cart_items')) {
             $this->session->set_userdata('cart_items', array());
         }
 
-        $previous_cart_items = $this->session->userdata('cart_items');
-        if (in_array($course_id, $previous_cart_items)) {
-            $key = array_search($course_id, $previous_cart_items);
-            unset($previous_cart_items[$key]);
+        $identifier = $identifier == '_' ? '' : $identifier;
 
-            $response['success'] = get_phrase('Item successfully removed from cart');
-            $response['hide'] = '#added_to_cart_btn_' . $identifier . $course_id;
-            $response['show'] = '#add_to_cart_btn_' . $identifier . $course_id;
-        } else {
-            array_push($previous_cart_items, $course_id);
+        foreach (explode(',', $cart_item_id) as $key => $cart_item_id) { // TODO: PER_LESSON_SECTION_TASK
+            // TODO: Handle if course added prevent section or lesson addition
+            // TODO: Handle if section added or any section in course prevent course and lesson addition
+            // TODO: Handle if lesson added or any lesson in course prevent course, section and lesson addition
+            if ($cart_item_type == 'course') {
+                $course_details = $this->crud_model->get_course_by_id($cart_item_id)->row_array();
 
-            $response['success'] = get_phrase('Item successfully added to cart');
-            $response['show'] = '#added_to_cart_btn_' . $identifier . $course_id;
-            $response['hide'] = '#add_to_cart_btn_' . $identifier . $course_id;
+                $course_sections = $this->crud_model->get_section('course', $course_details['id'])->result_array();
+                foreach ($course_sections as $course_section) {
+                    if (cart_items_get_index('section', $course_section['id']) !== null) {
+                        echo json_encode([
+                            'error' => get_phrase('One of course\'s section added to cart. Remove section(s) first.'),
+                        ]);
+                        return;
+                    }
+                }
+
+                $course_lessons = $this->crud_model->get_lessons('course', $course_details['id'])->result_array();
+                foreach ($course_lessons as $course_lesson) {
+                    if (cart_items_get_index('lesson', $course_lesson['id']) !== null) {
+                        echo json_encode([
+                            'error' => get_phrase('One of course\'s lesson added to cart. Remove lesson(s) first.'),
+                        ]);
+                        return;
+                    }
+                }
+
+                if (is_purchased([
+                    'course_id' => $course_details['id'],
+                ]) == 'valid') {
+                    echo json_encode([
+                        'error' => get_phrase('You already purchased this course.'),
+                    ]);
+                    return;
+                }
+            }
+            if ($cart_item_type == 'section') {
+                $section_details = $this->crud_model->get_section('section', $cart_item_id)->row_array();
+
+                if (cart_items_get_index('course', $section_details['course_id']) !== null) {
+                    echo json_encode([
+                        'error' => get_phrase('Section\'s course added to cart. Remove course first.'),
+                    ]);
+                    return;
+                }
+
+                $section_lessons = $this->crud_model->get_lessons('section', $section_details['id'])->result_array();
+                foreach ($section_lessons as $section_lesson) {
+                    if (cart_items_get_index('lesson', $section_lesson['id']) !== null) {
+                        echo json_encode([
+                            'error' => get_phrase('One of section\'s lessons added to cart. Remove lesson(s) first.'),
+                        ]);
+                        return;
+                    }
+                }
+
+                if (
+                    is_purchased([
+                        'course_id' => $section_details['course_id'],
+                        'section_id' => $section_details['id'],
+                    ]) == 'valid'
+                    || is_purchased([
+                        'course_id' => $section_details['course_id'],
+                    ]) == 'valid'
+                ) {
+                    echo json_encode([
+                        'error' => get_phrase('You already purchased this section or the whole course.'),
+                    ]);
+                    return;
+                }
+            }
+            if ($cart_item_type == 'lesson') {
+                $lesson_details = $this->crud_model->get_lessons('lesson', $cart_item_id)->row_array();
+
+                if (cart_items_get_index('section', $lesson_details['section_id']) !== null) {
+                    echo json_encode([
+                        'error' => get_phrase('Lesson\'s section added to cart. Remove section first.'),
+                    ]);
+                    return;
+                }
+
+                if (cart_items_get_index('course', $lesson_details['course_id']) !== null) {
+                    echo json_encode([
+                        'error' => get_phrase('Lesson\'s course added to cart. Remove course first.'),
+                    ]);
+                    return;
+                }
+
+                if (
+                    is_purchased([
+                        'course_id' => $lesson_details['course_id'],
+                        'section_id' => $lesson_details['section_id'],
+                        'lesson_id' => $lesson_details['id'],
+                    ]) == 'valid'
+                    || is_purchased([
+                        'course_id' => $lesson_details['course_id'],
+                        'section_id' => $lesson_details['section_id'],
+                    ]) == 'valid'
+                    || is_purchased([
+                        'course_id' => $lesson_details['course_id'],
+                    ]) == 'valid'
+                ) {
+                    echo json_encode([
+                        'error' => get_phrase('You already purchased this lesson or the whole section or the whole course.'),
+                    ]);
+                    return;
+                }
+            }
+
+            $cart_items = cart_items_add($cart_item_type, $cart_item_id, true);
         }
-        $this->session->set_userdata('cart_items', $previous_cart_items);
 
+        $response['success'] = get_phrase('Cart item(s) updated successfully');
+
+        // if ($cart_item_exists) {
+        //     $response['success'] = get_phrase('Item successfully removed from cart');
+        //     $response['hide'] = '#added_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
+        //     $response['show'] = '#add_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
+        // } else {
+        //     $response['success'] = get_phrase('Item successfully added to cart');
+        //     $response['show'] = '#added_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
+        //     $response['hide'] = '#add_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
+        // }
 
         //Cart page start
         $response['html'] = [
@@ -552,7 +655,6 @@ class Home extends CI_Controller
 
 
         //Cart header content start
-        $cart_items = $this->session->userdata('cart_items');
         $response['load'] = [
             'elem' => '#cartItems',
             'content' => $this->load->view('frontend/' . get_frontend_settings('theme') . '/cart_items', [], true)
@@ -575,14 +677,7 @@ class Home extends CI_Controller
             $is_gift = '';
         }
 
-        $previous_cart_items = $this->session->userdata('cart_items');
-        if (in_array($course_id, $previous_cart_items)) {
-            // $key = array_search($course_id, $previous_cart_items);
-            // unset($previous_cart_items[$key]);
-        } else {
-            array_push($previous_cart_items, $course_id);
-        }
-        $this->session->set_userdata('cart_items', $previous_cart_items);
+        cart_items_add('course', $course_id);
 
         if ($this->session->userdata('user_login')) {
             $this->payment_model->configure_course_payment();
@@ -600,11 +695,8 @@ class Home extends CI_Controller
         }
 
         $course_id = $this->input->post('course_id');
-        $previous_cart_items = $this->session->userdata('cart_items');
-        if (!in_array($course_id, $previous_cart_items)) {
-            array_push($previous_cart_items, $course_id);
-        }
-        $this->session->set_userdata('cart_items', $previous_cart_items);
+        cart_items_add('course', $course_id);
+
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/cart_items');
     }
 
@@ -697,8 +789,8 @@ class Home extends CI_Controller
         $this->email_model->course_purchase_notification($user_id, 'paypal', $amount_paid);
         $this->session->set_flashdata('flash_message', site_phrase('payment_successfully_done'));
         if ($payment_request_mobile == 'true'):
-            $course_id = $this->session->userdata('cart_items');
-            redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/paid', 'refresh');
+            $course_id = cart_items_get_first_item_course_id();
+            redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/paid', 'refresh');
         else:
             $this->session->set_userdata('cart_items', array());
             redirect('home/my_courses', 'refresh');
@@ -739,9 +831,9 @@ class Home extends CI_Controller
             endif;
 
             if ($payment_request_mobile == 'true'):
-                $course_id = $this->session->userdata('cart_items');
+                $course_id = cart_items_get_first_item_course_id();
                 $this->session->set_flashdata('flash_message', site_phrase('payment_successfully_done'));
-                redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/paid', 'refresh');
+                redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/paid', 'refresh');
             else:
                 $this->session->set_userdata('cart_items', array());
                 $this->session->set_flashdata('flash_message', site_phrase('payment_successfully_done'));
@@ -749,9 +841,9 @@ class Home extends CI_Controller
             endif;
         } else {
             if ($payment_request_mobile == 'true'):
-                $course_id = $this->session->userdata('cart_items');
+                $course_id = cart_items_get_first_item_course_id();
                 $this->session->set_flashdata('flash_message', $response['status_msg']);
-                redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/error', 'refresh');
+                redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/error', 'refresh');
             else:
                 $this->session->set_flashdata('error_message', $response['status_msg']);
                 redirect('home/shopping_cart', 'refresh');
@@ -800,17 +892,17 @@ class Home extends CI_Controller
                 $this->email_model->course_purchase_notification($user_id, 'razorpay', $amount);
                 $this->session->set_flashdata('flash_message', site_phrase('payment_successfully_done'));
                 if ($payment_request_mobile == 'true'):
-                    $course_id = $this->session->userdata('cart_items');
-                    redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/paid', 'refresh');
+                    $course_id = cart_items_get_first_item_course_id();
+                    redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/paid', 'refresh');
                 else:
                     $this->session->set_userdata('cart_items', array());
                     redirect('home/my_courses', 'refresh');
                 endif;
             } else {
                 if ($payment_request_mobile == 'true'):
-                    $course_id = $this->session->userdata('cart_items');
+                    $course_id = cart_items_get_first_item_course_id();
                     $this->session->set_flashdata('flash_message', $response['status_msg']);
-                    redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/error', 'refresh');
+                    redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/error', 'refresh');
                 else:
                     $this->session->set_flashdata('error_message', site_phrase('payment_failed') . '! ' . site_phrase('something_is_wrong'));
                     redirect('home/shopping_cart', 'refresh');
@@ -818,9 +910,9 @@ class Home extends CI_Controller
             }
         } else {
             if ($payment_request_mobile == 'true'):
-                $course_id = $this->session->userdata('cart_items');
+                $course_id = cart_items_get_first_item_course_id();
                 $this->session->set_flashdata('flash_message', $response['status_msg']);
-                redirect('home/payment_success_mobile/' . $course_id[0] . '/' . $user_id . '/error', 'refresh');
+                redirect('home/payment_success_mobile/' . $course_id . '/' . $user_id . '/error', 'refresh');
             else:
                 $this->session->set_flashdata('error_message', site_phrase('payment_failed') . '! ' . site_phrase('something_is_wrong'));
                 redirect('home/shopping_cart', 'refresh');
@@ -831,37 +923,53 @@ class Home extends CI_Controller
 
     public function lesson($slug = "", $course_id = "", $lesson_id = "")
     {
-        $enroll_status = enroll_status($course_id);
-
-        $user_id = $this->session->userdata('user_id');
-        $course_instructor_ids = array();
         if ($this->session->userdata('user_login') != 1) {
             if ($this->session->userdata('admin_login') != 1) {
                 redirect('home', 'refresh');
             }
         }
 
-
         $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
+        $course_enrolls = $this->crud_model->enrol_history($course_id)->result_array();
         $course_instructor_ids = explode(',', $course_details['user_id']);
 
         if ($course_details['course_type'] == 'general') {
-
             //this function saved current lesson id and return previous lesson id if $lesson_id param is empty
             $lesson_id = $this->crud_model->update_last_played_lesson($course_id, $lesson_id);
             $sections = $this->crud_model->get_section('course', $course_id);
             if ($sections->num_rows() > 0) {
                 $page_data['sections'] = $sections->result_array();
                 if ($lesson_id == "") {
-                    $default_section = $sections->row_array();
+                    /*
+                     * First enrol section and lesson if exists
+                     * else first section and first lesson of this section
+                     */
+                    $first_enrol_section_id = null;
+                    $first_enrol_lesson_id = null;
+                    foreach ($course_enrolls as $enrol) {
+                        if ($enrol['section_id'] != null && $enrol['lesson_id'] == null) {
+                            $first_enrol_section_id = $enrol['section_id'];
+                            break;
+                        }
+                        if ($enrol['lesson_id'] != null) {
+                            $first_enrol_section_id = $enrol['section_id'];
+                            $first_enrol_lesson_id = $enrol['lesson_id'];
+                            break;
+                        }
+                    }
+                    //
+                    $first_section = $sections->row_array();
+                    $default_section = $first_enrol_section_id ? $this->crud_model->get_section('section', $first_enrol_section_id)->row_array() : $first_section;
                     $page_data['section_id'] = $default_section['id'];
                     $lessons = $this->crud_model->get_lessons('section', $default_section['id']);
                     if ($lessons->num_rows() > 0) {
-                        $default_lesson = $lessons->row_array();
+                        $first_lesson = $lessons->row_array();
+                        $default_lesson = $first_enrol_lesson_id ? $this->crud_model->get_lessons('lesson', $first_enrol_lesson_id)->row_array() : $first_lesson;
                         $lesson_id = $default_lesson['id'];
                         $page_data['lesson_id'] = $default_lesson['id'];
                     }
                 } else {
+                    // Requested section and lesson
                     $page_data['lesson_id'] = $lesson_id;
                     $section_id = $this->db->get_where('lesson', array('id' => $lesson_id))->row()->section_id;
                     $page_data['section_id'] = $section_id;
@@ -875,21 +983,36 @@ class Home extends CI_Controller
             $page_data['scorm_curriculum'] = $scorm_course_data->row_array();
         }
 
+        $lesson_details = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
+        if ($lesson_details['course_id'] != $course_id && $course_details['course_type'] == 'general') {
+            $this->session->set_flashdata('error_message', site_phrase('Access denied'));
+            redirect('home', 'refresh');
+        }
+
         //if not admin or course owner
+        $user_id = $this->session->userdata('user_id');
+        $course_enroll_status = enroll_status(['course_id' => $course_id]);
+        if ($course_enroll_status != 'valid') {
+            $section_enroll_status = isset($page_data['section_id'])
+                ? enroll_status(['course_id' => $course_id, 'section_id' => $page_data['section_id']]) : false;
+            if ($section_enroll_status != 'valid') {
+                $lesson_enroll_status = isset($page_data['section_id']) && isset($page_data['lesson_id'])
+                    ? enroll_status(['course_id' => $course_id, 'section_id' => $page_data['section_id'], 'lesson_id' => $page_data['lesson_id']]) : false;
+                $enroll_status = $lesson_enroll_status;
+            } else {
+                $enroll_status = $section_enroll_status;
+            }
+        } else {
+            $enroll_status = $course_enroll_status;
+        }
         if ($this->session->userdata('role_id') != 1 && !in_array($user_id, $course_instructor_ids)) {
             if ($enroll_status == 'expired') {
                 $this->session->set_flashdata('error_message', site_phrase('Your course accessibility has expired. You need to buy it again'));
                 redirect(site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']), 'refresh');
             } elseif (!$enroll_status) {
-                $this->session->set_flashdata('error_message', site_phrase('You have to buy the course first'));
+                $this->session->set_flashdata('error_message', site_phrase('You have to buy the course, section or lesson first'));
                 redirect(site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']), 'refresh');
             }
-        }
-
-        $lesson_details = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
-        if ($lesson_details['course_id'] != $course_id && $course_details['course_type'] == 'general') {
-            $this->session->set_flashdata('error_message', site_phrase('Access denied'));
-            redirect('home', 'refresh');
         }
 
         $page_data['lesson_details'] = $lesson_details;
@@ -906,7 +1029,7 @@ class Home extends CI_Controller
     {
         $is_admin = $this->session->userdata('admin_login');
         $is_course_instructor = $this->crud_model->is_course_instructor($course_id, $this->session->userdata('user_id'));
-        if (enroll_status($course_id) == 'valid' || $is_course_instructor || $is_admin || get_bundle_validity($bundle_id) == 'valid') {
+        if (enroll_status(['course_id' => $course_id]) == 'valid' || $is_course_instructor || $is_admin || get_bundle_validity($bundle_id) == 'valid') {
             $page_data['course_id'] = $course_id;
             $page_data['lesson_id'] = $lesson_id;
             $this->load->view('lessons/pdf_canvas', $page_data);
@@ -998,7 +1121,7 @@ class Home extends CI_Controller
     {
         $course_id = $this->input->post('course_id');
         $starRating = $this->input->post('starRating');
-        if (enroll_status($course_id)) {
+        if (enroll_status(['course_id' => $course_id])) {
             $data['review'] = $this->input->post('review');
             $data['ratable_id'] = $this->input->post('course_id');
             $data['ratable_type'] = 'course';
@@ -1020,7 +1143,7 @@ class Home extends CI_Controller
 
     public function remove_rating($course_id, $rating_id)
     {
-        if (enroll_status($course_id) || $this->session->userdata('admin_login')) {
+        if (enroll_status(['course_id' => $course_id]) || $this->session->userdata('admin_login')) {
             $this->db->where('id', $rating_id);
             $this->db->delete('rating');
 
@@ -1213,7 +1336,7 @@ class Home extends CI_Controller
         header('Pragma: public');
         header('Content-Length: ' . filesize($yourFile));
         while (!feof($file)) {
-            print (@fread($file, 1024 * 8));
+            print(@fread($file, 1024 * 8));
             ob_flush();
             flush();
         }
@@ -1453,9 +1576,9 @@ class Home extends CI_Controller
                     $page_data['enroll_type'] = null;
                     $page_data['page_name'] = 'shopping_cart';
 
-                    $cart_item = array($course_id);
+                    $this->session->set_userdata('cart_items', []);
+                    cart_items_add('course', $course_id);
                     $this->session->set_userdata('custom_session_limit', (time() + 604800));
-                    $this->session->set_userdata('cart_items', $cart_item);
                     $this->session->set_userdata('user_login', '1');
                     $this->session->set_userdata('user_id', $row->id);
                     $this->session->set_userdata('role_id', $row->role_id);
@@ -1541,18 +1664,17 @@ class Home extends CI_Controller
 
             // Check if the current time is before the lesson's start date =============
             if ($lesson['start_time'] > time()) {
-                $response['error'] = get_phrase('The quiz is not available yet.');//
+                $response['error'] = get_phrase('The quiz is not available yet.'); //
                 echo json_encode($response);
                 return;
             }
 
             // Check if the current time is after the lesson's end date ================
             if ($lesson['end_time'] < time()) {
-                $response['error'] = get_phrase('it is too late to take the quiz now.');//
+                $response['error'] = get_phrase('it is too late to take the quiz now.'); //
                 echo json_encode($response);
                 return;
             }
-
         }
 
         if ($is_preview) {
@@ -1566,7 +1688,7 @@ class Home extends CI_Controller
                 $response['error'] = get_phrase('This lecture is available exclusively as of premium part. To gain access, please purchase the course');
                 echo json_encode($response);
             }
-        } elseif ($admin_login || $is_course_instructor || enroll_status($course_details['id']) == 'valid') {
+        } elseif ($admin_login || $is_course_instructor || enroll_status(['course_id' => $course_details['id']]) == 'valid') {
             $response['redirectTo'] = site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_details['id'] . '/' . $lesson['id']);
             echo json_encode($response);
         } elseif ($lesson['is_free'] != 1) {
@@ -1948,7 +2070,7 @@ class Home extends CI_Controller
         }
     }
 
-    //Payout settings 
+    //Payout settings
     public function payout_settings($param1 = "")
     {
         if ($this->session->userdata('user_login') != true) {
@@ -1979,7 +2101,7 @@ class Home extends CI_Controller
         $course_details = $this->crud_model->get_course_by_id($lesson_details['course_id'])->row_array();
 
         $get_lesson_type = get_lesson_type($lesson_details['id']);
-        $enroll_status = enroll_status($lesson_details['course_id']);
+        $enroll_status = enroll_status(['course_id' => $lesson_details['course_id']]);
 
 
         if ($enroll_status == 'expired' || !$enroll_status) {
@@ -2021,7 +2143,7 @@ class Home extends CI_Controller
         $lesson_video = $this->db->where('id', $lesson_id)->get('lesson');
         $video_url = $lesson_video->row('video_url');
 
-        if (enroll_status($lesson_video->row('course_id')) == 'valid' && $video_url != '') {
+        if (enroll_status(['course_id' => $lesson_video->row('course_id')]) == 'valid' && $video_url != '') {
             $video_url = str_replace(base_url(), "", $video_url);
             $data = file_get_contents($video_url);
             $name = slugify($lesson_video->row('title')) . '.' . pathinfo($video_url, PATHINFO_EXTENSION);

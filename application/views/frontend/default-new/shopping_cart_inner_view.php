@@ -17,13 +17,27 @@
                     <tbody>
                         <?php $total = 0; ?>
                         <?php foreach($this->session->userdata('cart_items') as $item): ?>
-                            <?php $course_details = $this->crud_model->get_course_by_id($item)->row_array(); ?>
+                            <?php
+                               $cart_item_details = cart_items_get_item_details($item);
+
+                               $course_details = $cart_item_details ? $cart_item_details['course_details'] : null;
+                               $section_details = $cart_item_details ? $cart_item_details['section_details'] : null;
+                               $lesson_details = $cart_item_details ? $cart_item_details['lesson_details'] : null;
+                            ?>
                           <tr>
                             <td>
                                 <div class="cart-table-image">
                                     <img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>">
                                     <a href="<?php echo site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']) ?>">
-                                        <h5 class="my-1"><?php echo $course_details['title']; ?></h5>
+                                        <h5 class="my-1">
+                                            <?php echo $course_details['title']; ?>
+                                            <?php if($cart_item['type'] == 'section' || $cart_item['type'] == 'lesson'): ?>
+                                                <?php echo " > " . $section_details['title']; ?>
+                                            <?php endif; ?>
+                                            <?php if($cart_item['type'] == 'lesson'): ?>
+                                                <?php echo " > " . $lesson_details['title']; ?>
+                                            <?php endif; ?>
+                                        </h5>
                                         <p class="ellipsis-line-2"><?php echo $course_details['short_description']; ?></p>
                                     </a>
                                 </div>
@@ -31,17 +45,17 @@
                             <td class="d-flex">
                                 <?php if($course_details['is_free_course']): ?>
                                     <h4><?php echo get_phrase('Free'); ?></h4>
-                                <?php elseif($course_details['discount_flag']): ?>
+                                <?php elseif($item['type'] == 'course' && $course_details['discount_flag']): ?>
                                     <?php $total += $course_details['discounted_price']; ?>
                                     <h4><?php echo currency($course_details['discounted_price']); ?></h4>
                                     <h6 class="mt-2 ms-2"><del><?php echo currency($course_details['price']); ?></del></h6>
                                 <?php else: ?>
-                                    <?php $total += $course_details['price']; ?>
-                                    <h4><?php echo currency($course_details['price']); ?></h4>
+                                    <?php $total += $cart_item_details['price']; ?>
+                                    <h4><?php echo currency($cart_item_details['price']); ?></h4>
                                 <?php endif; ?>
                             </td>
                             <td class="text-end">
-                                <a class="ms-auto" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/'.$course_details['id']); ?>');"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="ms-auto" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/'.$item['id'].'/_/'.$item['type']); ?>');"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                           </tr>
                       <?php endforeach; ?>
@@ -109,7 +123,7 @@
                 <form action="<?php echo site_url('home/course_payment') ?>" method="post">
                     <div class="input-group mb-1">
                         <input type="checkbox" id="is_gift" name="is_gift" onchange ="
-                            if ($(this).prop('checked')==true){ 
+                            if ($(this).prop('checked')==true){
                                 $('#gift_email_section').removeClass('d-hidden');
                             }else{
                                 $('#gift_email_section').addClass('d-hidden');
