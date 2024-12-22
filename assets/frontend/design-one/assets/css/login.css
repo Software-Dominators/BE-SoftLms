@@ -106,7 +106,7 @@
 
 }
 
-.login__form .form-group input {
+.login__form .form-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
     padding: 8px 16px 8px 16px;
     border-radius: 10px;
     border: 1px solid #E4E4E4 !important;
@@ -114,7 +114,7 @@
     height: 48px;
 }
 
-.login__form .form-group input::placeholder {
+.login__form .form-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"])::placeholder {
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
@@ -217,6 +217,7 @@
 .login__form-error {
     margin-top: 8px;
 }
+
 .login__form-error small,
 .login__form-error i {
     font-size: 16px;
@@ -229,6 +230,74 @@
     line-height: 24px;
     margin-inline-start: 8px;
 
+}
+
+/* sign up */
+
+.login__checkbox-group {
+    gap: 8px;
+}
+
+.login__checkbox-group label {
+    color: #6B6B6B;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    margin-bottom: 0 !important;
+
+
+}
+
+.login__checkbox-group small {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: var(--primary-color);
+
+}
+
+
+.login__checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    box-shadow: none;
+    background-color: var(--white-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    cursor: pointer !important;
+
+}
+
+.login__checkbox[type="checkbox"]:checked,
+.login__checkbox[type=radio]:checked {
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+    position: relative;
+}
+
+.login__checkbox[type="checkbox"]:checked:after,
+.login__checkbox[type=radio]:checked:after {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    position: absolute;
+    inset-inline-start: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: var(--white-color);
+    font-weight: bold;
+}
+
+.login__textarea-group {
+    margin-bottom: 40px;
+}
+
+.login__textarea-group textarea {
+
+    height: 183px !important;
 }
 
 /* responsive */
@@ -255,16 +324,12 @@
 
     }
 
-    .login__form .form-group input {
+    .login__form .form-group input:not([type="checkbox"]):not([type="file"]) :not([type="radio"]) {
         height: 32px;
 
     }
 
-
-
-
-
-    .login__form .form-group input::placeholder {
+    .login__form .form-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) ::placeholder {
         font-size: 12px;
         line-height: 18px;
     }
@@ -301,8 +366,65 @@
 
     }
 
+    /* sign up */
+
+    .login__checkbox-group label {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .login__checkbox-group small {
+        font-size: 12px;
+        line-height: 18px;
 
 
+
+    }
+
+    .login__textarea-group {
+        margin-bottom: 24px;
+    }
+    
+    .login__textarea-group textarea {
+    
+        height: 90px !important;
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+/* Style the file input */
+/* .custom-file-input {
+
+    height: 48px;
+    padding: 8px 5px 8px 16px;
+    border-radius: 10px;
+    border: 1px solid #E4E4E4;
+    background: #FDFDFD;
+    background: red;
+
+    
+} */
+
+/* Style the file selector button */
+/* .custom-file-input::file-selector-button {
+    background: #BBBBBB;
+    color: #FAF8F7;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    flex-shrink: 0;
+} */
