@@ -47,8 +47,13 @@
                         </div>
                         <div class="form-group">
                             <label for="password"><?php echo get_phrase('Password') ?></label>
-                            <input class="form-control" id="password" type="password" name="password"
-                                placeholder="<?php echo get_phrase('Enter your valid password'); ?>" />
+                            <div class="position-relative">
+    <input class="form-control" id="password" type="password" name="password"
+           placeholder="<?php echo get_phrase('Enter your valid password'); ?>" />
+    <i class="fa-solid fa-eye-slash position-absolute top-50 translate-middle-y"
+       id="togglePassword"></i>
+</div>
+
 
                             <?php $form_errors = $this->session->flashdata('form_errors');
                             if ($form_errors && isset($form_errors['password'])): ?>
@@ -64,6 +69,11 @@
                                     href="<?php echo site_url('login/forgot_password_request'); ?>"><?php echo get_phrase('Forgot password?'); ?></a>
                             </div>
                         </div>
+
+              
+
+
+
 
                         <div class="form-group">
                             <?php if (get_frontend_settings('recaptcha_status')): ?>
@@ -109,3 +119,25 @@
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Ensure the document is fully loaded before running the script
+    $('#togglePassword').on('click', function() {
+        var password = $('#password');
+        var icon = $(this);
+
+        // Toggle the password visibility
+        if (password.attr('type') === 'password') {
+            password.attr('type', 'text');  // Show the password
+            icon.removeClass('fa-eye-slash').addClass('fa-eye');  // Change icon to eye
+        } else {
+            password.attr('type', 'password');  // Hide the password
+            icon.removeClass('fa-eye').addClass('fa-eye-slash');  // Change icon to eye-slash
+        }
+    });
+});
+
+</script>

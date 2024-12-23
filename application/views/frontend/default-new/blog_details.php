@@ -3,19 +3,23 @@
 <!--------- Blog section start ---------->
 <section class="blog-body courses blog pb-3 mb-5">
     <div class="container">
-        <h1 class="text-center"><span><?php echo get_phrase('Inspirational Journeys'); ?></span></h1>
-        <p class="text-center"><?php echo get_phrase('Follow the Stories of Academics and Their Research Expeditions') ?></p>
+        <h1 class="latest-class"><span><?php echo get_phrase('Inspirational Journeys'); ?></span></h1>
+        <p class="latest-p"><?php echo get_phrase('Follow the Stories of Academics and Their Research Expeditions') ?></p>
+</div>
         <div class="courses-card">
             <div class="row">
-                <div class="col-lg-8">
+            <div class="sidebar-blog">
+                    <?php include "blog_sidebar.php"; ?>
+                </div>
+                <div class="class-cards">
                     <div class="top">
-                        <h3><?php echo $blog_details['title']; ?></h3>
+                        <h3 class="latest-class"><?php echo $blog_details['title']; ?></h3>
                         <div class="profile-img">
                             <a href="<?php echo site_url('home/instructor_page/' . $user_details['id']); ?>">
                                 <img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>">
                             </a> 
                             <a href="#"><h6><?php echo $user_details['first_name'] . ' ' . $user_details['last_name']; ?></h6></a>
-                            <p><?php echo date('D, d M Y'); ?></p>
+                            <p class="latest-p"><?php echo date('D, d M Y'); ?></p>
                         </div>
 
                         <?php $blog_banner = 'uploads/blog/banner/'.$blog_details['banner']; ?>
@@ -28,7 +32,7 @@
 
                     <?php if(count(explode(',',$blog_details['keywords'])) > 1): ?>
                         <div class="left-tag flex-wrap">
-                            <h3><?php echo get_phrase('Tags') ?>:</h3>
+                            <h3 class="latest-class"><?php echo get_phrase('Tags') ?>:</h3>
                             <?php foreach(explode(',',$blog_details['keywords']) as $value): ?>
                                 <?php if(!$value) continue; ?>
                                 <a href="#" class="mb-2"><?php echo $value; ?></a>
@@ -38,7 +42,7 @@
 
 
                     <?php $blog_comments = $this->crud_model->get_blog_comments_by_blog_id($blog_details['blog_id']); ?>
-                    <h1><?php echo $blog_comments->num_rows().' '.get_phrase('Comments'); ?></h1>
+                    <h1 class="latest-class"> <?php echo $blog_comments->num_rows().' '.get_phrase('Comments'); ?></h1>
                     <?php foreach($blog_comments->result_array() as $blog_comment): ?>
                             <?php $commenter_details = $this->user_model->get_all_user($blog_comment['user_id'])->row_array(); ?>
                         <div class="instructor-student-feed-back">
@@ -48,9 +52,9 @@
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-9 col-8">
                                     <div class="student-feed-back-text comment-student-feed-back-text">
-                                        <h6><?php echo $commenter_details['first_name'] . ' ' . $commenter_details['last_name']; ?></h6>
-                                        <p><?php echo date('D, d M Y'); ?></p>
-                                        <p class="std"><?php echo $blog_comment['comment']; ?></p>
+                                        <h6 class="latest-class"><?php echo $commenter_details['first_name'] . ' ' . $commenter_details['last_name']; ?></h6>
+                                        <p class="latest-p"><?php echo date('D, d M Y'); ?></p>
+                                        <p class="latest-p std"><?php echo $blog_comment['comment']; ?></p>
                                         <a href="#" onclick="$('#comment_add<?php echo $blog_comment['blog_comment_id']; ?>').toggle(); $('#comment_edit<?php echo $blog_comment['blog_comment_id']; ?>').hide();"><?php echo get_phrase('Reply') ?></a>
 
 
@@ -93,9 +97,9 @@
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-sm-9 col-8">
                                             <div class="student-feed-back-text">
-                                                <h6><?php echo $child_commenter_details['first_name'] . ' ' . $child_commenter_details['last_name']; ?></h6>
-                                                <p><?php echo date('D, d M Y'); ?></p>
-                                                <p class="std"><?php echo $child_comment['comment']; ?></p>
+                                                <h6 class="latest-class"><?php echo $child_commenter_details['first_name'] . ' ' . $child_commenter_details['last_name']; ?></h6>
+                                                <p class="latest-p"><?php echo date('D, d M Y'); ?></p>
+                                                <p class="latest-p std"><?php echo $child_comment['comment']; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-2">
@@ -114,7 +118,7 @@
                         </div>
                     <?php endforeach; ?>
                     <div class="comment instructor-student-feed-back">
-                        <h1><?php echo get_phrase('Leave a Comment') ?></h1>
+                        <h1 class="latest-class"><?php echo get_phrase('Leave a Comment') ?></h1>
                         <div class="row">
                             <div class="col-lg-12">
                                 <form action="<?php echo site_url('blog/add_blog_comment/'.$blog_details['blog_id']); ?>" method="post" class="feedback-form">
@@ -128,10 +132,132 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <?php include "blog_sidebar.php"; ?>
-                </div>
+              
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .instructor-student-feed-back img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top:14px;
+}
+.modal-content {
+  
+    background-color:#fff !important;
+   
+}
+.modal-header .modal-title {
+    color: #434343 !important;
+  
+}
+.btn-danger {
+   
+    text-decoration: none;
+    background-color: var(--color-4) !important;
+    padding: 7px 18px !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    margin-left: 13px !important;
+    --bs-btn-border-color: var(--color-4);
+         --bs-btn-hover-border-color: var(--color-4);
+         min-width: 100px;
+
+}
+.btn-secondary {
+    padding: 7px 18px !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    min-width: 100px;
+}
+
+
+
+
+    .courses h1 span::before {
+  
+  background-image: url(../image/h-1-bn-shape-2.png);
+  width: 116px;
+  height: 21px;
+  position: absolute;
+  background-size: 119px;
+  top: 31px;
+  left: 89px;}
+    .courses-card{
+        min-height:100vh !important;
+    }
+    .sidebar-blog{
+background-color: #F8F7F7 !important;
+max-width:380px !important;
+
+
+min-height:100vh !important;
+
+
+
+
+    }
+    .class-cards{
+        max-width: 845px !important;
+        padding:0px 50px !important;
+    }
+.latest-class{
+ color:#353535;
+font-size: 32px;
+font-weight: 600;
+line-height: 48px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+.latest-p{
+   color:#5D5D5D;
+font-size: 20px;
+font-weight: 400;
+line-height: 30px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+@media (max-width: 992px) {
+.latest-class{
+font-size: 20px;
+line-height: 30px;
+
+
+}
+.class-cards{
+       padding:20px 50px !important;
+    }
+.latest-p{
+ font-size: 12px;
+line-height: 18px;
+
+
+}
+/* .sidebar-blog{
+display:none;
+ } */
+
+.card-child {
+    width: 100%;
+} 
+.sidebar-blog{
+
+background-color: #F8F7F7 !important;
+max-width:100% !important;
+
+
+min-height:100vh !important;
+}
+
+
+} 
+
+</style>

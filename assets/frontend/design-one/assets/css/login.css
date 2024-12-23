@@ -397,7 +397,12 @@
 
 
 
-
+#togglePassword {
+    inset-inline-end: 17.3px;
+    color: #C5C9CF;
+    font-size: 20px;
+    cursor: pointer;
+}
 
 
 

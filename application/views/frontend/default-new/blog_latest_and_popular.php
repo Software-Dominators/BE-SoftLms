@@ -1,8 +1,16 @@
 <!--------- Blog section start ---------->
+<!--  -->
 <section class="courses blog pb-3 mb-5">
-    <div class="container">
-        <h1 class="text-center"><span><?php echo get_phrase('Latest from our blog'); ?></span></h1>
-        <p class="text-center"><?php echo get_phrase('Exploring the Cutting-Edge Insights and Updates on Our Blog') ?></p>
+    <div class="container ">
+    <div class=" parent-latest">  
+        <div class="latest-content">
+        <h1 class="latest-class"><span><?php echo get_phrase('Latest from our blog'); ?></span></h1>
+        <p class="latest-p"><?php echo get_phrase('Lorem ipsum dolor sit amet consectetur. Tortor iaculis eget semper cras. In tempor aliquam . ') ?></p>
+</div>
+<div class ="latest-link">
+        <a href="<?php echo site_url('blogs'); ?>" class="link-view"><?php echo get_phrase('View all'); ?></a>
+</div>
+    </div>
         <div class="courses-card">
             <div class="row justify-content-center">
                 <?php foreach($latest_blogs->result_array() as $latest_blog): ?>
@@ -40,17 +48,23 @@
                          </a>
                     </div>
                 <?php endforeach; ?>
-                <div class="col-12 text-center">
-                    <a href="<?php echo site_url('blogs'); ?>" class="btn btn-primary px-5"><?php echo get_phrase('See all'); ?></a>
-                </div>
+               
             </div>
         </div>
     </div>
 
     <?php if($popular_blogs->num_rows() > 0): ?>
         <div class="container">
-            <h1 class="text-center"><span><?php echo get_phrase('Popular blogs'); ?></span></h1>
-            <p class="text-center"><?php echo get_phrase('Learn from Expert Bloggers and Expand Your Knowledge') ?></p>
+        <div class=" parent-latest">  
+        <div class="latest-content">
+            <h1 class="latest-class"><span><?php echo get_phrase('Popular blogs'); ?></span></h1>
+            <p class="latest-p"><?php echo get_phrase('Lorem ipsum dolor sit amet consectetur. Tortor iaculis eget semper cras. In tempor aliquam . ') ?></p>
+            </div>
+<div class ="latest-link">
+<a href="<?php echo site_url('blogs'); ?>" class="link-view"><?php echo get_phrase('View all'); ?></a>
+
+</div>
+    </div>
             <div class="courses-card">
                 <div class="row justify-content-center">
                     <?php foreach($popular_blogs->result_array() as $popular_blog): ?>
@@ -88,12 +102,98 @@
                              </a>
                         </div>
                     <?php endforeach; ?>
-                    <div class="col-12 text-center">
-                        <a href="<?php echo site_url('blogs'); ?>" class="btn btn-primary px-5"><?php echo get_phrase('See all'); ?></a>
-                    </div>
+                  
                 </div>
             </div>
         </div>
     <?php endif; ?>
 </section>
 <!--------- Blog section end ---------->
+
+<style>
+
+.courses h1 span::before {
+  
+    background-image: url(../image/h-1-bn-shape-2.png);
+    width: 116px;
+    height: 21px;
+    position: absolute;
+    background-size: 119px;
+    top: 31px;
+    left: 89px;}
+
+
+
+
+.latest-class{
+ color:#353535;
+font-size: 32px;
+font-weight: 600;
+line-height: 48px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+.latest-p{
+   color:#5D5D5D;
+font-size: 20px;
+font-weight: 400;
+line-height: 30px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+.parent-latest
+{
+    display:flex;
+    justify-content: space-between;
+}
+
+.latest-content{
+    width: 80%;
+
+}
+.latest-link{
+   width: 20%;
+ 
+   text-align: right;
+   padding: 30px;
+   padding-top: 130px;
+   padding-right: 0px;
+}
+.link-view{
+    color:#754FFE;
+font-size: 24px;
+font-weight: 500;
+line-height: 36px;
+text-align: left;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+
+@media (max-width: 992px) {
+.latest-class{
+font-size: 20px;
+line-height: 30px;
+
+
+}
+.latest-p{
+ font-size: 12px;
+line-height: 18px;
+
+
+}
+.latest-link{
+    display:none;
+}
+
+} 
+
+</style>

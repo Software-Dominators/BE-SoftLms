@@ -1,14 +1,19 @@
 <!--------- Blog section start ---------->
 <section class="blog-body courses blog pb-3 mb-5">
     <div class="container">
-        <h1 class="text-center"><span><?php echo get_phrase('Inspirational Journeys'); ?></span></h1>
-        <p class="text-center"><?php echo get_phrase('Follow the Stories of Academics and Their Research Expeditions') ?></p>
-        <div class="courses-card">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="row justify-content-center">
+        <h1 class="latest-class"><span><?php echo get_phrase('Inspirational Journeys'); ?></span></h1>
+        <p class="latest-p"><?php echo get_phrase('Follow the Stories of Academics and Their Research Expeditions') ?></p>
+</div>
+        <div class="courses-card ">
+            <div class="row ">
+            <div class=" sidebar-blog">
+                    <?php include "blog_sidebar.php"; ?>
+                </div>
+
+                <div class="class-cards container ">
+                    <div class="row  justify-content-center">
                         <div class="col-12">
-                            <p class="my-2">
+                            <p class="my-2 latest-p  ">
                                 <?php if(isset($search_string) || isset($_GET['category'])):
                                     echo site_phrase('total').' '.$total_rows.' '.site_phrase('results');
                                 else:
@@ -19,7 +24,7 @@
 
                         <?php foreach($blogs->result_array() as $blog): ?>
                             <?php $user_details = $this->user_model->get_all_user($blog['user_id'])->row_array(); ?>
-                            <div class="col-md-6">
+                            <div class="card-child col-md-4">
                                 <a href="<?php echo site_url('blog/details/'.slugify($blog['title']).'/'.$blog['blog_id']); ?>" class="courses-card-body">
                                     <div class="courses-card-image">
                                         <div class="courses-card-image">
@@ -57,11 +62,83 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <?php include "blog_sidebar.php"; ?>
-                </div>
+               
             </div>
         </div>
     </div>
+
 </section>
 <!--------- Blog section end ---------->
+<style>
+    
+    .courses-card{
+        min-height:100vh !important;
+    }
+    .sidebar-blog{
+background-color: #F8F7F7 !important;
+max-width:380px !important;
+
+
+min-height:100vh !important;
+
+
+
+
+    }
+    .class-cards{
+        max-width: 845px !important;
+    }
+.latest-class{
+ color:#353535;
+font-size: 32px;
+font-weight: 600;
+line-height: 48px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+.latest-p{
+   color:#5D5D5D;
+font-size: 20px;
+font-weight: 400;
+line-height: 30px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+@media (max-width: 992px) {
+.latest-class{
+font-size: 20px;
+line-height: 30px;
+
+
+}
+.latest-p{
+ font-size: 12px;
+line-height: 18px;
+
+
+}
+/* .sidebar-blog{
+display:none;
+ } */
+
+.card-child {
+    width: 100%;
+} 
+.sidebar-blog{
+
+background-color: #F8F7F7 !important;
+max-width:100% !important;
+
+
+min-height:100vh !important;
+}
+
+
+} 
+
+</style>
