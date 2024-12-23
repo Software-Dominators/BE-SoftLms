@@ -1,3 +1,29 @@
+
+
+
+<section class="blogs-filter">
+    <div class="container">
+        <div class="row">
+
+
+       <div class="col-12">
+
+       </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
 <!--------- Blog section start ---------->
 <section class="blog-body courses blog pb-3 mb-5">
     <div class="container">

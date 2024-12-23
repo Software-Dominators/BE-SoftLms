@@ -1,0 +1,145 @@
+/* breadcrumb-blogs */
+
+.breadcrumb-blogs {
+    min-height: 307px;
+    padding-top: 50px;
+    background-color: var(--primary-color);
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__top {
+    gap: 8px;
+
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__top a {
+    line-height: 36px;
+    font-size: 24px;
+    font-weight: 500;
+
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__top i {
+    font-size: 24px;
+    color: var(--light-withe-color);
+    margin-inline-end: 8px;
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__home-link {
+    color: var(--light-withe-color);
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__active-link {
+    color: var(--dark-orange-color);
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__bottom h1 {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 84px;
+    color: var(--white-color);
+    margin-block: 16px;
+
+}
+
+.breadcrumb-blogs .breadcrumb-blogs__bottom p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--dark-withe-color);
+
+
+}
+
+@media (max-width: 992px) {
+
+    .breadcrumb-blogs {
+        min-height: 213px;
+        padding-top: 33px;
+    }
+
+
+    .breadcrumb-blogs .breadcrumb-blogs__top a {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+
+    }
+
+
+    .breadcrumb-blogs .breadcrumb-blogs__top i {
+        font-size: 16px;
+    }
+
+    .breadcrumb-blogs__bottom h1 {
+
+        line-height: 54px;
+        margin-block: 8px;
+
+
+    }
+
+    .breadcrumb-blogs .breadcrumb__bottom p {
+
+        font-size: 12px;
+        line-height: 18px;
+
+
+
+
+
+    }
+}
+
+
+/* ######################## filter section start ######################### */
+
+.blogs-filter {
+    margin-top: 32px;
+}
+.blogs-filter .swiper{
+    margin-top: 56px;
+}
+.blogs-filter__form {
+    width: 557px;
+    height: 56px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid #D6D6D6;
+    position: relative;
+}
+
+.blogs-filter__form input {
+    width: 100%;
+    height: 100%;
+    padding-inline-start: 57px;
+}
+.blogs-filter__form input::placeholder{
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+color: #A1A1A1;
+
+}
+.blogs-filter__form button {
+    position: absolute;
+    inset-inline-end: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 7.3px 37.5px;
+    background: var(--primary-color);
+    border-radius: 8px;
+    color: var(--button-text-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.blogs-filter__form i {
+    position: absolute;
+    inset-inline-start: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #A1A1A1;
+}
