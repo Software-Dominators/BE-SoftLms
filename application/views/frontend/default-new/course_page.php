@@ -283,8 +283,6 @@ if ($number_of_ratings > 0) {
                                     <?php
                                         $cart_items = $this->session->userdata('cart_items');
                                         $course_in_cart_items = cart_items_get_index('course', $course_details['id']) !== null;
-                                        $section_in_cart_items = count($sections) > 0 ? cart_items_get_index('section', $sections[0]['id']) !== null : false;
-                                        $lesson_in_cart_items = count($lessons) > 0 ? cart_items_get_index('lesson', $lessons[0]['id']) !== null : false;
                                     ?>
 
                                     <!-- Cart button -->
@@ -293,17 +291,25 @@ if ($number_of_ratings > 0) {
                                     <!-- Cart button ended-->
 
                                     <?php if (count($sections) > 0) : ?>
-                                    <!-- Cart button -->
-                                    <a id="added_section_to_cart_btn_<?php echo $sections[0]['id']; ?>" class="<?php if (!$section_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $sections[0]['id'] . '/_/section'); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove section from cart'); ?></a>
-                                    <a id="add_section_to_cart_btn_<?php echo $sections[0]['id']; ?>" class="<?php if ($section_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $sections[0]['id'] . '/_/section'); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add section to cart'); ?></a>
-                                    <!-- Cart button ended-->
+                                    <div class="m-5 mb-0 mt-3">
+                                    <?php foreach ($sections as $section) : ?>
+                                        <input id="section_<?= $section['id'] ?>" name="sections" type="checkbox" value="<?= $section['id'] ?>" <?= cart_items_get_index('section', $section['id']) !== null ? 'checked':''; ?>>
+                                        <label for="section_<?= $section['id'] ?>"><?= $section['title']; ?></label>
+                                        <br>
+                                    <?php endforeach; ?>
+                                    </div>
+                                    <a id="add_sections_to_cart_btn" href="#" onclick="addSectionsToCart();"><i class="fas fa-cart"></i> <?php echo get_phrase('Update Cart Lessons'); ?></a>
                                     <?php endif; ?>
 
                                     <?php if (count($lessons) > 0) : ?>
-                                    <!-- Cart button -->
-                                    <a id="added_lesson_to_cart_btn_<?php echo $lessons[0]['id']; ?>" class="<?php if (!$lesson_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $lessons[0]['id'] . '/_/lesson'); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove lesson from cart'); ?></a>
-                                    <a id="add_lesson_to_cart_btn_<?php echo $lessons[0]['id']; ?>" class="<?php if ($lesson_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $lessons[0]['id'] . '/_/lesson'); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add lesson to cart'); ?></a>
-                                    <!-- Cart button ended-->
+                                    <div class="m-5 mb-0 mt-3">
+                                    <?php foreach ($lessons as $lesson) : ?>
+                                        <input id="lesson_<?= $lesson['id'] ?>" name="lessons" type="checkbox" value="<?= $lesson['id'] ?>" <?= cart_items_get_index('lesson', $lesson['id']) !== null ? 'checked':''; ?>>
+                                        <label for="lesson_<?= $lesson['id'] ?>"><?= $lesson['title']; ?></label>
+                                        <br>
+                                    <?php endforeach; ?>
+                                    </div>
+                                    <a id="add_lessons_to_cart_btn" href="#" onclick="addLessonsToCart();"><i class="fas fa-cart"></i> <?php echo get_phrase('Update Cart Sections'); ?></a>
                                     <?php endif; ?>
 
                                     <a href="#" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $course_details['id']); ?>')"><i class="fas fa-credit-card"></i> <?php echo get_phrase('Buy Now'); ?></a>
@@ -442,3 +448,78 @@ if ($number_of_ratings > 0) {
 <?php if (addon_status('team_training')) : ?>
     <?php include 'course_related_packages.php'; ?>
 <?php endif; ?>
+
+<script>
+    alreadyCheckedSections = [];
+    alreadyCheckedLessons = [];
+
+    $(document).ready(function() {
+        $('input[name="sections"]:checked').each(function() {
+            alreadyCheckedSections.push($(this).val());
+        });
+
+        $('input[name="lessons"]:checked').each(function() {
+            alreadyCheckedLessons.push($(this).val());
+        });
+    });
+
+    function addSectionsToCart() {
+        let sections = [];
+        let toAddSections = [];
+        let toRemoveSections = [];
+        $('input[name="sections"]').each(function() {
+            if (this.checked) {
+                toAddSections.push($(this).val());
+            } else {
+                toRemoveSections.push($(this).val());
+            }
+        });
+        $.each(toAddSections, function(index, value) {
+            if (!alreadyCheckedSections.includes(value)) {
+                sections.push(value);
+            }
+        });
+        $.each(toRemoveSections, function(index, value) {
+            if (alreadyCheckedSections.includes(value)) {
+                sections.push(value);
+            }
+        });
+        if (sections.length == 0) {
+            toastr.error('<?= get_phrase('No Changes, Please make at least one change.') ?>');
+        }
+        actionTo(
+            ('<?= site_url('home/handle_cart_items/SECTIONS_IDS/_/section'); ?>')
+              .replaceAll('SECTIONS_IDS', sections.join('_'))
+        );
+    }
+
+    function addLessonsToCart() {
+        let lessons = [];
+        let toAddLessons = [];
+        let toRemoveLessons = [];
+        $('input[name="lessons"]').each(function() {
+            if (this.checked) {
+                toAddLessons.push($(this).val());
+            } else {
+                toRemoveLessons.push($(this).val());
+            }
+        });
+        $.each(toAddLessons, function(index, value) {
+            if (!alreadyCheckedLessons.includes(value)) {
+                lessons.push(value);
+            }
+        });
+        $.each(toRemoveLessons, function(index, value) {
+            if (alreadyCheckedLessons.includes(value)) {
+                lessons.push(value);
+            }
+        });
+        if (lessons.length == 0) {
+            toastr.error('<?= get_phrase('No Changes, Please make at least one change.') ?>');
+        }
+        actionTo(
+            ('<?= site_url('home/handle_cart_items/LESSONS_IDS/_/lesson'); ?>')
+              .replaceAll('LESSONS_IDS', lessons.join('_'))
+        );
+    }
+</script>
