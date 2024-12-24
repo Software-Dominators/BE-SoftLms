@@ -32,24 +32,7 @@ $latest_blogs = $this->crud_model->get_latest_blogs(3);
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <style>
-    .blogs-filter__category {
-        padding: 11px 39px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 25.6px;
-        color: #754FFE !important;
-        border: 1px solid #754FFE;
-        border-radius: 24px;
-        margin: 0;
-        /* Ensure no additional margins */
-        display: inline-block;
-        /* Prevent extra spacing from inline elements */
-    }
-
-    .blogs-filter__category.active {
-        background: #754FFE24;
-        border: none;
-    }
+   
 
     .swiper {
         width: 100%;
@@ -82,7 +65,7 @@ $latest_blogs = $this->crud_model->get_latest_blogs(3);
     <div class="container">
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-lg-5 col-md-6 col-12">
                 <form action="<?php echo site_url('blogs'); ?>" method="get" class="blogs-filter__form">
                     <input value="<?php if (isset($search_string) && !empty($search_string))
                         echo $search_string; ?>" type="text" name="search" class="form-control"
