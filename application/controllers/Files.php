@@ -45,7 +45,13 @@ class Files extends CI_Controller
             $lesson = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
             $get_lesson_type = get_lesson_type($lesson_id);
 
-            if (enroll_status(['course_id' => $course_id]) == 'valid' || $this->session->userdata('admin_login') == '1' || in_array($user_id, $multi_instructors)) {
+            if (
+                enroll_status(['course_id' => $course_id,]) == 'valid'
+                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id']]) == 'valid'
+                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id'],'lesson_id' => $lesson['id']]) == 'valid'
+                || $this->session->userdata('admin_login') == '1'
+                || in_array($user_id, $multi_instructors)
+            ) {
 
 
                 //Assign video url

@@ -305,7 +305,7 @@ class User_model extends CI_Model
         if ($user_id == "") {
             $user_id = $this->session->userdata('user_id');
         }
-        return $this->db->get_where('enrol', array('user_id' => $user_id));
+        return $this->db->group_by('course_id')->get_where('enrol', array('user_id' => $user_id));
     }
 
     public function upload_user_image($image_code)

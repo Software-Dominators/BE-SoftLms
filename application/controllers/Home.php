@@ -537,6 +537,16 @@ class Home extends CI_Controller
                         ]);
                         return;
                     }
+
+                    if (is_purchased([
+                        'course_id' => $course_details['id'],
+                        'section_id' => $course_section['id'],
+                    ]) == 'valid') {
+                        echo json_encode([
+                            'error' => get_phrase('One of course\'s sections purchased before. You can only buy other sections not all course.'),
+                        ]);
+                        return;
+                    }
                 }
 
                 $course_lessons = $this->crud_model->get_lessons('course', $course_details['id'])->result_array();
@@ -544,6 +554,17 @@ class Home extends CI_Controller
                     if (cart_items_get_index('lesson', $course_lesson['id']) !== null) {
                         echo json_encode([
                             'error' => get_phrase('One of course\'s lesson added to cart. Remove lesson(s) first.'),
+                        ]);
+                        return;
+                    }
+
+                    if (is_purchased([
+                        'course_id' => $course_details['id'],
+                        'section_id' => $course_lesson['section_id'],
+                        'lesson_id' => $course_lesson['id'],
+                    ]) == 'valid') {
+                        echo json_encode([
+                            'error' => get_phrase('One of course\'s lessons purchased before. You can only buy other lessons not all course.'),
                         ]);
                         return;
                     }
@@ -558,6 +579,7 @@ class Home extends CI_Controller
                     return;
                 }
             }
+
             if ($cart_item_type == 'section') {
                 $section_details = $this->crud_model->get_section('section', $cart_item_id)->row_array();
 
@@ -576,23 +598,39 @@ class Home extends CI_Controller
                         ]);
                         return;
                     }
-                }
 
-                if (
-                    is_purchased([
+                    if (is_purchased([
                         'course_id' => $section_details['course_id'],
                         'section_id' => $section_details['id'],
-                    ]) == 'valid'
-                    || is_purchased([
-                        'course_id' => $section_details['course_id'],
-                    ]) == 'valid'
-                ) {
+                        'lesson_id' => $section_lesson['id'],
+                    ])) {
+                        echo json_encode([
+                            'error' => get_phrase('One of section\'s lessons purchased before. You can only buy other lessons not all section.'),
+                        ]);
+                        return;
+                    }
+                }
+
+                if (is_purchased([
+                    'course_id' => $section_details['course_id'],
+                ])) {
                     echo json_encode([
-                        'error' => get_phrase('You already purchased this section or the whole course.'),
+                        'error' => get_phrase('You already purchased this course before.'),
+                    ]);
+                    return;
+                }
+
+                if (is_purchased([
+                    'course_id' => $section_details['course_id'],
+                    'section_id' => $section_details['id'],
+                ])) {
+                    echo json_encode([
+                        'error' => get_phrase('You have already purchased this section before.'),
                     ]);
                     return;
                 }
             }
+
             if ($cart_item_type == 'lesson') {
                 $lesson_details = $this->crud_model->get_lessons('lesson', $cart_item_id)->row_array();
 
@@ -610,22 +648,32 @@ class Home extends CI_Controller
                     return;
                 }
 
-                if (
-                    is_purchased([
-                        'course_id' => $lesson_details['course_id'],
-                        'section_id' => $lesson_details['section_id'],
-                        'lesson_id' => $lesson_details['id'],
-                    ]) == 'valid'
-                    || is_purchased([
-                        'course_id' => $lesson_details['course_id'],
-                        'section_id' => $lesson_details['section_id'],
-                    ]) == 'valid'
-                    || is_purchased([
-                        'course_id' => $lesson_details['course_id'],
-                    ]) == 'valid'
-                ) {
+                if (is_purchased([
+                    'course_id' => $lesson_details['course_id'],
+                ])) {
                     echo json_encode([
-                        'error' => get_phrase('You already purchased this lesson or the whole section or the whole course.'),
+                        'error' => get_phrase('Lesson\'s course purchased before.'),
+                    ]);
+                    return;
+                }
+
+                if (is_purchased([
+                    'course_id' => $lesson_details['course_id'],
+                    'section_id' => $lesson_details['section_id'],
+                ])) {
+                    echo json_encode([
+                        'error' => get_phrase('Lesson\'s section purchased before.'),
+                    ]);
+                    return;
+                }
+
+                if (is_purchased([
+                    'course_id' => $lesson_details['course_id'],
+                    'section_id' => $lesson_details['section_id'],
+                    'lesson_id' => $lesson_details['id'],
+                ])) {
+                    echo json_encode([
+                        'error' => get_phrase('You already purchased this lesson before.'),
                     ]);
                     return;
                 }
@@ -662,6 +710,7 @@ class Home extends CI_Controller
         $response['text'] = ['elem' => '#cartItemsCounter', 'content' => count($cart_items)];
         //Cart header content end
 
+        $response['reload'] = true;
 
         echo json_encode($response);
     }
@@ -929,8 +978,9 @@ class Home extends CI_Controller
             }
         }
 
+        $user_id = $this->session->userdata('user_id');
         $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-        $course_enrolls = $this->crud_model->enrol_history($course_id)->result_array();
+        $user_enrolls = $this->crud_model->enrol_history_by_user_id($user_id)->result_array();
         $course_instructor_ids = explode(',', $course_details['user_id']);
 
         if ($course_details['course_type'] == 'general') {
@@ -946,14 +996,14 @@ class Home extends CI_Controller
                      */
                     $first_enrol_section_id = null;
                     $first_enrol_lesson_id = null;
-                    foreach ($course_enrolls as $enrol) {
-                        if ($enrol['section_id'] != null && $enrol['lesson_id'] == null) {
-                            $first_enrol_section_id = $enrol['section_id'];
+                    foreach ($user_enrolls as $user_enrol) {
+                        if ($user_enrol['section_id'] != null && $user_enrol['lesson_id'] == null) {
+                            $first_enrol_section_id = $user_enrol['section_id'];
                             break;
                         }
-                        if ($enrol['lesson_id'] != null) {
-                            $first_enrol_section_id = $enrol['section_id'];
-                            $first_enrol_lesson_id = $enrol['lesson_id'];
+                        if ($user_enrol['lesson_id'] != null) {
+                            $first_enrol_section_id = $user_enrol['section_id'];
+                            $first_enrol_lesson_id = $user_enrol['lesson_id'];
                             break;
                         }
                     }
@@ -990,7 +1040,6 @@ class Home extends CI_Controller
         }
 
         //if not admin or course owner
-        $user_id = $this->session->userdata('user_id');
         $course_enroll_status = enroll_status(['course_id' => $course_id]);
         if ($course_enroll_status != 'valid') {
             $section_enroll_status = isset($page_data['section_id'])
@@ -1688,7 +1737,13 @@ class Home extends CI_Controller
                 $response['error'] = get_phrase('This lecture is available exclusively as of premium part. To gain access, please purchase the course');
                 echo json_encode($response);
             }
-        } elseif ($admin_login || $is_course_instructor || enroll_status(['course_id' => $course_details['id']]) == 'valid') {
+        } elseif (
+            $admin_login
+            || $is_course_instructor
+            || enroll_status(['course_id' => $course_details['id']]) == 'valid'
+            || enroll_status(['course_id' => $course_details['id'], 'section_id' => $lesson['section_id']]) == 'valid'
+            || enroll_status(['course_id' => $course_details['id'], 'section_id' => $lesson['section_id'], 'lesson_id' => $lesson['id']]) == 'valid'
+        ) {
             $response['redirectTo'] = site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_details['id'] . '/' . $lesson['id']);
             echo json_encode($response);
         } elseif ($lesson['is_free'] != 1) {

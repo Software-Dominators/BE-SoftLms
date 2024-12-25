@@ -16,9 +16,9 @@
                     </thead>
                     <tbody>
                         <?php $total = 0; ?>
-                        <?php foreach($this->session->userdata('cart_items') as $item): ?>
+                        <?php foreach($this->session->userdata('cart_items') as $cart_item): ?>
                             <?php
-                               $cart_item_details = cart_items_get_item_details($item);
+                               $cart_item_details = cart_items_get_item_details($cart_item);
 
                                $course_details = $cart_item_details ? $cart_item_details['course_details'] : null;
                                $section_details = $cart_item_details ? $cart_item_details['section_details'] : null;
@@ -45,7 +45,7 @@
                             <td class="d-flex">
                                 <?php if($course_details['is_free_course']): ?>
                                     <h4><?php echo get_phrase('Free'); ?></h4>
-                                <?php elseif($item['type'] == 'course' && $course_details['discount_flag']): ?>
+                                <?php elseif($cart_item['type'] == 'course' && $course_details['discount_flag']): ?>
                                     <?php $total += $course_details['discounted_price']; ?>
                                     <h4><?php echo currency($course_details['discounted_price']); ?></h4>
                                     <h6 class="mt-2 ms-2"><del><?php echo currency($course_details['price']); ?></del></h6>
@@ -55,7 +55,7 @@
                                 <?php endif; ?>
                             </td>
                             <td class="text-end">
-                                <a class="ms-auto" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/'.$item['id'].'/_/'.$item['type']); ?>');"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="ms-auto" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/'.$cart_item['id'].'/_/'.$cart_item['type']); ?>');"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                           </tr>
                       <?php endforeach; ?>

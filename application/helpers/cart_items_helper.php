@@ -20,6 +20,8 @@ function cart_items_add($type, $id, $remove_if_exists = false)
         ];
     }
 
+    $cart_items = array_values($cart_items);
+
     $CI->session->set_userdata('cart_items', $cart_items);
 
     return $cart_items;
