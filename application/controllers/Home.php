@@ -522,7 +522,8 @@ class Home extends CI_Controller
 
         $identifier = $identifier == '_' ? '' : $identifier;
 
-        foreach (explode('_', $cart_item_id) as $key => $cart_item_id) { // TODO: PER_LESSON_SECTION_TASK
+        foreach (explode('_', $cart_item_id) as $key => $cart_item_id) {
+            // TODO: PER_LESSON_SECTION_TASK
             // TODO: Handle if course added prevent section or lesson addition
             // TODO: Handle if section added or any section in course prevent course and lesson addition
             // TODO: Handle if lesson added or any lesson in course prevent course, section and lesson addition
