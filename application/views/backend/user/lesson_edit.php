@@ -12,6 +12,8 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
             echo get_phrase("video_url").' [.mp4]';
         }elseif ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'system') {
             echo get_phrase("video_file");
+        }elseif ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'bunny') {
+            echo get_phrase("video_file");
         }elseif ($lesson_details['lesson_type'] == 'audio') {
             echo get_phrase("audio_file");
         }elseif ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'youtube') {
@@ -59,6 +61,7 @@ $sections = $this->crud_model->get_section('course', $param3)->result_array();
     <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'youtube'): include('youtube_type_lesson_edit.php'); endif; ?>
     <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'academy_cloud'): include('academy_cloud_type_lesson_edit.php'); endif; ?>
     <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'vimeo'): include('vimeo_type_lesson_edit.php'); endif; ?>
+    <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'bunny'): include('bunny_type_lesson_edit.php'); endif; ?>
     <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'html5'): include('html5_type_lesson_edit.php'); endif; ?>
     <?php if ($lesson_details['lesson_type'] == 'video' && strtolower($lesson_details['video_type']) == 'system'): include('video_type_lesson_edit.php'); endif; ?>
     <?php if ($lesson_details['lesson_type'] == 'audio'): include('audio_type_lesson_edit.php'); endif; ?>

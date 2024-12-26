@@ -590,6 +590,10 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 						<a href="<?php echo site_url('admin/wasabi_settings'); ?>"><?php echo get_phrase('Wasabi Storage Settings'); ?></a>
 					</li>
 
+					<li class="<?php if ($page_name == 'bunny_stream_settings') echo 'active'; ?>">
+						<a href="<?php echo site_url('admin/bunny_stream_settings'); ?>"><?php echo get_phrase('Bunny Stream Settings'); ?></a>
+					</li>
+
 					<?php if (addon_status('course_ai')) : ?>
 						<li class="<?php if ($page_name == 'open_ai_settings') echo 'active'; ?>">
 							<a href="<?php echo site_url('admin/open_ai_settings'); ?>"><?php echo get_phrase('Open_AI_settings'); ?></a>
