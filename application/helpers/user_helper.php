@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -14,73 +14,85 @@
  */
 
 
-if ( ! function_exists('get_user_role'))
-{
-	function get_user_role($type = "", $user_id = '') {
-		$CI	=&	get_instance();
+if (! function_exists('get_user_role')) {
+	function get_user_role($type = "", $user_id = '')
+	{
+		$CI	= &get_instance();
 		$CI->load->database();
 
-        $role_id	=	$CI->db->get_where('users' , array('id' => $user_id))->row()->role_id;
-        $user_role	=	$CI->db->get_where('role' , array('id' => $role_id))->row()->name;
+		$role_id	=	$CI->db->get_where('users', array('id' => $user_id))->row()->role_id;
+		$user_role	=	$CI->db->get_where('role', array('id' => $role_id))->row()->name;
 
-        if ($type == "user_role") {
-            return $user_role;
-        }else {
-            return $role_id;
-        }
+		if ($type == "user_role") {
+			return $user_role;
+		} else {
+			return $role_id;
+		}
 	}
 }
 
 
-if ( ! function_exists('is_purchased'))
-{
-	function is_purchased($course_id = "", $user_id = "") {
-		$CI	=&	get_instance();
+if (! function_exists('is_purchased')) {
+	function is_purchased($conditions)
+	{
+		$CI	= &get_instance();
 		$CI->load->library('session');
 		$CI->load->database();
 
 		if (!$CI->session->userdata('user_login'))
 			return false;
 
-		if($user_id == "")
+		$user_id = $conditions['user_id'] ?? '';
+
+		if ($user_id == "")
 			$user_id = $CI->session->userdata('user_id');
 
-		$enrolled_history = $CI->db->get_where('enrol' , ['user_id' => $user_id, 'course_id' => $course_id]);
+		$conditions['user_id'] = $user_id;
+		$conditions['course_id'] ??= null;
+		$conditions['section_id'] ??= null;
+		$conditions['lesson_id'] ??= null;
+
+		$enrolled_history = $CI->db->get_where('enrol', $conditions);
 		if ($enrolled_history->num_rows() > 0) {
 			$expiry_date = $enrolled_history->row('expiry_date');
-			if($expiry_date == null || $expiry_date >= time()){
+			if ($expiry_date == null || $expiry_date >= time()) {
 				return true;
-			}else{
-				return false;
 			}
-		}else {
+
 			return false;
 		}
+
+		return false;
 	}
 }
-if ( ! function_exists('enroll_status'))
-{
-	function enroll_status($course_id = "", $user_id = "") {
-		$CI	=&	get_instance();
+if (! function_exists('enroll_status')) {
+	function enroll_status($conditions)
+	{
+		$CI	= &get_instance();
 		$CI->load->library('session');
 		$CI->load->database();
 
+		$user_id = $conditions['user_id'] ?? '';
 
-		if($user_id == "")
+		if ($user_id == "")
 			$user_id = $CI->session->userdata('user_id');
 
+		$conditions['user_id'] = $user_id;
+		$conditions['course_id'] ??= null;
+		$conditions['section_id'] ??= null;
+		$conditions['lesson_id'] ??= null;
 
-		$enrolled_history = $CI->db->get_where('enrol' , ['user_id' => $user_id, 'course_id' => $course_id]);
+		$enrolled_history = $CI->db->get_where('enrol', $conditions);
 		if ($enrolled_history->num_rows() > 0) {
 			$expiry_date = $enrolled_history->row('expiry_date');
-			if($expiry_date == null || $expiry_date >= time()){
+			if ($expiry_date == null || $expiry_date >= time()) {
 				return 'valid';
-			}else{
-				return 'expired';
 			}
-		}else {
-			return false;
+
+			return 'expired';
 		}
+
+		return false;
 	}
 }
 

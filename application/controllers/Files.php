@@ -45,7 +45,13 @@ class Files extends CI_Controller
             $lesson = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
             $get_lesson_type = get_lesson_type($lesson_id);
 
-            if (enroll_status($course_id) == 'valid' || $this->session->userdata('admin_login') == '1' || in_array($user_id, $multi_instructors)) {
+            if (
+                enroll_status(['course_id' => $course_id,]) == 'valid'
+                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id']]) == 'valid'
+                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id'],'lesson_id' => $lesson['id']]) == 'valid'
+                || $this->session->userdata('admin_login') == '1'
+                || in_array($user_id, $multi_instructors)
+            ) {
 
 
                 //Assign video url
@@ -105,7 +111,7 @@ class Files extends CI_Controller
                     readfile($fileUrl);
                     exit;
                 } elseif ($get_lesson_type == 'video_file' || $get_lesson_type == 'amazon_video_url' || $get_lesson_type == 'academy_cloud' || $get_lesson_type == 'html5_video_url' || $get_lesson_type == 'audio_file') {
-                    
+
                     if($file_size < 3000000){
                         $chunkSize = $file_size;
                     }else{
@@ -150,7 +156,7 @@ class Files extends CI_Controller
                         ob_flush();
                         flush();
                     }
-                    
+
 
                     fclose($handle);
                     exit;

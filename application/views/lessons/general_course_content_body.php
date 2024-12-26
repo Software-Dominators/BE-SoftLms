@@ -116,8 +116,12 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 		<?php echo htmlspecialchars_decode_($lesson_details['attachment']); ?>
 	</div>
 <?php elseif ($get_lesson_type == 'image_file') : ?>
+	<?php if (file_exists('uploads/lesson_files/' . $lesson_details['attachment'])) : ?>
 	<?php $img_size = getimagesize('uploads/lesson_files/' . $lesson_details['attachment']); ?>
 	<img width="100%" style="max-width: <?php echo $img_size[0] . 'px'; ?>" height="auto" src="<?php echo site_url('files?course_id=' . $course_details['id'] . '&lesson_id=' . $lesson_details['id'] . '&type=image'); ?>" />
+	<?php else: ?>
+		<p><?php echo get_phrase('Image not found'); ?></p>
+	<?php endif; ?>
 <?php elseif ($get_lesson_type == 'text_file') : ?>
 	<iframe class="embed-responsive-item" width="100%" height="450px" src="<?php echo site_url('files?course_id=' . $course_details['id'] . '&lesson_id=' . $lesson_details['id'] . '&type=image'); ?>" allowfullscreen></iframe>
 <?php elseif ($get_lesson_type == 'pdf_file') : ?>

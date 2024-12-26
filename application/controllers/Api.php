@@ -11,7 +11,7 @@ class Api extends REST_Controller {
     parent::__construct();
 
     date_default_timezone_set(get_settings('timezone'));
-    
+
     $this->load->database();
     $this->load->library('session');
     // creating object of TokenHandler class at first
@@ -49,24 +49,8 @@ class Api extends REST_Controller {
 
 
           //add item to cart
-          if (!$this->session->userdata('cart_items')) {
-            $this->session->set_userdata('cart_items', array());
-          }
-          $previous_cart_items = $this->session->userdata('cart_items');
-          if (in_array($course_id, $previous_cart_items)) {
-              // $key = array_search($course_id, $previous_cart_items);
-              // unset($previous_cart_items[$key]);
-          } else {
-              array_push($previous_cart_items, $course_id);
-          }
-          foreach($previous_cart_items as $course_id):
-            $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-            if($course_details['discount_flag'] == 1){
-              $price += $course_details['discounted_price'];
-            }else{
-              $price += $course_details['price'];
-            }
-          endforeach;
+          $previous_cart_items = cart_items_add('course', $course_id);
+          $price = cart_items_get_total();
 
           $this->session->set_userdata('total_price_of_checking_out', $price);
           $this->session->set_userdata('cart_items', $previous_cart_items);
@@ -174,11 +158,11 @@ class Api extends REST_Controller {
       $response = array();
     }
 
-    
+
     return $this->set_response($response, REST_Controller::HTTP_OK);
   }
 
-  
+
 
   // // For single device Login Api
   // public function login_get() {
@@ -203,9 +187,9 @@ class Api extends REST_Controller {
   //   $this->load->library('session');
   //   $logged_in_user_details = json_decode($this->token_data_get($auth_token), true);
   //   $session_id = $logged_in_user_details['session_id'];
-    
-    
-    
+
+
+
   //   $this->db->where('id', $logged_in_user_details['user_id']);
   // $user_sessions = $this->db->get('users')->row('session_id');
   // $pre_session = json_decode($user_sessions);
@@ -260,7 +244,7 @@ class Api extends REST_Controller {
 
   // My Courses API
   public function my_wishlist_get() {
-    $response = array();      
+    $response = array();
     $auth_token = $_GET['auth_token'];
     $logged_in_user_details = json_decode($this->token_data_get($auth_token), true);
 
@@ -526,7 +510,7 @@ class Api extends REST_Controller {
       $auth_token = $_GET['auth_token'];
       $course_id = $_GET['course_id'];
       $logged_in_user_details = json_decode($this->token_data_get($auth_token), true);
-      
+
       $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
       if ($course_details['is_free_course'] == 1) {
           if($course_details['expiry_period'] > 0){
@@ -538,7 +522,7 @@ class Api extends REST_Controller {
 
           $data['gifted_by'] = 0;
 
-          
+
           if ($this->db->get_where('enrol', ['course_id' => $course_id, 'user_id' => $logged_in_user_details['user_id']])->num_rows() > 0) {
               $data['last_modified'] = strtotime(date('D, d-M-Y'));
               $this->db->where('user_id', $logged_in_user_details['user_id']);
@@ -851,7 +835,7 @@ class Api extends REST_Controller {
               $response['message'] = 'Mismatch password';
           }
       }
-      
+
       $this->set_response($response, REST_Controller::HTTP_OK);
   }
 

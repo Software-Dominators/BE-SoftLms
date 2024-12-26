@@ -1,10 +1,10 @@
 <style>
     .ellipsis-line-1 {
-        display: -webkit-box!important; 
-        -webkit-line-clamp: 1; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
+        display: -webkit-box!important;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: normal
     }
     .course-item-one .content .title:has(~ .info) {
@@ -40,12 +40,12 @@
                         <button class="submit-cls" type="submit"><i class="fa fa-search"></i><?php echo get_phrase('Search') ?></button>
                     </form>
                 </div>
-                
+
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-md-2 order-sm-1 order-1 pt-0 pt-md-5 ">
                 <img loading="lazy" width="100%" src="<?php echo base_url("uploads/system/" . get_current_banner('banner_image')); ?>">
             </div>
-        </div> 
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="students-rating">
@@ -57,7 +57,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                             <p><?php echo get_phrase('Happy') ?></p>
                             <p><?php echo get_phrase('Students') ?></p>
-                        </div> 
+                        </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                             <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/h-1-ban-st.png')?>" alt="">
                         </div>
@@ -102,7 +102,7 @@
                                 <p><?php echo site_phrase('find_the_right_course_for_you'); ?></p>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="banner-card-1">
@@ -115,7 +115,7 @@
                                 <p><?php echo site_phrase('learn_on_your_schedule'); ?></p>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,10 +152,10 @@
                     </div>
                     <div class="content">
                   <h4 class="title ellipsis-line-1"><?php echo $upcoming_course['title']; ?></h4>
-                  <p class="info"><?php  
+                  <p class="info"><?php
                     if($upcoming_course['publish_date']){
                         echo get_phrase('Release On').' : '. date('j F Y', strtotime($upcoming_course['publish_date']));
-                    } 
+                    }
                     ?></p>
                 </div>
                   </a>
@@ -202,7 +202,7 @@
                                 </div>
                                 <div class="courses-card-image-text">
                                     <h3><?php echo get_phrase($top_course['level']); ?></h3>
-                                </div> 
+                                </div>
                             </div>
                             <div class="courses-text">
                                 <h5 class="mb-2"><?php echo $top_course['title']; ?></h5>
@@ -282,8 +282,7 @@
                                 <?php endforeach; ?>
                             </ul>
                             <div class="popover-btns">
-                                <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                                <?php if(is_purchased($top_course['id'])): ?>
+                                <?php if(is_purchased(['course_id' => $top_course['id']])): ?>
                                     <a href="<?php echo site_url('home/lesson/'.slugify($top_course['title']).'/'.$top_course['id']) ?>" class="purchase-btn d-flex align-items-center  me-auto"><i class="far fa-play-circle me-2"></i> <?php echo get_phrase('Start Now'); ?></a>
                                     <?php if ($top_course['is_free_course'] != 1) : ?>
                                         <button type="button" class="gift-btn ms-auto" title="<?php echo get_phrase('Gift someone else'); ?>" data-bs-toggle="tooltip" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $top_course['id'].'?gift=1'); ?>')"><i class="fas fa-gift"></i></button>
@@ -294,10 +293,10 @@
                                     <?php else : ?>
 
                                         <!-- Cart button -->
-                                        <a id="added_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(!in_array($top_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>');">
+                                        <a id="added_course_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $top_course['id']) === null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>');">
                                             <i class="fas fa-minus me-2"></i> <?php echo get_phrase('Remove from cart'); ?>
                                         </a>
-                                        <a id="add_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(in_array($top_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>'); ">
+                                        <a id="add_course_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $top_course['id']) !== null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>'); ">
                                             <i class="fas fa-plus me-2"></i> <?php echo get_phrase('Add to cart'); ?>
                                         </a>
                                         <!-- Cart button ended-->
@@ -312,7 +311,7 @@
                                         animation:'pop',
                                         cache:false,
                                         multi:true,
-                                        direction:'rtl', 
+                                        direction:'rtl',
                                         placement:'horizontal',
                                     });
                                 });
@@ -393,7 +392,7 @@
                                 </div>
                                 <div class="courses-card-image-text">
                                     <h3><?php echo get_phrase($latest_course['level']); ?></h3>
-                                </div> 
+                                </div>
                             </div>
                             <div class="courses-text">
                                 <h5 class="mb-2"><?php echo $latest_course['title']; ?></h5>
@@ -473,8 +472,7 @@
                                 <?php endforeach; ?>
                             </ul>
                             <div class="popover-btns">
-                                <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                                <?php if(is_purchased($latest_course['id'])): ?>
+                                <?php if(is_purchased(['course_id' => $latest_course['id']])): ?>
                                     <a href="<?php echo site_url('home/lesson/'.slugify($latest_course['title']).'/'.$latest_course['id']) ?>" class="purchase-btn d-flex align-items-center  me-auto"><i class="far fa-play-circle me-2"></i> <?php echo get_phrase('Start Now'); ?></a>
                                     <?php if ($latest_course['is_free_course'] != 1) : ?>
                                         <button type="button" class="gift-btn ms-auto" title="<?php echo get_phrase('Gift someone else'); ?>" data-bs-toggle="tooltip" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $latest_course['id'].'?gift=1'); ?>')"><i class="fas fa-gift"></i></button>
@@ -485,10 +483,10 @@
                                     <?php else : ?>
 
                                         <!-- Cart button -->
-                                        <a id="added_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(!in_array($latest_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>');">
+                                        <a id="added_course_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $latest_course['id']) === null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>');">
                                             <i class="fas fa-minus me-2"></i> <?php echo get_phrase('Remove from cart'); ?>
                                         </a>
-                                        <a id="add_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(in_array($latest_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>'); ">
+                                        <a id="add_course_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $latest_course['id']) === null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>'); ">
                                             <i class="fas fa-plus me-2"></i> <?php echo get_phrase('Add to cart'); ?>
                                         </a>
                                         <!-- Cart button ended-->
@@ -503,7 +501,7 @@
                                         animation:'pop',
                                         cache:false,
                                         multi:true,
-                                        direction:'rtl', 
+                                        direction:'rtl',
                                         placement:'horizontal',
                                     });
                                 });
@@ -687,7 +685,7 @@
             <div class="row">
                <?php foreach($latest_blogs->result_array() as $latest_blog):
                 $user_details = $this->user_model->get_all_user($latest_blog['user_id'])->row_array();
-                $blog_category = $this->crud_model->get_blog_categories($latest_blog['blog_category_id'])->row_array(); ?>  
+                $blog_category = $this->crud_model->get_blog_categories($latest_blog['blog_category_id'])->row_array(); ?>
                 <div class="col-lg-4 col-md-6 mb-3">
                     <a href="<?php echo site_url('blog/details/'.slugify($latest_blog['title']).'/'.$latest_blog['blog_id']); ?>" class="courses-card-body">
                         <div class="courses-card-image">
@@ -700,7 +698,7 @@
                             </div>
                             <div class="courses-card-image-text">
                                 <h3><?php echo $blog_category['title']; ?></h3>
-                            </div> 
+                            </div>
                         </div>
                         <div class="courses-text">
                             <h5><?php echo $latest_blog['title']; ?></h5>
@@ -747,7 +745,7 @@
                             <!-- <img loading="lazy" class="man" src="<?php echo base_url('assets/frontend/default-new/image/student-1.png')?>"> -->
                         </div>
                      </div>
-                </div>      
+                </div>
             </div>
             <?php if (get_settings('allow_instructor') == 1) : ?>
                 <div class="col-lg-6 ">
@@ -768,8 +766,8 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                             <!-- <img loading="lazy" class="man" src="<?php echo base_url('assets/frontend/default-new/image/student-2.png')?>"> -->
                             </div>
-                        </div>  
-                    </div> 
+                        </div>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>

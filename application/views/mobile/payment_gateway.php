@@ -255,7 +255,8 @@ $total_price_of_checking_out = $this->session->userdata('total_price_of_checking
                         <?php $counter = 0 ?>
                         <?php foreach ($this->session->userdata('cart_items') as $cart_item):
                             $counter++;
-                            $course_details = $this->crud_model->get_course_by_id($cart_item)->row_array();
+                            $cart_item_details = cart_items_get_item_details($cart_item);
+                            $course_details = $cart_item_details['course_details'];
                             $instructor_details = $this->user_model->get_all_user($course_details['user_id'])->row_array(); ?>
 
                             <p class="item float-start">

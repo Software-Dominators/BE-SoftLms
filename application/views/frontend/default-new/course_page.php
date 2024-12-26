@@ -1,6 +1,7 @@
 <?php
 $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-$lessons = $this->crud_model->get_lessons('course', $course_details['id']);
+$all_sections = $this->crud_model->get_section('course', $course_details['id'])->result_array();
+$all_lessons = $this->crud_model->get_lessons('course', $course_details['id'])->result_array();
 $instructor_details = $this->user_model->get_all_user($course_details['creator'])->row_array();
 $course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course_details['id']);
 $number_of_enrolments = $this->crud_model->enrol_history($course_details['id'])->num_rows();
@@ -270,8 +271,7 @@ if ($number_of_ratings > 0) {
 
                         <!-- button -->
                         <div class="button">
-                            <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                            <?php if (is_purchased($course_details['id'])) : ?>
+                            <?php if (is_purchased(['course_id' => $course_details['id']])) : ?>
                                 <a href="<?php echo site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_details['id']) ?>"><i class="far fa-play-circle"></i> <?php echo get_phrase('Start Now'); ?></a>
                                 <?php if ($course_details['is_free_course'] != 1) : ?>
                                     <a href="#" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $course_details['id'] . '?gift=1'); ?>')"><i class="fas fa-gift"></i> <?php echo get_phrase('Gift someone else'); ?></a>
@@ -280,11 +280,37 @@ if ($number_of_ratings > 0) {
                                 <?php if ($course_details['is_free_course'] == 1) : ?>
                                     <a href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"><?php echo get_phrase('Enroll Now'); ?></a>
                                 <?php else : ?>
+                                    <?php
+                                        $cart_items = $this->session->userdata('cart_items');
+                                        $course_in_cart_items = cart_items_get_index('course', $course_details['id']) !== null;
+                                    ?>
 
                                     <!-- Cart button -->
-                                    <a id="added_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (!in_array($course_details['id'], $cart_items)) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove from cart'); ?></a>
-                                    <a id="add_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (in_array($course_details['id'], $cart_items)) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add to cart'); ?></a>
+                                    <a id="added_course_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if (!$course_in_cart_items) echo 'd-hidden'; ?> active" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>');"><i class="fas fa-minus"></i> <?php echo get_phrase('Remove from cart'); ?></a>
+                                    <a id="add_course_to_cart_btn_<?php echo $course_details['id']; ?>" class="<?php if ($course_in_cart_items) echo 'd-hidden'; ?>" href="#" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $course_details['id']); ?>'); "><i class="fas fa-plus"></i> <?php echo get_phrase('Add to cart'); ?></a>
                                     <!-- Cart button ended-->
+
+                                    <?php if (count($sections) > 0) : ?>
+                                    <div class="m-5 mb-0 mt-3">
+                                    <?php foreach ($sections as $section) : ?>
+                                        <input id="section_<?= $section['id'] ?>" name="sections" type="checkbox" value="<?= $section['id'] ?>" <?= cart_items_get_index('section', $section['id']) !== null ? 'checked':''; ?>>
+                                        <label for="section_<?= $section['id'] ?>"><?= $section['title']; ?></label>
+                                        <br>
+                                    <?php endforeach; ?>
+                                    </div>
+                                    <a id="add_sections_to_cart_btn" href="#" onclick="updateCartSections();"><i class="fas fa-cart"></i> <?php echo get_phrase('Update Cart Sections'); ?></a>
+                                    <?php endif; ?>
+
+                                    <?php if (count($all_lessons) > 0) : ?>
+                                    <div class="m-5 mb-0 mt-3">
+                                    <?php foreach ($all_lessons as $lesson) : ?>
+                                        <input id="lesson_<?= $lesson['id'] ?>" name="lessons" type="checkbox" value="<?= $lesson['id'] ?>" <?= cart_items_get_index('lesson', $lesson['id']) !== null ? 'checked':''; ?>>
+                                        <label for="lesson_<?= $lesson['id'] ?>"><?= $lesson['title']; ?></label>
+                                        <br>
+                                    <?php endforeach; ?>
+                                    </div>
+                                    <a id="add_lessons_to_cart_btn" href="#" onclick="updateCartLessons();"><i class="fas fa-cart"></i> <?php echo get_phrase('Update Cart Lessons'); ?></a>
+                                    <?php endif; ?>
 
                                     <a href="#" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $course_details['id']); ?>')"><i class="fas fa-credit-card"></i> <?php echo get_phrase('Buy Now'); ?></a>
                                 <?php endif; ?>
@@ -415,10 +441,73 @@ if ($number_of_ratings > 0) {
 
 
 <?php if (addon_status('affiliate_course') && $is_affiliattor == 1) : ?>
-    <?php include 'affiliate_course_modal.php';  // course_addon  single line /adding 
+    <?php include 'affiliate_course_modal.php';  // course_addon  single line /adding
     ?>
 <?php endif; ?>
 
 <?php if (addon_status('team_training')) : ?>
     <?php include 'course_related_packages.php'; ?>
 <?php endif; ?>
+
+<script>
+    cartSections = [];
+    cartLessons = [];
+
+    $(document).ready(function() {
+        $('input[name="sections"]:checked').each(function() {
+            cartSections.push($(this).val());
+        });
+
+        $('input[name="lessons"]:checked').each(function() {
+            cartLessons.push($(this).val());
+        });
+    });
+
+    function updateCartSections() {
+        let sections = [];
+        let updatedCartSections = [];
+        $('input[name="sections"]').each(function() {
+            if (this.checked && cartSections.indexOf($(this).val()) == -1) {
+                sections.push($(this).val());
+            } else if (!this.checked && cartSections.indexOf($(this).val()) != -1) {
+                sections.push($(this).val());
+            }
+            if (this.checked) {
+                updatedCartSections.push($(this).val());
+            }
+        });
+        if (sections.length == 0) {
+            toastr.error('<?= get_phrase('No Changes, Please make at least one change.') ?>');
+            return;
+        }
+        cartSections = updatedCartSections;
+        actionTo(
+            ('<?= site_url('home/handle_cart_items/SECTIONS_IDS/_/section'); ?>')
+              .replaceAll('SECTIONS_IDS', sections.join('_'))
+        );
+    }
+
+    function updateCartLessons() {
+        let lessons = [];
+        let updatedCartLessons = [];
+        $('input[name="lessons"]').each(function() {
+            if (this.checked && cartLessons.indexOf($(this).val()) == -1) {
+                lessons.push($(this).val());
+            } else if (!this.checked && cartLessons.indexOf($(this).val()) != -1) {
+                lessons.push($(this).val());
+            }
+            if (this.checked) {
+                updatedCartLessons.push($(this).val());
+            }
+        });
+        if (lessons.length == 0) {
+            toastr.error('<?= get_phrase('No Changes, Please make at least one change.') ?>');
+            return;
+        }
+        cartLessons = updatedCartLessons;
+        actionTo(
+            ('<?= site_url('home/handle_cart_items/LESSONS_IDS/_/lesson'); ?>')
+              .replaceAll('LESSONS_IDS', lessons.join('_'))
+        );
+    }
+</script>

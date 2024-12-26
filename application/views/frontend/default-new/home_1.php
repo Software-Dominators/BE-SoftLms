@@ -3,11 +3,11 @@
         width: auto !important;
     }
     .course-item-one .content .title {
-        display: -webkit-box!important; 
-        -webkit-line-clamp: 1; 
-        -webkit-box-orient: vertical; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
+        display: -webkit-box!important;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: normal
     }
 </style>
@@ -32,7 +32,7 @@
                         }
                         ?>
                     </h1>
-                
+
 
                     <div class="EbannerTop wow animate__animated  animate__fadeInUp opacityOnUp" data-wow-duration="1000" data-wow-delay="200">
                        <p><?php echo site_phrase(get_frontend_settings('banner_sub_title')); ?></p>
@@ -57,8 +57,8 @@
                    </div>
 
                 </div>
-               
-                
+
+
             </div>
 
 
@@ -69,7 +69,7 @@
                     </div>
                  </div>
             </div>
-        </div> 
+        </div>
         <div class="bannar-card  Ebaner-card wow  animate__animated animate__fadeInUp opacityOnUp" data-wow-duration="500" data-wow-delay="400">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 arrow-side">
@@ -91,7 +91,7 @@
                             <div class="col-lg-2">
                                <img loading="lazy" src="<?php echo base_url('assets/frontend/default-new/image/h2.svg')?>">
                             </div>
-                           
+
                             <div class="col-lg-10">
                                 <h6><?php
                                     $status_wise_courses = $this->crud_model->get_status_wise_courses_front();
@@ -100,7 +100,7 @@
                                 <p><?php echo site_phrase('explore_a_variety_of_fresh_topics'); ?></p>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 arrow-side">
                     <div class="banner-card-1">
@@ -113,7 +113,7 @@
                                 <p><?php echo site_phrase('learn_on_your_schedule'); ?></p>
                             </div>
                         </div>
-                    </div>           
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@
                 <div class="title-one">
                     <h4 class="title"><?php echo get_phrase('Explore Our Upcoming Courses'); ?></h4>
                 </div>
-                 
+
             </div>
             <div class="col-lg-6">
                <div class="Etop_right">
@@ -155,8 +155,8 @@
                   <a href="<?php echo site_url('home/course/' . rawurlencode(slugify($upcoming_course['title'])) . '/' . $upcoming_course['id']); ?>" id="top_course_<?php echo $upcoming_course['id']; ?>" class="course-item-one">
                        <div class="ePosition">
                             <div class="eImage d-flex">
-                                <span class="px-3"><?php 
-                                echo $this->db->where('id', $upcoming_course['sub_category_id'])->get('category')->row('name'); 
+                                <span class="px-3"><?php
+                                echo $this->db->where('id', $upcoming_course['sub_category_id'])->get('category')->row('name');
                                 ?></span>
                                 <div class="img">
                                     <img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($instructor_details['id']); ?>" alt="" />
@@ -167,13 +167,13 @@
                         <div class="img">
                             <?php if($upcoming_course['upcoming_image_thumbnail']):?>
                                 <img loading="lazy" src="<?php echo('uploads/thumbnails/upcoming_thumbnails/'.$upcoming_course['upcoming_image_thumbnail'] ) ?>" alt="" />
-                             <?php else:?>   
+                             <?php else:?>
                              <img loading="lazy" src="<?php echo('uploads/thumbnails/course_thumbnails/placeholder.png') ?>" alt="" />
-                           <?php endif;?>                           
+                           <?php endif;?>
                         </div>
                        <div class="content">
                           <h4 class="title pb-0"><?php echo $upcoming_course['title']; ?></h4>
-                          <p class="info ellipsis-line-2 fw-400"> <?php 
+                          <p class="info ellipsis-line-2 fw-400"> <?php
                             if($upcoming_course['publish_date']){
                                 echo get_phrase('Release On').' : '. date('j F Y', strtotime($upcoming_course['publish_date']));
                             }
@@ -224,7 +224,7 @@
                                 </div>
                                 <div class="courses-card-image-text">
                                     <h3><?php echo get_phrase($top_course['level']); ?></h3>
-                                </div> 
+                                </div>
                             </div>
                             <div class="courses-text">
                                 <h5 class="mb-2"><?php echo $top_course['title']; ?></h5>
@@ -304,8 +304,7 @@
                                 <?php endforeach; ?>
                             </ul>
                             <div class="popover-btns">
-                                <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                                <?php if(is_purchased($top_course['id'])): ?>
+                                <?php if(is_purchased(['course_id' => $top_course['id']])): ?>
                                     <a href="<?php echo site_url('home/lesson/'.slugify($top_course['title']).'/'.$top_course['id']) ?>" class="purchase-btn d-flex align-items-center  me-auto"><i class="far fa-play-circle me-2"></i> <?php echo get_phrase('Start Now'); ?></a>
                                     <?php if ($top_course['is_free_course'] != 1) : ?>
                                         <button type="button" class="gift-btn ms-auto" title="<?php echo get_phrase('Gift someone else'); ?>" data-bs-toggle="tooltip" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $top_course['id'].'?gift=1'); ?>')"><i class="fas fa-gift"></i></button>
@@ -316,10 +315,10 @@
                                     <?php else : ?>
 
                                         <!-- Cart button -->
-                                        <a id="added_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(!in_array($top_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>');">
+                                        <a id="added_course_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $top_course['id']) === null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>');">
                                             <i class="fas fa-minus me-2"></i> <?php echo get_phrase('Remove from cart'); ?>
                                         </a>
-                                        <a id="add_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(in_array($top_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>'); ">
+                                        <a id="add_course_to_cart_btn_top_course<?php echo $top_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $top_course['id']) !== null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $top_course['id'].'/top_course'); ?>'); ">
                                             <i class="fas fa-plus me-2"></i> <?php echo get_phrase('Add to cart'); ?>
                                         </a>
                                         <!-- Cart button ended-->
@@ -334,7 +333,7 @@
                                         animation:'pop',
                                         cache:false,
                                         multi:true,
-                                        direction:'rtl', 
+                                        direction:'rtl',
                                         placement:'horizontal',
                                     });
                                 });
@@ -382,7 +381,7 @@
                                     <i class="<?php echo $category_details['font_awesome_class']; ?>"></i>
                                 </div>
                              <?php endif;?>
-                          
+
                             <!-- <span class="category-hide-icon"><i class="fa-solid fa-angle-right"></i></span> -->
                             <div class="eText">
                                  <h5 class="pt-0"> <?php echo $category_details['name']; ?></h5>
@@ -429,7 +428,7 @@
                                 </div>
                                 <div class="courses-card-image-text">
                                     <h3><?php echo get_phrase($latest_course['level']); ?></h3>
-                                </div> 
+                                </div>
                             </div>
                             <div class="courses-text">
                                 <h5 class="mb-2"><?php echo $latest_course['title']; ?></h5>
@@ -509,8 +508,7 @@
                                 <?php endforeach; ?>
                             </ul>
                             <div class="popover-btns">
-                                <?php $cart_items = $this->session->userdata('cart_items'); ?>
-                                <?php if(is_purchased($latest_course['id'])): ?>
+                                <?php if(is_purchased(['course_id' => $latest_course['id']])): ?>
                                     <a href="<?php echo site_url('home/lesson/'.slugify($latest_course['title']).'/'.$latest_course['id']) ?>" class="purchase-btn d-flex align-items-center  me-auto"><i class="far fa-play-circle me-2"></i> <?php echo get_phrase('Start Now'); ?></a>
                                     <?php if ($latest_course['is_free_course'] != 1) : ?>
                                         <button type="button" class="gift-btn ms-auto" title="<?php echo get_phrase('Gift someone else'); ?>" data-bs-toggle="tooltip" onclick="actionTo('<?php echo site_url('home/handle_buy_now/' . $latest_course['id'].'?gift=1'); ?>')"><i class="fas fa-gift"></i></button>
@@ -521,10 +519,10 @@
                                     <?php else : ?>
 
                                         <!-- Cart button -->
-                                        <a id="added_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(!in_array($latest_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>');">
+                                        <a id="added_course_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $latest_course['id']) === null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>');">
                                             <i class="fas fa-minus me-2"></i> <?php echo get_phrase('Remove from cart'); ?>
                                         </a>
-                                        <a id="add_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(in_array($latest_course['id'], $cart_items)) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>'); ">
+                                        <a id="add_course_to_cart_btn_latest_course<?php echo $latest_course['id']; ?>" class="purchase-btn align-items-center me-auto <?php if(cart_items_get_index('course', $latest_course['id']) !== null) echo 'd-hidden'; ?>" href="javascript:void(0)" onclick="actionTo('<?php echo site_url('home/handle_cart_items/' . $latest_course['id'].'/latest_course'); ?>'); ">
                                             <i class="fas fa-plus me-2"></i> <?php echo get_phrase('Add to cart'); ?>
                                         </a>
                                         <!-- Cart button ended-->
@@ -539,7 +537,7 @@
                                         animation:'pop',
                                         cache:false,
                                         multi:true,
-                                        direction:'rtl', 
+                                        direction:'rtl',
                                         placement:'horizontal',
                                     });
                                 });
@@ -576,7 +574,7 @@
                     $top_instructor = $this->user_model->get_all_user($top_instructor_id['creator'])->row_array();
                     // $social_links  = json_decode($instructor_details['social_links'], true);
                     $social_links  = json_decode($top_instructor['social_links'], true);
-                  
+
                     ?>
                     <div class="col-lg-3 col-md-4 col-sm-6" data-wow-duration="1000" data-wow-delay="600">
                         <div class="instructor-card-body">
@@ -584,7 +582,7 @@
                                 <img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($top_instructor['id']); ?>">
                             </div>
                             <div class="instructor-card-text">
-                              
+
                                 <a class="text-muted w-100" href="<?php echo site_url('home/instructor_page/'.$top_instructor['id']); ?>">
                                     <h3 class="text-center"><?php echo $top_instructor['first_name'].' '.$top_instructor['last_name']; ?></h3>
                                     <p class="ellipsis-line-2"><?php echo $top_instructor['title']; ?></p>
@@ -654,7 +652,7 @@
                             </div>
                         <?php endforeach; ?>
 
-                        
+
                     </div>
                     <?php if(count($website_faqs) > 5): ?>
                         <a href="<?php echo site_url('home/faq') ?>" class="btn btn-primary mt-5"><?php echo get_phrase('See More'); ?></a>
@@ -690,7 +688,7 @@
         <li class="e_border">
             <div class="Espeech-item">
                 <div class="row  wow  animate__animated animate__fadeInUp opacityOnUp" data-wow-duration="1000" data-wow-delay="700">
-                    
+
                 <div class="col-md-1 col-2">
                  <div class="speech-item-content Nspeech">
                             <p class="no"><?php echo $counter; ?></p>
@@ -739,7 +737,7 @@
             <div class="row">
                <?php foreach($latest_blogs->result_array() as $latest_blog):
                 $user_details = $this->user_model->get_all_user($latest_blog['user_id'])->row_array();
-                $blog_category = $this->crud_model->get_blog_categories($latest_blog['blog_category_id'])->row_array(); ?>  
+                $blog_category = $this->crud_model->get_blog_categories($latest_blog['blog_category_id'])->row_array(); ?>
                 <div class="col-lg-4 col-md-6 mb-3 wow  animate__animated animate__fadeIn" data-wow-duration="1000" data-wow-delay="700">
                     <a href="<?php echo site_url('blog/details/'.slugify($latest_blog['title']).'/'.$latest_blog['blog_id']); ?>" class="courses-card-body">
                         <div class="courses-card-image">
@@ -752,7 +750,7 @@
                             </div>
                             <div class="courses-card-image-text">
                                 <h3><?php echo $blog_category['title']; ?></h3>
-                            </div> 
+                            </div>
                         </div>
                         <div class="courses-text">
                             <h5><?php echo $latest_blog['title']; ?></h5>
@@ -823,7 +821,7 @@
                             <!-- <img loading="lazy" class="man" src="<?php echo base_url('assets/frontend/default-new/image/instractorN.png')?>"> -->
                         </div>
                      </div>
-                </div>      
+                </div>
             </div>
             <?php if (get_settings('allow_instructor') == 1) : ?>
                 <div class="col-lg-6  wow  animate__animated animate__fadeInUp opacityOnUp" data-wow-duration="1000" data-wow-delay="700">
@@ -844,8 +842,8 @@
                             <div class="col-lg-4 col-md-4 col-sm-12">
                             <!-- <img loading="lazy" class="man" src="<?php echo base_url('assets/frontend/default-new/image/student-2.png')?>"> -->
                             </div>
-                        </div>  
-                    </div> 
+                        </div>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>

@@ -11,7 +11,7 @@ class Api_files extends REST_Controller {
         parent::__construct();
 
         date_default_timezone_set(get_settings('timezone'));
-        
+
         $this->load->database();
         $this->load->library('session');
         // creating object of TokenHandler class at first
@@ -40,7 +40,7 @@ class Api_files extends REST_Controller {
                 $lesson = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
                 $get_lesson_type = get_lesson_type($lesson_id);
 
-                if(enroll_status($course_id, $user_id) == 'valid' || in_array($user_id, $multi_instructors)){
+                if(enroll_status(['course_id' => $course_id, 'user_id' => $user_id]) == 'valid' || in_array($user_id, $multi_instructors)){
 
 
                     //Assign video url
@@ -87,7 +87,7 @@ class Api_files extends REST_Controller {
                         //150000
                         //157205
                         // die;
-                        
+
                         // if (strpos($fileUrl, 'http') !== false) {
                         //     //Without chunking load a remote server's video
                         //     header('Accept-Ranges: bytes');
@@ -144,7 +144,7 @@ class Api_files extends REST_Controller {
                             $end = $file_size - 1;
                             //$range = isset($_SERVER['HTTP_RANGE']) ? $_SERVER['HTTP_RANGE'] : 'bytes=0-'.($file_size-1);
                             $range = isset($_SERVER['HTTP_RANGE']) ? $_SERVER['HTTP_RANGE'] : 'bytes=0-'.$chunkSize;
-                
+
                             header('Accept-Ranges: bytes');
                             header('Content-Type: '.$content_type);
                             header('Content-Disposition: inline; filename="' . $basename . '"');
@@ -221,7 +221,7 @@ class Api_files extends REST_Controller {
                 }
             }
         }
-        
+
     }
 
     function offline_video_for_mobile_app_get($lesson_id = "", $auth_token = ""){
@@ -233,7 +233,7 @@ class Api_files extends REST_Controller {
             $lesson_video = $this->db->where('id', $lesson_id)->get('lesson');
             $video_url = $lesson_video->row('video_url');
 
-            if(enroll_status($lesson_video->row('course_id'), $logged_in_user_details['user_id']) == 'valid' && $video_url != ''){
+            if(enroll_status(['course_id' => $lesson_video->row('course_id'), 'user_id' => $logged_in_user_details['user_id']]) == 'valid' && $video_url != ''){
                 $video_url = str_replace(base_url(),"",$video_url);
                 $data = file_get_contents($video_url);
                 $name = slugify($lesson_video->row('title')).'.'.pathinfo($video_url, PATHINFO_EXTENSION);

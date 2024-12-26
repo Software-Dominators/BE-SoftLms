@@ -25,16 +25,45 @@ class Payment_model extends CI_Model
 
         //item detail
         foreach ($this->session->userdata('cart_items') as $key => $cart_item) :
-            $course_details = $this->crud_model->get_course_by_id($cart_item)->row_array();
-            $item_details['id'] = $cart_item;
-            $item_details['title'] = $course_details['title'];
+            $cart_item_details = cart_items_get_item_details($cart_item);
+
+            $course_details = $cart_item_details ? $cart_item_details['course_details'] : null;
+            $section_details = $cart_item_details ? $cart_item_details['section_details'] : null;
+            $lesson_details = $cart_item_details ? $cart_item_details['lesson_details'] : null;
+
+            $item_details = [
+                'type' => $cart_item['type'],
+                'id' => $cart_item['id'],
+                'discount_flag' => NULL,
+                'discounted_price' => 0,
+            ];
+
+            if ($cart_item['type'] == 'course') {
+                if (!$course_details) continue;
+                $item_details['title'] = $course_details['title'];
+                $item_details['discount_flag'] = $course_details['discount_flag'];
+                $item_details['discounted_price'] = $course_details['discounted_price'];
+                $item_details['price'] = $course_details['price'];
+                $item_details['actual_price'] = ($course_details['discount_flag'] == 1) ? $course_details['discounted_price'] : $course_details['price'];
+            }
+
+            if ($cart_item['type'] == 'section') {
+                if (!$section_details || !$course_details) continue;
+                $item_details['title'] = $section_details['title'];
+                $item_details['price'] = $course_details['section_price'];
+                $item_details['actual_price'] = $course_details['section_price'];
+            }
+
+            if ($cart_item['type'] == 'lesson') {
+                if (!$lesson_details || !$course_details) continue;
+                $item_details['title'] = $lesson_details['title'];
+                $item_details['price'] = $course_details['lesson_price'];
+                $item_details['actual_price'] = $course_details['lesson_price'];
+            }
+
             $item_details['thumbnail'] = $this->crud_model->get_course_thumbnail_url($course_details['id']);
             $item_details['creator_id'] = $course_details['creator'];
-            $item_details['discount_flag'] = $course_details['discount_flag'];
-            $item_details['discounted_price'] = $course_details['discounted_price'];
-            $item_details['price'] = $course_details['price'];
 
-            $item_details['actual_price'] = ($course_details['discount_flag'] == 1) ? $course_details['discounted_price'] : $course_details['price'];
             $item_details['sub_items'] = array();
 
             $items[$key] = $item_details;
@@ -651,7 +680,10 @@ class Payment_model extends CI_Model
                 if ($payment_details['is_instructor_payout_user_id'] == false) {
                     foreach ($payment_details['items'] as $item) {
                         if (isset($item['id']) && $item['id'] > 0) {
-                            $cart_items[] = $item['id'];
+                            $cart_items[] = [
+                                'type' => $item['type'] ?? 'course',
+                                'id' => $item['id'],
+                            ];
                         }
                     }
                 }
@@ -1022,5 +1054,5 @@ class Payment_model extends CI_Model
     }
 
 
-    
+
 }

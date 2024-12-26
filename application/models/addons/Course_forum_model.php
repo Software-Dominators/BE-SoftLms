@@ -28,7 +28,7 @@ class Course_forum_model extends CI_Model {
         $this->db->where('is_parent', 0);
         return $this->db->get('course_forum');
     }
-    
+
     function get_course_wise_limited_questions($course_id = "", $limit = 10, $starting_value = 0){
         $this->db->order_by('id', 'desc');
         $this->db->where('course_id', $course_id);
@@ -83,7 +83,7 @@ class Course_forum_model extends CI_Model {
         $data['user_id'] = $user_id;
 
         $instructors = $this->crud_model->get_course_instructors_id($data['course_id']);
-        if(enroll_status($data['course_id'], $user_id) == 'valid' || in_array($user_id, $instructors) || $this->session->userdata('admin_login') == '1'){
+        if(enroll_status(['course_id' => $data['course_id'], 'user_id' => $user_id]) == 'valid' || in_array($user_id, $instructors) || $this->session->userdata('admin_login') == '1'){
             $description = upload_description_images($_POST['description'], 'uploads/description-images');
             $data['description'] = remove_js($description);
             $this->db->insert('course_forum', $data);
@@ -99,7 +99,7 @@ class Course_forum_model extends CI_Model {
 
 
     function send_notification($course_id = "", $user_id = "", $is_parent = "", $title = "", $description = ""){
-        if($is_parent == 0 && enroll_status($course_id, $user_id) == 'valid'){
+        if($is_parent == 0 && enroll_status(['course_id' => $course_id, 'course_id' => $user_id]) == 'valid'){
             //System notification
             $instructors = $this->crud_model->get_course_instructors_id($course_id);
             foreach($instructors as $instructor_id):
