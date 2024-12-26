@@ -1,4 +1,4 @@
-<?php $bundle_id = isset($bundle_id) ? $bundle_id:''; ?>
+<?php $bundle_id = isset($bundle_id) ? $bundle_id : ''; ?>
 
 <?php
 $full_page = isset($full_page) ? $full_page : false;
@@ -41,6 +41,34 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 		</div>
 	</div>
 	<?php include "plyr_config.php"; ?>
+<?php elseif ($get_lesson_type == 'bunny_video_file') : ?>
+	<div class="p-3 <?php if ($full_page) echo 'bg-black'; ?>">
+		<style>
+			.bunny-stream-video-container {
+				position: relative;
+				/* Make the container take up full width */
+				width: 100%;
+				/* Aspect ratio: 16:9 (height/width * 100) */
+				padding-top: 56.25%;
+				overflow: hidden;
+			}
+
+			.bunny-stream-video-container iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				/* Full width */
+				width: 100%;
+				/* Adjust height dynamically */
+				height: 100%;
+				/* Remove border */
+				border: 0;
+			}
+		</style>
+		<div class="bunny-stream-video-container">
+			<iframe src="<?php echo $lesson_details['video_url']; ?>" allowfullscreen allowtransparency allow="autoplay"></iframe>
+		</div>
+	</div>
 <?php elseif ($get_lesson_type == 'amazon_video_url' || $get_lesson_type == 'wasabi_video_url' || $get_lesson_type == 'academy_cloud' || $get_lesson_type == 'html5_video_url') : ?>
 	<div class="p-3 <?php if ($full_page) echo 'bg-black'; ?>">
 		<video poster="<?php echo $lesson_thumbnail_url; ?>" id="player" playsinline controls>
@@ -63,7 +91,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 	<?php include "plyr_config.php"; ?>
 <?php elseif ($get_lesson_type == 'audio_file') : ?>
 	<style>
-		.plyr__menu__container{
+		.plyr__menu__container {
 			z-index: 1035 !important;
 		}
 	</style>
@@ -80,7 +108,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 <?php elseif ($get_lesson_type == 'text') : ?>
 	<style>
 		/* For safari */
-		.white-space *{
+		.white-space * {
 			white-space: break-spaces;
 		}
 	</style>
@@ -97,7 +125,7 @@ $get_lesson_type = get_lesson_type($lesson_details['id']);
 <?php elseif ($get_lesson_type == 'text_file') : ?>
 	<iframe class="embed-responsive-item" width="100%" height="450px" src="<?php echo site_url('files?course_id=' . $course_details['id'] . '&lesson_id=' . $lesson_details['id'] . '&type=image'); ?>" allowfullscreen></iframe>
 <?php elseif ($get_lesson_type == 'pdf_file') : ?>
-	<iframe class="embed-responsive-item" width="100%" height="600px" src="<?php echo site_url('home/pdf_canvas/' . $course_details['id'] . '/' . $lesson_details['id'].'/'.$bundle_id); ?>" allowfullscreen></iframe>
+	<iframe class="embed-responsive-item" width="100%" height="600px" src="<?php echo site_url('home/pdf_canvas/' . $course_details['id'] . '/' . $lesson_details['id'] . '/' . $bundle_id); ?>" allowfullscreen></iframe>
 <?php elseif ($get_lesson_type == 'doc_file') : ?>
 	<iframe width="100%" height="500px" class="doc" src="<?php echo site_url('files?course_id=' . $course_details['id'] . '&lesson_id=' . $lesson_details['id']); ?>&embedded=true"></iframe>
 <?php elseif ($get_lesson_type == 'wasabi_document_file') : ?>

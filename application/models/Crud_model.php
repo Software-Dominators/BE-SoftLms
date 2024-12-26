@@ -72,9 +72,9 @@ class Crud_model extends CI_Model
                     $data['thumbnail'] = md5(rand(10000000, 20000000)) . '.jpg';
                     move_uploaded_file($_FILES['category_thumbnail']['tmp_name'], 'uploads/thumbnails/category_thumbnails/' . $data['thumbnail']);
                 }
-             }
+            }
 
-             if ($this->input->post('parent')) {
+            if ($this->input->post('parent')) {
                 // Check if the directory exists, if not create it
                 $upload_directory = 'uploads/thumbnails/category_thumbnails';
                 if (!file_exists($upload_directory)) {
@@ -174,7 +174,7 @@ class Crud_model extends CI_Model
         $this->db->delete('category');
     }
 
-   // Category Sub Category Image Delete
+    // Category Sub Category Image Delete
     public function delete_subcategory_image($category_id)
     {
         $this->db->where('id', $category_id);
@@ -647,8 +647,8 @@ class Crud_model extends CI_Model
             }
         endif;
 
-          // Upcoming Course Image
-         if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
+        // Upcoming Course Image
+        if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
             mkdir('uploads/thumbnails/upcoming_thumbnails', 0777, true);
         }
 
@@ -944,23 +944,23 @@ class Crud_model extends CI_Model
         }
 
 
-    // Proceed with uploading the new image
+        // Proceed with uploading the new image
 
-    if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
-        mkdir('uploads/thumbnails/upcoming_thumbnails', 0777, true);
-    }
-
-
-    if ($_FILES['upcoming_image_thumbnail']['name'] == "") {
-    } else {
-        $data['upcoming_image_thumbnail'] = md5(rand(10000000, 20000000)) . '.jpg';
-
-        move_uploaded_file($_FILES['upcoming_image_thumbnail']['tmp_name'], 'uploads/thumbnails/upcoming_thumbnails/' . $data['upcoming_image_thumbnail']);
-
-        if (!empty($_POST['old_upcoming_image_thumbnail'])) {
-            unlink('uploads/thumbnails/upcoming_thumbnails/' . $_POST['old_upcoming_image_thumbnail']);
+        if (!file_exists('uploads/thumbnails/upcoming_thumbnails')) {
+            mkdir('uploads/thumbnails/upcoming_thumbnails', 0777, true);
         }
-    }
+
+
+        if ($_FILES['upcoming_image_thumbnail']['name'] == "") {
+        } else {
+            $data['upcoming_image_thumbnail'] = md5(rand(10000000, 20000000)) . '.jpg';
+
+            move_uploaded_file($_FILES['upcoming_image_thumbnail']['tmp_name'], 'uploads/thumbnails/upcoming_thumbnails/' . $data['upcoming_image_thumbnail']);
+
+            if (!empty($_POST['old_upcoming_image_thumbnail'])) {
+                unlink('uploads/thumbnails/upcoming_thumbnails/' . $_POST['old_upcoming_image_thumbnail']);
+            }
+        }
 
 
 
@@ -1056,7 +1056,8 @@ class Crud_model extends CI_Model
 
         return $query->row_array();
     }
-    public function get_complaint_user_data_via_id($id) {// as the name say with typoo put it work
+    public function get_complaint_user_data_via_id($id)
+    { // as the name say with typoo put it work
         $this->db->select('*');
         $this->db->from('users');
         $this->db->where('id', $id);
@@ -1079,7 +1080,8 @@ class Crud_model extends CI_Model
             return '-';
         }
     }
-    public function get_courses_data_for_complain_form() {
+    public function get_courses_data_for_complain_form()
+    {
         $this->db->select('*');
         $this->db->from('course');
         $query = $this->db->get();
@@ -1091,7 +1093,8 @@ class Crud_model extends CI_Model
 
 
     //the following id for the complain teble search integration
-    public function get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir) {
+    public function get_filtered_complaints($limit, $start, $search_value, $order_column, $order_dir)
+    {
         $this->db->select('*');
         $this->db->from('complains');
 
@@ -1666,6 +1669,32 @@ class Crud_model extends CI_Model
             $data['duration_for_mobile_application'] = $hour . ':' . $min . ':' . $sec;
             $data['video_type_for_mobile_application'] = 'html5';
             $data['video_url_for_mobile_application'] = $mobile_app_lesson_url;
+        } elseif ($lesson_type == "bunny") {
+            // SET MAXIMUM EXECUTION TIME 6000
+            ini_set('max_execution_time', '6000');
+
+            $tmpfile = $_FILES['bunny_video_file'];
+
+            $fileName           = $tmpfile['name'];
+            $tmp                = explode('.', $fileName);
+            $fileExtension      = strtoupper(end($tmp));
+
+            $video_extensions = ['WEBM', 'MP4'];
+            if (!in_array($fileExtension, $video_extensions)) {
+                return json_encode(['error' => get_phrase('please_select_valid_video_file')]);
+            }
+
+            $this->load->library('bunnystream');
+
+            $video_url = $this->bunnystream->createVideo($data['course_id'], $data['title'], $tmpfile['tmp_name']);
+
+            $data['video_url'] = $video_url;
+            $data['video_type'] = 'bunny';
+            $data['lesson_type'] = 'video';
+            $data['attachment_type'] = 'file';
+
+            $data['video_type_for_mobile_application'] = "html5";
+            $data['video_url_for_mobile_application'] = $video_url;
         } elseif ($lesson_type == "s3") {
             // SET MAXIMUM EXECUTION TIME 600
             ini_set('max_execution_time', '600');
@@ -2069,6 +2098,34 @@ class Crud_model extends CI_Model
             $data['duration_for_mobile_application'] = $hour . ':' . $min . ':' . $sec;
             $data['video_type_for_mobile_application'] = 'html5';
             $data['video_url_for_mobile_application'] = $mobile_app_lesson_url;
+        } elseif ($lesson_type == "bunny") {
+            // SET MAXIMUM EXECUTION TIME 6000
+            ini_set('max_execution_time', '6000');
+
+            if (isset($_FILES['bunny_video_file']) && !empty($_FILES['bunny_video_file']['name'])) {
+                $tmpfile = $_FILES['bunny_video_file'];
+
+                $fileName           = $tmpfile['name'];
+                $tmp                = explode('.', $fileName);
+                $fileExtension      = strtoupper(end($tmp));
+
+                $video_extensions = ['WEBM', 'MP4'];
+                if (!in_array($fileExtension, $video_extensions)) {
+                    return json_encode(['error' => get_phrase('please_select_valid_video_file')]);
+                }
+
+                $this->load->library('bunnystream');
+
+                $video_url = $this->bunnystream->updateVideo($data['course_id'], $previous_data['video_url'], $data['title'], $tmpfile['tmp_name']);
+
+                $data['video_url'] = $video_url;
+                $data['video_type'] = 'bunny';
+                $data['lesson_type'] = 'video';
+                $data['attachment_type'] = 'file';
+
+                $data['video_type_for_mobile_application'] = "html5";
+                $data['video_url_for_mobile_application'] = $video_url;
+            }
         } elseif ($lesson_type == "s3") {
             // SET MAXIMUM EXECUTION TIME 600
             ini_set('max_execution_time', '600');
@@ -2432,6 +2489,12 @@ class Crud_model extends CI_Model
             $file_name = explode('wasabi-', $previous_data['video_url']);
             $file_name = 'wasabi-' . $file_name[2];
             $this->wasabi_file_delete($file_name, $previous_data['course_id']);
+        }
+
+        if ($previous_data['lesson_type'] == 'video' && $previous_data['attachment_type'] == 'file' && $previous_data['video_type'] == 'bunny') {
+            $this->load->library('bunnystream');
+
+            $this->bunnystream->deleteVideo($previous_data['video_url']);
         }
 
         //update watch histories data
@@ -3910,8 +3973,7 @@ class Crud_model extends CI_Model
             // CHECK IF COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
             if (addon_status('certificate') && $course_progress >= 100) {
                 $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
-                if ($course_data && $course_data->enable_certificate)
-                {
+                if ($course_data && $course_data->enable_certificate) {
                     $this->load->model('addons/Certificate_model', 'certificate_model');
                     $this->certificate_model->check_certificate_eligibility($course_id, $user_id);
                 }

@@ -245,7 +245,7 @@ if (! function_exists('resizeImage')) {
     function resizeImage($filelocation = "", $target_path = "", $width = "", $height = "") {
         $CI =&  get_instance();
         $CI->load->database();
-        
+
         if($width == ""){
             $width = 200;
         }
@@ -651,6 +651,8 @@ if (!function_exists('get_lesson_type')) {
                 return 'amazon_video_url';
             }elseif($lesson['lesson_type'] == 'video' && $lesson['video_type'] == 'system'){
                 return 'video_file';
+            }elseif($lesson['lesson_type'] == 'video' && $lesson['video_type'] == 'bunny'){
+                return 'bunny_video_file';
             }elseif($lesson['lesson_type'] == 'audio'){
                 return 'audio_file';
             }elseif($lesson['lesson_type'] == 'video' && $lesson['video_type'] == 'academy_cloud'){
@@ -681,7 +683,7 @@ if (!function_exists('get_lesson_type')) {
                 return 'iframe';
             }
 
-            //'image_file' || 'doc_file' || 'pdf_file' || 'text_file' || 
+            //'image_file' || 'doc_file' || 'pdf_file' || 'text_file' ||
         }
     }
 }
