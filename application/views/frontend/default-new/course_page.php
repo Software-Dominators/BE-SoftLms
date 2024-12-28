@@ -15,6 +15,8 @@ if ($number_of_ratings > 0) {
 ?>
 
 
+
+
 <header class="course-breadcrumb">
     <div class="container">
         <div class="row">
@@ -36,12 +38,12 @@ if ($number_of_ratings > 0) {
                 </div>
 
                 <div class="  course-breadcrumb__middle">
-                   
 
-<div class="course-breadcrumb__middle_phone-img ">
-<img loading="lazy" class="w-100 h-100 "
-src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>">
-<div class=" course-breadcrumb__middle_phone-img-video-icon"
+
+                    <div class="course-breadcrumb__middle_phone-img ">
+                        <img loading="lazy" class="w-100 h-100 "
+                            src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>">
+                        <div class=" course-breadcrumb__middle_phone-img-video-icon"
                             onclick="lesson_preview('<?php echo site_url('home/course_preview/' . $course_details['id']); ?>', '<?php echo get_phrase($course_details['title']) ?>')">
                             <i class="fa-solid fa-play"></i>
                         </div>
@@ -53,7 +55,7 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
                             echo 'fa-solid'; ?>
                         " onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course_details['id']); ?>')"></i>
                         </div>
-</div>
+                    </div>
                     <h1><?php echo $course_details['title']; ?></h1>
                     <p><?php echo $course_details['short_description']; ?></p>
                 </div>
@@ -123,13 +125,68 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
         </div>
     </div>
 </header>
-<section class="course">
+
+
+
+<section class="course mt-0">
     <div class="container">
-        <div class="row  bg-info">
-            <div class="col-lg-7 ">
-                <h1>www</h1>
+        <div class="row  ">
+            <div class="col-lg-7  order-lg-1 order-2">
+                <div class="course__nav d-flex  justify-content-center flex-column">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                data-bs-target="#overview" type="button" role="tab" aria-controls="overview"
+                                aria-selected="true">
+                                <span> <?php echo get_phrase('Overview'); ?></span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
+                                data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum"
+                                aria-selected="false">
+                                <span><?php echo get_phrase('Curriculum') ?></span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab"
+                                data-bs-target="#instructor" type="button" role="tab" aria-controls="instructor"
+                                aria-selected="false">
+                                <span><?php echo get_phrase('Instructor') ?></span>
+                            </button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                type="button" role="tab" aria-controls="review" aria-selected="false">
+                                <span><?php echo get_phrase('Reviews') ?></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="course__tap">
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                            aria-labelledby="overview-tab">
+                            <?php include "course_page_info_description.php"; ?>
+                        </div>
+                        <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <?php include "course_page_curriculum.php"; ?>
+                        </div>
+                        <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
+                        <?php include "course_page_instructor.php"; ?>
+                        </div>
+                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <?php include "course_page_reviews.php"; ?>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="col-lg-5 ">
+            <div class="col-lg-5  px-lg-0 order-lg-2 order-1">
                 <div class="course__right">
                     <div class="course__right-img">
                         <img loading="lazy" class="w-100 h-100"
@@ -270,8 +327,9 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
                                 </select>
                             </div>
                             <!-- enrol now -->
-                             <a href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"><?php echo get_phrase('Enroll Now'); ?></a>
-         
+                            <a
+                                href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"><?php echo get_phrase('Enroll Now'); ?></a>
+
 
 
                         </div>
@@ -282,36 +340,36 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
 
 
                     <?php
-                        if (isset($user_data['unique_identifier'])):
-                            $ref = $user_data['unique_identifier'];
-                        else:
-                            $ref = '';
-                        endif;
-                        ?>
-                        <!-- soci -->
-                        <div class="course__right-social text-center">
-                            <?php $share_url = site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']); ?>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>&ref=<?php echo $ref; ?>"
-                                target="_blank" class="p-2" style="color: #316FF6;" data-bs-toggle="tooltip"
-                                title="<?php echo get_phrase('Share on Facebook'); ?>" data-bs-placement="top">
-                                <i class="fab fa-facebook "></i>
-                            </a>
-                            <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo $course_details['title']; ?>&ref=<?php echo $ref; ?>"
-                                target="_blank" class="p-2" style="color: #1DA1F2;" data-bs-toggle="tooltip"
-                                title="<?php echo get_phrase('Share on Twitter'); ?>" data-bs-placement="top">
-                                <i class="fab fa-twitter "></i>
-                            </a>
-                            <a href="https://api.whatsapp.com/send?text=<?php echo $share_url; ?>&ref=<?php echo $ref; ?>"
-                                target="_blank" class="p-2" style="color: #128c7e;" data-bs-toggle="tooltip"
-                                title="<?php echo get_phrase('Share on Whatsapp'); ?>" data-bs-placement="top">
-                                <i class="fab fa-whatsapp "></i>
-                            </a>
-                            <a href="https://www.linkedin.com/shareArticle?url=<?php echo $share_url; ?>&title=<?php echo $course_details['title']; ?>&summary=<?php echo $course_details['short_description']; ?>&ref=<?php echo $ref; ?>"
-                                target="_blank" class="p-2" style="color: #0077b5;" data-bs-toggle="tooltip"
-                                title="<?php echo get_phrase('Share on Linkedin'); ?>" data-bs-placement="top">
-                                <i class="fab fa-linkedin "></i>
-                            </a>
-                        </div>
+                    if (isset($user_data['unique_identifier'])):
+                        $ref = $user_data['unique_identifier'];
+                    else:
+                        $ref = '';
+                    endif;
+                    ?>
+                    <!-- soci -->
+                    <div class="course__right-social text-center">
+                        <?php $share_url = site_url('home/course/' . slugify($course_details['title']) . '/' . $course_details['id']); ?>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>&ref=<?php echo $ref; ?>"
+                            target="_blank" class="p-2" style="color: #316FF6;" data-bs-toggle="tooltip"
+                            title="<?php echo get_phrase('Share on Facebook'); ?>" data-bs-placement="top">
+                            <i class="fab fa-facebook "></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo $course_details['title']; ?>&ref=<?php echo $ref; ?>"
+                            target="_blank" class="p-2" style="color: #1DA1F2;" data-bs-toggle="tooltip"
+                            title="<?php echo get_phrase('Share on Twitter'); ?>" data-bs-placement="top">
+                            <i class="fab fa-twitter "></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?text=<?php echo $share_url; ?>&ref=<?php echo $ref; ?>"
+                            target="_blank" class="p-2" style="color: #128c7e;" data-bs-toggle="tooltip"
+                            title="<?php echo get_phrase('Share on Whatsapp'); ?>" data-bs-placement="top">
+                            <i class="fab fa-whatsapp "></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?url=<?php echo $share_url; ?>&title=<?php echo $course_details['title']; ?>&summary=<?php echo $course_details['short_description']; ?>&ref=<?php echo $ref; ?>"
+                            target="_blank" class="p-2" style="color: #0077b5;" data-bs-toggle="tooltip"
+                            title="<?php echo get_phrase('Share on Linkedin'); ?>" data-bs-placement="top">
+                            <i class="fab fa-linkedin "></i>
+                        </a>
+                    </div>
 
 
                 </div>
