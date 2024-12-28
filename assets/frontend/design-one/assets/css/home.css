@@ -1,0 +1,1003 @@
+.div-header {
+    position: relative;
+}
+
+.div-header__image {
+    position: absolute;
+    width: 414px;
+    height: 350px;
+    top: 105px;
+    left: -94px;
+
+
+}
+
+@media screen and (max-width: 768px) {
+    .div-header__image {
+        width: 244.67px;
+        height: 289px;
+        top: -46px;
+        left: -74px;
+        gap: 0px;
+        opacity: 0px;
+        z-index: 1;
+
+
+    }
+}
+
+/* ########################## wrapper ######################### */
+
+.wrapper {
+    min-height: 640px;
+    background-color: var(--white-color);
+
+}
+
+
+
+.wrapper .wrapper_left {
+    width: 540px;
+    margin-top: 98px;
+    margin-inline-start: 100px;
+
+}
+
+.wrapper .wrapper_left h1 {
+
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 84px;
+    color: var(--title-color);
+
+}
+
+.wrapper .wrapper_left h1 span {
+    color: var(--primary-color);
+}
+
+
+.wrapper .wrapper_left p {
+
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 36px;
+    color: var(--paragraph-color);
+    margin-top: 24px;
+    margin-bottom: 32px;
+
+}
+
+.wrapper .wrapper_left form {
+    width: 100%;
+    height: 56px;
+    position: relative;
+
+}
+
+.wrapper .wrapper_left form input {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    padding-left: 48px;
+
+
+}
+
+.wrapper .wrapper_left form i {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    /* Adjust spacing as needed */
+    transform: translateY(-50%) !important;
+    pointer-events: none;
+    color: var(--placeholder-color);
+    font-size: 24px;
+}
+
+.wrapper .wrapper_left form input::placeholder {
+    color: var(--placeholder-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.wrapper .wrapper_left form button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+    width: 131px;
+    height: 42px;
+    padding: 8px;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+
+
+
+}
+
+/* responsive */
+
+@media screen and (max-width: 1200px) {
+    .wrapper .wrapper_left {
+      
+        margin-inline-start: 50px;
+      
+    }  
+}
+@media screen and (max-width: 992px) {
+    .wrapper{
+        margin-bottom: 47px;
+    }
+    .wrapper .row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper .wrapper_left {
+        width: 100%;
+        margin-top: 35px;
+        margin-inline-start: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper .wrapper_left h1 {
+
+
+        font-size: 32px;
+
+        line-height: 48px;
+
+
+        width: 278px;
+
+
+
+    }
+
+
+
+    .wrapper .wrapper_left p {
+
+
+        margin-top: 16px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        width: 306px;
+    }
+
+    .wrapper .wrapper_left form {
+        width: 342px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .wrapper {
+        height: 100vh;
+    }
+
+    .wrapper .row {
+        flex-direction: column;
+    }
+
+    .wrapper .wrapper_right {
+        margin-top: 19px;
+    }
+
+    .wrapper_right img {
+        width: 231px;
+        height: 265px;
+
+
+    }
+}
+
+/* ########################## banner ######################### */
+.banner {
+    width: 100%;
+    padding-top: 88px;
+    padding-bottom: 88px;
+    background-color: var(--light-orange-color);
+}
+
+.banner .banner__content {
+    gap: 24px;
+}
+
+.banner .banner__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+}
+
+.banner .banner__text h6 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    color: var(--title-color);
+
+
+}
+
+.banner .banner__text p {
+
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    color: var(--black-color);
+    margin-top: 9px;
+
+}
+
+/* responsive */
+
+@media screen and (max-width: 1200px) {
+
+    .banner .banner__text h6 {
+        font-size: 20px;
+
+        line-height: 32px;
+
+
+
+    }
+
+    .banner .banner__text p {
+
+        font-size: 15px;
+
+        line-height: 17px;
+
+
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .banner .banner__content {
+        gap: 10px;
+    }
+
+    .banner .banner__text h6 {
+
+        font-size: 16px;
+
+        line-height: 24px;
+
+
+    }
+
+    .banner .banner__image {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 8px;
+
+    }
+
+    .banner .banner__text p {
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .banner {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .banner .banner__content {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner .banner__image {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 8px;
+
+    }
+
+    .banner .banner__text h6 {
+
+        font-size: 16px;
+
+        line-height: 24px;
+
+
+    }
+
+    .banner .banner__text p {
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+        margin-top: 8px;
+    }
+}
+
+/* ##########################course################ */
+.course__content {
+    background: var(--light-grey-color);
+    width: 397px;
+    min-height: 607px;
+    height: 100%;
+    border-radius: 32px;
+    padding: 24px;
+
+}
+
+.course__top {
+    width: 349px;
+    height: 289px;
+    border-radius: 8px;
+    position: relative;
+    background-color: red;
+}
+
+.course__top img {
+    border-radius: 8px;
+}
+
+.course__top .favorite {
+    background-color: var(--white-color);
+    padding: 8px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--primary-color);
+    z-index: 99;
+
+}
+
+.course__top .duration {
+    background-color: var(--white-color);
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+    color: #535353;
+    height: 33px;
+    padding: 6px 10px 6px 10px;
+    gap: 6px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    z-index: 99;
+}
+
+.course .course__middle {
+    margin-top: 16px;
+}
+
+.course__bottom .course__category {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+
+}
+
+.course__bottom .category .course_level {
+    text-decoration: none;
+}
+
+
+.course .course__title {
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: var(--dark-grey-color);
+
+}
+
+.course .course__review {}
+
+.course .course__description {
+
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    color: var(--paragraph-color);
+
+}
+
+.course__bottom {
+    margin-top: 16px;
+}
+
+.course__instructor {
+    gap: 4.5px;
+}
+
+.course .course__instructor img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+
+}
+
+.course .course__instructor .instructor-name {
+    gap: 4px;
+}
+
+.course .course__instructor .instructor-name span {
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    color: #6C6C6C;
+    padding: 0;
+
+}
+
+.course .course__instructor .instructor-name h6 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #101828;
+
+}
+
+.course .course__price {
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    color: var(--primary-color);
+
+}
+
+/* #############  general header for all sections #################### */
+
+
+.top-header-section {
+    margin-bottom: 32px;
+}
+
+.top-header-section h2 {
+
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 84px;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+
+}
+
+.top-header-section h2 span {
+
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 72px;
+    color: #161616;
+    ;
+
+}
+
+.top-header-section p {
+
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 36px;
+    color: var(--paragraph-color);
+
+}
+
+/* responsive */
+@media screen and (max-width: 992px) {
+
+    .top-header-section {
+        margin-bottom: 16px;
+    }
+
+    .top-header-section h2 {
+
+        font-size: 24px;
+
+        line-height: 36px;
+
+
+    }
+
+    .top-header-section h2 span {
+
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 48px;
+
+
+    }
+
+    .top-header-section p {
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+
+
+    }
+}
+
+
+/* ######################### top-category ######################### */
+.top-category .row {
+    gap: 24px;
+}
+
+.top-category .top-category__content {
+    display: inline-block;
+    position: relative;
+    width: 291px;
+    height: 340px;
+    border-radius: 16px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.top-category .top-category__image {
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+
+}
+
+.top-category .top-category__title {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: var(--white-color);
+
+}
+
+.top-category .top-category__number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--white-color);
+    width: 112px;
+    padding: 4px 22px 4px 21px;
+    border-radius: 8px;
+    background-color: #FFFFFFE5;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--black-color);
+
+
+}
+
+/* responsive */
+@media screen and (max-width: 992px) {
+    .top-category .row {
+        justify-content: center;
+
+    }
+
+    .top-category .top-category__content {
+        /* width: 343px; */
+        width: 100%;
+        height: 340px;
+    }
+
+}
+
+
+/* ######################### latest blog ######################### */
+
+.latest-blog {
+    margin-top: 60px;
+}
+
+.latest-blog__content {
+    padding: 16px;
+    padding-bottom: 0px;
+    max-width: 397px;
+    border-radius: 24px;
+    background-color: var(--bg-light-grey-color);
+
+}
+
+.latest-blog .latest-blog__image {
+    width: 100%;
+    height: 301px;
+    border-radius: 8px;
+}
+
+.latest-blog__top {
+    margin-top: 16px;
+}
+
+.latest-blog__top span {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--dark-grey-color);
+
+
+}
+
+.latest-blog__middle h3 {
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #0D0D0D;
+
+}
+
+.latest-blog__middle p {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25.6px;
+    color: var(--paragraph-color);
+
+}
+
+.latest-blog__bottom {
+    margin-top: 16px;
+    padding-bottom: 24px;
+}
+
+.latest-blog__creator {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.latest-blog__creator img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50%;
+}
+
+.latest-blog__creator h5 {
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--dark-grey-color);
+
+}
+
+.latest-blog__read-more {
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--primary-color);
+    gap: 8px;
+
+}
+
+
+
+/* responsive */
+@media screen and (max-width: 992px) {
+    .latest-blog {
+        margin-top: 34px;
+    }
+
+    .latest-blog .row {
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .latest-blog .latest-blog__content {
+        width: 100%;
+
+
+    }
+
+    .latest-blog__top span {
+
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+
+
+    }
+
+    .latest-blog__middle h3 {
+
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 36px;
+
+
+    }
+
+    .latest-blog__middle p {
+
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 18px;
+
+
+    }
+
+    .latest-blog__creator img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .latest-blog__creator h5 {
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+
+
+    }
+
+    .latest-blog__bottom {
+        display: block !important;
+    }
+
+    .latest-blog__bottom .latest-blog__read-more {
+
+        display: block;
+        text-align: end;
+    }
+}
+
+
+/* ############3top-instructor ############# */
+
+.top-instructor {
+    margin-top: 60px;
+}
+
+.top-instructor .row {
+    gap: 24px;
+}
+
+.top-instructor__content {
+    width: 397px;
+    height: 456px;
+    padding: 24px 24px 16px 24px;
+    border-radius: 32px;
+    text-align: center;
+    background-color: var(--bg-light-grey-color);
+
+}
+
+.top-instructor__image {
+
+    height: 323px;
+    border-radius: 8px;
+
+
+}
+
+.top-instructor__info {
+    margin-top: 16px;
+}
+
+.top-instructor__info h3 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    color: var(--dark-grey-color);
+    margin-bottom: 8px;
+
+}
+
+.top-instructor__info a {
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    color: var(--primary-color);
+}
+
+/* responsive */
+
+@media screen and (max-width: 992px) {
+
+    .top-instructor {
+        margin-top: 23px;
+    }
+
+    .top-instructor .row {
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .top-instructor .top-instructor__content {
+        width: 100%;
+        height: 349px;
+
+
+    }
+
+    .top-instructor__image {
+        height: 237px;
+    }
+
+    .top-instructor__info h3 {
+
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 30px;
+
+
+        margin-bottom: 8px;
+
+    }
+
+    .top-instructor__info a {
+
+        font-size: 16px;
+
+        line-height: 24px;
+
+
+    }
+
+}
+
+/* ########################## Join ################################# */
+.join {
+    margin-top: 130px;
+}
+
+/* .join .row {
+    gap: 22px;
+} */
+
+.join .join__content {
+    padding-inline-end: 0;
+    /* width: 623px; */
+    /* min-height: 366px; */
+    height: 100%;
+    border-radius: 16px;
+    background: var(--primary-color);
+    padding-inline-start: 32px;
+    padding-top: 42px;
+    padding-inline-end: 0;
+    justify-content: space-between;
+
+}
+
+
+
+.join .join__text {
+    width: 371px;
+    padding-bottom: 42px;
+}
+
+.join .join__text h2 {
+
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 67.2px;
+    color: var(--white-color);
+}
+
+.join .join__text p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--white-color);
+    margin-top: 16px;
+    margin-bottom: 32px;
+
+}
+
+
+
+.join .join__text a {
+    margin-top: auto;
+    /* Push button to the bottom */
+}
+
+
+
+.join__image {
+    display: flex;
+    /* justify-content: end;
+    align-items: end; */
+    align-self: flex-end;
+    /* Align image to the end horizontally */
+    margin: 0;
+    /* Remove margin */
+    padding: 0;
+    /* Remove padding */
+    display: block;
+    /* Ensure it behaves like a block element */
+}
+
+.join .col-lg-6 {
+    position: relative;
+}
+
+.join .circle-girl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+}
+.join .circle-boy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    z-index: 1;
+}
+.join .join__content img{
+    z-index: 2;
+}
+@media screen and (max-width: 992px) {
+
+    .join {
+        margin-top: 48px;
+    }
+
+    .join .row {
+        gap: 16px;
+    }
+
+    .join .join__content {
+        width: 100%;
+    }
+
+    .join .join__text h2 {
+
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 27px;
+
+
+    }
+
+    .join .join__text p {
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        margin-top: 8px;
+        margin-bottom: 16px;
+    }
+}
+
+.swiper-wrapper {
+    justify-content: space-between;
+    gap: 16px;
+}

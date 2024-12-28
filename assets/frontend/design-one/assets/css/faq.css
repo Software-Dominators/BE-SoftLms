@@ -1,0 +1,101 @@
+.faq {
+    margin-bottom: 76px;
+}
+
+
+.faq .accordion-item:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.faq .accordion-item {
+
+    background-color: #F1F1F1;
+    min-height: 70px;
+    padding: 0px 24px 0px 24px;
+    border-radius: 16px;
+    border: none;
+}
+
+.faq .accordion-body p {
+
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+
+
+    color: #282828;
+
+
+}
+
+.faq .accordion-item .accordion-button:not(.collapsed),
+.faq .accordion-item .accordion-button.collapsed {
+
+    background-color: inherit;
+    box-shadow: none;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    color: #282828;
+
+}
+
+
+.faq .accordion-button:not(.collapsed)::after,
+.faq .accordion-button.collapsed::after {
+    content: "\f078";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #282828;
+    background-image: none !important;
+}
+
+.faq .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+
+.faq .accordion-button.collapsed::after {
+    transform: rotate(0deg);
+}
+
+
+
+@media (max-width: 992px) {
+    .faq {
+        margin-bottom: 172px;
+    }
+
+    .faq .accordion-item:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+
+    .faq .accordion-item {
+        min-height: 51px;
+        padding: 0px 16px 0px 16px;
+
+
+    }
+
+
+    .faq .accordion-body p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+
+    .faq .accordion-item .accordion-button:not(.collapsed),
+    .faq .accordion-item .accordion-button.collapsed {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+}
+
+
+/*  */
+
+/* .faq .accordion-item{
+    border: 1px solid #A1A1A1;
+} */

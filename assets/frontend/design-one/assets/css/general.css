@@ -1,0 +1,224 @@
+/* general */
+:root {
+    --primary-color: #754FFE;
+    --secondary-color: #FFB600;
+    --dark-grey-color: #2B3A53;
+    --light-grey-color: #F5F5F5;
+    --paragraph-color: #575757;
+    --white-color: #FFFFFF;
+    --dark-withe-color: #FDFDFD;
+    --light-withe-color: #EFF2F1;
+    --black-color: #000000;
+    --bg-light-grey-color: #F5F5F5;
+    --bg-form-color: #FBFCFB;
+    --dark-blue-color: #2A176E;
+    --light-blue-color:  #754FFE1A; 
+    --title-color: #161616;
+    --subtitle-color: #1A1A1A;
+    --placeholder-color: #6B6B6B;
+    --button-text-color: #FAF8F7;
+    --placeholder-light-color: #BDC0BC;
+    --label-color:#353535;
+    --light-orange-color:  #FED05EC2;
+    --dark-orange-color: #FFD400;
+    --text-danger:#ED4C5C;
+    --text-success:#4BAE4F;
+    --text-primary:#754FFE;
+    --shadow-color:#00000029;
+
+  
+
+
+}
+
+
+.text-primary{
+    color: var(--text-primary) !important;
+}
+
+body {
+    background-color: var(--white-color);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    
+}
+a,img{
+    display: inline-block;
+}
+button {
+    border: none;
+    outline: none;
+}
+
+/* button */
+.btn {
+    padding: 6px 31px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    color: var(--white-color);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    border: none;
+    outline: none;
+    transition: all 1s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+   
+
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--white-color);
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color);
+}
+.btn-primary:disabled{
+    background-color: var(--light-grey-color);
+    color: var(--dark-grey-color);
+    border: 1px solid var(--light-grey-color);
+}
+
+.btn-primary-outline {
+    background-color: var(--white-color);
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color);
+   
+
+}
+.btn-primary-outline:hover,
+.btn-primary-outline:focus {
+    background-color: var(--primary-color);
+    color: var(--white-color) !important;
+    border: 1px solid var(--white-color);
+}
+
+.btn-white {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+}
+
+.btn-white:hover,
+.btn-white:focus {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: 1px solid var(--white-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: 1px solid var(--primary-color);
+}
+.bread-crumb{
+    background-image: url(../images/home/other-hero-bg.svg) !important;
+    background-size: cover;
+    min-height: 42vh !important;
+    padding: 0 !important;
+
+}
+.bread-crumb .row {
+    flex-direction: column ;
+    justify-content: center;
+}
+.breadcrumb-item{
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    /* line-height: 36px !important; */
+   
+}
+.breadcrumb-item i{
+    font-size: 24px !important;
+    padding: 0 !important;
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+   
+}
+.bread-crumb .fa-chevron-right{
+    transform: translateY(3px);
+}
+.bread-crumb span{
+    margin-right: 0 !important;
+}
+.breadcrumb-item.active span{
+    font-weight: 500 !important;
+    color: #FFD400 !important;
+}
+.bread-crumb h1 {
+    font-size: 56px;
+    font-weight: 600;
+    /* line-height: 84px; */
+    color: #fff;
+    margin-bottom: 0 !important;
+}
+
+
+
+
+.page-item:last-child .page-link {
+    border-top-right-radius:none;
+    border-bottom-right-radius: none;
+}
+
+.pagination {
+    margin-top: 64px;
+    display: flex;
+    gap: 8px;
+}
+
+.pagination  .page-item{
+    width: 32px !important;
+height: 32px !important;
+padding: 5px 4px 5px 4px;
+
+border-radius: 4px !important;
+border: 1px solid #DCDCDC;
+background: #FFFFFF;
+
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+} 
+/* .pagination  .page-item a{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+line-height: 20px;
+color:#535353;
+
+} 
+.pagination  .page-item.active{
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+}
+
+
+
+.pagination .page-item.active {
+    background-color: var(--secondary-color) !important;
+    color: var(--white-color) !important;
+    border: 1px solid var(--secondary-color); 
+} */
+
