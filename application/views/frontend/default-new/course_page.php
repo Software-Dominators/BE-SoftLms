@@ -15,8 +15,6 @@ if ($number_of_ratings > 0) {
 ?>
 
 
-
-
 <header class="course-breadcrumb">
     <div class="container">
         <div class="row">
@@ -389,7 +387,6 @@ if ($number_of_ratings > 0) {
             $category_name = $this->crud_model->get_category_name_by_id($course_details['category_id']);
             ?>
             <?php foreach ($related_courses as $key => $course):
-
                 $lessons = $this->crud_model->get_lessons('course', $course['id']);
                 $instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();
                 $course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course['id']);
@@ -401,8 +398,6 @@ if ($number_of_ratings > 0) {
                 } else {
                     $average_ceil_rating = 0;  // Default to 0 if no ratings
                 }
-
-
                 ?>
                 <div class="col-lg-4 col-md-6">
                     <a class="related-courses__content  d-flex flex-column"
@@ -457,31 +452,31 @@ if ($number_of_ratings > 0) {
                             <div class="related-courses__instructor d-flex  ">
                                 <img loading="lazy"
                                     src="<?php echo $this->user_model->get_user_image_url($instructor_details['id']); ?>">
-                                    <div class="d-flex flex-column align-items-between ">
+                                <div class="d-flex flex-column align-items-between ">
                                     <span><?php echo get_phrase('Created By'); ?></span>
-                                    <h6 ><?php echo $instructor_details['first_name'] . ' ' . $instructor_details['last_name']; ?>
+                                    <h6><?php echo $instructor_details['first_name'] . ' ' . $instructor_details['last_name']; ?>
                                     </h6>
                                 </div>
                             </div>
 
                             <div class="elated-courses__price">
-                                        <?php if ($course['is_free_course']): ?>
-                                        <h5>
-                                            <?php echo get_phrase('Free'); ?>
-                                        </h5>
-                                        <?php elseif ($course['discount_flag']): ?>
-                                        <h5>
-                                            <?php echo currency($course['discounted_price']); ?>
-                                        </h5>
-                                        <p class="mt-1">
-                                                <?php echo currency($course['price']); ?>
-                                        </p>
-                                        <?php else: ?>
-                                        <h5>
-                                            <?php echo currency($course['price']); ?>
-                                        </h5>
-                                        <?php endif; ?>
-                                    </div>
+                                <?php if ($course['is_free_course']): ?>
+                                    <h5>
+                                        <?php echo get_phrase('Free'); ?>
+                                    </h5>
+                                <?php elseif ($course['discount_flag']): ?>
+                                    <h5>
+                                        <?php echo currency($course['discounted_price']); ?>
+                                    </h5>
+                                    <p class="mt-1">
+                                        <?php echo currency($course['price']); ?>
+                                    </p>
+                                <?php else: ?>
+                                    <h5>
+                                        <?php echo currency($course['price']); ?>
+                                    </h5>
+                                <?php endif; ?>
+                            </div>
 
                         </div>
 
