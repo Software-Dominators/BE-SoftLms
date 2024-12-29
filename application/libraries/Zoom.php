@@ -21,7 +21,7 @@ class Zoom
         $this->account_id = $zoom_settings['account_id'];
 
         // Load Guzzle Lib
-        $this->load->library('guzzle');
+        require_once(APPPATH . 'libraries/guzzle/vendor/autoload.php');
 
         // Get Access Token
         $this->accessToken = $this->getAccessToken();

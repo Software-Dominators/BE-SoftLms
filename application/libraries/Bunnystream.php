@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class BunnyStream
+class Bunnystream
 {
     protected $client;
     protected $hostname;
@@ -20,7 +20,7 @@ class BunnyStream
         $this->api_key = $bunny_stream_settings['api_key'] ?? null;
 
         // Load Guzzle Lib
-        $this->load->library('guzzle');
+        require_once(APPPATH . 'libraries/guzzle/vendor/autoload.php');
 
         // Define Guzzle Client Instance
         $this->client = new GuzzleHttp\Client([
