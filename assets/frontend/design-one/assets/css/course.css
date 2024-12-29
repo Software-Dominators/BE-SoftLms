@@ -1270,14 +1270,16 @@
 
 
 /* ################################### course__overview ######################################################################################### */
-.course__overview-description ,
+.course__overview-description,
 .course__overview-outcome,
 .course__overview-requirements {
     margin-bottom: 32px;
 }
+
 .course__overview-description {
     margin-top: 40px;
 }
+
 .course__overview-title {
     color: #282828;
     font-size: 24px;
@@ -1315,32 +1317,40 @@
 
 
 .course__overview-outcome ul {
-    list-style-type: disc !important; 
+    list-style-type: disc !important;
     padding-inline-start: 24px !important;
-    
+
 }
 
 
 .course__overview-requirements ul {
-    list-style: none; /* Remove default bullets */
-   /* // padding-inline-start: 24px !important; */
+    list-style: none;
+    /* Remove default bullets */
+    /* // padding-inline-start: 24px !important; */
 }
 
 .course__overview-requirements ul li {
-    display: flex; /* Align items */
-    align-items: center; /* Vertically center bullet and text */
-    gap: 10px; /* Add spacing between bullet and text */
+    display: flex;
+    /* Align items */
+    align-items: center;
+    /* Vertically center bullet and text */
+    gap: 10px;
+    /* Add spacing between bullet and text */
 
 }
 
 .course__overview-requirements ul li::before {
     content: "";
-    width: 16px; /* Set width for the bullet */
-    height: 16px; /* Set height for the bullet */
+    width: 16px;
+    /* Set width for the bullet */
+    height: 16px;
+    /* Set height for the bullet */
     background-image: url('../images/course/check.svg');
-    background-size: contain; /* Resize to fit the box */
+    background-size: contain;
+    /* Resize to fit the box */
     background-repeat: no-repeat;
-    flex-shrink: 0; /* Prevent shrinking */
+    flex-shrink: 0;
+    /* Prevent shrinking */
 }
 
 /* accordion */
@@ -1359,7 +1369,8 @@
 
 .course__accordion-faq .accordion-header,
 .course__accordion-faq .accordion-header button {
-    border-radius: 0; /* Reset border-radius for header */
+    border-radius: 0;
+    /* Reset border-radius for header */
     margin: 0;
     background: #F5F6F5;
 }
@@ -1370,12 +1381,12 @@
 
 .course__accordion-faq .accordion-item .accordion-button:not(.collapsed),
 .course__accordion-faq .accordion-item .accordion-button.collapsed {
-   
+
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
-  
-    
+
+
     color: #282828;
 
 }
@@ -1399,13 +1410,13 @@
 }
 
 /* ################################### course__instructor ######################################################################################### */
-.course__instructor .course__instructor-card:not(:last-child){
+.course__instructor .course__instructor-card:not(:last-child) {
     margin-bottom: 24px;
 }
-  
-.course__instructor-card{
-   /* min-width: 737px; */
-   width: 90%;
+
+.course__instructor-card {
+    /* min-width: 737px; */
+    width: 90%;
     background: #FBFCFB;
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 32px;
@@ -1414,48 +1425,55 @@
 
 }
 
-.course__instructor-card .left img{
-width: 181px;
-height: 188px;
-border-radius: 16px;
+.course__instructor-card .left img {
+    width: 181px;
+    height: 188px;
+    border-radius: 16px;
 }
-.course__instructor-card .right h2{
-color: #1A1A1A;
-font-size: 20px;
-font-weight: 500;
-line-height: 30px;
 
-
-}
-.course__instructor-card .right h6{
-color: #5D5D5D;
-margin-top: 8px;
-font-size: 16px;
-font-weight: 300;
-line-height: 24px;
+.course__instructor-card .right h2 {
+    color: #1A1A1A;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
 
 
 }
-.course__instructor-card .right p{
+
+.course__instructor-card .right h6 {
+    color: #5D5D5D;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+
+
+}
+
+.course__instructor-card .right p {
     margin-bottom: 0 !important;
 }
-.course__instructor-card .right .social{
+
+.course__instructor-card .right .social {
     margin-top: 26px;
 }
-.course__instructor-card .right .social a:not(:last-child){
+
+.course__instructor-card .right .social a:not(:last-child) {
     margin-inline-end: 29px;
 }
-.course__instructor-card .right .social i{
+
+.course__instructor-card .right .social i {
     width: 40px;
-height: 40px;
-border-radius: 50%;
-color: var(--primary-color);
- background: #754FFE17;
-display: flex;
-align-items: center;
-justify-content: center;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--primary-color);
+    background: #754FFE17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
+
 .course__instructor-card .right .view-profile {
     color: var(--primary-color);
     font-size: 16px;
@@ -1471,83 +1489,182 @@ justify-content: center;
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--primary-color); /* Set the color of the line */
+    background-color: var(--primary-color);
+    /* Set the color of the line */
 }
 
 
 /* responsive */
 @media (max-width: 992px) {
-   
-    .course__instructor .course__instructor-card:not(:last-child){
+
+    .course__instructor .course__instructor-card:not(:last-child) {
         margin-bottom: 16px;
     }
-    .course__instructor-card{
-       min-width: 301px;
+
+    .course__instructor-card {
+        min-width: 301px;
 
 
         max-width: 100% !important;
         padding: 16px;
         gap: 15px;
-    
+
     }
-    .course__instructor-card:not(:last-child){
+
+    .course__instructor-card:not(:last-child) {
         margin-bottom: 16px;
     }
 
-    
-.course__instructor-card .left img{
-    width: 107px;
-    height: 112px;
-   
-    
+
+    .course__instructor-card .left img {
+        width: 107px;
+        height: 112px;
+
+
     }
-    
-    .course__instructor-card .right h2{
+
+    .course__instructor-card .right h2 {
         font-size: 20px;
         line-height: 30px;
 
     }
-    
-    .course__instructor-card .right h6{
+
+    .course__instructor-card .right h6 {
         font-size: 16px;
         line-height: 24px;
     }
-    
-.course__instructor-card .right .social{
-    margin-top: 10px;
-}
-.course__instructor-card .right .social a:not(:last-child){
-    margin-inline-end: 10px;
-}
-.course__instructor-card .right .social i{
-    width: 24px;
-    height: 24px;
-}
+
+    .course__instructor-card .right .social {
+        margin-top: 10px;
+    }
+
+    .course__instructor-card .right .social a:not(:last-child) {
+        margin-inline-end: 10px;
+    }
+
+    .course__instructor-card .right .social i {
+        width: 24px;
+        height: 24px;
+    }
 
 }
 
+/* ###################### course__review-card ##################### */
+.course__review-card {
+    max-width: 589px;
+    padding: 24px;
+    border-radius: 12px;
+    background: #FBFCFB;
+    border: 1px solid #E4E4E4;
+    /* box-shadow: 0px 12px 12px 0px #00000029; */
+
+
+}
+
+.course__review-card .top img {
+    width: 66px;
+    height: 66px;
+    border: 3px solid #754FFEA8;
+    border-radius: 50%;
+    margin-inline-end: 24px;
+}
+
+.course__review-card .top .rating i {
+    color: #FFD400;
+
+}
+
+.course__review-card .top .rating span {
+    color: #1A1A1A;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+
+}
+
+.course__review-card .top h5 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #1A1A1A;
+
+}
+
+.course__review-card .top .right small {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #5D5D5D;
+
+}
+
+/* .course__review-card .top .right i{
+    font-size: 16px; 
+    color: #5D5D5D;  
+} */
+.course__review-card .bottom p {
+    color: #5D5D5D;
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+
+
+}
 
 
 
+/* form */
 
 
+.course__review-form {
+    max-width: 589px;
+    margin-top: 24px;
+    padding: 40px;
+    border-radius: 12px;
+    background: #FBFCFB;
+    box-shadow: 0px 0px 4px 0px #00000029;
+
+}
+.course__review-form h2{
+color: #282828;
+font-size: 32px;
+font-weight: 600;
+line-height: 48px;
+margin-bottom: 32px;
+}
+.course__review-form .form-group:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.course__review-form .form-group textarea,
+.course__review-form .form-group select {
+    border: 1px solid #E4E4E4;
+    border-radius: 10px;
+}
+
+.course__review-form .form-group select {
+    height: 48px;
+
+}
+
+.course__review-form .form-group textarea {
+    height: 138px;
+}
+
+.course__review-form .form-group button {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background: #754FFE;
+    color: var(--button-text-color);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
