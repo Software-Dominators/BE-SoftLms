@@ -106,6 +106,21 @@ class Crud_model extends CI_Model
         return false;
     }
 
+    // Inside Crud_model.php
+    public function get_category_name_by_id($category_id) {
+        $this->db->select('name');  // Select the category name
+        $this->db->from('category');  // Use the correct table name
+        $this->db->where('id', $category_id);  // Filter by category_id
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            return $query->row()->name;  // Return the category name
+        }
+    
+        return null;
+    }
+    
+
     public function edit_category($param1)
     {
         $data['name']   = html_escape($this->input->post('name'));

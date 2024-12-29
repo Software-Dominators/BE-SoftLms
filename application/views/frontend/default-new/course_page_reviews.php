@@ -40,8 +40,9 @@ foreach ($ratings as $rating):
 
 
 
-    <!-- start -->
-    <div class="course__review-card" id="userReview<?php echo $rating['id']; ?>">
+ <div id="userReview<?php echo $rating['id']; ?>">
+       <!-- start -->
+       <div class="course__review-card" >
         <div class="top d-flex justify-content-between">
             <div class="left d-flex ">
                 <img src="<?php echo $this->user_model->get_user_image_url($user_details['id']); ?>"
@@ -119,6 +120,8 @@ foreach ($ratings as $rating):
 
         </div>
     <?php endif; ?>
+ </div>
+
 
 <?php endforeach; ?>
 

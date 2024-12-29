@@ -170,6 +170,8 @@ $razorpay = json_decode(get_settings('razorpay_keys'));
 $total_price_of_checking_out = $this->session->userdata('total_price_of_checking_out');
 ?>
 
+
+
 <div class="container">
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">

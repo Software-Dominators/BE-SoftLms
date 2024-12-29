@@ -78,7 +78,7 @@ if ($number_of_ratings > 0) {
                                     <?php if ($i <= $average_ceil_rating): ?>
                                         <li><i class="fa-solid fa-star "></i></li>
                                     <?php else: ?>
-                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
                                     <?php endif; ?>
                                 <?php endfor; ?>
 
@@ -173,13 +173,13 @@ if ($number_of_ratings > 0) {
                             <?php include "course_page_info_description.php"; ?>
                         </div>
                         <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
-                        <?php include "course_page_curriculum.php"; ?>
+                            <?php include "course_page_curriculum.php"; ?>
                         </div>
                         <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
-                        <?php include "course_page_instructor.php"; ?>
+                            <?php include "course_page_instructor.php"; ?>
                         </div>
                         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                        <?php include "course_page_reviews.php"; ?>
+                            <?php include "course_page_reviews.php"; ?>
                         </div>
                     </div>
                 </div>
@@ -377,6 +377,121 @@ if ($number_of_ratings > 0) {
         </div>
 </section>
 
+
+
+
+<section class="related-courses">
+    <div class="container">
+        <div class="row">
+            <h2> <?php echo get_phrase('Related Courses'); ?></h2>
+            <?php $related_courses = $this->crud_model->get_related_courses($course_details['category_id'], $course_details['sub_category_id'], $course_details['id'], 12)->result_array();
+            // Fetch category name using the category_id
+            $category_name = $this->crud_model->get_category_name_by_id($course_details['category_id']);
+            ?>
+            <?php foreach ($related_courses as $key => $course):
+
+                $lessons = $this->crud_model->get_lessons('course', $course['id']);
+                $instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();
+                $course_duration = $this->crud_model->get_total_duration_of_lesson_by_course_id($course['id']);
+                $total_rating = $this->crud_model->get_ratings('course', $course['id'], true)->row()->rating;
+                $number_of_ratings = $this->crud_model->get_ratings('course', $course['id'])->num_rows();
+                // Calculate average rating (rounded to nearest integer)
+                if ($number_of_ratings > 0) {
+                    $average_ceil_rating = ceil($total_rating / $number_of_ratings);
+                } else {
+                    $average_ceil_rating = 0;  // Default to 0 if no ratings
+                }
+
+
+                ?>
+                <div class="col-lg-4 col-md-6">
+                    <a class="related-courses__content  d-flex flex-column"
+                        href="<?php echo site_url('home/course/' . rawurlencode(slugify($course['title'])) . '/' . $course['id']); ?>">
+                        <div class="related-courses__img">
+                            <img loading="lazy" class="w-100 h-100"
+                                src="<?php echo $this->crud_model->get_course_thumbnail_url($course['id']); ?>">
+
+                            <div class="related-courses__icon cursor-pointer "
+                                id="coursesWishlistIcon<?php echo $course['id']; ?>">
+                                <i class="fa-regular fa-heart  checkPropagation
+                                <?php if (in_array($course['id'], $my_wishlist_items))
+                                    echo 'fa-solid'; ?>"
+                                    onclick="actionTo('<?php echo site_url('home/toggleWishlistItems/' . $course['id']); ?>')"></i>
+                            </div>
+
+                            <div class="related-courses__duration d-flex align-items-center ">
+                                <?php if ($course_duration): ?>
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="m-0">
+                                        <?php echo $course_duration; ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+
+                        </div>
+                        <div class="related-courses__top d-flex align-items-center justify-content-between">
+                            <h4><?= $category_name ?></h4>
+
+                            <h3>
+                                <?php echo get_phrase($course['level']); ?>
+                            </h3>
+                        </div>
+                        <div class="related-courses__middle">
+                            <h3><?php echo $course['title']; ?></h3>
+                            <div class="d-flex align-items-center rating">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <?php if ($i <= $average_ceil_rating): ?>
+                                        <i class="fa-solid fa-star "></i>
+                                    <?php else: ?>
+                                        <i class="fa-regular fa-star"></i>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+
+                            </div>
+                            <p><?php echo (strlen($course['short_description']) > 200 ? substr($course['short_description'], 0, 200) . '...' : $course['short_description']); ?>
+                            </p>
+
+                        </div>
+
+                        <div class="related-courses__bottom mt-auto d-flex align-items-center justify-content-between">
+                            <div class="related-courses__instructor d-flex  ">
+                                <img loading="lazy"
+                                    src="<?php echo $this->user_model->get_user_image_url($instructor_details['id']); ?>">
+                                    <div class="d-flex flex-column align-items-between ">
+                                    <span><?php echo get_phrase('Created By'); ?></span>
+                                    <h6 ><?php echo $instructor_details['first_name'] . ' ' . $instructor_details['last_name']; ?>
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="elated-courses__price">
+                                        <?php if ($course['is_free_course']): ?>
+                                        <h5>
+                                            <?php echo get_phrase('Free'); ?>
+                                        </h5>
+                                        <?php elseif ($course['discount_flag']): ?>
+                                        <h5>
+                                            <?php echo currency($course['discounted_price']); ?>
+                                        </h5>
+                                        <p class="mt-1">
+                                                <?php echo currency($course['price']); ?>
+                                        </p>
+                                        <?php else: ?>
+                                        <h5>
+                                            <?php echo currency($course['price']); ?>
+                                        </h5>
+                                        <?php endif; ?>
+                                    </div>
+
+                        </div>
+
+
+                    </a>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+</section>
 <hr>
 <hr>
 <hr>

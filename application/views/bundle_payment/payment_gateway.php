@@ -176,6 +176,8 @@ $stripe = json_decode(get_settings('stripe_keys'));
 ?>
 
 <div class="container">
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ipsa aliquam, magni porro quis saepe illo eveniet totam, sit doloribus dolorum. Facilis, vel! Temporibus iure natus nulla magni porro ab.</h1>
+
 	<div class="row justify-content-center mb-5">
 		<div class="col-md-8">
 			<div class="row">
