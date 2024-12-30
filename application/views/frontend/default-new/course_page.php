@@ -125,7 +125,7 @@ if ($number_of_ratings > 0) {
 </header>
 
 
-
+<?php include "course-popup.php"; ?>
 
 <section class="course mt-0">
     <div class="container ">
