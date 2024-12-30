@@ -1,3 +1,145 @@
+<div class="accordion  course__curriculum-accordion" id="course-curriculum">
+    <?php
+    $sections = $this->crud_model->get_section('course', $course_id)->result_array();
+    foreach ($sections as $key => $section): ?>
+        <div class="accordion-item ">
+            <h2 class="accordion-header mt-0 " id="heading<?php echo $section['id']; ?>">
+                <button class="accordion-button <?php if ($key > 0)
+                    echo 'collapsed'; ?>" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse<?php echo $section['id']; ?>" aria-expanded="false"
+                    aria-controls="collapse<?php echo $section['id']; ?>">
+                    <div class="course__curriculum-accordion-header d-flex flex-column w-100">
+                        <!-- button top -->
+                        <div class="top d-flex align-items-center justify-content-between w-100">
+                            <h6 class="course__curriculum-accordion-section-title"><?php echo $section['title']; ?></h6>
+                            <!-- Study plan start-->
+                            <?php if (date('d-M-Y-H-i-s', $section['start_date']) != date('d-M-Y-H-i-s', $section['end_date'])): ?>
+                                <div>
+                                    <!-- <span  class="course__curriculum-accordion-section-duration"><?php echo $section['title']; ?></span> -->
+                                    <small class="course__curriculum-accordion-section-duration" data-bs-toggle="tooltip"
+                                        title="<?php echo get_phrase('Study plan') ?>">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <?php if (date('d-M-Y', $section['start_date']) == date('d-M-Y', $section['end_date'])): ?>
+                                            <?php echo date('d M Y', $section['start_date']); ?>:
+                                            <?php echo date('h:i A', $section['start_date']) . ' - ' . date('h:i A', $section['end_date']); ?>
+                                        <?php else: ?>
+                                            <?php echo date('d M Y h:i A', $section['start_date']) . ' - ' . date('d M Y h:i A', $section['end_date']); ?>
+                                        <?php endif ?>
+                                    </small>
+                                </div>
+                            <?php else: ?>
+
+                            <?php endif; ?>
+                            <!-- Study plan END-->
+                        </div>
+                        <!-- button bottom -->
+                        <div class="bottom">
+                            <span class="course__curriculum-accordion-section-duration">
+                                <?php echo $this->crud_model->get_lessons('section', $section['id'])->num_rows() . ' ' . site_phrase('lessons'); ?>
+                            </span>
+                            <span class="course__curriculum-accordion-section-duration">
+                                <?php echo $this->crud_model->get_total_duration_of_lesson_by_section_id($section['id']); ?>
+                            </span>
+                        </div>
+                    </div>
+                </button>
+            </h2>
+            <div id="collapse<?php echo $section['id']; ?>" class="accordion-collapse collapse"
+                aria-labelledby="heading<?php echo $section['id']; ?>" data-bs-parent="#course-curriculum">
+                <div class="accordion-body">
+                    <ul class="course__curriculum-accordion-lessons d-flex flex-column  p-0 m-0">
+                        <?php $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
+                        foreach ($lessons as $lesson): ?>
+                            <li>
+                                <a href="#" onclick="actionTo('<?php echo site_url('home/play_lesson/' . $lesson['id']); ?>')"
+                                    class="checkPropagation bg-success w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100 bg-info">
+                                        <div class="course__curriculum-accordion-lessons-title d-flex align-items-center">
+                                            <i class="fa-regular fa-circle-play"></i>
+                                            <h3> <?php echo $lesson['title']; ?></h3>
+                                        </div>
+
+                                        <?php if ($lesson['lesson_type'] == 'quiz'): ?>
+                                            <div class="course__curriculum-accordion-lessons-quiz-duration desktop">
+                                                <div>
+                                                    <span>start date: <span
+                                                            style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['start_time']) ?></span>
+                                                        ||
+                                                    </span>
+                                                    <span>end date: <span
+                                                            style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['end_time']) ?></span>
+                                                    </span>
+                                                </div>
+                                                <div style="text-align:center;">
+                                                    <span>duration: <span
+                                                            style="color:#6610f2;"><?php echo $lesson['duration'] ?></span></span>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
+
+
+                                        <div class="course__curriculum-accordion-lessons-duration">
+                                            <?php if ($lesson['is_free']): ?>
+                                                <span
+                                                    onclick="lesson_preview('<?php echo site_url('home/play_lesson/' . $lesson['id'] . '/preview') ?>', '<?php echo $lesson['title']; ?>', 'lg')"
+                                                    class="checkPropagation cursor-pointer"><i class="fas fa-eye me-1"></i>
+                                                    <?php echo get_phrase('Preview') ?></span>
+                                            <?php endif; ?>
+
+                                            <small><?php echo $lesson['duration']; ?></small>
+                                        </div>
+                                    </div>
+
+
+
+                                    <?php if ($lesson['lesson_type'] == 'quiz'): ?>
+                                        <div
+                                            class="course__curriculum-accordion-lessons-quiz-duration phone  align-items-center justify-content-center bg-info">
+                                            <div>
+                                                <span>start date: <span
+                                                        style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['start_time']) ?></span>
+                                                    ||
+                                                </span>
+                                                <span>end date: <span
+                                                        style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['end_time']) ?></span>
+                                                </span>
+                                            </div>
+                                            <div style="text-align:center;">
+                                                <span>duration: <span
+                                                        style="color:#6610f2;"><?php echo $lesson['duration'] ?></span></span>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="accordion curriculum-accordion mx-2">
     <?php
     $sections = $this->crud_model->get_section('course', $course_id)->result_array();
@@ -60,8 +202,9 @@
                                     <?php if ($lesson['lesson_type'] == 'quiz'): ?>
                                         <div>
                                             <div>
-                                                <span>start date: <span style="color:#6610f2;"
-                                                        class="fw-bold"><?php echo date('Y-m-d', $lesson['start_time']) ?></span> ||
+                                                <span>start date: <span
+                                                        style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['start_time']) ?></span>
+                                                    ||
                                                 </span>
                                                 <span>end date: <span style="color:#6610f2;"
                                                         class="fw-bold"><?php echo date('Y-m-d', $lesson['end_time']) ?></span>

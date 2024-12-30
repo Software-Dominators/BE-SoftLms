@@ -1411,6 +1411,7 @@
     transform: rotate(0deg);
 }
 
+
 /* ################################### course__instructor ######################################################################################### */
 .course__instructor .course__instructor-card:not(:last-child) {
     margin-bottom: 24px;
@@ -1677,77 +1678,80 @@
 /* responsive */
 @media (max-width: 992px) {
 
-  .course__review-card {
-    max-width: 100%;
-    padding: 24px 16px;
+    .course__review-card {
+        max-width: 100%;
+        padding: 24px 16px;
+    }
+
+    .course__review-card .top img {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #754FFEA8;
+        margin-inline-end: 15px;
+    }
+
+    .course__review-card .top .rating i {
+        font-size: 20px;
+    }
+
+    .course__review-card .top .rating span {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .course__review-card .top h5 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+
+    .course__review-card .top .right small {
+        font-size: 12px;
+        line-height: 18px;
+
+
+    }
+
+    .course__review-card .bottom p {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+    /* form */
+
+    .course__review-form {
+        width: 100%;
+        margin-top: 24px;
+        padding: 24px;
+        border-radius: 24px;
+
+    }
+
+    .course__review-form h2 {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 24px;
+    }
+
+    .course__review-form .form-group select {
+        height: 32px;
+
+    }
+
+    .course__review-form .form-group textarea {
+        height: 90px;
+    }
+
+    .course__review-form .form-group button {
+        height: 32px;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
 }
-.course__review-card .top img {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #754FFEA8;
-    margin-inline-end: 15px;
-}
-.course__review-card .top .rating i {
-font-size: 20px;
-}
-
-.course__review-card .top .rating span {
-    font-size: 14px;
-    line-height: 21px;
-}
-
-.course__review-card .top h5 {
-    font-size: 16px;
-    line-height: 24px;
-} 
-
-
-.course__review-card .top .right small {
-    font-size: 12px;
-    line-height: 18px;
-    
-
-}
-
-.course__review-card .bottom p {
- margin-top: 16px;
-font-size: 12px;
-line-height: 18px;
-
-}
-/* form */
-
-.course__review-form {
-    width: 100%;
-    margin-top: 24px;
-    padding: 24px;
-    border-radius: 24px;
-
-}
-
-.course__review-form h2 {
-    font-size: 20px;
-    line-height: 30px;
-    margin-bottom: 24px;
-}
-
-.course__review-form .form-group select {
-    height: 32px;
-
-}
-
-.course__review-form .form-group textarea {
-    height: 90px;
-}
-
-.course__review-form .form-group button {
-    height: 32px;
-    font-size: 16px;
-    line-height: 24px;
-    
-}
-
- }
 
 /* ###########################related-courses ############################# */
 .related-courses {
@@ -1851,61 +1855,66 @@ line-height: 18px;
 }
 
 .related-courses__middle h3 {
-color: #1A1A1A;
-font-size: 24px;
-font-weight: 500;
-line-height: 36px;
+    color: #1A1A1A;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
 
 
 }
+
 .related-courses__middle .rating {
     margin-block: 8px;
     gap: 4px;
 }
-.related-courses__middle i{
+
+.related-courses__middle i {
     font-size: 20px;
     color: #FFD400;
 }
+
 .related-courses__middle p {
-  color: #575757;
-font-size: 18px;
-font-weight: 300;
-line-height: 27px;
+    color: #575757;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
 
 }
-.related-courses__bottom{
+
+.related-courses__bottom {
     margin-top: 16px;
 }
 
-.related-courses__bottom .related-courses__instructor img{
-width: 40px;
-height: 40px;
-border-radius: 50%;
+.related-courses__bottom .related-courses__instructor img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     margin-inline-end: 12px;
 }
 
-.related-courses__bottom .related-courses__instructor span{
-color: #6C6C6C;
-font-size: 14px;
-font-weight: 300;
-line-height: 21px;
-margin-bottom: 4px;
+.related-courses__bottom .related-courses__instructor span {
+    color: #6C6C6C;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    margin-bottom: 4px;
 
 }
-.related-courses__bottom .related-courses__instructor h6{ 
+
+.related-courses__bottom .related-courses__instructor h6 {
     color: #101828 !important;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
 
-        
-}  
 
-.related-courses__bottom .related-courses__price h5{
-color: var(--primary-color);
-font-size: 32px;
-font-weight: 700;
-line-height: 48px;
+}
+
+.related-courses__bottom .related-courses__price h5 {
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
 
 
 }
@@ -1915,79 +1924,284 @@ line-height: 48px;
     .related-courses {
         margin-top: 24px;
     }
-    
+
     .related-courses h2 {
         font-size: 16px;
         line-height: 24px;
         margin-bottom: 10px;
-    
+
     }
-    
+
     .related-courses__content {
         min-height: 475px;
         border-radius: 24px;
         padding: 16px 18px;
-    
-    }  
-.related-courses__img {
-    height: 204px;
+
+    }
+
+    .related-courses__img {
+        height: 204px;
+    }
+
+
+    .related-courses__icon {
+        top: 8px;
+        inset-inline-end: 8px;
+    }
+
+    .related-courses__duration {
+        inset-inline-start: 8px;
+        bottom: 9px;
+        border-radius: 8px;
+        padding: 6px 16px;
+    }
+
+
+    .related-courses__top h4 {
+        font-size: 18px;
+        line-height: 27px;
+
+    }
+
+    .related-courses__top h3 {
+        padding: 6px 20px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .related-courses__middle {
+        margin-top: 16px;
+    }
+
+    .related-courses__middle h3 {
+
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    .related-courses__middle p {
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+
+    .related-courses__bottom .related-courses__instructor span {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .related-courses__bottom .related-courses__instructor h6 {
+        font-size: 14px;
+        line-height: 21px;
+
+    }
+
+    .related-courses__bottom .related-courses__price h5 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 36px;
+    }
+
 }
 
 
-.related-courses__icon {
-    top: 8px;
-    inset-inline-end: 8px;
+/* ################################### course curriculum ######################################################################################### */
+.accordion-item:first-of-type {
+    border-top-left-radius: none !important;
+    border-top-right-radius: none !important;
 }
-.related-courses__duration {
-    inset-inline-start:8px;
-    bottom: 9px;
-    border-radius: 8px;
-    padding: 6px 16px ;
+.course__curriculum-accordion .accordion-button::after {
+    content: "\f078";
+    /* Font Awesome icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 19px;
+    color: #282828;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    /* Push icon to the right */
+    display: flex;
+    align-items: center;
+    /* Ensure vertical centering inside flex container */
+}
+
+.course__curriculum-accordion .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+    /* Rotate on expand */
+}
+
+.course__curriculum-accordion .accordion-button.collapsed::after {
+    transform: rotate(0deg);
+    /* Default rotation */
+}
+
+.accordion-button:focus {
+    outline: none !important;
+    /* Removes the default focus outline */
+    box-shadow: none !important;
+    /* Removes any focus shadow */
 }
 
 
-.related-courses__top h4 {
-    font-size: 18px;
-    line-height: 27px;
-    
+
+.course__curriculum-accordion .accordion-item:not(:last-child) {
+    margin-bottom: 29px !important;
 }
 
-.related-courses__top h3 {
-    padding: 6px 20px;
+.course__curriculum-accordion .accordion-item {
+    padding-top: 0 !important;
+    border-radius: 16px;
+    border: 1px solid #E4E4E4;
+
+}
+
+.course__curriculum-accordion .accordion-header {
+    background: #F5F6F5 !important;
+    padding: 12px 24px;
+    border-radius: 16px 16px 0px 0px;
+
+
+}
+
+.course__curriculum-accordion .accordion-header:has(button.collapsed) {
+    border-radius: 16px !important;
+}
+
+.course__curriculum-accordion .accordion-button {
+    background: inherit !important;
+    padding: 0 !important;
+}
+
+.course__curriculum-accordion-header {
+    gap: 4px;
+}
+
+.course__curriculum-accordion-section-title {
+    color: #282828;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+
+
+}
+
+.course__curriculum-accordion-section-duration {
+    color: #5D5D5D;
     font-size: 16px;
-    line-height: 24px;  
-}
-.related-courses__middle{
-    margin-top: 16px;
-}
-.related-courses__middle h3 {
+    font-weight: 300;
+    line-height: 24px;
 
+
+}
+
+/* body */
+.course__curriculum-accordion-lessons{
+    margin: 0 !important;
+    gap: 24px;
+}
+.course__curriculum-accordion-lessons-title h3{
+color:#353535;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+margin-bottom: 0 !important;
+}
+
+.course__curriculum-accordion-lessons-title i{
+    margin-inline-end: 16px;
     font-size: 24px;
-    line-height: 36px;
-}
-.related-courses__middle p {
-    font-size: 12px;
-    line-height: 18px;
-   
+    color:#353535;
 }
 
-
-.related-courses__bottom .related-courses__instructor span{
-    font-size: 12px;
-    line-height: 18px;
+.course__curriculum-accordion-lessons-duration span{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+color: var(--primary-color);       
 }
-.related-courses__bottom .related-courses__instructor h6{ 
+.course__curriculum-accordion-lessons-duration small{
+color: #353535;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+
+
+}
+
+.course__curriculum-accordion-lessons-quiz-duration span{
+color: #353535;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+
+
+}
+
+.course__curriculum-accordion-lessons-quiz-duration.phone{
+    display: none;
+}
+/* responsive */
+@media (max-width: 992px) {
+.course__curriculum-accordion .accordion-item:not(:last-child) {
+    margin-bottom: 16px !important;
+}
+
+.course__curriculum-accordion .accordion-header {
+    padding: 10px 16px;
+}
+.course__curriculum-accordion .accordion-body{
+    padding: 10px 16px; 
+}
+
+.course__curriculum-accordion-section-title {
     font-size: 14px;
     line-height: 21px;
-       
-}  
-
-.related-courses__bottom .related-courses__price h5{
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;   
 }
 
+.course__curriculum-accordion-section-duration {
+    font-size: 12px;
+    line-height: 18px;
+    
+}
+/* body */
+
+.course__curriculum-accordion-lessons-title h3{
+    font-size: 12px;
+    line-height: 18px;    
+}
+
+.course__curriculum-accordion-lessons-title i{
+    margin-inline-end: 8px;
+    font-size: 21px;
+}
+
+.course__curriculum-accordion-lessons-duration span,
+.course__curriculum-accordion-lessons-duration small,
+.course__curriculum-accordion-lessons-quiz-duration span
+{
+    font-size: 12px;
+    line-height: 18px;
+    
 }
 
 
+  
+}
+
+
+@media (max-width:400px){
+    .course__curriculum-accordion-lessons-quiz-duration.desktop{
+        display: none;
+    }
+    .course__curriculum-accordion-lessons-quiz-duration.phone{
+        display: flex;
+    }
+    .course__curriculum-accordion-lessons-quiz-duration span
+    {
+        font-size: 7px;
+        line-height: 10px;
+    
+        
+    }   
+}
