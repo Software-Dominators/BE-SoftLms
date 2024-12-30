@@ -126,10 +126,11 @@ if ($number_of_ratings > 0) {
 
 
 
+
 <section class="course mt-0">
-    <div class="container">
+    <div class="container ">
         <div class="row  ">
-            <div class="col-lg-7  order-lg-1 order-2">
+            <div class="col-lg-7  order-lg-1 order-2 ">
                 <div class="course__nav d-flex  justify-content-center flex-column">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -184,7 +185,7 @@ if ($number_of_ratings > 0) {
 
 
             </div>
-            <div class="col-lg-5  px-lg-0 order-lg-2 order-1">
+            <div class="col-lg-5  order-lg-2 order-1">
                 <div class="course__right">
                     <div class="course__right-img">
                         <img loading="lazy" class="w-100 h-100"

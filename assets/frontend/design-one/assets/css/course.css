@@ -148,6 +148,12 @@
 }
 
 
+@media (max-width: 500px) {
+
+ 
+
+}
+
 /*########################### Course Right ###########################3 */
 .course__right h3 {
 
@@ -296,7 +302,9 @@
 
 
 @media (max-width: 992px) {
-
+    .course__right{
+        margin-bottom: 53px;
+    }
 
     .course__right h3 {
         font-size: 16px;
@@ -1359,7 +1367,7 @@
 
 /* accordion */
 .course__accordion-faq {
-    width: 90%;
+    /* width: 90%; */
 }
 
 .course__accordion-faq .accordion-item:not(:last-child) {
@@ -1421,7 +1429,7 @@
 
 .course__instructor-card {
     /* min-width: 737px; */
-    width: 90%;
+    /* width: 90%; */
     background: #FBFCFB;
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 32px;
@@ -2206,4 +2214,66 @@ line-height: 24px;
     
         
     }   
+}
+
+
+
+/* 
+
+.course__right{
+margin-inline-end: 80px;
+}
+@media (max-width: 992px) {
+    .course__right{
+        margin-inline-end: 0;
+        margin-inline:auto;
+    width: 80%;
+    margin-bottom: 53px;
+    }
+}
+
+@media (max-width: 768px) {
+    .course__right{
+        width: 343px;
+    } 
+}
+.course__tap, .course .nav-tabs{
+margin-inline-start: 80px;
+} */
+
+
+.course__nav{
+    overflow-x: visible;
+    width: 100%;
+}
+
+.course__nav{
+    position: relative;
+}
+
+.course__nav::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    top: 0;
+    inset-inline-end:100%;
+    shadow:inherit;
+
+  
+}
+
+
+.course__nav::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    top: 0;
+    inset-inline-start:70%;
+    shadow:inherit;
+
+  
 }
