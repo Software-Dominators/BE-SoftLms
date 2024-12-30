@@ -46,7 +46,7 @@
 }
 
 .course__tap {
-    margin-top: ;
+    margin-top:40px ;
 }
 
 .course_nav-tabs .nav-tabs {
@@ -129,7 +129,9 @@
 
     }
 
-
+    .course__tap {
+        margin-top:23px ;
+    }
     .course_nav-tabs .nav-tabs {
         padding-top: 14px;
         padding-bottom: 14px;
