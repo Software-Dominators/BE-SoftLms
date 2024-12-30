@@ -112,7 +112,7 @@
             </div>
             <form class="ajaxForm" action="<?php echo site_url('home/apply_coupon') ?>" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" name="coupon_code" class="form-control text-14px" placeholder="<?php echo site_phrase('Apply coupon'); ?>" aria-label="<?php echo site_phrase('Apply coupon'); ?>">
+                    <input type="text" name="coupon_code" class="form-control text-14px" placeholder="<?php echo site_phrase('Apply coupon'); ?>" aria-label="<?php echo site_phrase('Apply coupon'); ?>" value="<?= isset($coupon_code) && !empty($coupon_code) ? $coupon_code : ''; ?>">
                     <button class="btn-primary btn-primary text-white px-2 py-2 radius-end-8 text-14px" type="submit"><?php echo get_phrase('Apply') ?></button>
                 </div>
             </form>

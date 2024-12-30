@@ -119,6 +119,10 @@ class Home extends CI_Controller
             $this->session->set_userdata('cart_items', array());
         }
 
+        if ($this->session->has_userdata('coupon_code')) {
+            $page_data['coupon_code'] = $this->session->userdata('coupon_code');
+        }
+
         //send gift
         $this->session->unset_userdata('send_gift_to_id');
         if ($gift_status) {
@@ -757,13 +761,10 @@ class Home extends CI_Controller
 
     public function apply_coupon()
     {
-        $page_data['coupon_code'] = $this->input->post('coupon_code');
 
-        $response['html'] = [
-            'elem' => '#shoppingCart',
-            'content' => $this->load->view('frontend/' . get_frontend_settings('theme') . '/shopping_cart_inner_view', $page_data, true)
-        ];
-        echo json_encode($response);
+        $this->session->set_userdata('coupon_code', $this->input->post('coupon_code'));
+
+        redirect(site_url('home/shopping_cart'), 'refresh');
     }
 
     public function refreshShoppingCart()
