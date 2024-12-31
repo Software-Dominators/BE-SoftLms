@@ -20,9 +20,9 @@
             <div class="modal-header d-flex align-items-center justify-content-between">
                 <h3 class="accordion-popup__title"><?= get_phrase('Please choose the lesson  you want to enroll ?') ?>
                 </h3>
-                <button type="button text-end" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
-                </button>
+                <div type="button" data-bs-dismiss="modal" aria-label="Close">
+                   <i aria-hidden="true" class="fa-solid fa-xmark"></i>
+                </div>
             </div>
 
 
