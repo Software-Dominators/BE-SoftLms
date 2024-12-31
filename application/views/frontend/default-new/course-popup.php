@@ -2,15 +2,15 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal">
     Launch demo modal
-</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".lessons-popup">Large
-    modal</button>
+</button> -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".lessons-popup">Large
+    modal</button> -->
 <!-- Trigger Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".sections-popup">
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".sections-popup">
     Large Sections
-</button>
+</button> -->
 
 <div class="modal fade bd-example-modal-lg show  lessons-popup" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="false">

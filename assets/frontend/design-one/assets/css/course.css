@@ -1331,7 +1331,7 @@
 }
 
 .course__overview-description {
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .course__overview-title {
@@ -1430,22 +1430,22 @@
 }
 
 
-
-
-
 .course__accordion-faq .accordion-item .accordion-button:not(.collapsed),
 .course__accordion-faq .accordion-item .accordion-button.collapsed {
-
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
-
-
     color: #282828;
 
 }
+.course__accordion-faq .accordion-item .accordion-body{
+color: #353535;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
 
 
+}
 .course__accordion-faq .accordion-button:not(.collapsed)::after,
 .course__accordion-faq .accordion-button.collapsed::after {
     content: "\f078";
@@ -1463,6 +1463,59 @@
     transform: rotate(0deg);
 }
 
+@media (max-width: 992px) {
+    .course__overview-description,
+    .course__overview-outcome,
+    .course__overview-requirements {
+        margin-bottom: 24px;
+    }
+
+
+
+    .course__overview-title {
+     
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .course__overview-paragraph {
+      
+        font-size: 12px;
+        line-height: 18px;
+     
+        
+    
+    
+    }
+    .course__overview-outcome ul li,
+    .course__overview-requirements ul li {
+        font-size: 12px;
+        line-height: 18px;
+    }
+     
+    .course__accordion-faq .accordion-item:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+    .course__accordion-faq .accordion-item .accordion-button:not(.collapsed),
+.course__accordion-faq .accordion-item .accordion-button.collapsed {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+ 
+  
+
+}
+.course__accordion-faq .accordion-item .accordion-body{
+
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+
+
+}
+}
 
 /* ################################### course__instructor ######################################################################################### */
 .course__instructor .course__instructor-card:not(:last-child) {
