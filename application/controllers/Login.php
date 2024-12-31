@@ -242,9 +242,7 @@ class Login extends CI_Controller
     public function logout($from = "")
     {
         //destroy sessions of specific userdata. We've done this for not removing the cart session
-        // $this->user_model->session_destroy();
-        // ! destroy all session data to avoid session overlap with other users
-        $this->session->sess_destroy();
+        $this->user_model->session_destroy();
         redirect(site_url('login'), 'refresh');
     }
 
