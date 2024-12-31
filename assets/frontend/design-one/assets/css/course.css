@@ -2277,3 +2277,215 @@ margin-inline-start: 80px;
 
   
 }
+
+
+
+/* ################################### course-popup ######################################################################################### */
+
+.accordion-popup .accordion-button {
+    display: flex;
+    /* Enable flexbox for alignment */
+    justify-content: space-between;
+    /* Space out content and the icon */
+    align-items: center;
+    /* Center content vertically */
+    position: relative;
+    /* Allow absolute positioning for pseudo-elements */
+
+}
+
+.accordion-popup .accordion-button::after {
+    content: "\f078";
+    /* Font Awesome icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 19px;
+    color: #282828;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    /* Push icon to the right */
+    display: flex;
+    align-items: center;
+    /* Ensure vertical centering inside flex container */
+}
+
+.accordion-popup .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+    /* Rotate on expand */
+}
+
+.accordion-popup .accordion-button.collapsed::after {
+    transform: rotate(0deg);
+    /* Default rotation */
+}
+
+
+
+.accordion-popup {
+    padding: 32px 48px !important;
+}
+
+.accordion-popup__title {
+    color: #282828;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    margin-bottom: 32px;
+}
+
+.accordion-popup .accordion .accordion-item {
+margin-bottom: 29px ;
+}
+
+
+
+.accordion-popup .accordion-item {
+    border: 1px solid #E4E4E4;
+    border-radius: 16px;
+}
+
+.accordion-popup .accordion-header {
+    padding: 12px 24px;
+    background-color: #F5F6F5;
+
+}
+
+.accordion-popup .accordion-header {
+    background: #F5F6F5 !important;
+    padding: 12px 24px;
+    border-radius: 16px 16px 0px 0px;
+
+
+}
+
+.accordion-popup .accordion-header:has(button.collapsed) {
+    border-radius: 16px !important;
+}
+
+.accordion-popup .accordion-button {
+    background: inherit !important;
+    padding: 0 !important;
+}
+
+.accordion-popup .accordion-header button {
+    background: inherit !important;
+}
+
+.accordion-popup .accordion-header h3 {
+    color: #282828;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-bottom: 4px;
+
+}
+
+.accordion-popup .accordion-header span {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #5D5D5D;
+
+}
+
+.accordion-popup ul li:not(:last-child) {
+    margin-bottom: 24px;
+
+}
+
+.accordion-popup ul li h3,
+.accordion-popup ul li span {
+    color: #353535;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+
+}
+
+
+.accordion-popup a {
+    background: var(--primary-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    height: 48px;
+    color: var(--button-text-color);
+    margin-top: 11px;
+    border-radius: 8px;
+}
+
+
+/* Style the checkbox */
+.styled-checkbox {
+appearance: none; /* Remove default browser styling */
+-webkit-appearance: none; /* For Safari */
+width: 24px; /* Size of the checkbox */
+height: 24px;
+border: 1.3px solid #754FFE;
+border-radius: 50%; /* Make it circular */
+outline: none;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-inline-end: 18px;
+}
+
+/* Change border and background color when checked */
+.styled-checkbox:checked {
+background-color:  #754FFE; /* Background color when checked */
+border: 2px solid white;
+outline: 1px solid #754FFE;
+}
+
+/* responsive */
+
+@media (max-width: 992px) {
+.accordion-popup {
+    padding: 11px 24px !important;
+}
+
+.accordion-popup__title {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+
+.accordion-popup .accordion .accordion-item {
+margin-bottom: 16px !important;
+}
+
+.accordion-popup .accordion-header h3 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+
+    
+
+}
+
+
+.accordion-popup .accordion-header span {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.accordion-popup ul li:not(:last-child) {
+    margin-bottom: 16px;
+
+}
+
+.accordion-popup ul li h3,
+.accordion-popup ul li span {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+
+.accordion-popup a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 13px;
+ ;
+}
+}
