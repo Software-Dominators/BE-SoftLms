@@ -55,8 +55,8 @@
                                             <div class="d-flex align-items-center ">
                                                 <input id="lesson_<?= $lesson['id'] ?>" name="lessons" type="checkbox" class="styled-checkbox"
                                                     value="<?= $lesson['id'] ?>" <?= cart_items_get_index('lesson', $lesson['id']) !== null ? 'checked' : ''; ?>>
-                                               
-                                                    <h3 class="mb-0"> <?php echo $lesson['title']; ?></h3>
+
+                                                <h3 class="mb-0"> <?php echo $lesson['title']; ?></h3>
                                             </div>
                                             <span><?php echo $lesson['duration'] ?></span>
                                         </li>
@@ -108,23 +108,23 @@
                                 data-bs-target="#collapse-sections-<?php echo $section['id']; ?>" aria-expanded="false"
                                 aria-controls="collapse-sections-<?php echo $section['id']; ?>">
                                 <div class="d-flex align-items-center">
-                                <input  name="lessons" type="checkbox" class="styled-checkbox"
-                                                    value="<?= $lesson['id'] ?>" <?= cart_items_get_index('lesson', $lesson['id']) !== null ? 'checked' : ''; ?>>
-                                                   
+                                    <input name="lessons" type="checkbox" class="styled-checkbox"
+                                        value="<?= $lesson['id'] ?>" <?= cart_items_get_index('lesson', $lesson['id']) !== null ? 'checked' : ''; ?>>
+
 
                                     <div class="d-flex flex-column">
-                                   
-                                                    <h3><?php echo $section['title']; ?></h3>         
-                                    
-                                    <div>
-                                        <span class="course__curriculum-accordion-section-duration">
-                                            <?php echo $this->crud_model->get_lessons('section', $section['id'])->num_rows() . ' ' . site_phrase('lessons'); ?>
-                                        </span>
-                                        <span class="course__curriculum-accordion-section-duration">
-                                            <?php echo $this->crud_model->get_total_duration_of_lesson_by_section_id($section['id']); ?>
-                                        </span>
+
+                                        <h3><?php echo $section['title']; ?></h3>
+
+                                        <div>
+                                            <span class="course__curriculum-accordion-section-duration">
+                                                <?php echo $this->crud_model->get_lessons('section', $section['id'])->num_rows() . ' ' . site_phrase('lessons'); ?>
+                                            </span>
+                                            <span class="course__curriculum-accordion-section-duration">
+                                                <?php echo $this->crud_model->get_total_duration_of_lesson_by_section_id($section['id']); ?>
+                                            </span>
+                                        </div>
                                     </div>
-                                    </div>  
                                 </div>
                             </button>
                         </h2>
@@ -136,7 +136,11 @@
                                     $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
                                     foreach ($lessons as $lesson): ?>
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <h3 class="mb-0"><?php echo $lesson['title']; ?></h3>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa-regular fa-circle-play"></i>
+                                                <h3 class="mb-0"><?php echo $lesson['title']; ?></h3>
+                                            </div>
+
                                             <span><?php echo $lesson['duration']; ?></span>
                                         </li>
                                     <?php endforeach; ?>
@@ -156,6 +160,69 @@
 </div>
 
 
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade course__modal" id="courseModal" tabindex="-1" role="dialog" aria-labelledby="courseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title d-flex align-items-center" id="courseModalLabel">
+                <i class="fa-solid fa-circle-check"></i>
+                <h5 class="mb-0 ">
+                    Modal title
+                </h5>
+                </div>
+                <button type="button text-end" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="course__modal-content d-flex">
+                    <div class="left">
+                        <img src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id']); ?>" alt="" srcset="">
+                    </div>
+                    <div class="right">
+                        <h2><?php echo $course_details['title']; ?></h2>
+                       <ul class="rating mx-0 px-0  d-flex align-items-center">
+                       <?php for ($i = 1; $i < 6; $i++): ?>
+                            <?php if ($i <= $average_ceil_rating): ?>
+                                <li><i class="fa-solid fa-star "></i></li>
+                            <?php else: ?>
+                                <li><i class="fa-regular fa-star"></i></li>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                       </ul>
+                        <p><?php echo $course_details['short_description']; ?></p>
+
+
+                        <?php if ($course_details['is_free_course']): ?>
+                            <h6><?php echo get_phrase('Free'); ?></h6>
+                        <?php elseif ($course_details['discount_flag']): ?>
+                            <h6><?php echo currency($course_details['discounted_price']); ?></h6>
+                            <h6><?php echo currency($course_details['price']); ?></h6>
+                        <?php else: ?>
+                            <h6><?php echo currency($course_details['price']); ?></h6>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="back" data-dismiss="modal">back</button>
+                <button type="button" class="go">go</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

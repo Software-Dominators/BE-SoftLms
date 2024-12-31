@@ -46,7 +46,7 @@
 }
 
 .course__tap {
-    margin-top:40px ;
+    margin-top: 40px;
 }
 
 .course_nav-tabs .nav-tabs {
@@ -130,8 +130,9 @@
     }
 
     .course__tap {
-        margin-top:23px ;
+        margin-top: 23px;
     }
+
     .course_nav-tabs .nav-tabs {
         padding-top: 14px;
         padding-bottom: 14px;
@@ -148,11 +149,7 @@
 }
 
 
-@media (max-width: 500px) {
-
- 
-
-}
+@media (max-width: 500px) {}
 
 /*########################### Course Right ###########################3 */
 .course__right h3 {
@@ -302,7 +299,7 @@
 
 
 @media (max-width: 992px) {
-    .course__right{
+    .course__right {
         margin-bottom: 53px;
     }
 
@@ -2021,6 +2018,7 @@
     border-top-left-radius: none !important;
     border-top-right-radius: none !important;
 }
+
 .course__curriculum-accordion .accordion-button::after {
     content: "\f078";
     /* Font Awesome icon */
@@ -2106,114 +2104,119 @@
 }
 
 /* body */
-.course__curriculum-accordion-lessons{
+.course__curriculum-accordion-lessons {
     margin: 0 !important;
     gap: 24px;
 }
-.course__curriculum-accordion-lessons-title h3{
-color:#353535;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
-margin-bottom: 0 !important;
-}
 
-.course__curriculum-accordion-lessons-title i{
-    margin-inline-end: 16px;
-    font-size: 24px;
-    color:#353535;
-}
-
-.course__curriculum-accordion-lessons-duration span{
+.course__curriculum-accordion-lessons-title h3 {
+    color: #353535;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-color: var(--primary-color);       
-}
-.course__curriculum-accordion-lessons-duration small{
-color: #353535;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
-
-
+    margin-bottom: 0 !important;
 }
 
-.course__curriculum-accordion-lessons-quiz-duration span{
-color: #353535;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
+.course__curriculum-accordion-lessons-title i {
+    margin-inline-end: 16px;
+    font-size: 24px;
+    color: #353535;
+}
+
+.course__curriculum-accordion-lessons-duration span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--primary-color);
+}
+
+.course__curriculum-accordion-lessons-duration small {
+    color: #353535;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
 
 
 }
 
-.course__curriculum-accordion-lessons-quiz-duration.phone{
+.course__curriculum-accordion-lessons-quiz-duration span {
+    color: #353535;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+
+}
+
+.course__curriculum-accordion-lessons-quiz-duration.phone {
     display: none;
 }
+
 /* responsive */
 @media (max-width: 992px) {
-.course__curriculum-accordion .accordion-item:not(:last-child) {
-    margin-bottom: 16px !important;
+    .course__curriculum-accordion .accordion-item:not(:last-child) {
+        margin-bottom: 16px !important;
+    }
+
+    .course__curriculum-accordion .accordion-header {
+        padding: 10px 16px;
+    }
+
+    .course__curriculum-accordion .accordion-body {
+        padding: 10px 16px;
+    }
+
+    .course__curriculum-accordion-section-title {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .course__curriculum-accordion-section-duration {
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+    /* body */
+
+    .course__curriculum-accordion-lessons-title h3 {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .course__curriculum-accordion-lessons-title i {
+        margin-inline-end: 8px;
+        font-size: 21px;
+    }
+
+    .course__curriculum-accordion-lessons-duration span,
+    .course__curriculum-accordion-lessons-duration small,
+    .course__curriculum-accordion-lessons-quiz-duration span {
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+
+
 }
 
-.course__curriculum-accordion .accordion-header {
-    padding: 10px 16px;
-}
-.course__curriculum-accordion .accordion-body{
-    padding: 10px 16px; 
-}
 
-.course__curriculum-accordion-section-title {
-    font-size: 14px;
-    line-height: 21px;
-}
-
-.course__curriculum-accordion-section-duration {
-    font-size: 12px;
-    line-height: 18px;
-    
-}
-/* body */
-
-.course__curriculum-accordion-lessons-title h3{
-    font-size: 12px;
-    line-height: 18px;    
-}
-
-.course__curriculum-accordion-lessons-title i{
-    margin-inline-end: 8px;
-    font-size: 21px;
-}
-
-.course__curriculum-accordion-lessons-duration span,
-.course__curriculum-accordion-lessons-duration small,
-.course__curriculum-accordion-lessons-quiz-duration span
-{
-    font-size: 12px;
-    line-height: 18px;
-    
-}
-
-
-  
-}
-
-
-@media (max-width:400px){
-    .course__curriculum-accordion-lessons-quiz-duration.desktop{
+@media (max-width:400px) {
+    .course__curriculum-accordion-lessons-quiz-duration.desktop {
         display: none;
     }
-    .course__curriculum-accordion-lessons-quiz-duration.phone{
+
+    .course__curriculum-accordion-lessons-quiz-duration.phone {
         display: flex;
     }
-    .course__curriculum-accordion-lessons-quiz-duration span
-    {
+
+    .course__curriculum-accordion-lessons-quiz-duration span {
         font-size: 7px;
         line-height: 10px;
-    
-        
-    }   
+
+
+    }
 }
 
 
@@ -2242,40 +2245,40 @@ margin-inline-start: 80px;
 } */
 
 
-.course__nav{
+.course__nav {
     overflow-x: visible;
     width: 100%;
 }
 
-.course__nav{
+.course__nav {
     position: relative;
 }
 
-.course__nav::after{
+.course__nav::after {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background: inherit;
     top: 0;
-    inset-inline-end:100%;
-    shadow:inherit;
+    inset-inline-end: 100%;
+    shadow: inherit;
 
-  
+
 }
 
 
-.course__nav::before{
+.course__nav::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background: inherit;
     top: 0;
-    inset-inline-start:70%;
-    shadow:inherit;
+    inset-inline-start: 70%;
+    shadow: inherit;
 
-  
+
 }
 
 
@@ -2334,7 +2337,7 @@ margin-inline-start: 80px;
 }
 
 .accordion-popup .accordion .accordion-item {
-margin-bottom: 29px ;
+    margin-bottom: 29px;
 }
 
 
@@ -2418,74 +2421,314 @@ margin-bottom: 29px ;
 
 /* Style the checkbox */
 .styled-checkbox {
-appearance: none; /* Remove default browser styling */
--webkit-appearance: none; /* For Safari */
-width: 24px; /* Size of the checkbox */
-height: 24px;
-border: 1.3px solid #754FFE;
-border-radius: 50%; /* Make it circular */
-outline: none;
-cursor: pointer;
-transition: all 0.3s ease;
-margin-inline-end: 18px;
+    appearance: none;
+    /* Remove default browser styling */
+    -webkit-appearance: none;
+    /* For Safari */
+    width: 24px;
+    /* Size of the checkbox */
+    height: 24px;
+    border: 1.3px solid #754FFE;
+    border-radius: 50%;
+    /* Make it circular */
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-inline-end: 18px;
 }
 
 /* Change border and background color when checked */
 .styled-checkbox:checked {
-background-color:  #754FFE; /* Background color when checked */
-border: 2px solid white;
-outline: 1px solid #754FFE;
+    background-color: #754FFE;
+    /* Background color when checked */
+    border: 2px solid white;
+    outline: 1px solid #754FFE;
 }
+
+.accordion-popup .accordion-body i {
+    font-size: 24px;
+    color: #353535;
+    margin-inline-end: 16px;
+}
+
 
 /* responsive */
 
 @media (max-width: 992px) {
-.accordion-popup {
-    padding: 11px 24px !important;
+    .accordion-popup {
+        padding: 11px 24px !important;
+    }
+
+    .accordion-popup__title {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+
+    .accordion-popup .accordion .accordion-item {
+        margin-bottom: 16px !important;
+    }
+
+    .accordion-popup .accordion-header h3 {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+
+
+
+    }
+
+
+    .accordion-popup .accordion-header span {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .accordion-popup ul li:not(:last-child) {
+        margin-bottom: 16px;
+
+    }
+
+    .accordion-popup ul li h3,
+    .accordion-popup ul li span {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+
+    .accordion-popup a {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        margin-top: 13px;
+        ;
+    }
+
+    .accordion-popup .accordion-body i {
+        font-size: 21px;
+        margin-inline-end: 10px;
+    }
 }
 
-.accordion-popup__title {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 16px;
+
+
+
+/* course modal ################################*/
+
+
+.modal-header,
+.modal-footer,
+.modal-body {
+    border: none !important;
+    padding: 0 !important;
 }
 
-.accordion-popup .accordion .accordion-item {
-margin-bottom: 16px !important;
+.course__modal button {
+    min-height: unset !important;
+}
+.course__modal .modal-content {
+    padding: 32px;
+}
+.course__modal .modal-body {
+    margin-top: 24px;
+    margin-bottom: 32px;
 }
 
-.accordion-popup .accordion-header h3 {
-    font-size: 14px;
+.course__modal-content {
+    padding: 24px;
+    gap: 24px;
+    background: #F5F5F5;
+    border-radius: 32px;
+}
+
+.course__modal .modal-header i {
+    color: #B8B8B8;
+    font-size: 28px;
+}
+
+.course__modal .modal-header .modal-title h5 {
+    color: #282828;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 48px;
+
+
+}
+
+.course__modal .modal-header .modal-title i {
+    color: #25BA8A;
+    margin-inline-end: 16px;
+
+    font-size: 32.5px;
+}
+
+.course__modal-content img {
+    width: 190px;
+    height: 190px;
+    border-radius: 16px;
+    margin-inline-end: 24px;
+
+}
+
+.course__modal h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #1A1A1A;
+
+}
+
+.course__modal p {
+    color: #434343;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 21px;
-
-    
-
-}
-
-
-.accordion-popup .accordion-header span {
-    font-size: 12px;
-    line-height: 18px;
-}
-
-.accordion-popup ul li:not(:last-child) {
+    line-height: 30px;
     margin-bottom: 16px;
 
 }
 
-.accordion-popup ul li h3,
-.accordion-popup ul li span {
-    font-size: 12px;
-    line-height: 18px;
+.course__modal h6 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    color: var(--primary-color);
 }
 
+.course__modal .rating {
+    margin-block: 8px;
+    gap: 4px;
+}
 
-.accordion-popup a {
+.course__modal .rating i {
+    font-size: 20px;
+    color: #FFD400;
+
+}
+
+.course__modal .modal-footer button {
+    min-width: 200px;
+    height: 38px;
+    border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    margin-top: 13px;
- ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
+
+.course__modal .modal-footer button.back {
+    border: 1px solid var(--primary-color);
+    background: var(--white-color);
+    color: var(--primary-color);
+}
+
+.course__modal .modal-footer button.go {
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
+    color: var(--button-text-color);
+}
+
+@media(min-width:299px){
+    .course__modal .modal-dialog {
+        min-width: 833px;
+      
+        /* width: auto; */
+    
+    }
+    
+}
+
+
+/* responsive */
+
+@media (max-width: 992px) {
+    .course__modal .modal-dialog {
+        min-width: unset;
+      
+        /* width: auto; */
+    
+    }
+    
+    
+    .course__modal .modal-content {
+        padding: 24px;
+    }
+    .course__modal .modal-body {
+        margin-top: 10px;
+        margin-bottom: 16px;
+    }
+    
+    .course__modal-content {
+        padding: 16px;
+        gap: 8px;
+        border-radius: 16px;
+    }
+
+
+    .course__modal .modal-header i {
+     
+        font-size: 25.6px;
+    }
+    
+    .course__modal .modal-header .modal-title h5 {
+        font-size: 16px;
+        line-height: 24px;
+    
+    }
+    
+    .course__modal .modal-header .modal-title i {
+      margin-inline-end: 12px;
+
+    }
+    
+    .course__modal-content img {
+        width: 69px;
+        height: 69px;
+        margin-inline-end: 8px;
+    
+    }
+    
+    .course__modal h2 {
+     
+        font-size: 16px;
+    
+        line-height: 24px;
+     
+        
+    
+    }
+    
+    .course__modal p {
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 8px;
+    
+    }
+
+
+    .course__modal h6 {
+        font-size: 20px;
+        line-height: 30px;
+    
+    }
+    
+    .course__modal .rating {
+        margin-block: 4px;
+        gap: 4px;
+    }
+    
+    .course__modal .rating i {
+        font-size:11.67px;
+       
+    }
+
+    .course__modal .modal-footer button {
+        min-width: 121px;
+        height: 32px;
+        font-size: 12px;
+        line-height: 18px;  
+    }
+    
 }
