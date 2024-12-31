@@ -51,7 +51,7 @@
 
 .course_nav-tabs .nav-tabs {
     background: #FBFCFB;
-    box-shadow: 0px 0px 4px 0px #00000029;
+    /* box-shadow: 0px 0px 4px 0px #00000029; */
     padding-top: 16px;
     padding-bottom: 16px;
     gap: 38px;
@@ -1230,7 +1230,7 @@
 
 .course__nav {
     background: #FBFCFB;
-    box-shadow: 0px 0px 4px 0px #00000029;
+    /* box-shadow: 0px 0px 4px 0px #00000029; */
     height: 73px;
 
 
@@ -1274,6 +1274,51 @@
 .course__nav .nav-tabs .nav-link.active span::after {
     width: 100%;
     /* Expand the underline when active */
+}
+
+
+@media (max-width: 768px) {
+    .course__nav .nav-tabs .nav-link  {
+       padding-inline: 0 ;
+    }
+    .course__nav .nav-tabs{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    .course__nav {
+ 
+        height: 46px;
+    
+    
+    }
+    
+    .course__nav .nav-tabs span {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+       
+    }
+
+    .course__nav .nav-tabs .nav-link.active span {
+      
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+     
+        
+    
+    }
+    /* .course__nav .nav-tabs .nav-link{
+       padding-inline-end: 32px;
+    }
+
+    .course__nav .nav-tabs .nav-link:last-child{
+        padding-inline-end: 0;
+    } */
+   
 }
 
 
@@ -2284,7 +2329,9 @@ margin-inline-start: 80px;
 
 
 /* ################################### course-popup ######################################################################################### */
-
+.accordion-popup .modal-body{
+    margin-top: 32px;
+}
 .accordion-popup .accordion-button {
     display: flex;
     /* Enable flexbox for alignment */
@@ -2333,7 +2380,7 @@ margin-inline-start: 80px;
     font-size: 28px;
     font-weight: 500;
     line-height: 42px;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
 }
 
 .accordion-popup .accordion .accordion-item {
@@ -2462,7 +2509,10 @@ margin-inline-start: 80px;
     .accordion-popup__title {
         font-size: 16px;
         line-height: 24px;
-        margin-bottom: 16px;
+       
+    }
+    .accordion-popup .modal-body{
+        margin-top: 16px;
     }
 
     .accordion-popup .accordion .accordion-item {

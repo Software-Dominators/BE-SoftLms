@@ -75,6 +75,7 @@ if($language_dirs){
 	</style>
 
 </head>
+
 <body class="<?php echo $this->session->userdata('theme_mode'); ?>">
 	<?php
 	//user wishlist items
@@ -99,6 +100,7 @@ if($language_dirs){
   	if($page_name === null){
   		include $path;
   	}else{
+		
 		include $page_name.'.php';
 	}
 	include 'footer.php';

@@ -5,10 +5,12 @@
 <!---------- Header Section End  ---------->
     <section class="sign-up my-5 pt-5">
         <div class="container">
+          
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12 col-12  text-center">
                     <img loading="lazy" width="65%" src="<?php echo site_url('assets/frontend/default-new/image/cloud-security.gif') ?>">
                 </div>
+                
                 <div class="col-lg-5 col-md-6 col-sm-12 col-12 ">
                     <div class="sing-up-right">
                         <h3><?php echo get_phrase('Email Verification'); ?><span>!</span></h3>

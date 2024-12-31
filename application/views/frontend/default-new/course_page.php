@@ -316,14 +316,7 @@ if ($number_of_ratings > 0) {
                         <p><?= get_phrase('Pay by') . ':' ?></p>
                         <div class="d-flex align-items-center justify-content-between">
                             <!-- dropdown  -->
-                            <script>
-    document.getElementById('exampleFormControlSelect1').addEventListener('change', function () {
-        if (this.value === 'lessons') {
-           alert('lessons');
-            $('.lessons-popup').modal('show');
-        }
-    });
-</script>
+                           
 
                             <div class="form-group">
                                 <select class="form-control" id="exampleFormControlSelect1">
