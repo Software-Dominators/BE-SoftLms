@@ -209,6 +209,11 @@ class Crud_model extends CI_Model
         return $this->db->get_where('enrol', array('user_id' => $user_id));
     }
 
+    public function enrol_history_for_user_course($user_id, $course_id)
+    {
+        return $this->db->get_where('enrol', array('user_id' => $user_id, 'course_id' => $course_id));
+    }
+
     public function all_enrolled_student()
     {
         $this->db->select('user_id');

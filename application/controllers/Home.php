@@ -982,7 +982,7 @@ class Home extends CI_Controller
 
         $user_id = $this->session->userdata('user_id');
         $course_details = $this->crud_model->get_course_by_id($course_id)->row_array();
-        $user_enrolls = $this->crud_model->enrol_history_by_user_id($user_id)->result_array();
+        $user_enrolls = $this->crud_model->enrol_history_for_user_course($user_id, $course_id)->result_array();
         $course_instructor_ids = explode(',', $course_details['user_id']);
 
         if ($course_details['course_type'] == 'general') {
