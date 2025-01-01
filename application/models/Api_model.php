@@ -934,7 +934,8 @@ class Api_model extends CI_Model
 	public function certificate_addon_get($user_id = "", $course_id = "")
 	{
 		$response = array();
-		if (addon_status('certificate')) {
+		$course_details = $this->db->get_where('course', ['id' => $course_id])->row_array();
+		if (addon_status('certificate') && $course_details['enable_certificate']) {
 			$response['addon_status'] = 'success';
 
 			$this->load->model('addons/Certificate_model', 'certificate_model');
@@ -1374,7 +1375,8 @@ class Api_model extends CI_Model
                     $this->db->update('watch_histories', array('course_progress' => $course_progress, 'completed_lesson' => json_encode($lesson_ids), 'date_updated' => time()));
 
                     // CHECK IF THE USER IS ELIGIBLE FOR CERTIFICATE
-                    if (addon_status('certificate') && $course_progress >= 100) {
+            		$course_details = $this->db->get_where('course', ['id' => $data['watched_course_id']])->row_array();
+                    if (addon_status('certificate') && $course_details['enable_certificate'] && $course_progress >= 100) {
                         $this->load->model('addons/Certificate_model', 'certificate_model');
                         $this->certificate_model->check_certificate_eligibility($data['watched_course_id'], $data['watched_student_id']);
                     }

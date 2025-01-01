@@ -36,7 +36,7 @@ if ($number_of_ratings > 0) {
                 </div>
 
                 <div class="  course-breadcrumb__middle">
-                   
+
 
 <div class="course-breadcrumb__middle_phone-img ">
 <img loading="lazy" class="w-100 h-100 "
@@ -241,7 +241,7 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
                             </h5>
                         </div>
 
-                        <?php if (addon_status('certificate')): ?>
+                        <?php if (addon_status('certificate') && $course_details['enable_certificate']): ?>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <img loading="lazy"
@@ -271,7 +271,7 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
                             </div>
                             <!-- enrol now -->
                              <a href="<?php echo site_url('home/get_enrolled_to_free_course/' . $course_details['id']); ?>"><?php echo get_phrase('Enroll Now'); ?></a>
-         
+
 
 
                         </div>
@@ -635,7 +635,7 @@ src="<?php echo $this->crud_model->get_course_thumbnail_url($course_details['id'
                             </h5>
                         </div>
 
-                        <?php if (addon_status('certificate')): ?>
+                        <?php if (addon_status('certificate') && $course_details['enable_certificate']): ?>
                             <div class="enrol">
                                 <div class="icon">
                                     <img loading="lazy"

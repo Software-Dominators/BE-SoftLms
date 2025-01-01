@@ -45,7 +45,7 @@
 			</button>
 		</li>
 	<?php endif ?>
-	<?php if (addon_status('certificate')) : ?>
+	<?php if (addon_status('certificate') && $course_details['enable_certificate']) : ?>
 		<li class="nav-item" role="presentation">
 			<button class="nav-link" id="certificate-tab" onclick="actionTo('<?php echo site_url('addons/certificate/certificate_progress/' . $course_details['id']); ?>')" data-bs-toggle="tab" data-bs-target="#certificate-content" type="button" role="tab" aria-controls="certificate-content" aria-selected="true">
 				<i class="fas fa-graduation-cap"></i>
@@ -186,7 +186,7 @@
 		<div class="tab-pane fade" id="noticeboard-content" role="tabpanel" aria-labelledby="noticeboard-tab"></div>
 	<?php endif; ?>
 
-	<?php if (addon_status('certificate')) : ?>
+	<?php if (addon_status('certificate') && $course_details['enable_certificate']) : ?>
 		<div class="tab-pane fade" id="certificate-content" role="tabpanel" aria-labelledby="certificate-tab"></div>
 	<?php endif; ?>
 </div>

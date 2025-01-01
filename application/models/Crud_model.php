@@ -2881,7 +2881,6 @@ class Crud_model extends CI_Model
         $applied_coupon = $this->session->userdata('applied_coupon');
 
         foreach ($purchased_items as $purchased_item) {
-
             if ($method == 'stripe') {
                 //param1 transaction_id, param2 session_id for stripe
                 $data['transaction_id'] = $param1;
@@ -3976,7 +3975,8 @@ class Crud_model extends CI_Model
                 $is_completed = 0;
             }
             // CHECK IF COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
-            if (addon_status('certificate') && $course_progress >= 100) {
+            $course_details = $this->db->get_where('course', ['id' => $course_id])->row_array();
+            if (addon_status('certificate') && $course_details['enable_certificate'] && $course_progress >= 100) {
                 $course_data = $this->db->get_where('course', array('id' => $course_id))->row();
                 if ($course_data && $course_data->enable_certificate) {
                     $this->load->model('addons/Certificate_model', 'certificate_model');
@@ -4513,7 +4513,7 @@ class Crud_model extends CI_Model
 
 
                     // CHECK IF THE COURSE IS CERTIFIED AND THE USER IS ELIGIBLE FOR CERTIFICATE
-                    if (addon_status('certificate') && $course_progress >= 100) {
+                    if (addon_status('certificate') && $course_details['enable_certificate'] && $course_progress >= 100) {
                         $course_data = $this->db->get_where('course', array('id' => $data['watched_course_id']))->row();
                         if ($course_data && $course_data->enable_certificate) {
                             $this->load->model('addons/Certificate_model', 'certificate_model');

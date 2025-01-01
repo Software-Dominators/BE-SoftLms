@@ -6,7 +6,7 @@
         <th><?php echo get_phrase('Date') ?></th>
         <th><?php echo get_phrase('Progress'); ?></th>
         <th class="text-center"><?php echo get_phrase('Actions'); ?></th>
-      </tr> 
+      </tr>
     </thead>
     <?php $enrolments = $this->db->where('course_id', $course_details['id'])->get('enrol')->result_array(); ?>
     <?php $lessons = $this->crud_model->get_lessons('course', $course_details['id']); ?>
@@ -52,14 +52,14 @@
 
             <p class="my-0">- <?php echo get_phrase('Watched duration').'- <b>'.seconds_to_time_format($total_watched_duration); ?></b></p>
 
-            
-            
+
+
           </td>
           <td class="text-center">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
               <a href="javascript:;" onclick="showLargeModal('<?php echo site_url('admin/student_academic_quiz_result/'.$course_details['id'].'/'.$enrolment['user_id']); ?>', '<?php echo get_phrase('Quiz results'); ?>')" class="btn btn-light cursor-pointer" data-toggle="tooltip" title="<?php echo get_phrase('Quiz results'); ?>"><i class="far fa-address-card"></i></a>
 
-              <?php if(addon_status('certificate')): ?>
+              <?php if(addon_status('certificate') && $course_details['enable_certificate']): ?>
                 <a href="<?php echo site_url('admin/student_certificate/'.$enrolment['user_id'].'/'.$course_details['id']); ?>" target="_blank" class="btn btn-light cursor-pointer" data-toggle="tooltip" title="<?php echo get_phrase('Certificate'); ?>">
                   <i class="fas fa-graduation-cap"></i>
                 </a>
