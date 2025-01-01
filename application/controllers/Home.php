@@ -1174,11 +1174,14 @@ class Home extends CI_Controller
 
             $this->crud_model->rate($data);
 
-            $this->session->set_flashdata('flash_message', get_phrase('You have successfully rated the course'));
+            $data['course_details'] = $this->crud_model->get_course_by_id($course_id)->row_array();
+            $response['html'] = ['elem' => '#reviews .reviews', 'content' => $this->load->view('frontend/' . get_frontend_settings('theme') . '/course_page_reviews', $data, true)];
+            $response['success'] = get_phrase('You have successfully rated the course');
         } else {
-            $this->session->set_flashdata('error_message', get_phrase('This course cannot be rated. Please buy the course first'));
+            $response['error'] = get_phrase('This course cannot be rated. Please buy the course first');
         }
-        redirect($_SERVER['HTTP_REFERER']);
+
+        echo json_encode($response);
     }
 
     public function remove_rating($course_id, $rating_id)
