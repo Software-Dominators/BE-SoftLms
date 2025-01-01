@@ -2,7 +2,7 @@
 $user_id = $this->session->userdata('user_id');
 $admin_login = $this->session->userdata('admin_login');
 $my_rating = $this->db->where('user_id', $user_id)->where('ratable_id', $course_details['id'])->where('ratable_type', 'course')->get('rating'); ?>
-<?php if($my_rating->num_rows() == 0 && enroll_status(['course_id' => $course_details['id']])): ?>
+<?php if($my_rating->num_rows() == 0 && is_purchased(['course_id' => $course_details['id']], true)): ?>
     <div class="comment instructor-student-feed-back" id="course_page_add_review_form">
         <h1 class="ritt"><?php echo get_phrase('Write a Review') ?></h1>
 

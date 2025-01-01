@@ -46,11 +46,13 @@ class Files extends CI_Controller
             $get_lesson_type = get_lesson_type($lesson_id);
 
             if (
-                enroll_status(['course_id' => $course_id,]) == 'valid'
-                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id']]) == 'valid'
-                || enroll_status(['course_id' => $course_id,'section_id' => $lesson['section_id'],'lesson_id' => $lesson['id']]) == 'valid'
-                || $this->session->userdata('admin_login') == '1'
+                $this->session->userdata('admin_login') == '1'
                 || in_array($user_id, $multi_instructors)
+                || is_purchased([
+                    'course_id' => $course_id,
+                    'section_id' => $lesson['section_id'],
+                    'lesson_id' => $lesson['id'],
+                ])
             ) {
 
 

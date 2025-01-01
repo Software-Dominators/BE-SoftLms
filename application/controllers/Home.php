@@ -1042,20 +1042,14 @@ class Home extends CI_Controller
         }
 
         //if not admin or course owner
-        $course_enroll_status = enroll_status(['course_id' => $course_id]);
-        if ($course_enroll_status != 'valid') {
-            $section_enroll_status = isset($page_data['section_id'])
-                ? enroll_status(['course_id' => $course_id, 'section_id' => $page_data['section_id']]) : false;
-            if ($section_enroll_status != 'valid') {
-                $lesson_enroll_status = isset($page_data['section_id']) && isset($page_data['lesson_id'])
-                    ? enroll_status(['course_id' => $course_id, 'section_id' => $page_data['section_id'], 'lesson_id' => $page_data['lesson_id']]) : false;
-                $enroll_status = $lesson_enroll_status;
-            } else {
-                $enroll_status = $section_enroll_status;
-            }
-        } else {
-            $enroll_status = $course_enroll_status;
+        $enroll_status_conditions = ['course_id' => $course_id];
+        if (isset($page_data['section_id'])) {
+            $enroll_status_conditions['section_id'] = $page_data['section_id'];
         }
+        if (isset($page_data['lesson_id'])) {
+            $enroll_status_conditions['lesson_id'] = $page_data['lesson_id'];
+        }
+        $enroll_status = enroll_status($enroll_status_conditions);
         if ($this->session->userdata('role_id') != 1 && !in_array($user_id, $course_instructor_ids)) {
             if ($enroll_status == 'expired') {
                 $this->session->set_flashdata('error_message', site_phrase('Your course accessibility has expired. You need to buy it again'));
@@ -1080,7 +1074,17 @@ class Home extends CI_Controller
     {
         $is_admin = $this->session->userdata('admin_login');
         $is_course_instructor = $this->crud_model->is_course_instructor($course_id, $this->session->userdata('user_id'));
-        if (enroll_status(['course_id' => $course_id]) == 'valid' || $is_course_instructor || $is_admin || get_bundle_validity($bundle_id) == 'valid') {
+        $lesson_details = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
+        if (
+            $is_admin
+            || $is_course_instructor
+            || is_purchased([
+                'course_id' => $course_id,
+                'section_id' => $lesson_details['section_id'],
+                'lesson_id' => $lesson_details['id'],
+            ])
+            || get_bundle_validity($bundle_id) == 'valid'
+        ) {
             $page_data['course_id'] = $course_id;
             $page_data['lesson_id'] = $lesson_id;
             $this->load->view('lessons/pdf_canvas', $page_data);
@@ -1172,7 +1176,7 @@ class Home extends CI_Controller
     {
         $course_id = $this->input->post('course_id');
         $starRating = $this->input->post('starRating');
-        if (enroll_status(['course_id' => $course_id])) {
+        if (is_purchased(['course_id' => $course_id], true)) {
             $data['review'] = $this->input->post('review');
             $data['ratable_id'] = $this->input->post('course_id');
             $data['ratable_type'] = 'course';
@@ -1194,7 +1198,10 @@ class Home extends CI_Controller
 
     public function remove_rating($course_id, $rating_id)
     {
-        if (enroll_status(['course_id' => $course_id]) || $this->session->userdata('admin_login')) {
+        if (
+            $this->session->userdata('admin_login')
+            || is_purchased(['course_id' => $course_id], true)
+        ) {
             $this->db->where('id', $rating_id);
             $this->db->delete('rating');
 
@@ -1742,9 +1749,11 @@ class Home extends CI_Controller
         } elseif (
             $admin_login
             || $is_course_instructor
-            || enroll_status(['course_id' => $course_details['id']]) == 'valid'
-            || enroll_status(['course_id' => $course_details['id'], 'section_id' => $lesson['section_id']]) == 'valid'
-            || enroll_status(['course_id' => $course_details['id'], 'section_id' => $lesson['section_id'], 'lesson_id' => $lesson['id']]) == 'valid'
+            || is_purchased([
+                'course_id' => $course_details['id'],
+                'section_id' => $lesson['section_id'],
+                'lesson_id' => $lesson['id'],
+            ])
         ) {
             $response['redirectTo'] = site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_details['id'] . '/' . $lesson['id']);
             echo json_encode($response);
@@ -2158,7 +2167,11 @@ class Home extends CI_Controller
         $course_details = $this->crud_model->get_course_by_id($lesson_details['course_id'])->row_array();
 
         $get_lesson_type = get_lesson_type($lesson_details['id']);
-        $enroll_status = enroll_status(['course_id' => $lesson_details['course_id']]);
+        $enroll_status = enroll_status([
+            'course_id' => $lesson_details['course_id'],
+            'section_id' => $lesson_details['section_id'],
+            'lesson_id' => $lesson_details['id'],
+        ]);
 
 
         if ($enroll_status == 'expired' || !$enroll_status) {

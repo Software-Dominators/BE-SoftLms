@@ -1202,7 +1202,7 @@ class User extends CI_Controller
 
     function join_bbb_meeting($course_id = "")
     {
-        if (enroll_status(['course_id' => $course_id]) == 'valid') {
+        if (is_purchased(['course_id' => $course_id], true)) {
             $bbb_meeting = $this->db->where('course_id', $course_id)->get('bbb_meetings');
             $current_url = $_SERVER['HTTP_REFERER'];
 
@@ -1330,7 +1330,7 @@ class User extends CI_Controller
 
     function join_zoom_meeting($course_id = "")
     {
-        if (enroll_status(['course_id' => $course_id]) == 'valid') {
+        if (is_purchased(['course_id' => $course_id], true)) {
             $zoom_meeting = $this->db->where('course_id', $course_id)->get('zoom_meetings');
             $current_url = $_SERVER['HTTP_REFERER'];
 

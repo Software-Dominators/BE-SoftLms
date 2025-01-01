@@ -83,7 +83,14 @@ class Course_forum_model extends CI_Model {
         $data['user_id'] = $user_id;
 
         $instructors = $this->crud_model->get_course_instructors_id($data['course_id']);
-        if(enroll_status(['course_id' => $data['course_id'], 'user_id' => $user_id]) == 'valid' || in_array($user_id, $instructors) || $this->session->userdata('admin_login') == '1'){
+        if(
+            is_purchased([
+                'user_id' => $user_id,
+                'course_id' => $data['course_id'],
+            ], true)
+            || in_array($user_id, $instructors)
+            || $this->session->userdata('admin_login') == '1'
+        ) {
             $description = upload_description_images($_POST['description'], 'uploads/description-images');
             $data['description'] = remove_js($description);
             $this->db->insert('course_forum', $data);
@@ -99,7 +106,13 @@ class Course_forum_model extends CI_Model {
 
 
     function send_notification($course_id = "", $user_id = "", $is_parent = "", $title = "", $description = ""){
-        if($is_parent == 0 && enroll_status(['course_id' => $course_id, 'course_id' => $user_id]) == 'valid'){
+        if(
+            $is_parent == 0
+            && is_purchased([
+                'user_id' => $user_id,
+                'course_id' => $course_id,
+            ], true)
+        ) {
             //System notification
             $instructors = $this->crud_model->get_course_instructors_id($course_id);
             foreach($instructors as $instructor_id):

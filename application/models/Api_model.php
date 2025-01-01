@@ -754,7 +754,7 @@ class Api_model extends CI_Model
 		foreach ($response as $key => $resp) {
 			$response[$key]['sections'] = $this->sections_get($course_id);
 			$response[$key]['is_wishlisted'] = $this->is_added_to_wishlist($user_id, $course_id);
-			$response[$key]['is_purchased'] = $this->is_purchased($user_id, $course_id);
+			$response[$key]['is_purchased'] = is_purchased(['user_id' => $user_id, 'course_id' => $course_id], true);
 			$response[$key]['includes'] = array(
 				$this->crud_model->get_total_duration_of_lesson_by_course_id($course_id) . ' On demand videos',
 				$this->crud_model->get_lessons('course', $course_id)->num_rows() . ' Lessons',
@@ -778,20 +778,6 @@ class Api_model extends CI_Model
 			}
 		} else {
 			return false;
-		}
-	}
-
-	public function is_purchased($user_id = 0, $course_id = "")
-	{
-		// 0 represents Not purchased, 1 represents Purchased, 2 represents Pending
-		if ($user_id > 0) {
-			if (enroll_status(['course_id' => $course_id, 'user_id' => $user_id]) == 'valid') {
-				return 1;
-			}else{
-				return 0;
-			}
-		} else {
-			return 0;
 		}
 	}
 

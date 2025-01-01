@@ -40,9 +40,15 @@ class Api_files extends REST_Controller {
                 $lesson = $this->crud_model->get_lessons('lesson', $lesson_id)->row_array();
                 $get_lesson_type = get_lesson_type($lesson_id);
 
-                if(enroll_status(['course_id' => $course_id, 'user_id' => $user_id]) == 'valid' || in_array($user_id, $multi_instructors)){
-
-
+                if (
+                    in_array($user_id, $multi_instructors)
+                    || is_purchased([
+                        'user_id' => $user_id,
+                        'course_id' => $course_id,
+                        'section_id' => $lesson['section_id'],
+                        'lesson_id' => $lesson_id,
+                    ])
+                ) {
                     //Assign video url
                     if($get_lesson_type == 'video_file' || $get_lesson_type == 'amazon_video_url' || $get_lesson_type == 'academy_cloud' || $get_lesson_type == 'html5_video_url'){
                         $fileUrl = $lesson['video_url'];
@@ -233,7 +239,15 @@ class Api_files extends REST_Controller {
             $lesson_video = $this->db->where('id', $lesson_id)->get('lesson');
             $video_url = $lesson_video->row('video_url');
 
-            if(enroll_status(['course_id' => $lesson_video->row('course_id'), 'user_id' => $logged_in_user_details['user_id']]) == 'valid' && $video_url != ''){
+            if(
+                $video_url != ''
+                && is_purchased([
+                    'user_id' => $logged_in_user_details['user_id'],
+                    'course_id' => $lesson_video->row('course_id'),
+                    'section_id' => $lesson_video->row('section_id'),
+                    'lesson_id' => $lesson_video->row('id'),
+                ])
+            ) {
                 $video_url = str_replace(base_url(),"",$video_url);
                 $data = file_get_contents($video_url);
                 $name = slugify($lesson_video->row('title')).'.'.pathinfo($video_url, PATHINFO_EXTENSION);

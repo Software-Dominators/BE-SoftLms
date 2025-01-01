@@ -5218,7 +5218,7 @@ class Crud_model extends CI_Model
 
             if (in_array($user_id, $course_instructors)) {
                 return true;
-            } elseif (enroll_status(['course_id' => $course_id]) == 'valid') {
+            } elseif (is_purchased(['course_id' => $course_id], true)) {
                 return true;
             }
         }
