@@ -537,8 +537,9 @@ class Home extends CI_Controller
                 $course_sections = $this->crud_model->get_section('course', $course_details['id'])->result_array();
                 foreach ($course_sections as $course_section) {
                     if (cart_items_get_index('section', $course_section['id']) !== null) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of course\'s section added to cart. Remove section(s) first.'));
                         echo json_encode([
-                            'error' => get_phrase('One of course\'s section added to cart. Remove section(s) first.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -546,9 +547,10 @@ class Home extends CI_Controller
                     if (is_purchased([
                         'course_id' => $course_details['id'],
                         'section_id' => $course_section['id'],
-                    ]) == 'valid') {
+                    ])) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of course\'s sections purchased before. You can only buy other sections not all course.'));
                         echo json_encode([
-                            'error' => get_phrase('One of course\'s sections purchased before. You can only buy other sections not all course.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -557,8 +559,9 @@ class Home extends CI_Controller
                 $course_lessons = $this->crud_model->get_lessons('course', $course_details['id'])->result_array();
                 foreach ($course_lessons as $course_lesson) {
                     if (cart_items_get_index('lesson', $course_lesson['id']) !== null) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of course\'s lesson added to cart. Remove lesson(s) first.'));
                         echo json_encode([
-                            'error' => get_phrase('One of course\'s lesson added to cart. Remove lesson(s) first.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -567,9 +570,10 @@ class Home extends CI_Controller
                         'course_id' => $course_details['id'],
                         'section_id' => $course_lesson['section_id'],
                         'lesson_id' => $course_lesson['id'],
-                    ]) == 'valid') {
+                    ])) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of course\'s lessons purchased before. You can only buy other lessons not all course.'));
                         echo json_encode([
-                            'error' => get_phrase('One of course\'s lessons purchased before. You can only buy other lessons not all course.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -577,9 +581,10 @@ class Home extends CI_Controller
 
                 if (is_purchased([
                     'course_id' => $course_details['id'],
-                ]) == 'valid') {
+                ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('You already purchased this course.'));
                     echo json_encode([
-                        'error' => get_phrase('You already purchased this course.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -589,8 +594,9 @@ class Home extends CI_Controller
                 $section_details = $this->crud_model->get_section('section', $cart_item_id)->row_array();
 
                 if (cart_items_get_index('course', $section_details['course_id']) !== null) {
+                    $this->session->set_flashdata('error_message', get_phrase('Section\'s course added to cart. Remove course first.'));
                     echo json_encode([
-                        'error' => get_phrase('Section\'s course added to cart. Remove course first.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -598,8 +604,9 @@ class Home extends CI_Controller
                 $section_lessons = $this->crud_model->get_lessons('section', $section_details['id'])->result_array();
                 foreach ($section_lessons as $section_lesson) {
                     if (cart_items_get_index('lesson', $section_lesson['id']) !== null) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of section\'s lessons added to cart. Remove lesson(s) first.'));
                         echo json_encode([
-                            'error' => get_phrase('One of section\'s lessons added to cart. Remove lesson(s) first.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -609,8 +616,9 @@ class Home extends CI_Controller
                         'section_id' => $section_details['id'],
                         'lesson_id' => $section_lesson['id'],
                     ])) {
+                        $this->session->set_flashdata('error_message', get_phrase('One of section\'s lessons purchased before. You can only buy other lessons not all section.'));
                         echo json_encode([
-                            'error' => get_phrase('One of section\'s lessons purchased before. You can only buy other lessons not all section.'),
+                            'reload' => true,
                         ]);
                         return;
                     }
@@ -619,8 +627,9 @@ class Home extends CI_Controller
                 if (is_purchased([
                     'course_id' => $section_details['course_id'],
                 ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('You already purchased this course before.'));
                     echo json_encode([
-                        'error' => get_phrase('You already purchased this course before.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -629,8 +638,9 @@ class Home extends CI_Controller
                     'course_id' => $section_details['course_id'],
                     'section_id' => $section_details['id'],
                 ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('You have already purchased this section before.'));
                     echo json_encode([
-                        'error' => get_phrase('You have already purchased this section before.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -640,15 +650,17 @@ class Home extends CI_Controller
                 $lesson_details = $this->crud_model->get_lessons('lesson', $cart_item_id)->row_array();
 
                 if (cart_items_get_index('section', $lesson_details['section_id']) !== null) {
+                    $this->session->set_flashdata('error_message', get_phrase('Lesson\'s section added to cart. Remove section first.'));
                     echo json_encode([
-                        'error' => get_phrase('Lesson\'s section added to cart. Remove section first.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
 
                 if (cart_items_get_index('course', $lesson_details['course_id']) !== null) {
+                    $this->session->set_flashdata('error_message', get_phrase('Lesson\'s course added to cart. Remove course first.'));
                     echo json_encode([
-                        'error' => get_phrase('Lesson\'s course added to cart. Remove course first.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -656,8 +668,9 @@ class Home extends CI_Controller
                 if (is_purchased([
                     'course_id' => $lesson_details['course_id'],
                 ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('Lesson\'s course purchased before.'));
                     echo json_encode([
-                        'error' => get_phrase('Lesson\'s course purchased before.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -666,8 +679,9 @@ class Home extends CI_Controller
                     'course_id' => $lesson_details['course_id'],
                     'section_id' => $lesson_details['section_id'],
                 ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('Lesson\'s section purchased before.'));
                     echo json_encode([
-                        'error' => get_phrase('Lesson\'s section purchased before.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -677,8 +691,9 @@ class Home extends CI_Controller
                     'section_id' => $lesson_details['section_id'],
                     'lesson_id' => $lesson_details['id'],
                 ])) {
+                    $this->session->set_flashdata('error_message', get_phrase('You already purchased this lesson before.'));
                     echo json_encode([
-                        'error' => get_phrase('You already purchased this lesson before.'),
+                        'reload' => true,
                     ]);
                     return;
                 }
@@ -687,37 +702,10 @@ class Home extends CI_Controller
             $cart_items = cart_items_add($cart_item_type, $cart_item_id, true);
         }
 
-        $response['success'] = get_phrase('Cart item(s) updated successfully');
-
-        // if ($cart_item_exists) {
-        //     $response['success'] = get_phrase('Item successfully removed from cart');
-        //     $response['hide'] = '#added_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
-        //     $response['show'] = '#add_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
-        // } else {
-        //     $response['success'] = get_phrase('Item successfully added to cart');
-        //     $response['show'] = '#added_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
-        //     $response['hide'] = '#add_' . $cart_item_type . '_to_cart_btn_' . $identifier . $cart_item_id;
-        // }
-
-        //Cart page start
-        $response['html'] = [
-            'elem' => '#shoppingCart',
-            'content' => $this->load->view('frontend/' . get_frontend_settings('theme') . '/shopping_cart_inner_view', [], true)
-        ];
-        //Cart page end
-
-
-        //Cart header content start
-        $response['load'] = [
-            'elem' => '#cartItems',
-            'content' => $this->load->view('frontend/' . get_frontend_settings('theme') . '/cart_items', [], true)
-        ];
-        $response['text'] = ['elem' => '#cartItemsCounter', 'content' => count($cart_items)];
-        //Cart header content end
-
-        $response['reload'] = true;
-
-        echo json_encode($response);
+        $this->session->set_flashdata('flash_message', get_phrase('Cart item(s) updated successfully'));
+        echo json_encode([
+            'reload' => true,
+        ]);
     }
     public function handle_buy_now($course_id = "")
     {
@@ -2213,7 +2201,14 @@ class Home extends CI_Controller
         $lesson_video = $this->db->where('id', $lesson_id)->get('lesson');
         $video_url = $lesson_video->row('video_url');
 
-        if (enroll_status(['course_id' => $lesson_video->row('course_id')]) == 'valid' && $video_url != '') {
+        if (
+            $video_url != ''
+            && is_purchased([
+                'course_id' => $lesson_video->row('course_id'),
+                'section_id' => $lesson_video->row('section_id'),
+                'lesson_id' => $lesson_video->row('id'),
+            ])
+        ) {
             $video_url = str_replace(base_url(), "", $video_url);
             $data = file_get_contents($video_url);
             $name = slugify($lesson_video->row('title')) . '.' . pathinfo($video_url, PATHINFO_EXTENSION);
