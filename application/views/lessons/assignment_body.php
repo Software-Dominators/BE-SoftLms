@@ -5,43 +5,36 @@ $CI->load->model('addons/assignment_model');
 $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 ?>
 
-<style>
-	.view-field {
-		display: -webkit-box !important;
-		-webkit-line-clamp: 2 !important;
-		-webkit-box-orient: vertical !important;
-		overflow: hidden !important;
-		text-overflow: ellipsis !important;
-		white-space: normal !important;
-	}
-</style>
 
-<div class="row justify-content-center lesson__assignment ">
-	<div class="col-md-8">
-		<?php $key = 0; ?>
-		<?php foreach ($assignments->result_array() as $assignment): ?>
-			<?php if ($assignment['status'] == 'active') { ?>
-				<?php $key = $key + 1;
-				?>
-			<?php } ?>
-		<?php endforeach; ?>
-		<h6 class="text-left"><?php echo site_phrase('total') . ' ' . $key . ' ' . site_phrase('assignments');
-		; ?></h6>
-		<hr>
-		<?php foreach ($assignments->result_array() as $assignment): ?>
-			<?php
-			$today_d = date('d M Y');
-			$today_t = date('h:i:s a');
-			$today_date = strtotime($today_d);
-			$today_time = strtotime($today_t);
-			$expire_date = $assignment['deadline_date'];
-			$expire_time = $assignment['deadline_time'];
-			if ($assignment['status'] == 'active') { ?>
-				<div class="lesson__assignment-content">
-					<div class="lesson__assignment-top d-flex justify-content-between align-items-center">
+<div class="row  lessons__assignment ">
+
+	<?php $key = 0; ?>
+	<?php foreach ($assignments->result_array() as $assignment): ?>
+		<?php if ($assignment['status'] == 'active') { ?>
+			<?php $key = $key + 1;
+			?>
+		<?php } ?>
+	<?php endforeach; ?>
+	<div class="col-12">
+	<h6 ><?php echo site_phrase('total') . ' ' . $key . ' ' . site_phrase('assignments');
+	; ?></h6>
+	</div>
+	<hr>
+	<?php foreach ($assignments->result_array() as $assignment): ?>
+		<?php
+		$today_d = date('d M Y');
+		$today_t = date('h:i:s a');
+		$today_date = strtotime($today_d);
+		$today_time = strtotime($today_t);
+		$expire_date = $assignment['deadline_date'];
+		$expire_time = $assignment['deadline_time'];
+		if ($assignment['status'] == 'active') { ?>
+			<div class="col-lg-8 col-12">
+				<div class="lessons__assignment-content">
+					<div class="lessons__assignment-top d-flex justify-content-between align-items-center">
 						<h3>
 							<img src="<?= site_url('assets/frontend/design-one/assets/images/lesson/book.svg') ?>" alt="book"
-								class="lesson__assignment-book-img">
+								class="lessons__assignment-book-img">
 							<?php echo htmlspecialchars_decode($assignment['title']); ?>
 						</h3>
 
@@ -51,13 +44,13 @@ $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 								<?php echo date('h:i A', $assignment['deadline_time']); ?></small></p>
 
 					</div>
-					<div class="lesson__assignment-middle">
-						<p class="lesson__assignment-total-marks">
+					<div class="lessons__assignment-middle">
+						<p class="lessons__assignment-total-marks">
 							<?php echo get_phrase('total_marks:') . " " . get_phrase($assignment['total_marks']); ?>
 						</p>
 
 
-						<div class="lesson__assignment-questions mt-0 pt-0">
+						<div class="lessons__assignment-questions mt-0 pt-0">
 							<h4><?= get_phrase('Questions:') ?></h4>
 
 							<div class=" text-left view-field">
@@ -67,11 +60,11 @@ $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 						</div>
 					</div>
 
-					<div class="lesson__assignment-bottom <?php if ($assignment['question_file'] != "")
+					<div class="lessons__assignment-bottom <?php if ($assignment['question_file'] != "")
 						echo 'd-flex justify-content-between' ?>">
 
 						<?php if ($assignment['question_file'] != "") { ?>
-							<a class="lesson__assignment-answer-link"
+							<a class="lessons__assignment-answer-link"
 								href="<?php echo site_url('uploads/assignment_files/assignments/' . $assignment['question_file']); ?>"
 								download class="btn-outline-primary"> <?php echo $assignment['question_file']; ?> </a>
 
@@ -82,7 +75,7 @@ $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 							$check_submit = $this->db->get_where('assignment_submission', array('user_id' => $user_id, 'assignment_id' => $assignment['assignment_id']))->row_array();
 							if ($check_submit != "") { ?>
 								<div class="text-end">
-									<a class="lesson__assignment-answer-link" href="javascript:;"
+									<a class="lessons__assignment-answer-link" href="javascript:;"
 										onclick="load_submitted_assignment_result('<?= $course_id; ?>', '<?= $assignment['assignment_id']; ?>')">
 										<?= site_phrase('view_result'); ?></a>
 								</div>
@@ -90,7 +83,7 @@ $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 
 						<?php } else if ($expire_time >= $today_time && $expire_date >= $today_date) { ?>
 								<div class="text-end ">
-									<a class="lesson__assignment-answer-link" href="javascript:;"
+									<a class="lessons__assignment-answer-link" href="javascript:;"
 										onclick="load_assignment_submit_form('<?= $course_id; ?>', '<?= $assignment['assignment_id']; ?>')">
 									<?= site_phrase('submit_assignment'); ?></a>
 								</div>
@@ -98,10 +91,14 @@ $assignments = $CI->assignment_model->get_assignment_by_course_id($course_id);
 					</div>
 
 				</div>
-			<?php } ?>
-		<?php endforeach; ?>
-	</div>
+			</div>
+		<?php } ?>
+	<?php endforeach; ?>
+
 </div>
+
+
+
 <script type="text/javascript">
 	'use strict';
 

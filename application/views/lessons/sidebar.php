@@ -1,5 +1,3 @@
-
-
 <?php
 if (is_array($watch_history) && !empty($watch_history['completed_lesson'])):
   $completed_lessons = json_decode($watch_history['completed_lesson'], true);
@@ -15,6 +13,202 @@ $locked_lesson_ids = array();
 $restricted_section_ids = [];
 $is_restricted = 1;
 ?>
+<?php if (is_array($sections) && count($sections) > 0): ?>
+  <div class="lessons__sidebar">
+    <header>
+      <h2 class="p-0 m-0"><?php echo htmlspecialchars(get_phrase('Course Content'), ENT_QUOTES, 'UTF-8'); ?></h2>
+    </header>
+    <div class="accordion" id="accordionLessons">
+      <?php
+      $restricted_section_ids = [];
+      foreach ($sections as $key => $section):
+        $is_restricted = 1; // Default value
+    
+        // Check restrictions
+        if (
+          ($section['restricted_by'] == 'date_range' && time() >= $section['start_date'] && time() <= $section['end_date']) ||
+          ($section['restricted_by'] == 'start_date' && time() >= $section['start_date']) ||
+          $section['restricted_by'] == '' ||
+          $is_course_instructor ||
+          $this->session->userdata('admin_login')
+        ) {
+          $is_restricted = 0;
+        }
+
+        if ($is_restricted) {
+          $restricted_section_ids[] = $section['id'];
+        }
+        ?>
+        <div class="accordion-item">
+          <!-- Accordion Header -->
+          <h2 class="accordion-header" id="heading<?php echo htmlspecialchars($section['id'], ENT_QUOTES, 'UTF-8'); ?>">
+            <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse<?php echo htmlspecialchars($section['id'], ENT_QUOTES, 'UTF-8'); ?>"
+              aria-expanded="false"
+              aria-controls="collapse<?php echo htmlspecialchars($section['id'], ENT_QUOTES, 'UTF-8'); ?>">
+              <div>
+                <h4 class="my-0 py-0">
+                  <?php echo htmlspecialchars($section['title'], ENT_QUOTES, 'UTF-8'); ?>
+                </h4>
+                <!-- Study Plan -->
+                <?php if (date('d-M-Y H:i:s', $section['start_date']) != date('d-M-Y H:i:s', $section['end_date'])): ?>
+                  <small data-bs-toggle="tooltip"
+                    title="<?php echo htmlspecialchars(get_phrase('Study plan'), ENT_QUOTES, 'UTF-8'); ?>">
+                    <i class="far fa-calendar-alt me-2"></i>
+                    <?php if (date('d-M-Y', $section['start_date']) == date('d-M-Y', $section['end_date'])): ?>
+                      <?php echo date('d M Y', $section['start_date']); ?>:
+                      <?php echo date('h:i A', $section['start_date']) . ' - ' . date('h:i A', $section['end_date']); ?>
+                    <?php else: ?>
+                      <?php echo date('d M Y h:i A', $section['start_date']) . ' - ' . date('d M Y h:i A', $section['end_date']); ?>
+                    <?php endif; ?>
+                  </small>
+                <?php endif; ?>
+              </div>
+            </button>
+          </h2>
+
+          <!-- Accordion Body -->
+          <div id="collapse<?php echo htmlspecialchars($section['id'], ENT_QUOTES, 'UTF-8'); ?>"
+            class="accordion-collapse collapse"
+            aria-labelledby="heading<?php echo htmlspecialchars($section['id'], ENT_QUOTES, 'UTF-8'); ?>"
+            data-bs-parent="#accordionLessons">
+            <div class="accordion-body ">
+              <!-- restricted -->
+              <?php if ($is_restricted): ?>
+                <div class="locked  d-flex align-items-center flex-column">
+                  <i class="fas fa-lock text-30px"></i>
+                  <h6 class="my-0 py-0 text-center">
+                    <?php echo get_phrase('This section is not included in the current study plan'); ?>
+                  </h6>
+                  <small class="text-center">
+                    <?php echo date('d M Y h:i A', $section['start_date']) . ' - ' . date('d M Y h:i A', $section['end_date']); ?></small>
+                </div>
+              <?php endif; ?>
+
+              <!-- lessons -->
+              <ul class="mx-0 px-0" style="<?php if ($is_restricted)
+                echo 'filter: blur(1px);' ?>">
+
+                  <?php
+              $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
+              foreach ($lessons as $key => $lesson):
+
+                //Check is bundle or course
+                if (isset($bundle_id) && $bundle_id > 0):
+                  $lesson_url = site_url('addons/course_bundles/lesson/' . rawurlencode(slugify($course_details['title'])) . '/' . $bundle_id . '/' . $course_id . '/' . $lesson['id']);
+                else:
+                  $lesson_url = site_url('home/lesson/' . slugify($course_details['title']) . '/' . $course_id . '/' . $lesson['id']);
+                endif;
+                //End check is bundle or course
+                ?>
+
+
+                  <li class=" d-flex align-items-center  <?php if ($lesson['id'] == $lesson_details['id'])
+                    echo 'active'; ?>">
+                    <a href="<?php echo $lesson_url; ?>" class="d-flex align-items-center w-100 ">
+                      <?php if (in_array($lesson['id'], $completed_lessons)) {
+                        $chekbox = 'title="' . get_phrase('Uncheck') . '" data-bs-toggle="tooltip" checked';
+                      } else {
+                        $chekbox = 'title="' . get_phrase('Mark as Complete') . '" data-bs-toggle="tooltip"';
+                      } ?>
+
+                      <?php if ($course_details['enable_drip_content']): ?>
+                        <?php if ($is_locked): ?>
+                          <i class="fas fa-lock" title="<?php echo get_phrase('Complete previous lesson to unlock it'); ?>"
+                            data-bs-toggle="tooltip"></i>
+                        <?php else: ?>
+                          <?php $is_lesson_completed = in_array($lesson['id'], $completed_lessons); ?>
+                          <?php if ($is_lesson_completed && $lesson['lesson_type'] == 'video' || $is_lesson_completed && $lesson['lesson_type'] == 'quiz' || $is_lesson_completed && $lesson['lesson_type'] == 'audio'): ?>
+                            <i class="fas fa-check" title="<?php echo get_phrase('Completed'); ?>" data-bs-toggle="tooltip"></i>
+                          <?php else: ?>
+                            <?php if ($lesson['lesson_type'] == 'video' || $lesson['lesson_type'] == 'audio' || $lesson['lesson_type'] == 'wasabi'): ?>
+                              <i class="fas fa-play me-2" title="<?php echo get_phrase('Play Now'); ?>" data-bs-toggle="tooltip"></i>
+                            <?php elseif ($lesson['lesson_type'] == 'quiz'): ?>
+                              <i class="fas fa-question" title="<?php echo get_phrase('Start Now'); ?>" data-bs-toggle="tooltip"></i>
+                            <?php else: ?>
+                              <div class="checkbox checkbox-box">
+                                <input class="lesson_checkbox  lesson-sidebar__lesson-checkbox" type="checkbox"
+                                  onchange="actionTo('<?php echo site_url('home/update_watch_history_manually?lesson_id=' . $lesson['id'] . '&course_id=' . $course_details['id']); ?>', 'post', event);"
+                                  <?php echo $chekbox; ?>>
+                              </div>
+                            <?php endif; ?>
+                          <?php endif; ?>
+                        <?php endif; ?>
+                      <?php else: ?>
+
+                      
+                          <input class="checkbox" type="checkbox"
+                            onchange="actionTo('<?php echo site_url('home/update_watch_history_manually?lesson_id=' . $lesson['id'] . '&course_id=' . $course_details['id']); ?>', 'post', event);"
+                            <?php echo $chekbox; ?>>
+                     
+                      <?php endif; ?>
+
+
+                      <span class="mx-2 d-grid">
+                        <span class="m-0 p-0  title   <?php if ($lesson['id'] == $lesson_details['id'])
+                          echo 'active'; ?>"><?php echo $lesson['title']; ?></span>
+                        <span>
+                          <?php if ($lesson['lesson_type'] == 'other' || $lesson['lesson_type'] == 'text'): ?>
+                            <i class="far fa-file-alt me-1"></i>
+                            <?php echo get_phrase($lesson['attachment_type']); ?>
+                          <?php elseif ($lesson['lesson_type'] == 'quiz'): ?>
+                            <i class="far fa-question-circle me-1"></i><?php echo get_phrase('Quiz'); ?>
+                          <?php elseif ($lesson['lesson_type'] == 'audio'): ?>
+                            <i class="far fa-file-audio me-1"></i><?php echo get_phrase('Audio'); ?>
+                          <?php else: ?>
+                            <i class="far fa-file-video me-1"></i><?php echo get_phrase('Video'); ?>
+                          <?php endif; ?>
+                        </span>
+                      </span>
+                      <span class="ms-auto  duration  <?php if ($lesson['id'] == $lesson_details['id'])
+                        echo 'active'; ?>"><?php echo $lesson['duration']; ?></span>
+                    </a>
+                  </li>
+
+
+                  <?php
+                  //check dripcontent
+                  if ($is_locked)
+                    $locked_lesson_ids[] = $lesson['id'];
+                  if (
+                    !in_array($lesson['id'], $completed_lessons)
+                    && $is_locked == 0
+                    && $course_details['enable_drip_content'] == 1
+                    && $this->session->userdata('user_login') == 1
+                    && $is_course_instructor == false
+                  ):
+                    $is_locked = 1;
+                  endif; ?>
+                <?php endforeach; ?>
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+<?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,7 +256,7 @@ $is_restricted = 1;
               data-bs-target="#collapseOne<?php echo $section['id'] ?>" aria-expanded="true"
               aria-controls="collapseOne<?php echo $section['id'] ?>">
 
-              <div class="d-flex flex-column" >
+              <div class="d-flex flex-column">
                 <h4><?php echo $section['title']; ?></h4>
 
                 <!-- Study plan start-->
@@ -162,7 +356,7 @@ $is_restricted = 1;
 
                       <span class="mx-2 d-grid">
                         <span class="m-0 p-0  lesson-sidebar__lesson-title   <?php if ($lesson['id'] == $lesson_details['id'])
-                    echo 'sidebar-lesson__active-lesson'; ?>"><?php echo $lesson['title']; ?></span>
+                          echo 'active'; ?>"><?php echo $lesson['title']; ?></span>
                         <span class="lesson-icon lesson-sidebar__lesson-icon">
                           <?php if ($lesson['lesson_type'] == 'other' || $lesson['lesson_type'] == 'text'): ?>
                             <i class="far fa-file-alt me-1"></i>
@@ -177,7 +371,7 @@ $is_restricted = 1;
                         </span>
                       </span>
                       <span class="ms-auto  lesson-sidebar__lesson-duration  <?php if ($lesson['id'] == $lesson_details['id'])
-                    echo 'sidebar-lesson__active-lesson'; ?>"><?php echo $lesson['duration']; ?></span>
+                        echo 'active'; ?>"><?php echo $lesson['duration']; ?></span>
                     </a>
                   </li>
 
@@ -204,7 +398,7 @@ $is_restricted = 1;
 
       <?php endforeach; ?>
     </div>
-    
+
   </aside>
 <?php endif; ?>
 
@@ -218,15 +412,10 @@ $is_restricted = 1;
     });
   });
 
-  
 
 
- 
+
+
 
 
 </script>
-
-
-
-
-

@@ -1,10 +1,8 @@
 
 
-
 <?php if (course_progress($course_id) == 100): ?>
-    <div class="lesson__certificate-completed  ">
 
-        <div class="d-flex justify-content-center align-items-center flex-column">
+        <div class="d-flex justify-content-center align-items-center flex-column lesson__certificate-completed ">
             <img src="<?= site_url('assets/frontend/design-one/assets/images/lesson/congratulation.svg') ?>"
                 alt="certificate">
 
@@ -15,7 +13,7 @@
                 href="<?php echo $this->certificate_model->get_certificate_url($this->session->userdata('user_id'), $course_id); ?>"><?= get_phrase('Get Certificate') ?></a>
 
         </div>
-    </div>
+    
 <?php else: ?>
     <div class="lesson__certificate-not-completed d-flex justify-content-center flex-column " >
 
