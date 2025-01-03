@@ -21,7 +21,7 @@
                 <h3 class="accordion-popup__title"><?= get_phrase('Please choose the lesson  you want to enroll ?') ?>
                 </h3>
                 <div type="button" data-bs-dismiss="modal" aria-label="Close">
-                   <i aria-hidden="true" class="fa-solid fa-xmark"></i>
+                   <i aria-hidden="true" class="fa-solid fa-xmark close-icon"></i>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
                     <?= get_phrase('Please choose the lesson you want to enroll in?') ?>
                 </h3>
                 <div type="button" data-bs-dismiss="modal" aria-label="Close">
-                   <i aria-hidden="true" class="fa-solid fa-xmark"></i>
+                   <i aria-hidden="true" class="fa-solid fa-xmark close-icon"></i>
                 </div>
 
             </div>
