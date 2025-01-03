@@ -489,9 +489,7 @@ if ($number_of_ratings > 0) {
         </div>
     </div>
 </section>
-<hr>
-<hr>
-<hr>
+
 
 
 

@@ -52,8 +52,8 @@
                         foreach ($lessons as $lesson): ?>
                             <li>
                                 <a href="#" onclick="actionTo('<?php echo site_url('home/play_lesson/' . $lesson['id']); ?>')"
-                                    class="checkPropagation bg-success w-100">
-                                    <div class="d-flex justify-content-between align-items-center w-100 bg-info">
+                                    class="checkPropagation w-100">
+                                    <div class="d-flex justify-content-between align-items-center w-100 ">
                                         <div class="course__curriculum-accordion-lessons-title d-flex align-items-center">
                                             <i class="fa-regular fa-circle-play"></i>
                                             <h3> <?php echo $lesson['title']; ?></h3>
@@ -95,7 +95,7 @@
 
                                     <?php if ($lesson['lesson_type'] == 'quiz'): ?>
                                         <div
-                                            class="course__curriculum-accordion-lessons-quiz-duration phone  align-items-center justify-content-center bg-info">
+                                            class="course__curriculum-accordion-lessons-quiz-duration phone  align-items-center justify-content-center ">
                                             <div>
                                                 <span>start date: <span
                                                         style="color:#6610f2;"><?php echo date('Y-m-d', $lesson['start_time']) ?></span>
