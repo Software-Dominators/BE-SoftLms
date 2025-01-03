@@ -831,3 +831,23 @@
         /* max-width: 332px; */
     }
 }
+
+
+
+@media (min-width: 992px) { /* lg and above */
+    .start-0-lg {
+       /* Offset container padding */
+        padding-left: 0!important; /* Ensure content stays aligned inside */
+        
+        background-color: red !important; /* Debug visibility */
+    } 
+
+    /* Ensure parent container does not clip overflow */
+    .container {
+        overflow-x: visible;
+    }
+
+   
+    
+    
+}

@@ -35,8 +35,8 @@ $timer = time_to_seconds($lesson_details['duration']);
     src="<?php echo site_url('assets/lessons/flipclock-timer/flipclock.min.js'); ?>"></script>
 
 
-<div class="card  lesson__quiz ">
-    <div class="card-header ps-5">
+<div class="card  lesson__quiz  bg-info">
+    <div class="card-header">
         <div class="row align-items-center">
             <div class="col-md-8">
                 <h5 class="d-md-flex w-100"><?php echo $lesson_details['title']; ?></h5>
@@ -50,7 +50,7 @@ $timer = time_to_seconds($lesson_details['duration']);
             </div>
         </div>
     </div>
-    <div class="card-body ps-5">
+    <div class="card-body">
         <div class="row justify-content-center">
 
             <?php if ($quiz_submission_checker == 'submitted'): ?>

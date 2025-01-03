@@ -44,6 +44,27 @@ if ($language_dirs) {
 				toggleContainerClass();
 			});
 		});
+
+
+		document.addEventListener("DOMContentLoaded", function () {
+    // Get the target element
+    const startElement = document.querySelector(".start-0-lg");
+
+    if (startElement) {
+        // Get the position of the element relative to the document
+        const rect = startElement.getBoundingClientRect();
+
+        // Get the top position relative to the document (scrolling considered)
+        const offsetLeft = rect.left + window.scrollX; // Left position relative to the document
+        
+        // Set the margin-inline-start dynamically
+        startElement.style.marginInlineStart = `-${offsetLeft}px`;
+
+        console.log("Space from start of document to .start-0-lg: " + offsetLeft + "px");
+    }
+});
+
+
 	</script>
 </head>
 
@@ -153,7 +174,7 @@ if ($language_dirs) {
 												</div>
 											</div>
 										<?php else: ?>
-											<div class="lesson__type">
+											<div class="lesson__type start-0-lg">
 												<?php include $course_details['course_type'] . '_course_content_body.php'; ?>
 											</div>
 										<?php endif ?>
@@ -234,7 +255,7 @@ if ($language_dirs) {
 												</div>
 											</div>
 										<?php else: ?>
-											<div class="lesson__type">
+											<div class="lesson__type ">
 												<?php include $course_details['course_type'] . '_course_content_body.php'; ?>
 											</div>
 										<?php endif ?>
