@@ -105,12 +105,12 @@
     display: none;
   }
   .menu-offcanves {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
+
   }
-.menu-offcanves li{
-  margin-left: 18px;
-}  
+
+  
   .btn-bar {
     font-size: 30px;
     margin-right: 12px;
@@ -736,11 +736,7 @@ strong{
   .sing-up-img img {
     display: none;
   }
-  .breadcrumb {
-    padding: 38px 0px 0px;
-    margin-bottom: 0;
-    margin-left: 8px;
-  }
+
   .contact-page .office-time{
     margin-bottom: 50px;
   }
@@ -1180,10 +1176,7 @@ strong{
     font-size: 14px;
     margin-left: 7px;
   }
-  .breadcrumb {
-    padding: 43px 0px 0px;
-    margin-bottom: 5px;
-  }
+ 
   .courses-list-view-card-body{
     display: inline-block;
   }

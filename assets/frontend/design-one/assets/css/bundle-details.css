@@ -113,7 +113,7 @@
 }
 
 .bundle-details-header .bottom .include-tag .start li i {
-    font-family: 25px;
+    font-size: 25px;
     color: #FFD400;
 
 }
@@ -284,7 +284,7 @@
     }
 
     .bundle-details-header .bottom .include-tag .start li i {
-        font-family: 20px;
+        /* font-family: 20px; */
 
 
     }
@@ -700,14 +700,23 @@
 }
 
 /* ########################### bundle details  reviews Section ########################## */
+.bundle-details-reviews{
+    margin-bottom: 60px ;
+}
+.bundle-details-reviews .swiper-slide{
+    margin-bottom: 60px !important;
 
+}
+.swiper  , .swiper-slide{
+    width: auto !important;
+}
 .bundle-details-reviews .review__content {
     padding: 24px;
     border: 1px solid #E4E4E4;
     box-shadow: 0px 12px 12px 0px #00000029;
     border-radius: 12px;
     gap: 18px;
-    width: 589px;
+
 }
 .bundle-details-reviews .top .left{
     gap: 24px;
@@ -760,8 +769,75 @@ color: #868686;
     
 }
 
-
-
+/* compare course  */
+.comp-card h3{
+    color:var(--primary-color) !important;
+    font-size: 24px !important;
+}
+.compare-card .empty-card{
+    height: auto !important;
+    padding: 16px !important;
+    border: 2px solid var(--dark-gray-color) !important;
+    margin-bottom: 24px;
+}
+.comp-num{
+    margin-bottom: 32px;
+    font-size: 16px !important;
+    font-weight: 500;
+    color:var(--paragraph-color);
+}
+.comparison-form{
+    gap: 8px;
+}
+.comparison-form select {
+    border-radius: 16px !important;
+}
+.compared-course{
+    background-color: var(--light-grey-color) !important;
+    border-radius: 32px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.compare-card .card h3{
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    color:var(--primary-color) !important ;
+   
+}
+.col-md-3{
+    min-height: 380.8px !important;
+    margin-bottom: 24px;
+  
+}
+.col-md-3 .card{
+    min-height: 380.8px !important;
+    height: 100%;
+    background-color: transparent !important;
+}
+.compared-course {
+    /* margin-top: 32px; */
+    min-height: 380.8px !important;
+    height: 100%;
+}
+.compared-course img{
+    width: 100%;
+}
+.compare-card .card img{
+    margin-top: 0 !important;
+}
+.compared-course p {
+    color:var(--paragraph-color) !important;
+}
+.compared-course a {
+    font-size: 16px !important;
+    font-weight: 600 !important ;
+    line-height: 30px !important;
+}
+.compare-2-table th i {
+    color:var(--primary-color) !important ;
+}
 /* responsive */
 
 @media (max-width: 992px) {
@@ -799,6 +875,23 @@ line-height: 24px;
             
         
         }
+        .compare-card .empty-card{
+            margin-bottom: 30px !important;
+        }
+        .comp-num{
+            margin-bottom: 0;
+        }
+        .compare-table .table td , .compare-table .table th{
+            font-size: 11px !important;
+        }
+        .compare-table .table th i  , .compare-table .table td i {
+            font-size: 10px !important;
+            margin-right: 5px !important;
+        }
+        .compare-2 .compare-2-table{
+            padding: 0 !important;
+        }
+     
 
 }
 

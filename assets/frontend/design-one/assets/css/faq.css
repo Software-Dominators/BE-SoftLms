@@ -1,7 +1,7 @@
-.faq {
-    margin-bottom: 76px;
-}
 
+.faq{
+    padding: 60px 0 !important;
+}
 
 .faq .accordion-item:not(:last-child) {
     margin-bottom: 24px;
@@ -12,7 +12,7 @@
     background-color: #F1F1F1;
     min-height: 70px;
     padding: 0px 24px 0px 24px;
-    border-radius: 16px;
+    /* border-radius: 16px !important; */
     border: none;
 }
 
@@ -45,7 +45,6 @@
 .faq .accordion-button:not(.collapsed)::after,
 .faq .accordion-button.collapsed::after {
     content: "\f078";
-    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: #282828;
     background-image: none !important;
@@ -63,7 +62,7 @@
 
 @media (max-width: 992px) {
     .faq {
-        margin-bottom: 172px;
+       padding: 24px 0 !important;
     }
 
     .faq .accordion-item:not(:last-child) {

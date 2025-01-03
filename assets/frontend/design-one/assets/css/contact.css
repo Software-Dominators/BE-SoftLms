@@ -4,7 +4,7 @@
 }
 
 .contact-header__left {
-    margin-top: 54px;
+    margin-top: 54px !important;
 
 }
 
@@ -55,12 +55,7 @@
     margin-top: 107.54px;
 }
 
-.contact-header__right img {
-    width: 402.96px;
-    height: 237.43px;
 
-
-}
 
 /* responsive */
 @media (max-width: 992px) {
@@ -130,7 +125,7 @@
     position: relative;
     top: -217px;
 
-    padding: 40px 40px 36px 40px;
+    padding: 40px  !important;
     background-color: var(--bg-form-color);
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 24px;
@@ -202,14 +197,18 @@ form input[type=file]::placeholder {
 .form .form-group {
     margin-bottom: 24px;
 }
+.contact .btn-primary{
+    transition: 0.5s all !important;
+}
+.contact .btn-primary:hover{
+  background-color: var(--primary-color) !important;
+}
 
-
-
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
 
     .form {
-        padding: 24px;
-        top: -100px;
+        padding: 24px !important;
+        top: -90px;
     }
 
     .form h2 {
@@ -243,21 +242,24 @@ form input[type=file]::placeholder {
         font-size: 14px;
         line-height: 21px;
     }
-
+    .contact__info {
+        margin-top: 0px !important;
+        transform: translateY(-50px);
+    }
 
 
 }
 
 @media (max-width: 768px) {
     .form {
-        top: -114px;
+        top: -80px;
     }
 
 }
 
 /* contact information */
 .contact__info {
-    margin-top: 50px;
+    margin-top: 50px !important;
     margin-bottom: 82px;
 }
 
@@ -280,16 +282,21 @@ form input[type=file]::placeholder {
 .contact .contact__info-list li {
     display: flex;
     gap: 10px;
-    align-items: center;
+   
 }
 
-.contact .contact__info-list li i {
+.contact .contact__info-list li .icon {
     padding: 12px;
     background-color: var(--bg-light-grey-color);
     border-radius: 50%;
     font-size: 24px;
     color: var(--primary-color);
-
+   width:48px;
+   height:48px;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items:center
 }
 
 .contact .contact__info-list li h3 {
@@ -314,74 +321,6 @@ form input[type=file]::placeholder {
     color: #282828;
 
 }
-
-
-@media (max-width: 992px) {
-
-    .contact__info {
-        margin-top: 37px;
-    }
-
-    .contact .contact__info h2 {
-        font-size: 20px;
-        line-height: 30px;
-    }
-
-    .contact .contact__info-list {
-
-        gap: 24px;
-
-    }
-
-
-    .contact .contact__info-list li {
-
-        gap: 5px;
-
-    }
-
-    .contact .contact__info-list li i {
-        padding: 8px;
-        font-size: 18px;
-
-    }
-
-
-
-
-    .contact .contact__info-list li p {
-
-        font-size: 16px;
-
-        line-height: 24px;
-
-        font-size: 12px;
-
-        line-height: 18px;
-
-
-
-    }
-
-    .contact .contact__info-list li small {
-
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-
-
-
-    }
-
-}
-
-
-
-
-
-
-
-
 
 .contact-header {
     position: relative;
@@ -434,5 +373,76 @@ form input[type=file]::placeholder {
     color: #FAF8F7;
 
 }
+
+
+@media (max-width: 992px) {
+
+ 
+
+    .contact .contact__info h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .contact .contact__info-list {
+
+        gap: 24px;
+
+    }
+
+
+    .contact .contact__info-list li {
+
+        gap: 5px;
+
+    }
+    .contact .contact__info-list li .icon{
+        width:40px ;
+        height:40px ;
+    }
+
+    .contact .contact__info-list li i {
+      
+        font-size: 18px;
+
+    }
+
+
+
+
+    .contact .contact__info-list li p {
+
+        font-size: 16px;
+
+        line-height: 24px;
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+
+
+    }
+
+    .contact .contact__info-list li small {
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 

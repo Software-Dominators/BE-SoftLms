@@ -1,0 +1,138 @@
+/* about -page  */
+/* start about-us section  */
+.about-us {
+ padding: 60px 0 !important;
+}
+.about-us h2 , .why-us h2 {
+  font-size: 36px ;
+  line-height: 54px;
+  font-weight: 600;
+  color: #0d0d0d;
+
+}
+.about-us span , .why-us p{
+  font-size: 24px !important;
+  line-height: 36px !important;
+  font-weight: 400 !important;
+  color: #434343 !important;
+}
+/* start our-vision section  */
+.our-vision {
+  margin-bottom: 95px;
+}
+.our-vision .col-lg-6 {
+  max-width: 628px !important;
+  min-height: 240px !important;
+  display: flex;
+  background-color: var(--light-primary-color) !important;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.our-vision .desc {
+  padding: 0 35px;
+}
+.vision-img {
+  width: 44.07px !important;
+  height: 44.07px !important;
+}
+.vision-img2 {
+  width: 46px !important;
+  height: 46px !important;
+
+}
+.our-vision .title {
+  margin-bottom: 24px;
+  gap: 8px;
+}
+.vision-class h3 {
+  color: var(--primary-color);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 51.2px;
+}
+.vision-class p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: center;
+  color: #434343;
+  /* padding:1.25rem 0rem; */
+}
+
+/* start why-us-section  */
+.why-us {
+  margin-bottom: 112px;
+}
+.why-us h2{
+    margin-bottom: 16px;
+}
+.why-us .img{
+    border-radius: 8px;
+}
+.why-us img{
+    border-radius: inherit;
+}
+
+/* media query for about-us page  */
+@media(max-width:992px){
+    /* start about-us section  */
+.about-us {
+    padding: 40px 0 30px  !important;
+  }
+  .about-us h2 , .why-us h2 {
+    font-size: 20px ;
+    line-height: 30px;
+  }
+  .about-us span , .why-us p{
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  /* start our-vision section  */
+  .our-vision {
+    margin-bottom: 50px;
+    padding: 0 16px ;
+  }
+  .our-vision .row{
+    justify-content: center !important;
+  }
+  .our-vision .col-lg-6 {
+    max-width: 100% !important;
+    min-height: 180px !important;
+  }
+  .our-vision .desc {
+    padding: 0 23px;
+  }
+
+  .our-vision .title {
+    margin-bottom: 10px;
+  }
+  .vision-class h3 {
+    font-size: 24px;
+    line-height: 38.4px;
+  }
+  .vision-class p {
+    font-size: 12px;
+    line-height: 19.2px;
+  }
+  
+  /* start why-us-section  */
+  .why-us {
+    margin-bottom: 73px;
+  }
+  .why-us h2{
+      margin-bottom: 8px;
+  }
+  .why-us .col-lg-7 , .why-us .img2{
+    margin-top: 16px;
+  }
+  .why-us .img1{
+    order: 1;
+  }
+  .why-us .txt1{
+    order: 2;
+  }
+
+}

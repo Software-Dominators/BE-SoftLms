@@ -129,24 +129,7 @@
     background-color: transparent !important;
 }
 /* pruchase history page  */
-.profile-container table{
-    padding-top: 52px;
-}
-.profile-container th{
-    color: #8492A6 ;
-    font-weight: 300 ;
-    font-size: 14px ;
-    line-height: 21px ;
-    background-color: chartreuse;
-}
-.table > :not(caption) > * > *{
-    width: 10% !important;
-}
-table {
-    width: 100%; /* Full width of the table */
-    border-collapse: collapse; /* Merge borders for cleaner look */
-    table-layout: fixed; /* Consistent layout for cells */
-  }
+
   
   /* payout settings  */
   .affiliate_form h4{
@@ -173,6 +156,64 @@ table {
 }
 .conversation form {
     position: relative;
+}
+.msg-reciver-style , .msg-sender-style{
+    font-weight: 400 ;
+    font-size: 18px ;
+    line-height: 27px ;
+    color: #232F43 !important;
+    min-width: 150px;
+ 
+}
+.msg-sender-style {
+    background-color: var(--sender-msg-bg) ;
+    padding:16px;
+    border-radius: 30.33px 0 30.33px  30.33px ;
+
+}
+.msg-reciver-style {
+    background-color: var(--receiver-msg-bg);
+    padding:16px 25px;
+    border-radius: 0 30.33px 30.33px 30.33px ;
+    
+
+ 
+}
+.reverse-msg-direction , .msg-direction{
+    width: 100% !important;
+}
+.reverse-msg-direction img{
+    border: 1px solid #cfcece;
+}
+.msg-direction img{
+    border: 1px solid var(--primary-color);
+}
+.reverse-msg-direction{
+    flex-direction:row-reverse !important;
+}
+.msg-direction{
+    flex-direction:row !important;
+}
+.child-name p {
+    font-size:12px !important;
+    font-weight: 300 !important;
+    line-height: 18px !important;
+    color:#888888 !important;
+    margin-top: 8px !important;
+}
+.msg-num{
+    width:24px;
+    height:24px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: var(--white-color);
+    font-size:12px !important;
+    font-weight: 300 !important;
+    line-height: 18px !important;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-inline-end: 8px;
 }
 .conversation .search-btn .form-control{
     box-shadow: 0px 0px 4px 0px #00000029 !important;
@@ -274,4 +315,599 @@ table {
     font-weight: 500 !important;
     line-height: 25px !important;
     padding: 8px !important;
+}
+/* wishlist page  */
+
+.profile .card-content{
+    height: 100% !important;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between !important;
+    flex-shrink: 0;
+}
+.courses-card .col-lg-4{
+    margin-bottom: 24px;
+}
+.courses-card-body{
+    border-radius: 32px !important;
+    padding:16px !important;
+    background-color: var( --light-grey-color) !important;
+    height: 100%;
+    margin-bottom: 16px;
+}
+.courses-card-image{
+  height: 270px ;
+  width: 100% ;
+ 
+}
+.courses-card-image img {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 8px;
+  object-fit: cover;
+    
+}
+.courses-card-image .red-heart i {
+    color: var(--primary-color) !important;
+    font-size: 20px !important;
+}
+.courses-card-image-text , .my-course-1-text-heading{
+    position: unset !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.courses-card-image-text .course-name  h5 , .my-course-1-text-heading h3{
+    color: var(--primary-color) !important;
+    font-size:18px !important;
+    font-weight: 500 !important;
+    line-height: 27px !important;
+}
+.courses-card-image-text .course-level{
+    
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 104px;
+    text-align: center;
+}
+.courses-card-image-text .course-level h3{
+    color: var(--white-color) !important;
+    font-size:16px !important;
+    font-weight: 500 !important;
+    line-height: 24px !important;
+}
+.rate .fa-star{
+    font-size: 17px !important;
+}
+.compare-icon .fa-code-compare{
+    font-size: 14px !important;
+    color: var(--primary-color) !important;
+}
+.compare-icon h4{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--paragraph-color) !important;
+    line-height: 24px;
+}
+.courses-card .courses-card-body .courses-text p{
+    margin-bottom: 0 !important;
+}
+.course-desc{
+    padding: 10px 0;
+}
+.course-desc p {
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: var(--paragraph-color) !important;
+    line-height: 27px !important;
+}
+.courses-price h5 {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
+    line-height: 42px !important;
+}
+.courses-price-right  p {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: var(--dark-grey-color) !important;
+    line-height: 25px !important;
+}
+/* my-courses  */
+.child-icon .dropdown-toggle{
+    width:36px;
+    height:36px;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color:var(--white-color);
+}
+.child-icon .dropdown-toggle::after{
+    content:none !important;
+    background-image: none !important;
+}
+.my-course-1-last .icon-img .star i{
+    margin-left: 0 !important;
+    margin-inline-end: 4px;
+}
+.my-course-1-lesson-text{
+    margin: 12px 0 20px !important;
+}
+.my-course-1-lesson-text .icon-1{
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-inline-end: 30px !important;
+}
+.rating i {
+    font-size: 13px !important;
+}
+.my-course-1-lesson-text i {
+    font-size: 12px !important;
+    margin-inline-end: 3px;
+}
+.my-course-1-lesson-text p {
+    color: var( --paragraph-color) !important;
+}
+.expiry-info h6{
+    font-size: 14px !important;
+    color:var( --dark-grey-color) !important;
+    line-height: 20px;
+}
+.my-course-1-last .icon-img img{
+    width:32px !important;
+    height:32px !important;
+    margin-inline-end: 8px;
+}
+.icon-img .name h5{
+    font-size: 14px !important;
+    color:#6C6C6C !important;
+    line-height: 21px !important;
+    font-weight: 300 !important;
+}
+.icon-img .name h4{
+    font-size: 16px !important;
+    color:#101828 !important;
+    line-height: 24px !important;
+    font-weight: 400 !important;
+}
+.start-now {
+    font-size: 20px !important;
+    color: var(--primary-color) !important;
+    line-height: 30px !important;
+    font-weight: 600 !important;
+}
+/* my bundles  */
+.bundle-head{
+    color: var( --dark-grey-color) !important;
+    line-height: 30px !important;
+    font-weight: 600 !important;
+    font-size: 32px !important;
+    margin-bottom: 32px;
+}
+.wish-list-body .wish-list-search{
+    margin-top: 50px !important;
+}
+.sbundle-items{
+    background-color: var(--light-grey-color) !important;
+    border-radius: 32px !important;
+}
+.bundle-name{
+    font-size: 24px !important;
+    color: #1A1A1A !important;
+    line-height: 36px !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+}
+.bundle-info{
+    font-size: 16px !important;
+    color: #5D5D5D !important;
+    line-height: 24px !important;
+    font-weight: 300 !important;
+}
+
+.sbundle-items .bundle-body ul li{
+    border-bottom: none !important;
+}
+.sbundle-items .bundle-head{
+    border-bottom:1px solid #D6D6D6  !important;
+}
+.sbundle-item .content .title{
+    font-size: 18px !important;
+    color: #575757 !important;
+    line-height: 27px !important;
+    font-weight: 400 !important;
+}
+.sbundle-item .fa-play-circle{
+    font-size: 17px;
+    color: var(--secondary-color);
+}
+.sbundle-items .bundle-foot{
+    width: 150px !important;
+    background-color: transparent !important;
+    padding: 8px !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    color: var(--primary-color) !important;
+    line-height: 24px !important;
+    font-weight: 500 !important;
+    transition: 0.5s all;
+}
+.sbundle-items .bundle-body{
+    min-height: 240px !important;
+}
+.sbundle-items .bundle-foot:hover{
+    background-color:var(--primary-color) !important ;
+    color:var(--white-color) !important;
+}
+.sbundle-item .content{
+    justify-content: space-between !important;
+    flex: 0 0 1 !important;
+}
+.sbundle-item .content .img{
+    border-radius: 8px !important;
+}
+.sbundle-item .content .img img{
+    object-fit: cover ;
+}
+
+/* media query for user profile  */
+@media(max-width:1200px){
+    .profile-menu{
+        display: none !important;
+    }
+    .profile-container{
+        min-height: 80vh;
+    }
+    .profile-container .submit-btn{
+        min-width: 100% !important;
+    }
+    .submit-btn{
+        margin-top: 0;
+    }
+    /* .profile-container .profile-content{
+        padding-top: 0 !important;
+    } */
+    .profile .profile-bg{
+        margin-top: 16px !important;
+    }
+    .profile-parrent{
+        width: 100% !important;
+        gap:16px ;
+        justify-content: flex-start !important;
+    }
+    .profile-ful-body{
+        padding: 0 !important;
+    }
+    .profile.container {
+      padding-inline-end: 0 !important;
+    }
+    .profile-container .profile-input-section label   , .affiliate_form label{
+        font-size: 14px ;
+        line-height: 27px;
+    }
+    .profile-container .upload-button{
+        font-size: 12px ;
+        line-height: 18px ;
+    }
+    .profile-container .form-control{
+        padding: 7px 16px !important;
+        font-size: 12px !important;
+        line-height: 18px !important;
+        margin-bottom: 24px !important;
+    
+    }
+    .profile-ful-body{
+        margin-bottom: 60px !important;
+    }
+   
+    .profile-container .input-group {
+        margin-bottom: 32px !important;
+    }
+    .profile-container .input-group .form-control{
+        border-radius: 0 8px 0 8px !important;
+        margin-bottom: 0 !important;
+    }
+    .profile-container .submit-btn{
+        border: none ;
+        outline: none ;
+        min-width: 151px;
+        background-color:var(--primary-color) ;
+        color: #FAF8F7 ;
+        padding: 8px;
+        font-weight: 500 ;
+        font-size: 16px ;
+        line-height: 24px ;
+        margin-top: 22px;
+        border-radius: 8px;
+        transition: 0.5 all;
+    
+    }
+
+    .profile-container .upload-button{
+        font-weight: 500 ;
+        font-size: 16px ;
+        line-height: 24px ;
+    }
+ 
+/* pruchase history page  */
+.profile-container table{
+    padding-top: 52px;
+}
+.profile-container th{
+    color: #8492A6 ;
+    font-weight: 300 ;
+    font-size: 14px ;
+    line-height: 21px ;
+    background-color: chartreuse;
+}
+.table > :not(caption) > * > *{
+    width: 10% !important;
+}
+table {
+    width: 100%; /* Full width of the table */
+    border-collapse: collapse; /* Merge borders for cleaner look */
+    table-layout: fixed; /* Consistent layout for cells */
+  }
+  
+  /* payout settings  */
+  .affiliate_form .form-control {
+    margin-bottom: 0 !important;
+  }
+  .affiliate_form .input-div{
+    margin-bottom: 32px !important;
+  }
+/* messages page  */
+ .conversation{
+    margin-top: 0 !important;
+}
+.conversation-fulllll-body{
+    margin-top: 0 !important;
+    padding:0 !important;
+}
+.conversation h5{
+    font-size: 24px !important;
+    line-height: 32px ;
+}
+.conversation-body-scroll-bar{
+    height: auto !important;
+}
+.msg-reciver-style , .msg-sender-style{
+    font-size: 12px ;
+    line-height: 18px ;
+    padding:16px;
+ 
+}
+.msg-sender-style {
+    border-radius: 20px 0 20px  20px ;
+
+}
+.msg-reciver-style {
+    border-radius: 0 20px 20px 20px ;
+}
+
+.child-name p {
+    font-size:12px !important;
+    line-height: 18px !important;
+    margin-top: 8px !important;
+}
+
+.conversation .search-btn .form-control{
+    box-shadow: 0px 0px 4px 0px #00000029 !important;
+    font-size:16px !important;
+    font-weight: 400 !important;
+    color:#BBBBBB !important;
+    padding:5px !important;
+}
+.conversation .search-btn .form-control::placeholder{
+    margin-inline-start: 5px !important;
+}
+.conversation-fulllll-body .search-btn{
+    top: 50% !important;
+    transform: translateY(-50%);
+    left:17px !important;
+    padding-inline-end: 25px !important;
+    
+}
+.conversation-fulllll-body .search-btn i{
+    font-size:16px !important;
+    color:#BBBBBB !important;
+    padding-inline-end:25px !important;
+}
+.conversation .conversation-1{
+    margin-bottom: 24px ;
+}
+.conversation .conversation-heading{
+    border: 1px solid #E4E4E4;
+    background: #F5F6F5;
+    border-radius: 8px;
+    padding: 12px ;
+
+}
+.conversation .conversation-img , .child-img {
+    width:46px;
+    height:46px;
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+}
+.conversation .conversation-img img ,  .child-img img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50%;
+    object-fit: cover;
+ 
+}
+.conversation .conversation-name h5{
+    margin-bottom: 0 !important;
+}
+.conversation .conversation-name h5 a , .parrent-text h5 a{
+    font-size:18px !important;
+    font-weight: 400 !important;
+    line-height: 27px;
+    color:#2B3A53 !important;
+}
+
+.conversation .conversation-name h6 , .parrent-text p{
+    font-size:12px !important;
+    line-height: 18px;
+}
+.conversation .conversation-name h6{
+    /* color:#0584E3 !important; */
+}
+.c-border {
+    background: #FBFCFB;
+}
+.conversation .msg-time p{
+   font-size: 10px ;
+}
+.conversation-body-border{
+    border-bottom: none !important;
+}
+.conversation .conversation-img, .parrent .child-img{
+    background-color: transparent !important;
+}
+
+.conversation-msg-full{
+    padding: 22px 32px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+}
+.child-description p{
+    margin-bottom: 0 !important;
+}
+.parrent-2, .conversation-sending form{
+    gap: 16px;
+}
+.conversation-sending textarea {
+    max-height: 50px !important;
+    padding:32px !important;
+    overflow: hidden;
+  
+}
+ .send-btn{
+    min-width: 77.66px !important;
+    font-size:12px !important;
+    line-height: 18px !important;
+}
+/* wishlist page  */
+
+.courses-card .col-lg-4{
+    margin-bottom: 16px;
+}
+.courses-card-body{
+    border-radius: 24px !important;
+    margin-bottom: 16px !important;
+}
+.courses-card-image{
+  height: 204px ;
+  width: 100% ;
+ 
+}
+.courses-card-image-text .course-name  h5 , .my-course-1-text-heading h3{
+    color: var(--primary-color) !important;
+    font-size:18px !important;
+    font-weight: 500 !important;
+    line-height: 27px !important;
+}
+
+.course-desc p {
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+.courses-price h5 {
+    font-size: 24px !important;
+    line-height: 38px !important;
+}
+
+/* my-courses  */
+.child-icon .dropdown-toggle{
+    width:30px;
+    height:30px;
+ 
+}
+.child-icon i {
+    font-size: 14px;
+}
+.my-course-1-lesson-text{
+    margin: 12px 0 20px !important;
+}
+.rating i {
+    font-size: 17px !important;
+}
+.my-course-1-lesson-text i {
+    font-size: 14px !important;
+    margin-inline-end: 4px;
+}
+.my-course-1-lesson-text p {
+    color: var( --paragraph-color) !important;
+}
+.expiry-info h6{
+    font-size: 14px !important;
+    color:var( --dark-grey-color) !important;
+    line-height: 20px;
+}
+
+.my-course-1-lesson-text .icon-1{
+    margin-inline-end: 20px !important;
+}
+.start-now {
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+.my-courses .col-lg-4{
+    margin-bottom: 24px !important;
+}
+/* my bundles  */
+.bundle-head{
+    line-height: 24px !important;
+    font-size: 36px !important;
+}
+.wish-list-body .wish-list-search{
+    margin-top: 50px !important;
+}
+.sbundle-items{
+margin-bottom: 24px;
+}
+.bundle-name{
+    font-size: 24px !important;
+    color: #1A1A1A !important;
+    line-height: 36px !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+}
+.bundle-info{
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+
+.sbundle-item .content .title{
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+.sbundle-items .bundle-foot{
+    width: 130px !important;
+    padding: 8px !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+}
+.sbundle-items .bundle-body{
+    min-height: 240px !important;
+}
+
+.sbundle-item .content{
+    justify-content: space-between !important;
+    flex: 0 0 1 !important;
+}
+.sbundle-item .content .img{
+    border-radius: 8px !important;
+}
+.sbundle-item .content .img img{
+    object-fit: cover ;
+}
 }

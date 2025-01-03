@@ -3,18 +3,21 @@
 @import "navbar.css";
 @import "footer.css";
 @import "home.css";
-@import "courses.css";
 @import "course.css";
 @import "contact.css";
-@import "breadcrumb.css";
+@import "profile-menu.css";
+@import "footer-pages.css";
 @import "faq.css";
 @import "course-bundle.css";
-@import "profile-menu.css";
+@import "bundle-details.css";
+@import "login.css";
 @import "lesson-sidebar.css";
 @import"lessons.css";
 @import"assignment.css";
 @import"quiz.css";
-@import"bundle-details.css";
-@import"login.css";
-@import"blogs.css";
-@import"blog.css";
+@import "courses.css";
+@import "blogs.css";
+@import "blog.css";
+@import "invoice.css";
+@import "inst-profile.css";
+

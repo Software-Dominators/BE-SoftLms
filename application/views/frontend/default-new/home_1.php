@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .eImage span {
         width: auto !important;
     }
@@ -10,9 +10,62 @@
         text-overflow: ellipsis;
         white-space: normal
     }
-</style>
+</style> -->
 <!---------- Banner Section Start ---------------->
-<section class="h-1-banner bannar-area pb-5">
+<header class="wrapper home-hero ">
+
+
+<img  src="<?= base_url('assets/frontend/design-one/assets/images/home/circles.png') ?>" class=" circles">
+
+  <div class="container ">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-5 order-2 order-lg-1 ">
+     
+       <div class="wrapper_left">
+       
+         <?php
+         $banner_title = site_phrase(get_frontend_settings('banner_title'));
+         $banner_title_arr = explode(' ', $banner_title);
+         ?>
+         <h1>
+           <?php
+           foreach ($banner_title_arr as $key => $value) {
+             if ($key == count($banner_title_arr) - 1) {
+               echo '<span class="d-inline-block">' . $value . '</span>';
+             } else {
+               echo $value . ' ';
+             }
+           }
+           ?>
+         </h1>
+         <p>
+           <?php echo site_phrase(get_frontend_settings('banner_sub_title')); ?>
+         </p>
+
+         <form action="<?php echo site_url('home/search'); ?>" method="get">
+           <input class="form-control" type="text" placeholder="<?php echo get_phrase('What do you want to learn'); ?>"
+             name="query">
+           <button type="submit">
+             Search
+           </button>
+           <i class="fa-solid fa-magnifying-glass"></i>
+         </form>
+       </div>
+    
+      </div>
+
+      <div class="col-md-7 order-1 order-lg-2 ">
+        <div class="wrapper_right">
+              <img  src="<?= base_url('assets/frontend/design-one/assets/images/home/header.svg') ?>" class="">
+       
+            </div>
+          </div>
+
+    </div>
+  </div>
+
+</header>
+<!-- <section class="h-1-banner bannar-area pb-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12 order-2 order-lg-1">
@@ -118,7 +171,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!---------- Banner Section End ---------------->
 
 

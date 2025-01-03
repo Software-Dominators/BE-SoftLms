@@ -1,30 +1,72 @@
+<style>
+    .sub-category-menu{
+    border-radius: 16px !important;
+    padding: 16px !important;
+  }
+.sub-category-menu li {
+    background-color: var(--light-primary-color) !important;
+    border-radius:4px !important;
+    margin-bottom:16px !important;
+}
+li .navbarHover li a:hover{
+  background-color: var(--light-primary-color) !important;
+}
+.sub-category-menu li:last-child {
+    margin-bottom: 0 !important;
+}
+.sub-category-menu li a {
+    color: var(--primary-color) !important;
+    color:#353535 !important;
+}
+.sub-category-menu li a:hover {
+    color: var(--primary-color) !important;
+    
+}
+.sub-category-menu li a:hover{
+    background: none !important;
+    color:var(--primary-color) !important;
+
+}
+
+</style>
 <?php $header_menu_counter = 0; ?>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light ">
   <div class="container">
-    <a class="navbar-brand logo pt-0" href="<?php echo site_url(); ?>">
+
+
+
+
+    <a class="navbar-brand logo  pt-0" href="<?php echo site_url(); ?>">
       <img loading="lazy" src="<?php echo site_url('uploads/system/'.get_frontend_settings('dark_logo')) ?>" alt="Logo" />
     </a>
     
     <!-- Mobile Offcanves  Icon Show -->
-    <ul class="menu-offcanves">
-      <li>
+    <ul class="menu-offcanves p-0">
+      <!-- <li>
         <div class="search-item">
           <span class="m-cross-icon"><i class="fa-solid fa-xmark"></i></span>
           <span class="m-search-icon"> <i class="fa-solid fa-magnifying-glass"></i></span>
         </div>
-      </li>
+      </li> -->
       <li>
-        <a href="#" class="btn-bar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-sharp fa-solid fa-bars"></i></a>
+        <a href="#" class="btn-bar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-sharp  fa-solid fa-bars"></i></a>
       </li>
     </ul>
 
     <div class="navbar-collapse" id="navbarSupportedContent">
       <!-- Small Device Hide -->
-      <ul class="navbar-nav main-nav-wrap mb-2 mb-lg-0 align-items-center">
+      <ul class="navbar-nav  mb-2 mb-lg-0 align-items-center justify-content-between  w-100">
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<?php echo site_url(); ?>"><span><?php echo get_phrase('Home'); ?></span></a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link header-dropdown px-3 text-nowrap" href="#" id="navbarDropdown1">
-            <img loading="lazy" src="<?php echo site_url('assets/frontend/default-new/') ?>image/menu.png" alt="Menu" />
-            <span class="ms-2"><?php echo get_phrase('Courses'); ?></span>
+          <a class="nav-link" href="<?php echo site_url('home/about_us'); ?>"> <span> <?php echo get_phrase('About us'); ?></span>  </a>
+        </li>
+        <ul class="navbar-nav main-nav-wrap mb-2 mb-lg-0 ">
+        <li class="nav-item  ">
+          <a class="nav-link header-dropdown  text-nowrap" href="#" id="navbarDropdown1">
+          <i class="fa-solid fa-bars me-2 courses-menu-icon"></i>
+            <span class=""><?php echo get_phrase('Courses'); ?></span>
           </a>
           <ul class="navbarHover">
             <?php
@@ -36,7 +78,7 @@
                   <span class="text-cat"><?php echo $category['name']; ?></span>
                   <span class="has-sub-category ms-auto"><i class="fa-solid fa-angle-right"></i></span>
                 </a>
-                <ul class="sub-category-menu">
+                <ul class="sub-category-menu " style="background: #fff !important;">
                   <?php
                   $sub_categories = $this->crud_model->get_sub_categories($category['id']);
                   foreach ($sub_categories as $sub_category): ?>
@@ -53,18 +95,22 @@
             </li>
           </ul>
         </li>
-      </ul>
+                  </ul>
+       
+
 
       <?php if(addon_status('course_bundle')): ?>
         <?php $header_menu_counter += 1; ?>
-        <ul class="navbar-nav main-nav-wrap mb-2 mb-lg-0 ms-2">
+     
           <li class="nav-item">
-            <a class="nav-link header-dropdown bg-white text-dark fw-600 text-nowrap" href="<?php echo site_url('course_bundles'); ?>" id="navbarDropdown3">
-              <span class="ms-2"><?php echo get_phrase('Course Bundle'); ?></span>
+            <a class="nav-link header-dropdown  text-nowrap" href="<?php echo site_url('course_bundles'); ?>" id="navbarDropdown3">
+              <span class=""><?php echo get_phrase('Course Bundle'); ?></span>
             </a>
           </li>
-        </ul>
+      
       <?php endif; ?>
+
+  
 
       <?php if (addon_status('bootcamp')) : ?>
         <?php $header_menu_counter += 1; ?>
@@ -148,9 +194,9 @@
         </ul>
       <?php endif; ?>
 
-
-      <?php if($header_menu_counter > 3): ?>
-        <form class="search-input-form" action="<?php echo site_url('home/courses'); ?>" method="get">
+<div class="icons d-flex align-items-center ms-3">
+<?php if($header_menu_counter > 3): ?>
+        <form class="search-input-form  bg-danger" action="<?php echo site_url('home/courses'); ?>" method="get">
           <div class="dropdown">
             <button class="btn search-input-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-search search-menu-icon"></i>
@@ -175,93 +221,92 @@
           <div class="header-search py-0 px-2 w-100">
             <div class="search-container w-100 me-3">
               <input id="headerSearchBarLg" name="query" type="text" class="search-input <?php echo isset($_GET['query']) ? 'focused':''; ?>" placeholder="<?php echo get_phrase('Search'); ?>" value="<?php echo isset($_GET['query']) ? $_GET['query']:''; ?>">
-              <button type="submit" class="header-search-icon border-0 text-dark text-16px <?php echo isset($_GET['query']) ? '':'d-hidden'; ?>"><i class="fas fa-search"></i></button>
-              <label for="headerSearchBarLg" class="header-search-icon text-dark text-16px <?php echo isset($_GET['query']) ? 'd-hidden':''; ?>"><i class="fas fa-search"></i></label>
+              <button type="submit" class="header-search-icon border-0 text-dark text-16px <?php echo isset($_GET['query']) ? '':'d-hidden'; ?>"></button>
+              <label for="headerSearchBarLg" class="header-search-icon text-dark text-16px <?php echo isset($_GET['query']) ? 'd-hidden':''; ?>"><i class="fas fa-search  icon"></i></label>
             </div>
           </div>
         </form>
       <?php endif; ?>
+      <div class="right-menubar ms-auto ">
 
-      <div class="right-menubar ms-auto">
 
-        <?php if($user_login): ?>
-          <li><a class="dropdown-item" href="<?php echo site_url('home/my_courses') ?>"><?php echo site_phrase('My Course') ?></a></li>
-        <?php elseif($admin_login): ?>
-          <li><a class="dropdown-item" href="<?php echo site_url('admin'); ?>"><?php echo get_phrase('Administration') ?></a></li>           
+
+<!-- Cart List Area -->
+<div class="wisth_tgl_div">
+  <div class="wisth_tgl_2div">
+   
+    <a class="menu_pro_cart_tgl mt-1 icon"
+      >  <i class="fa-solid fa-cart-shopping"></i>
+
+      <p class="menu_number" id="cartItemsCounter"><?php echo count($cart_items); ?></p>
+    </a>
+    <div class="menu_pro_wish ">
+      <div class="overflow-control" id="cartItems">
+
+        <?php include "cart_items.php"; ?>
+
+      </div>
+      <div class="menu_pro_btn">
+        <a href="<?php echo site_url('home/shopping_cart'); ?>" type="submit" class="btn btn-primary text-white"><?php echo get_phrase('Checkout'); ?></a>
+      </div>
+    </div>
+  </div>
+</div>
+<?php if($user_login): ?>
+  <!-- Wish List Area -->
+  <!-- <div class="wisth_tgl_div">
+    <div class="wisth_tgl_2div">
+      <a class="menu_wisth_tgl mt-1">
+        <i class="fa-regular fa-heart"></i>
+
+        <?php if(count($my_wishlist_items) > 0): ?>
+          <p class="menu_number" id="wishlistItemsCounter">
+            <?php echo count($my_wishlist_items); ?>
+          </p>
         <?php endif; ?>
-
-
-        <!-- Cart List Area -->
-        <div class="wisth_tgl_div">
-          <div class="wisth_tgl_2div">
-            <a class="menu_pro_cart_tgl mt-1"
-              ><i class="fa-solid fa-cart-shopping"></i>
-
-              <p class="menu_number" id="cartItemsCounter"><?php echo count($cart_items); ?></p>
-            </a>
-            <div class="menu_pro_wish">
-              <div class="overflow-control" id="cartItems">
-
-                <?php include "cart_items.php"; ?>
-
-              </div>
-              <div class="menu_pro_btn">
-                <a href="<?php echo site_url('home/shopping_cart'); ?>" type="submit" class="btn btn-primary text-white"><?php echo get_phrase('Checkout'); ?></a>
-              </div>
-            </div>
-          </div>
+      </a>
+      <div class="menu_pro_wish">
+        <div class="overflow-control" id="wishlistItems">
+          <?php include "wishlist_items.php"; ?>
         </div>
+        <div class="menu_pro_btn">
+          <a href="<?php echo site_url('home/my_wishlist'); ?>" class="btn btn-primary text-white"><?php echo get_phrase('Go to wishlist'); ?></a>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
-        <?php if($user_login): ?>
-          <!-- Wish List Area -->
-          <div class="wisth_tgl_div">
-            <div class="wisth_tgl_2div">
-              <a class="menu_wisth_tgl mt-1">
-                <i class="fa-regular fa-heart"></i>
-
-                <?php if(count($my_wishlist_items) > 0): ?>
-                  <p class="menu_number" id="wishlistItemsCounter">
-                    <?php echo count($my_wishlist_items); ?>
-                  </p>
-                <?php endif; ?>
-              </a>
-              <div class="menu_pro_wish">
-                <div class="overflow-control" id="wishlistItems">
-                  <?php include "wishlist_items.php"; ?>
-                </div>
-                <div class="menu_pro_btn">
-                  <a href="<?php echo site_url('home/my_wishlist'); ?>" class="btn btn-primary text-white"><?php echo get_phrase('Go to wishlist'); ?></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Notification Area -->
-          <div class="wisth_tgl_div">
+    <!-- Notification Area -->
+    <div class="wisth_tgl_div">
             <div class="wisth_tgl_2div" id="headerNotification">
               <?php include "notifications.php"; ?>
             </div>
           </div>
-        <?php endif; ?>
+<?php endif; ?>
+</div>
+</div>
+   
+      <div class="user-profile-lang d-flex justify-content-end ms-5 ">
+        <!-- if the user not logged in  -->
+      <?php if(!$user_id): ?>
 
-
-        <?php if(!$user_id): ?>
-          <a href="<?php echo site_url('login'); ?>" class="mx-3"> <?php echo get_phrase('Login'); ?></a>
-          <a href="<?php echo site_url('sign_up'); ?>" class="mx-3 text-capitalize" style="min-width: 70px"> <?php echo get_phrase('Join Now'); ?></a>
+          <a href="<?php echo site_url('login'); ?>" class="mx-2 login-btn text-capitalize"> <?php echo get_phrase('Login'); ?></a>
+          <a href="<?php echo site_url('sign_up'); ?>" class="mx-2 text-capitalize sign-up-btn" > <?php echo get_phrase('Join Now'); ?></a>
         <?php endif; ?>
 
           <?php if($user_login || $admin_login): ?>
             <!-- Profile Area -->
-            <div class="menu_pro_tgl_div">
+            <div class="menu_pro_tgl_div ">
               <div class="menu_pro_tgl-2div">
-                <a class="menu_pro_tgl profile-dropdown"><img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($user_id); ?>" alt="User Image" /></a>
+                <a class="menu_pro_tgl profile-dropdown d-flex align-items-center user-data"><img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($user_id); ?>" alt="User Image" /> <span> <?php echo $user_details['first_name'].' '.$user_details['last_name']; ?> <i class="fa-solid fa-caret-down"></i> </span></a>
               </div>
-              <div class="menu_pro_tgl_bg">
+              <div class="menu_pro_tgl_bg ">
                 <div class="path-pos">
-                  <a href="#"><img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($user_id); ?>" alt="User Image"/></a>
+                  <!-- <a href="#"><img loading="lazy" src="<?php echo $this->user_model->get_user_image_url($user_id); ?>" alt="User Image"/></a>
                   <a href="#"><h4><?php echo $user_details['first_name'].' '.$user_details['last_name']; ?></h4></a>
-                  <p><?php echo $user_details['email']; ?></p>
+                  <p><?php echo $user_details['email']; ?></p> -->
                   <ul>
+                    <div class="profile-menu">
                     <?php if($user_login): ?>
                       
                       <?php if($user_details['is_instructor'] == 1): ?>
@@ -299,12 +344,15 @@
                           <li class="user-dropdown-menu-item"><a href="<?php echo site_url('addons/customer_support/user_tickets'); ?>"><i class="fas fa-life-ring"></i><?php echo site_phrase('support'); ?></a></li>
                       <?php endif; ?>
                     <?php endif; ?>
-
-                    <?php if($admin_login): ?>
+                 
+              
+                      <?php if($admin_login): ?>
                       <li>
                         <a href="<?php echo site_url('admin'); ?>">
-                          <i class="fas fa-location-arrow"></i>
-                          <?php echo get_phrase('Administration'); ?>
+                          <i class="fa fa-location"></i>
+                        <!-- <span><img  src="<?= base_url('assets/frontend/design-one/assets/images/home/admin-icon.svg') ?>" class=""></span> -->
+                         <?php echo get_phrase('Administration'); ?> 
+                         
                         </a>
                       </li>
                       <li>
@@ -320,6 +368,8 @@
                         </a>
                       </li>  
                     <?php endif; ?>
+                      </div>
+             
 
                     <?php //if($user_login) { // checkpoint (adding the report button to student frontend) ?>
                       <li>
@@ -341,7 +391,30 @@
               </div>
             </div>
           <?php endif; ?>
+    
 
+          
+      <div class="language">
+      <li class="nav-item align-items-center d-flex ">
+      <i class="fa-solid fa-globe me-1"></i>
+                <form action="#" method="POST" class=" ">
+                
+                  <select onchange="actionTo(<?php echo site_url('home/switch_language/') ?>${$(this).val()})" class=" nice-select">
+                    <?php
+                    $languages = $this->crud_model->get_all_languages();
+                    $selected_language = $this->session->userdata('language');
+                    foreach ($languages as $language): ?>
+                      <?php if (trim($language) != ""): ?>
+                       <div class="options-value ">
+                       <option class=" " value="<?php echo strtolower($language); ?>" <?php if ($selected_language == $language): ?>selected<?php endif; ?>>  <?php echo ucwords($language);?></option>
+                       </div>
+                       
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                   
+                  </select>
+                </form>
+              </li>
       </div>
     </div>
 
@@ -352,6 +425,6 @@
         <input value="<?php echo isset($_GET['query']) ? $_GET['query']:''; ?>" name="query" class="form-control" type="text" placeholder="<?php echo get_phrase('Search'); ?>" />
       </div>
     </form>
-
+                        </ul>
   </div>
 </nav>

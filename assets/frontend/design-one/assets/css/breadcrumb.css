@@ -1,98 +1,84 @@
 .breadcrumb {
-
-    min-height: 307px;
-    background-color: var(--primary-color);
-    position: relative;
-    margin-bottom: 40px;
-
+  min-height: 307px;
+  background-color: var(--primary-color) !important;
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .breadcrumb__top-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-    height: 90%;
+  height: 90%;
 }
 
 .breadcrumb__bottom-img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 90%;
-
-
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 90%;
 }
 
 .breadcrumb .breadcrumb__top {
-    margin-top: 58px;
-    gap: 8px;
-
+  /* margin-top: 58px; */
+  gap: 8px;
 }
 
-.breadcrumb .breadcrumb__top a {
-    line-height: 36px;
-    font-size: 24px;
-    font-weight: 500;
-
+.breadcrumb .breadcrumb__top a,
+.breadcrumb span {
+  line-height: 36px !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
 }
 
 .breadcrumb .breadcrumb__top i {
-    font-size: 24px;
-    color: var(--light-withe-color);
+  font-size: 24px !important;
+  color: var(--light-withe-color);
 }
 
 .breadcrumb .breadcrumb__home-link {
-    color: var(--light-withe-color);
+  color: var(--light-withe-color);
 }
 
 .breadcrumb .breadcrumb__active-link {
-    color: var(--dark-orange-color);
+  color: var(--dark-orange-color);
 }
 
 .breadcrumb .breadcrumb__bottom {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .breadcrumb .breadcrumb__title {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 84px;
 
-    font-size: 56px;
-    font-weight: 600;
-    line-height: 84px;
-
-
-    color: var(--white-color);
-
-
+  color: var(--white-color);
 }
 
-
-
-
 @media (max-width: 992px) {
-    .breadcrumb {
-        min-height: 213px;
-        margin-bottom: 16px;
-    }
+  .breadcrumb {
+    min-height: 213px;
+    margin-bottom: 16px;
+  }
+  .breadcrumb .breadcrumb__bottom {
+    margin-top: 8px;
+    margin-inline-start: 10px;
+  }
 
-
-    .breadcrumb .breadcrumb__top {
-        margin-top: 64px;
-    }
-
-    .breadcrumb .breadcrumb__bottom {
-        margin-top: 8px;
-
-    }
-
-    .breadcrumb .breadcrumb__title {
-        font-size: 36px;
-        font-weight: 600;
-        line-height: 54px;
-
-
-
-    }
-
-
+  .breadcrumb .breadcrumb__title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 54px;
+ 
+  }
+  .breadcrumb .breadcrumb__top a, .breadcrumb__top i
+.breadcrumb span {
+  line-height: 24px !important;
+  font-size: 16px !important;
+}
+.course-bundle__content {
+    padding: 33px 24px ;
+}
 }
