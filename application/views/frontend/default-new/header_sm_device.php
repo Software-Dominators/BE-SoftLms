@@ -16,9 +16,9 @@
       <?php else: ?>
         <div class="offcanvas-header bg-light">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          <div class="offcanves-btn">
-            <a href="<?php echo site_url('sign_up'); ?>" class="signUp-btn"><?php echo get_phrase('Sign Up'); ?></a>
-            <a href="<?php echo site_url('login'); ?>" class="logIn-btn"><?php echo get_phrase('Login'); ?></a>
+          <div class="offcanves-btn d-flex justify-content-between">
+            <a href="<?php echo site_url('sign_up'); ?>" class="sign-up-btn"><?php echo get_phrase('Sign Up'); ?></a>
+            <a href="<?php echo site_url('login'); ?>" class="login-btn"><?php echo get_phrase('Login'); ?></a>
           </div>
         </div>
       <?php endif; ?>
@@ -26,6 +26,42 @@
     <div class="offcanvas-body p-0">
       <div class="flex-shrink-0 mt-3">
         <ul class="list-unstyled ps-0">
+
+        <li class=" w-100">
+
+<?php if($header_menu_counter > 3): ?>
+<form class="search-input-form " action="<?php echo site_url('home/courses'); ?>" method="get">
+<div class="dropdown ">
+  <button class="btn search-input-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-search search-menu-icon"></i>
+    <i class="fas fa-times text-18px close-menu-icon"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end p-0 border-0   ">
+    <li>
+      <div class="header-search mt-2 w-100 flex-column" style="box-shadow: 0px 2px 8px -1px #bbb;">
+        <!-- <p class="text-muted text-14px text-start w-100 mb-2"><?php echo get_phrase('Discover which courses are the best for you'); ?></p> -->
+        <div class="search-container w-100 d-flex justify-content-center">
+          <input id="headerSearchBarLg" name="query" type="text" class="form-control mob-search-input <?php echo isset($_GET['query']) ? 'focused':''; ?>" placeholder="<?php echo get_phrase('Search'); ?>" value="<?php echo isset($_GET['query']) ? $_GET['query']:''; ?>">
+          <button type="submit" class="header-search-icon border-0 text-dark text-16px <?php echo isset($_GET['query']) ? '':'d-hidden'; ?>"><i class="fas fa-search"></i></button>
+          <label for="headerSearchBarLg" class="header-search-icon text-dark text-16px <?php echo isset($_GET['query']) ? 'd-hidden':''; ?>"><i class="fas fa-search  mob-search-icon"></i></label>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</form>
+<?php else: ?>
+<form class="w-100 " action="<?php echo site_url('home/courses'); ?>" method="get" style="max-width: 400px;">
+<div class="header-search py-0 px-2 w-100">
+  <div class="search-container  w-100 d-flex justify-content-center">
+    <input id="headerSearchBarLg" name="query" type="text" class=" form-control mob-search-input <?php echo isset($_GET['query']) ? 'focused':''; ?>" placeholder="<?php echo get_phrase('Search'); ?>" value="<?php echo isset($_GET['query']) ? $_GET['query']:''; ?>">
+    <button type="submit" class="header-search-icon border-0 text-dark text-16px <?php echo isset($_GET['query']) ? '':'d-hidden'; ?>"><img loading="lazy" src="assets/frontend/design-one/assets/images/home/Search.svg" alt="Logo" /></button>
+    <label for="headerSearchBarLg" class="header-search-icon text-dark text-16px <?php echo isset($_GET['query']) ? 'd-hidden':''; ?>"><i class="fas fa-search  mob-search-icon"></i></label>
+  </div>
+</div>
+</form>
+<?php endif; ?>
+</li>
           <?php if($user_login): ?>
             <?php if($user_details['is_instructor'] == 1): ?>
               <li><a href="<?php echo site_url('user/dashboard'); ?>" class="btn btn-toggle-list d-inline-flex align-items-center rounded border-0 text-dark text-16px fw-500"><i class="fas fa-columns me-2"></i><?php echo site_phrase('Instructor Dashboard'); ?></a></li>
@@ -35,6 +71,8 @@
               <?php endif; ?>
             <?php endif; ?>
           <?php endif; ?>
+
+
 
           <li><a href="<?php echo site_url('home/shopping_cart'); ?>" class="btn btn-toggle-list d-inline-flex align-items-center rounded border-0 text-dark text-16px fw-500 w-100"><i class="fa-solid fa-cart-shopping me-2"></i> <?php echo site_phrase('Cart'); ?> <span class="badge bg-danger ms-auto"><?php echo count($cart_items); ?></span></a></li>
 
@@ -157,10 +195,33 @@
           <?php endforeach; ?>
 
           <?php if($user_id > 0): ?>
-            <li class="bg-light">
+            <li class=" bg-light">
               <a href="<?php echo site_url('login/logout'); ?>" class="btn btn-toggle-list d-inline-flex align-items-center rounded border-0 text-dark text-16px fw-500"> <i class="fas fa-sign-out-alt me-2"></i> <?php echo get_phrase('Logout'); ?></a>
             </li>
           <?php endif; ?>
+        
+          <div class="language">
+      <li class="nav-item align-items-center d-flex  ">
+      <i class="fa-solid fa-globe me-1  text-dark text-16px"></i>
+                <form action="#" method="POST" class=" ">
+                
+                  <select onchange="actionTo(<?php echo site_url('home/switch_language/') ?>${$(this).val()})" class=" nice-select">
+                    <?php
+                    $languages = $this->crud_model->get_all_languages();
+                    $selected_language = $this->session->userdata('language');
+                    foreach ($languages as $language): ?>
+                      <?php if (trim($language) != ""): ?>
+                       <div class="options-value ">
+                       <option class="  " value="<?php echo strtolower($language); ?>" <?php if ($selected_language == $language): ?>selected<?php endif; ?>>  <?php echo ucwords($language);?></option>
+                       </div>
+                       
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                   
+                  </select>
+                </form>
+              </li>
+      </div>
         </ul>
       </div>
 

@@ -277,9 +277,10 @@ li .navbarHover li a:hover{
   </div> -->
 
     <!-- Notification Area -->
-    <div class="wisth_tgl_div">
+    <div class="wisth_tgl_div ">
             <div class="wisth_tgl_2div" id="headerNotification">
               <?php include "notifications.php"; ?>
+         
             </div>
           </div>
 <?php endif; ?>
@@ -417,7 +418,6 @@ li .navbarHover li a:hover{
               </li>
       </div>
     </div>
-
     <!-- Mobile Device Form -->
     <form action="<?php echo site_url('home/courses'); ?>" method="get" class="inline-form">
       <div class="mobile-search test">

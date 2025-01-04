@@ -1,148 +1,208 @@
+
 <link href="<?php echo site_url('assets/global/select2/css/select2.min.css') ?>" rel="stylesheet" />
 <script src="<?php echo site_url('assets/global/select2/js/select2.min.js') ?>"></script>
 
+
+<?php include "breadcrumb.php"; ?>
 <section class="compare-card">
     <div class="container">
+	<header class="top-header-section">
+                    <h2>
+                        <span>
+                            <?php echo site_phrase('Course '); ?>
+                        </span>
+                        <?php echo site_phrase('Compare') ?>
+                    </h2>
+                    <p>
+                        <?php echo get_phrase('Find the best course for your needs quickly and easily.') ?>
+                    </p>
+                </header>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                <div class="empty-card p-4">
-
-                	<div class="card">
-                		<div class="card-body text-center text-13px text-dark fw-600">
-                			<?php $number_of_courses = isset($_GET) && count($_GET) ? count($_GET)/2:0; ?>
-                			<?php echo get_phrase('Compare with '.$number_of_courses.' courses'); ?>
-                		</div>
-                	</div>
-
-                	<?php
-                		$course_id_1 = isset($course_1_details['id']) ? $course_1_details['id'] : '0';
-                		$course_id_2 = isset($course_2_details['id']) ? $course_2_details['id'] : '0';
-                		$course_id_3 = isset($course_3_details['id']) ? $course_3_details['id'] : '0';
-                	?>
-
-                    <form  id="compare_form" action="<?php echo site_url('home/compare'); ?>" method="get" class="comparison-form">
-                    	<!-- For course 1 -->
-                    	<div class="w-100 mb-4">
-		                    <select class="server-side-select2 w-100" onchange="" name="course-id-1" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
-		                        <option value=""><?php echo site_phrase('Select a course'); ?></option>
-		                        <?php if(isset($course_1_details['id'])): ?>
-		                        	<option value="<?php echo isset($course_1_details['id']) ? $course_1_details['id'] : ''; ?>" selected>
-		                        		<?php echo $course_1_details['title']; ?>
-		                        	</option>
-		                        <?php endif; ?>
-		                    </select>
-		                    <input type="hidden" name="course-1" value="<?php echo isset($course_1_details['title']) ? slugify($course_1_details['title']):''; ?>">
-		                </div>
-
-		               <script type="text/javascript">
-		               	function submit_compare_form(e){
-		               		var course_id = $(this).val();
-
-		               		$("#compare_form").parent().parent().submit()
-		               	}
-		               </script>
-
-	                    <!-- For course 2 -->
-	                    <div class="w-100 mb-4">
-		                    <select class="server-side-select2 w-100" onchange="$(this).parent().parent().submit()" name="course-id-2" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
-		                        <option value=""><?php echo site_phrase('Select a course'); ?></option>
-		                        <?php if(isset($course_2_details['id'])): ?>
-		                        	<option value="<?php echo isset($course_2_details['id']) ? $course_2_details['id'] : ''; ?>" selected>
-		                        		<?php echo $course_2_details['title']; ?>
-		                        	</option>
-		                        <?php endif; ?>
-		                    </select>
-		                    <input type="hidden" name="course-2" value="<?php echo isset($course_2_details['title']) ? slugify($course_2_details['title']):''; ?>">
-		                </div>
+            <div class="col-12 row justify-content-end">
+				<div class="col-lg-8 d-flex justify-content-end">
+				<div class="empty-card p-4">
 
 
-	                    <!-- For course 3 -->
-	                    <div class="w-100 mb-4">
-		                    <select class="server-side-select2 w-100" onchange="$(this).parent().parent().submit()" name="course-id-3" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
-		                        <option value=""><?php echo site_phrase('Select a course'); ?></option>
-		                        <?php if(isset($course_3_details['id'])): ?>
-		                        	<option value="<?php echo isset($course_3_details['id']) ? $course_3_details['id'] : ''; ?>" selected>
-		                        		<?php echo $course_3_details['title']; ?>
-		                        	</option>
-		                        <?php endif; ?>
-		                    </select>
-		                    <input type="hidden" name="course-3" value="<?php echo isset($course_3_details['title']) ? slugify($course_3_details['title']):''; ?>">
-		                </div>
-	                </form>
-                </div>
+
+<?php
+	$course_id_1 = isset($course_1_details['id']) ? $course_1_details['id'] : '0';
+	$course_id_2 = isset($course_2_details['id']) ? $course_2_details['id'] : '0';
+	$course_id_3 = isset($course_3_details['id']) ? $course_3_details['id'] : '0';
+?>
+
+<form  id="compare_form" action="<?php echo site_url('home/compare'); ?>" method="get" class="comparison-form  d-lg-flex justify-content-between">
+	<!-- For course 1 -->
+	<div class="w-100 mb-4">
+		<select class="server-side-select2 w-100" onchange="" name="course-id-1" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
+			<option value=""><?php echo site_phrase('Select a course'); ?></option>
+			<?php if(isset($course_1_details['id'])): ?>
+				<option value="<?php echo isset($course_1_details['id']) ? $course_1_details['id'] : ''; ?>" selected>
+					<?php echo $course_1_details['title']; ?>
+				</option>
+			<?php endif; ?>
+		</select>
+		<input type="hidden" name="course-1" value="<?php echo isset($course_1_details['title']) ? slugify($course_1_details['title']):''; ?>">
+	</div>
+
+   <script type="text/javascript">
+	   function submit_compare_form(e){
+		   var course_id = $(this).val();
+
+		   $("#compare_form").parent().parent().submit()
+	   }
+   </script>
+
+	<!-- For course 2 -->
+	<div class="w-100 mb-4">
+		<select class="server-side-select2 w-100" onchange="$(this).parent().parent().submit()" name="course-id-2" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
+			<option value=""><?php echo site_phrase('Select a course'); ?></option>
+			<?php if(isset($course_2_details['id'])): ?>
+				<option value="<?php echo isset($course_2_details['id']) ? $course_2_details['id'] : ''; ?>" selected>
+					<?php echo $course_2_details['title']; ?>
+				</option>
+			<?php endif; ?>
+		</select>
+		<input type="hidden" name="course-2" value="<?php echo isset($course_2_details['title']) ? slugify($course_2_details['title']):''; ?>">
+	</div>
+
+
+	<!-- For course 3 -->
+	<div class="w-100 mb-4">
+		<select class="server-side-select2 w-100" onchange="$(this).parent().parent().submit()" name="course-id-3" action="<?php echo site_url('home/get_compare_course_select2/'.$course_id_1.'/'.$course_id_2.'/'.$course_id_3); ?>">
+			<option value=""><?php echo site_phrase('Select a course'); ?></option>
+			<?php if(isset($course_3_details['id'])): ?>
+				<option value="<?php echo isset($course_3_details['id']) ? $course_3_details['id'] : ''; ?>" selected>
+					<?php echo $course_3_details['title']; ?>
+				</option>
+			<?php endif; ?>
+		</select>
+		<input type="hidden" name="course-3" value="<?php echo isset($course_3_details['title']) ? slugify($course_3_details['title']):''; ?>">
+	</div>
+</form>
+<div class="card comp-num ">
+	<div class="card-body d-flex justify-content-end   fw-600">
+		<?php $number_of_courses = isset($_GET) && count($_GET) ? count($_GET)/2:0; ?>
+		<?php echo get_phrase('Compare with '.$number_of_courses.' courses'); ?>
+	</div>
+</div>
+</div>
+				</div>
+          
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            	<?php if(isset($course_1_details['title'])): ?>
-	                <div class="card">
-	                    <h3><?php echo $course_1_details['title']; ?></h3>
-	                    <img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_1_details['id']); ?>" alt="<?php echo $course_1_details['title']; ?>">
-	                    <div class="d-flex">
+			<div class="row justify-content-center align-items-center">
+			<div class=" col-md-3   comp-card">
+				<h3>
+				<?php if(isset($course_1_details['title'])): ?>
+				</h3>
+            
+	                <div class="card ">
+	                  
+						<div class="compared-course">
+							<div class="comp-card-wrapper">
+
+						
+						<img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_1_details['id']); ?>" alt="<?php echo $course_1_details['title']; ?>">
+	                    <div class="d-flex justify-content-between align-items-center">
+						<h4><?php echo $course_1_details['title']; ?></h4>
 		                    <?php if($course_1_details['is_free_course']): ?>
 	                            <h3><?php echo get_phrase('Free'); ?></h3>
 	                        <?php elseif($course_1_details['discount_flag']): ?>
 	                            <h3><?php echo currency($course_1_details['discounted_price']); ?></h3>
-	                            <h6 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_1_details['price']); ?></del></h6>
+	                            <h3 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_1_details['price']); ?></del></h3>
 	                        <?php else: ?>
 	                            <h3><?php echo currency($course_1_details['price']); ?></h3>
 	                        <?php endif; ?>
 	                    </div>
 	                    <p class="ellipsis-line-2"><?php echo $course_1_details['short_description'] ?></p>
-	                    <a href="<?php echo site_url('home/course/' . slugify($course_1_details['title']) . '/' . $course_1_details['id']) ?>"><?php echo get_phrase('Learn More'); ?> <i class="fa-solid fa-angle-right"></i></a>
+						</div>
+						<div class="more d-flex justify-content-end">
+	                    <a href="<?php echo site_url('home/course/' . slugify($course_1_details['title']) . '/' . $course_1_details['id']) ?>"><?php echo get_phrase('Learn More'); ?> <i class="fa-solid fa-arrow-right"></i></a>
+						</div>
+
+						</div>
 	                </div>
 	            <?php endif; ?>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                <?php if(isset($course_2_details['title'])): ?>
+            <div class=" col-md-3   comp-card">
+				<h3>
+				<?php if(isset($course_2_details['title'])): ?>
+				</h3>
+          
 	                <div class="card">
-	                    <h3><?php echo $course_2_details['title']; ?></h3>
-	                    <img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_2_details['id']); ?>" alt="<?php echo $course_2_details['title']; ?>">
-	                    <div class="d-flex">
+	                
+						<div class="compared-course">
+						<div class="comp-card-wrapper">
+						<img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_2_details['id']); ?>" alt="<?php echo $course_2_details['title']; ?>">
+	                    <div class="d-flex justify-content-between align-items-center">
+						<h4><?php echo $course_2_details['title']; ?></h4>
 		                    <?php if($course_2_details['is_free_course']): ?>
 	                            <h3><?php echo get_phrase('Free'); ?></h3>
 	                        <?php elseif($course_2_details['discount_flag']): ?>
 	                            <h3><?php echo currency($course_2_details['discounted_price']); ?></h3>
-	                            <h6 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_2_details['price']); ?></del></h6>
+	                            <h3 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_2_details['price']); ?></del></h3>
 	                        <?php else: ?>
 	                            <h3><?php echo currency($course_2_details['price']); ?></h3>
 	                        <?php endif; ?>
 	                    </div>
 	                    <p class="ellipsis-line-2"><?php echo $course_2_details['short_description'] ?></p>
-	                    <a href="<?php echo site_url('home/course/' . slugify($course_2_details['title']) . '/' . $course_2_details['id']) ?>"><?php echo get_phrase('Learn More'); ?> <i class="fa-solid fa-angle-right"></i></a>
+							</div>
+
+							<div class="d-flex justify-content-end">
+							<a href="<?php echo site_url('home/course/' . slugify($course_2_details['title']) . '/' . $course_2_details['id']) ?>"><?php echo get_phrase('Learn More'); ?><i class="fa-solid fa-arrow-right"></i></a>
+							</div>
+	                   
+						</div>
+	                  
 	                </div>
 	            <?php endif; ?>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                <?php if(isset($course_3_details['title'])): ?>
+            <div class=" col-md-3 col-sm-6  conp-card">
+              <h3 class="">
+			  <?php if(isset($course_3_details['title'])): ?>
+			  </h3>
+               
 	                <div class="card">
-	                    <h3><?php echo $course_3_details['title']; ?></h3>
-	                    <img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_3_details['id']); ?>" alt="<?php echo $course_3_details['title']; ?>">
-	                    <div class="d-flex">
+	                    
+						<div class="compared-course">
+						<div class="comp-card-wrapper">
+						<img loading="lazy" src="<?php echo $this->crud_model->get_course_thumbnail_url($course_3_details['id']); ?>" alt="<?php echo $course_3_details['title']; ?>">
+	                    <div class="d-flex  justify-content-between align-items-center">
+						<h4><?php echo $course_3_details['title']; ?></h4>
 		                    <?php if($course_3_details['is_free_course']): ?>
 	                            <h3><?php echo get_phrase('Free'); ?></h3>
 	                        <?php elseif($course_3_details['discount_flag']): ?>
 	                            <h3><?php echo currency($course_3_details['discounted_price']); ?></h3>
-	                            <h6 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_3_details['price']); ?></del></h6>
+	                            <h3 class="ms-1" style="margin-top: 2px"><del><?php echo currency($course_3_details['price']); ?></del></h3>
 	                        <?php else: ?>
 	                            <h3><?php echo currency($course_3_details['price']); ?></h3>
 	                        <?php endif; ?>
 	                    </div>
 	                    <p class="ellipsis-line-2"><?php echo $course_3_details['short_description'] ?></p>
-	                    <a href="<?php echo site_url('home/course/' . slugify($course_3_details['title']) . '/' . $course_3_details['id']) ?>"><?php echo get_phrase('Learn More'); ?> <i class="fa-solid fa-angle-right"></i></a>
+							</div>
+							<div class="more d-flex justify-content-end">
+							<a href="<?php echo site_url('home/course/' . slugify($course_3_details['title']) . '/' . $course_3_details['id']) ?>"><?php echo get_phrase('Learn More'); ?> <i class="fa-solid fa-arrow-right"></i></a>
+							</div>
+	                 
+						</div>
+	                   
 	                </div>
 	            <?php endif; ?>
             </div>
+			</div>
+       
         </div>
     </div>
 </section>
 
-<section class="compare-table compare-2">
+<section class="compare-table compare-2 ">
     <div class="container">
-        <div class="compare-2-table">
+        <div class="compare-2-table shadow">
         <table class="table">
                 <thead>
                     <tr>
                       <th scope="col">
-                      	<i class="fa-solid fa-bars"></i><?php echo get_phrase('Has Discount') ?>
+                      	<i class="fa-solid fa-bars"></i> 
+						<?php echo get_phrase('Has Discount') ?>
                       </th>
                       <td class="border-0" scope="col">
                       	<?php if(isset($course_1_details['title'])): ?>
